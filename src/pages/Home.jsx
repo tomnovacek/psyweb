@@ -535,6 +535,21 @@ export default function Home() {
             </Button>
           </Stack>
         </Container>
+        <Stack align={'center'} mt={10}>
+            <Button
+              as={RouterLink}
+              to="/calendar"
+              colorScheme={'green'}
+              variant={'solid'}
+              size={'lg'}
+              _hover={{
+                bg: 'green.400',
+                color: 'white',
+              }}
+            >
+              Book a Consultation
+            </Button>
+          </Stack>
       </Box>
     </>
   )

@@ -62,7 +62,7 @@ const MobileNav = () => {
         </Button>
         <Button
           as={RouterLink}
-          to="/contact"
+          to="/calendar"
           w="full"
           fontSize={'sm'}
           fontWeight={600}
@@ -70,7 +70,7 @@ const MobileNav = () => {
           bg={'green.400'}
           _hover={{ bg: 'green.500' }}
         >
-          Contact
+          Book a Consultation
         </Button>
       </Stack>
     </Stack>
@@ -138,7 +138,7 @@ export default function Navbar() {
           >
             <Button
               as={RouterLink}
-              to="/contact"
+              to="/calendar "
               display={{ base: 'none', md: 'inline-flex' }}
               fontSize={'sm'}
               fontWeight={600}
@@ -149,7 +149,7 @@ export default function Navbar() {
                 bg: 'green.300',
               }}
             >
-              Contact
+              Book a Consultation
             </Button>
           </Stack>
         </Flex>
