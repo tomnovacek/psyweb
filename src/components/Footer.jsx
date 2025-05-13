@@ -7,6 +7,7 @@ import {
   SimpleGrid,
   Heading,
   Icon,
+  Image,
 } from '@chakra-ui/react'
 import { FaEnvelope, FaPhone, FaMapMarkerAlt } from 'react-icons/fa'
 import { Link as RouterLink } from 'react-router-dom'
@@ -69,8 +70,16 @@ export default function Footer() {
             </Stack>
             <Stack direction={'row'} align={'center'} spacing={2}>
               <Icon as={FaEnvelope} />
-              <Text>terapie@tomnovacek.com</Text>
+              <Link href="mailto:terapie@tomnovacek.com" color={useColorModeValue('gray.700', 'gray.200')}>
+                terapie@tomnovacek.com
+              </Link>
             </Stack>
+            <Image
+              src="/src/assets/img/CAP.png"
+              alt="ČAP Logo"
+              width="120px"
+              height="auto"
+            />
           </Stack>
         </SimpleGrid>
       </Box>

@@ -17,7 +17,7 @@ import {
   Link,
 } from '@chakra-ui/react'
 import { CheckCircleIcon } from '@chakra-ui/icons'
-import { FaGraduationCap, FaUserMd, FaHeart, FaBrain, FaHandHoldingHeart, FaLightbulb } from 'react-icons/fa'
+import { FaGraduationCap, FaUserMd, FaHeart, FaBrain, FaHandHoldingHeart, FaLightbulb, FaHeartbeat, FaUserShield, FaUsers, FaExchangeAlt, FaBalanceScale, FaSeedling } from 'react-icons/fa'
 
 export default function About() {
   // Move hooks to the top level
@@ -238,7 +238,11 @@ export default function About() {
               <List spacing={3}>
                 <ListItem>
                   <ListIcon as={CheckCircleIcon} color="green.400" />
-                  Licensed Counselor
+                  Certified Psychoterapist
+                </ListItem>
+                <ListItem>
+                  <ListIcon as={CheckCircleIcon} color="green.400" />
+                  Certified Coach
                 </ListItem>
                 <ListItem>
                   <ListIcon as={CheckCircleIcon} color="green.400" />
@@ -247,6 +251,12 @@ export default function About() {
               </List>
             </Box>
           </SimpleGrid>
+          <Image
+              src="/src/assets/img/CAP.png"
+              alt="ČAP Logo"
+              width="200px"
+              height="auto"
+            />
         </Container>
       </Box>
 
@@ -283,12 +293,30 @@ export default function About() {
 
           <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={6}>
             {[
-              'Anxiety & Depression',
-              'Trauma & PTSD',
-              'Relationship Issues',
-              'Life Transitions',
-              'Stress Management',
-              'Personal Growth',
+              {
+                title: 'Anxiety & Depression',
+                icon: FaHeartbeat
+              },
+              {
+                title: 'Trauma & PTSD',
+                icon: FaUserShield
+              },
+              {
+                title: 'Relationship Issues',
+                icon: FaUsers
+              },
+              {
+                title: 'Life Transitions',
+                icon: FaExchangeAlt
+              },
+              {
+                title: 'Stress Management',
+                icon: FaBalanceScale
+              },
+              {
+                title: 'Personal Growth',
+                icon: FaSeedling
+              },
             ].map((expertise, index) => (
               <Box
                 key={index}
@@ -298,8 +326,15 @@ export default function About() {
                 boxShadow="md"
                 textAlign="center"
               >
+                <Icon
+                  as={expertise.icon}
+                  w={8}
+                  h={8}
+                  color="green.400"
+                  mb={3}
+                />
                 <Text fontSize={'lg'} fontWeight="medium" color={headingColor}>
-                  {expertise}
+                  {expertise.title}
                 </Text>
               </Box>
             ))}
