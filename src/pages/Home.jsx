@@ -336,7 +336,7 @@ export default function Home() {
                   'Flexible scheduling options'
                 ]
               },
-              {
+/*               {
                 icon: FaHeart,
                 title: 'Couples Therapy',
                 description: 'Support for couples looking to improve their relationship and communication.',
@@ -346,7 +346,7 @@ export default function Home() {
                   'Conflict resolution',
                   'Trust building'
                 ]
-              },
+              }, */
               {
                 icon: FaBrain,
                 title: 'Anxiety & Depression',
@@ -358,7 +358,7 @@ export default function Home() {
                   'Lifestyle changes'
                 ]
               },
-              {
+/*               {
                 icon: FaComments,
                 title: 'Life Coaching',
                 description: 'Guidance for personal and professional development.',
@@ -368,18 +368,7 @@ export default function Home() {
                   'Life balance',
                   'Personal growth'
                 ]
-              },
-              {
-                icon: FaLightbulb,
-                title: 'Mindfulness Training',
-                description: 'Learn techniques for present-moment awareness and stress reduction.',
-                features: [
-                  'Meditation practices',
-                  'Breathing exercises',
-                  'Mind-body connection',
-                  'Stress reduction'
-                ]
-              },
+              }, */
               {
                 icon: FaHandHoldingHeart,
                 title: 'Trauma Support',
