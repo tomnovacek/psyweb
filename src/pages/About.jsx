@@ -373,7 +373,7 @@ export default function About() {
       </Box>
 
       {/* Therapeutic Methods */}
-      <Box py={20} bg={cardBg}>
+{/*       <Box py={20} bg={cardBg}>
         <Container maxW={'7xl'}>
           <Stack spacing={4} as={Container} maxW={'3xl'} textAlign={'center'} mb={10}>
             <Heading
@@ -445,7 +445,7 @@ export default function About() {
             ))}
           </SimpleGrid>
         </Container>
-      </Box>
+      </Box> */}
     </Box>
   )
 } 
