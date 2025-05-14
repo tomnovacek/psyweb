@@ -20,13 +20,11 @@ import { CheckCircleIcon } from '@chakra-ui/icons'
 import { FaGraduationCap, FaUserMd, FaHeart, FaBrain, FaHandHoldingHeart, FaLightbulb, FaHeartbeat, FaUserShield, FaUsers, FaExchangeAlt, FaBalanceScale, FaSeedling } from 'react-icons/fa'
 
 export default function About() {
-  // Move hooks to the top level
   const bgColor = useColorModeValue('gray.50', 'gray.900')
   const cardBg = useColorModeValue('white', 'gray.800')
-  const serviceBg = useColorModeValue('green.100', 'gray.800')
-  const headingColor = useColorModeValue('gray.700', 'white')
   const textColor = useColorModeValue('gray.600', 'gray.400')
-  const borderColor = useColorModeValue('white', 'gray.800')
+  const headingColor = useColorModeValue('gray.700', 'white')
+  const borderColor = useColorModeValue('gray.200', 'gray.700')
 
   return (
     <Box bg={bgColor}>
@@ -79,7 +77,7 @@ export default function About() {
             {/* Portrait Image */}
             <Box
               flex="1"
-              maxW="2xl"
+              maxW="xs"
               position="relative"
               display={{ base: 'none', md: 'block' }}
             >
@@ -90,6 +88,10 @@ export default function About() {
                 objectFit="cover"
                 width="100%"
                 height="auto"
+                transition="all 0.3s"
+                _hover={{
+                  transform: 'scale(1.02)', 
+                }}
               />
             </Box>
           </Flex>
@@ -98,8 +100,8 @@ export default function About() {
 
       {/* About Section */}
       <Box py={20} bg={bgColor}>
-        <Container maxW={'7xl'} centerContent>
-          <Stack spacing={4} maxW={'3xl'} textAlign={'center'} mb={20}>
+        <Container maxW={'7xl'}>
+          <Stack spacing={4} as={Container} maxW={'3xl'} textAlign={'center'} mb={10}>
             <Heading
               lineHeight={1.1}
               fontWeight={600}
@@ -127,7 +129,7 @@ export default function About() {
             </Text>
           </Stack>
 
-          <SimpleGrid columns={{ base: 1, md: 3 }} spacing={10} mb={20}>
+          <SimpleGrid columns={{ base: 1, md: 3 }} spacing={10}>
             {[
               {
                 icon: FaHeart,
@@ -147,11 +149,16 @@ export default function About() {
             ].map((feature, index) => (
               <Box
                 key={index}
-                bg={serviceBg}
-                p={6}
-                rounded="xl"
-                boxShadow="lg"
-                textAlign="center"
+                bg={cardBg}
+                boxShadow={'xl'}
+                rounded={'xl'}
+                p={8}
+                position="relative"
+                transition="all 0.3s"
+                _hover={{
+                  transform: 'translateY(-5px)',
+                  boxShadow: '2xl',
+                }}
               >
                 <Icon
                   as={feature.icon}
@@ -172,8 +179,8 @@ export default function About() {
 
       {/* Education & Credentials */}
       <Box py={20} bg={cardBg}>
-        <Container maxW={'7xl'} centerContent>
-          <Stack spacing={4} maxW={'3xl'} textAlign={'center'} mb={20}>
+        <Container maxW={'7xl'}>
+          <Stack spacing={4} as={Container} maxW={'3xl'} textAlign={'center'} mb={10}>
             <Heading
               lineHeight={1.1}
               fontWeight={600}
@@ -201,12 +208,18 @@ export default function About() {
             </Text>
           </Stack>
 
-          <SimpleGrid columns={{ base: 1, md: 2 }} spacing={10} mb={20}>
+          <SimpleGrid columns={{ base: 1, md: 2 }} spacing={10}>
             <Box
-              bg={serviceBg}
-              p={6}
-              rounded="xl"
-              boxShadow="lg"
+              bg={cardBg}
+              boxShadow={'xl'}
+              rounded={'xl'}
+              p={8}
+              position="relative"
+              transition="all 0.3s"
+              _hover={{
+                transform: 'translateY(-5px)',
+                boxShadow: '2xl',
+              }}
             >
               <Heading fontSize={'2xl'} mb={4}>Education</Heading>
               <List spacing={3}>
@@ -229,10 +242,16 @@ export default function About() {
               </List>
             </Box>
             <Box
-              bg={serviceBg}
-              p={6}
-              rounded="xl"
-              boxShadow="lg"
+              bg={cardBg}
+              boxShadow={'xl'}
+              rounded={'xl'}
+              p={8}
+              position="relative"
+              transition="all 0.3s"
+              _hover={{
+                transform: 'translateY(-5px)',
+                boxShadow: '2xl',
+              }}
             >
               <Heading fontSize={'2xl'} mb={4}>Professional Memberships</Heading>
               <List spacing={3}>
@@ -251,19 +270,25 @@ export default function About() {
               </List>
             </Box>
           </SimpleGrid>
-          <Image
+          <Center mt={10}>
+            <Image
               src="/src/assets/img/CAP.png"
               alt="ČAP Logo"
               width="200px"
               height="auto"
+              transition="all 0.3s"
+              _hover={{
+                transform: 'scale(1.05)',
+              }}
             />
+          </Center>
         </Container>
       </Box>
 
       {/* Areas of Expertise */}
       <Box py={20} bg={bgColor}>
-        <Container maxW={'7xl'} centerContent>
-          <Stack spacing={4} maxW={'3xl'} textAlign={'center'} mb={20}>
+        <Container maxW={'7xl'}>
+          <Stack spacing={4} as={Container} maxW={'3xl'} textAlign={'center'} mb={10}>
             <Heading
               lineHeight={1.1}
               fontWeight={600}
@@ -320,11 +345,16 @@ export default function About() {
             ].map((expertise, index) => (
               <Box
                 key={index}
-                bg={serviceBg}
-                p={4}
-                rounded="lg"
-                boxShadow="md"
+                bg={cardBg}
+                boxShadow={'xl'}
+                rounded={'xl'}
+                p={6}
                 textAlign="center"
+                transition="all 0.3s"
+                _hover={{
+                  transform: 'translateY(-5px)',
+                  boxShadow: '2xl',
+                }}
               >
                 <Icon
                   as={expertise.icon}
@@ -342,10 +372,10 @@ export default function About() {
         </Container>
       </Box>
 
-      {/* New Section: Therapeutic Methods */}
+      {/* Therapeutic Methods */}
       <Box py={20} bg={cardBg}>
-        <Container maxW={'7xl'} centerContent>
-          <Stack spacing={4} maxW={'3xl'} textAlign={'center'} mb={20}>
+        <Container maxW={'7xl'}>
+          <Stack spacing={4} as={Container} maxW={'3xl'} textAlign={'center'} mb={10}>
             <Heading
               lineHeight={1.1}
               fontWeight={600}
@@ -394,10 +424,16 @@ export default function About() {
             ].map((method, index) => (
               <Box
                 key={index}
-                bg={serviceBg}
-                p={6}
-                rounded="xl"
-                boxShadow="lg"
+                bg={cardBg}
+                boxShadow={'xl'}
+                rounded={'xl'}
+                p={8}
+                position="relative"
+                transition="all 0.3s"
+                _hover={{
+                  transform: 'translateY(-5px)',
+                  boxShadow: '2xl',
+                }}
               >
                 <Heading fontSize={'xl'} mb={4}>
                   {method.title}
