@@ -40,7 +40,7 @@ export default function Footer() {
             <Heading fontSize={'lg'} mb={4}>Location</Heading>
             <Box
               width="100%"
-              height="200px"
+              height="250px"
               borderRadius="lg"
               overflow="hidden"
               boxShadow="md"
@@ -58,7 +58,7 @@ export default function Footer() {
           </Stack>
 
           {/* Contact Information */}
-          <Stack align={'flex-start'}>
+          <Stack align={'flex-end'}>
             <Heading fontSize={'lg'} mb={4}>Contact</Heading>
             <Stack direction={'row'} align={'center'} spacing={2}>
               <Icon as={FaPhone} />
@@ -72,11 +72,7 @@ export default function Footer() {
               <Icon as={FaMapMarkerAlt} />
               <Text>Prague, Czech Republic</Text>
             </Stack>
-          </Stack>
-
-          {/* Logo */}
-          <Stack align={'flex-start'}>
-            <Heading fontSize={'lg'} mb={4}>Professional Memberships</Heading>
+            {/* Logo */}
             <OptimizedImage
               src="/src/assets/img/CAP.png"
               alt="ČAP Logo"
