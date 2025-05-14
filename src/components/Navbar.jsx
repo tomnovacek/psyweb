@@ -138,7 +138,7 @@ export default function Navbar() {
           >
             <Button
               as={RouterLink}
-              to="/calendar "
+              to="/calendar"
               display={{ base: 'none', md: 'inline-flex' }}
               fontSize={'sm'}
               fontWeight={600}

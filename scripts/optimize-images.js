@@ -8,14 +8,13 @@ const config = {
   outputDir: 'dist/assets/optimized-images',
   manifestPath: 'dist/assets/image-manifest.json',
   sizes: [
-    { width: 150, suffix: 'xs' },
-    { width: 300, suffix: 'sm' },
-    { width: 600, suffix: 'md' },
-    { width: 900, suffix: 'lg' },
+    { width: 300, suffix: 'xs' },  // Smaller initial size for faster LCP
+    { width: 600, suffix: 'md' },  // Current size
+    { width: 900, suffix: 'lg' },  // Larger size for high-res displays
     { width: 1200, suffix: 'xl' },
     { width: 1600, suffix: '2xl' }
   ],
-  quality: 80
+  quality: 75  // Slightly lower quality for faster loading
 };
 
 async function optimizeImage(filePath) {

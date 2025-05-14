@@ -7,6 +7,7 @@ const OptimizedImage = ({
   alt,
   size = 'md',
   fallbackSrc = '/assets/optimized-images/CAP-md.webp',
+  priority = false,
   ...props
 }) => {
   const [imageSrc, setImageSrc] = useState(null)
@@ -71,6 +72,9 @@ const OptimizedImage = ({
     <Image
       src={imageSrc || fallbackSrc}
       alt={alt}
+      loading={priority ? "eager" : "lazy"}
+      decoding={priority ? "sync" : "async"}
+      fetchpriority={priority ? "high" : "auto"}
       onError={(e) => {
         console.warn(`Failed to load image ${imageSrc}, using fallback`)
         if (imageSrc !== fallbackSrc) {

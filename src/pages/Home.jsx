@@ -89,9 +89,12 @@ export default function Home() {
             src="/src/assets/img/forrest.webp"
             alt="Forest path"
             objectFit="cover"
-            width="100%"
-            height="100%"
-            priority="true"
+            width="1920"
+            height="1080"
+            priority={true}
+            fetchpriority="high"
+            loading="eager"
+            decoding="sync"
           />
           <Box
             position="absolute"
