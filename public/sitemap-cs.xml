@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
+    <url>
+      <loc>https://psyweb.cz/</loc>
+      
+      <priority>1</priority>
+    </url>
+  
+    <url>
+      <loc>https://psyweb.cz/sluzby</loc>
+      
+      <priority>0.8</priority>
+    </url>
+  
+    <url>
+      <loc>https://psyweb.cz/blog</loc>
+      
+      <priority>0.8</priority>
+    </url>
+  
+    <url>
+      <loc>https://psyweb.cz/kontakt</loc>
+      
+      <priority>0.7</priority>
+    </url>
+  
+    <url>
+      <loc>https://psyweb.cz/blog/mindfulness-therapy</loc>
+      <lastmod>2025-05-14T16:45:17.745Z</lastmod>
+      <priority>0.6</priority>
+    </url>
+  
+    <url>
+      <loc>https://psyweb.cz/blog/hello-world</loc>
+      <lastmod>2025-05-14T16:39:44.967Z</lastmod>
+      <priority>0.6</priority>
+    </url>
+  
+    <url>
+      <loc>https://psyweb.cz/blog/healthy-relationships</loc>
+      <lastmod>2025-05-14T16:45:31.754Z</lastmod>
+      <priority>0.6</priority>
+    </url>
+  
+    <url>
+      <loc>https://psyweb.cz/blog/anxiety-guide</loc>
+      <lastmod>2025-05-14T16:45:01.935Z</lastmod>
+      <priority>0.6</priority>
+    </url>
+  
+    <url>
+      <loc>https://psyweb.cz/en/blog/hello-world</loc>
+      <lastmod>2025-05-14T16:39:58.652Z</lastmod>
+      <priority>0.6</priority>
+    </url>
+  
+</urlset>

@@ -1,0 +1,61 @@
+{
+  "nav": {
+    "home": "Domů",
+    "about": "O mně",
+    "services": "Služby",
+    "blog": "Blog",
+    "contact": "Kontakt",
+    "calendar": "Kalendář",
+    "bookConsultation": "Domluvit konzultaci"
+  },
+  "language": {
+    "switch": "Switch to English",
+    "current": "Čeština"
+  },
+  "hero": {
+    "title": "Psychoterapie",
+    "subtitle": "& Osobní růst",
+    "description": "Jsem licencovaný psychoterapeut, který se věnuje pomoci jednotlivcům při překonávání životních výzev a dosahování osobního růstu. Kombinací vědecky podložených přístupů a soucitné péče poskytuji bezpečný prostor pro uzdravení a transformaci.",
+    "cta": {
+      "primary": "Domluvit konzultaci",
+      "secondary": "Více informací"
+    }
+  },
+  "services": {
+    "title": "Moje služby",
+    "description": "Nabízím řadu terapeutických služeb na podporu vašeho duševního zdraví a osobního růstu."
+  },
+  "blog": {
+    "title": "Nejnovější z blogu",
+    "description": "Přehledy a zdroje na podporu vaší cesty k duševnímu zdraví",
+    "readMore": "Číst více příspěvků",
+    "backToBlog": "Zpět na blog",
+    "loading": "Načítání...",
+    "error": "Chyba při načítání příspěvku",
+    "notFound": "Příspěvek nenalezen"
+  },
+  "contact": {
+    "title": "Kontakt",
+    "description": "Domluvte si konzultaci nebo se zeptejte na cokoli"
+  },
+  "error": {
+    "title": "Ups! Něco se pokazilo",
+    "message": "Při načítání obsahu došlo k chybě.",
+    "retry": "Zpět na hlavní stránku"
+  },
+  "notFound": {
+    "title": "Stránka nenalezena",
+    "message": "Omlouváme se, ale požadovaná stránka neexistuje.",
+    "backHome": "Zpět na hlavní stránku"
+  },
+  "seo": {
+    "defaultTitle": "Psychoterapie & Osobní růst",
+    "defaultDescription": "Licencovaný psychoterapeut poskytující odbornou pomoc při překonávání životních výzev a dosahování osobního růstu.",
+    "blogTitle": "Blog o psychoterapii a osobním růstu",
+    "blogDescription": "Články a zdroje o psychoterapii, duševním zdraví a osobním růstu.",
+    "servicesTitle": "Psychoterapeutické služby",
+    "servicesDescription": "Nabídka psychoterapeutických služeb a konzultací.",
+    "contactTitle": "Kontaktujte mě",
+    "contactDescription": "Domluvte si konzultaci nebo se zeptejte na cokoli."
+  }
+} 

@@ -14,6 +14,7 @@ import {
   Link,
   List,
   ListItem,
+  VStack,
 } from '@chakra-ui/react'
 import { useParams, Link as RouterLink } from 'react-router-dom'
 import { useEffect, useState } from 'react'
@@ -23,6 +24,10 @@ import SEO from '../components/SEO'
 import StructuredData from '../components/StructuredData'
 import OptimizedAvatar from '../components/OptimizedAvatar'
 import OptimizedImage from '../components/OptimizedImage'
+import { useTranslation } from 'react-i18next'
+import { format } from 'date-fns'
+import { cs, enUS } from 'date-fns/locale'
+import { MDXRemote } from 'next-mdx-remote'
 
 const LoadingFallback = () => (
   <Center h="200px">
@@ -32,9 +37,9 @@ const LoadingFallback = () => (
 
 // MDX components configuration
 const components = {
-  h1: (props) => <Heading as="h1" fontSize="3xl" fontWeight="bold" mb={4} {...props} />,
-  h2: (props) => <Heading as="h2" fontSize="2xl" fontWeight="bold" mb={3} {...props} />,
-  h3: (props) => <Heading as="h3" fontSize="xl" fontWeight="bold" mb={2} {...props} />,
+  h1: (props) => <Heading as="h1" size="2xl" mb={4} {...props} />,
+  h2: (props) => <Heading as="h2" size="xl" mb={3} {...props} />,
+  h3: (props) => <Heading as="h3" size="lg" mb={2} {...props} />,
   p: (props) => <Text mb={4} {...props} />,
   a: (props) => <Link color="green.500" {...props} />,
   ul: (props) => <List styleType="disc" ml={6} mb={4} {...props} />,
@@ -53,8 +58,11 @@ const components = {
   ),
 }
 
-export default function BlogPost() {
+const BlogPost = () => {
   const { slug } = useParams()
+  const { t, i18n } = useTranslation()
+  const currentLang = i18n.language
+  const dateLocale = currentLang === 'cs' ? cs : enUS
   const [post, setPost] = useState(null)
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState(null)
@@ -88,9 +96,9 @@ export default function BlogPost() {
   if (error) {
     return (
       <Container maxW="container.xl" py={8}>
-        <Text color="red.500">Error loading blog post: {error.message}</Text>
+        <Text color="red.500">{t('blog.error')}: {error.message}</Text>
         <Button as={RouterLink} to="/blog" mt={4}>
-          Back to Blog
+          {t('blog.backToBlog')}
         </Button>
       </Container>
     )
@@ -99,9 +107,9 @@ export default function BlogPost() {
   if (!post) {
     return (
       <Container maxW="container.xl" py={8}>
-        <Text>Blog post not found</Text>
+        <Text>{t('blog.notFound')}</Text>
         <Button as={RouterLink} to="/blog" mt={4}>
-          Back to Blog
+          {t('blog.backToBlog')}
         </Button>
       </Container>
     )
@@ -110,7 +118,7 @@ export default function BlogPost() {
   const { frontmatter, Component } = post
 
   return (
-    <Container maxW="container.xl" py={8}>
+    <Container maxW="container.xl" py={10}>
       <SEO
         title={frontmatter.title}
         description={frontmatter.excerpt}
@@ -130,54 +138,33 @@ export default function BlogPost() {
         }}
       />
 
-      {/* Hero Section */}
-      <Box mb={8}>
-        {frontmatter.image && (
-          <Box mb={6} borderRadius="lg" overflow="hidden">
-            <OptimizedImage
-              src={frontmatter.image}
-              alt={frontmatter.title}
-              width="100%"
-              height="400px"
-              objectFit="cover"
+      <VStack spacing={8} align="stretch">
+        <Box>
+          <Heading as="h1" size="2xl" mb={4}>
+            {frontmatter.title}
+          </Heading>
+          
+          <Box display="flex" alignItems="center" mb={8}>
+            <OptimizedAvatar
+              src={frontmatter.author.image}
+              alt={frontmatter.author.name}
+              size="md"
             />
+            <Box ml={4}>
+              <Text fontWeight="bold">{frontmatter.author.name}</Text>
+              <Text color="gray.500">
+                {format(new Date(frontmatter.date), 'PPP', { locale: dateLocale })}
+              </Text>
+            </Box>
           </Box>
-        )}
-        <Heading as="h1" size="2xl" mb={4}>
-          {frontmatter.title}
-        </Heading>
-        <Stack direction="row" spacing={4} mb={4}>
-          {frontmatter.tags.map((tag, index) => (
-            <Badge key={index} colorScheme="green">
-              {tag}
-            </Badge>
-          ))}
-        </Stack>
-        <Stack direction="row" spacing={4} align="center" mb={6}>
-          <OptimizedAvatar
-            src={frontmatter.author.image}
-            alt={frontmatter.author.name}
-            size="md"
-          />
-          <Stack spacing={0}>
-            <Text fontWeight="bold">{frontmatter.author.name}</Text>
-            <Text color="gray.500">
-              {new Date(frontmatter.date).toLocaleDateString()} · {frontmatter.readTime}
-            </Text>
-          </Stack>
-        </Stack>
-      </Box>
+        </Box>
 
-      <Divider mb={8} />
-
-      {/* Content */}
-      <Box className="prose max-w-none">
-        <MDXProvider components={components}>
-          <Suspense fallback={<LoadingFallback />}>
-            <Component />
-          </Suspense>
-        </MDXProvider>
-      </Box>
+        <Box>
+          <MDXProvider components={components}>
+            <MDXRemote {...post.content} />
+          </MDXProvider>
+        </Box>
+      </VStack>
 
       {/* Back to Blog Button */}
       <Box mt={8} textAlign="center">
@@ -188,9 +175,11 @@ export default function BlogPost() {
           variant="outline"
           size="lg"
         >
-          Back to Blog
+          {t('blog.backToBlog')}
         </Button>
       </Box>
     </Container>
   )
-} 
+}
+
+export default BlogPost 

@@ -29,10 +29,12 @@ import OptimizedAvatar from '../components/OptimizedAvatar'
 import SEO from '../components/SEO'
 import StructuredData from '../components/StructuredData'
 import { getOptimizedImagePath } from '../utils/getOptimizedImage'
+import { useTranslation } from 'react-i18next'
 
 export default function Home() {
   const [newestPosts, setNewestPosts] = useState([])
   const [loading, setLoading] = useState(true)
+  const { t } = useTranslation()
 
   // Move hooks to the top level
   const bgColor = useColorModeValue('gray.50', 'gray.900')
@@ -75,160 +77,66 @@ export default function Home() {
       <StructuredData type="Person" />
       
       {/* Hero Section */}
-      <Box position="relative" width="100%" height="100vh" overflow="hidden">
-        {/* Background Image */}
+      <Box 
+        position="relative" 
+        height="100vh" 
+        display="flex" 
+        alignItems="center"
+        overflow="hidden"
+      >
+        <OptimizedImage
+          src="/assets/optimized-images/forrest-md.webp"
+          alt="Peaceful forest landscape"
+          position="absolute"
+          top={0}
+          left={0}
+          width="100%"
+          height="100%"
+          objectFit="cover"
+          priority={true}
+          fetchpriority="high"
+          loading="eager"
+          decoding="sync"
+        />
         <Box
           position="absolute"
           top={0}
           left={0}
           width="100%"
           height="100%"
-          zIndex={0}
-        >
-          <OptimizedImage
-            src="/src/assets/img/forrest.webp"
-            alt="Forest path"
-            objectFit="cover"
-            width="1920"
-            height="1080"
-            priority={true}
-            fetchpriority="high"
-            loading="eager"
-            decoding="sync"
-          />
-          <Box
-            position="absolute"
-            top={0}
-            left={0}
-            width="100%"
-            height="100%"
-            bg="blackAlpha.100"
-          />
-        </Box>
-
-        {/* Content Container */}
-        <Container maxW="7xl" height="100%" position="relative" zIndex={1}>
-          <Flex
-            height="100%"
-            justify="center"
-            align="center"
-            direction={{ base: 'column', md: 'row' }}
-            gap={8}
-            py={{ base: 20, md: 28 }}
-          >
-            {/* Text Box */}
-            <Box
-              bg={heroCardBg}
-              p={8}
-              borderRadius="lg"
-              maxW="2xl"
-              flex="1"
-              backdropFilter="blur(10px)"
-            >
-              <Heading
-                lineHeight={1.1}
-                fontWeight={600}
-                fontSize={{ base: '3xl', sm: '4xl', lg: '6xl' }}
-                mb={6}
+          bg="blackAlpha.600"
+        />
+        <Container maxW="container.xl" position="relative" zIndex={1}>
+          <Stack spacing={6} color="white" maxW="2xl">
+            <Heading as="h1" size="2xl">
+              {t('hero.title')}
+            </Heading>
+            <Heading as="h2" size="xl" fontWeight="normal">
+              {t('hero.subtitle')}
+            </Heading>
+            <Text fontSize="xl">
+              {t('hero.description')}
+            </Text>
+            <Stack direction={{ base: 'column', md: 'row' }} spacing={4}>
+              <Button
+                as={RouterLink}
+                to="/contact"
+                colorScheme="blue"
+                size="lg"
               >
-                <Text
-                  as={'span'}
-                  position={'relative'}
-                  color={'whiteAlpha.900'}
-                  _after={{
-                    content: "''",
-                    width: 'full',
-                    height: '30%',
-                    position: 'absolute',
-                    bottom: 1,
-                    left: 0,
-                    bg: 'green.400',
-                    zIndex: -1,
-                  }}
-                >
-                  Psychotherapy
-                </Text>
-                <br />
-                <Text as={'span'} color={'green.400'}>
-                  & Personal Growth
-                </Text>
-              </Heading>
-              <Text color={'white'} fontSize={'xl'} mb={8}>
-                I am a licensed psychotherapist dedicated to helping individuals navigate life's challenges and achieve personal growth. Through a combination of evidence-based approaches and compassionate care, I provide a safe space for healing and transformation.
-              </Text>
-              <Stack
-                spacing={{ base: 4, sm: 6 }}
-                direction={{ base: 'column', sm: 'row' }}
+                {t('hero.cta.primary')}
+              </Button>
+              <Button
+                as={RouterLink}
+                to="/services"
+                variant="outline"
+                colorScheme="whiteAlpha"
+                size="lg"
               >
-                <Button
-                  as={RouterLink}
-                  to="/contact"
-                  rounded={'full'}
-                  size={'lg'}
-                  fontWeight={'normal'}
-                  px={6}
-                  colorScheme={'green'}
-                  bg={'green.400'}
-                  _hover={{ bg: 'green.300' }}
-                >
-                  Schedule a Consultation
-                </Button>
-                <Button
-                  as={RouterLink}
-                  to="/services"
-                  rounded={'full'}
-                  size={'lg'}
-                  fontWeight={'normal'}
-                  px={6}
-                >
-                  Learn More
-                </Button>
-              </Stack>
-            </Box>
-
-            {/* Portrait Image */}
-            <Box
-              flex="1"
-              maxW="2xl"
-              position="relative"
-              display={{ base: 'none', md: 'block' }}
-              bg="transparent"
-            >
-              <Box
-                position="relative"
-                width="100%"
-                height="auto"
-                borderRadius="lg"
-                overflow="hidden"
-                boxShadow="2xl"
-                bg="transparent"
-                _before={{
-                  content: '""',
-                  position: 'absolute',
-                  top: 0,
-                  left: 0,
-                  right: 0,
-                  bottom: 0,
-                  bg: 'transparent',
-                  zIndex: 1
-                }}
-              >
-                <OptimizedImage
-                  src="/src/assets/img/tom-home.webp"
-                  alt="Tom Novacek"
-                  objectFit="cover"
-                  width="100%"
-                  height="auto"
-                  priority="true"
-                  style={{
-                    mixBlendMode: 'normal',
-                    backgroundColor: 'transparent',
-                    filter: 'brightness(1.1) contrast(1.1)'
-                  }}
-                />
-              </Box>
-            </Box>
-          </Flex>
+                {t('hero.cta.secondary')}
+              </Button>
+            </Stack>
+          </Stack>
         </Container>
       </Box>
 

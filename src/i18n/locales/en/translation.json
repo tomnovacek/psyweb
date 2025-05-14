@@ -1,0 +1,61 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "services": "Services",
+    "blog": "Blog",
+    "contact": "Contact",
+    "calendar": "Calendar",
+    "bookConsultation": "Book Consultation"
+  },
+  "language": {
+    "switch": "Přepnout do češtiny",
+    "current": "English"
+  },
+  "hero": {
+    "title": "Psychotherapy",
+    "subtitle": "& Personal Growth",
+    "description": "I am a licensed psychotherapist dedicated to helping individuals navigate life's challenges and achieve personal growth. Through a combination of evidence-based approaches and compassionate care, I provide a safe space for healing and transformation.",
+    "cta": {
+      "primary": "Schedule a Consultation",
+      "secondary": "Learn More"
+    }
+  },
+  "services": {
+    "title": "My Services",
+    "description": "I offer a range of therapeutic services to support your mental health and personal growth journey."
+  },
+  "blog": {
+    "title": "Latest from the Blog",
+    "description": "Insights and resources to support your mental health journey",
+    "readMore": "Read More Posts",
+    "backToBlog": "Back to Blog",
+    "loading": "Loading...",
+    "error": "Error loading post",
+    "notFound": "Post not found"
+  },
+  "contact": {
+    "title": "Contact",
+    "description": "Schedule a consultation or ask any questions"
+  },
+  "error": {
+    "title": "Oops! Something went wrong",
+    "message": "We encountered an error while loading the content.",
+    "retry": "Return to Home"
+  },
+  "notFound": {
+    "title": "Page Not Found",
+    "message": "Sorry, but the page you are looking for does not exist.",
+    "backHome": "Back to Home"
+  },
+  "seo": {
+    "defaultTitle": "Psychotherapy & Personal Growth",
+    "defaultDescription": "Licensed psychotherapist providing professional help in overcoming life challenges and achieving personal growth.",
+    "blogTitle": "Psychotherapy and Personal Growth Blog",
+    "blogDescription": "Articles and resources about psychotherapy, mental health, and personal growth.",
+    "servicesTitle": "Psychotherapy Services",
+    "servicesDescription": "Professional psychotherapy services and consultations.",
+    "contactTitle": "Contact Me",
+    "contactDescription": "Schedule a consultation or ask any questions."
+  }
+} 

@@ -9,6 +9,12 @@ import {
   Button,
   Badge,
   Flex,
+  VStack,
+  HStack,
+  Tag,
+  Spinner,
+  Alert,
+  AlertIcon,
 } from '@chakra-ui/react'
 import { Link as RouterLink } from 'react-router-dom'
 import { useEffect, useState } from 'react'
@@ -17,6 +23,10 @@ import { MDXProvider } from '@mdx-js/react'
 import OptimizedImage from '../components/OptimizedImage'
 import OptimizedAvatar from '../components/OptimizedAvatar'
 import SEO from '../components/SEO'
+import { useTranslation } from 'react-i18next'
+import { format } from 'date-fns'
+import { cs, enUS } from 'date-fns/locale'
+import { useLocalizedContent } from '../utils/mdx'
 
 // MDX components configuration
 const components = {
@@ -31,8 +41,13 @@ const components = {
 }
 
 export default function Blog() {
+  const { t, i18n } = useTranslation()
+  const currentLang = i18n.language
+  const dateLocale = currentLang === 'cs' ? cs : enUS
+  const { getAllPosts } = useLocalizedContent()
   const [posts, setPosts] = useState([])
   const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(null)
   
   // Move hooks to the top level
   const bgColor = useColorModeValue('gray.50', 'gray.900')
@@ -41,32 +56,40 @@ export default function Blog() {
   const textColor = useColorModeValue('gray.600', 'gray.400')
 
   useEffect(() => {
-    const loadPosts = async () => {
+    async function loadPosts() {
       try {
-        console.log('Loading posts...') // Debug log
-        const allPosts = await getAllPosts()
-        console.log('Loaded posts:', allPosts) // Debug log
-        setPosts(allPosts)
-      } catch (error) {
-        console.error('Error loading posts:', error)
+        setLoading(true)
+        const data = await getAllPosts()
+        setPosts(data)
+        setError(null)
+      } catch (err) {
+        console.error('Error loading posts:', err)
+        setError(t('blog.error'))
       } finally {
         setLoading(false)
       }
     }
 
     loadPosts()
-  }, [])
+  }, [getAllPosts, t])
 
   // Debug log to see posts state
   console.log('Current posts state:', posts)
 
   if (loading) {
     return (
-      <Box py={20}>
-        <Container maxW={'7xl'}>
-          <Text>Loading...</Text>
-        </Container>
+      <Box textAlign="center" py={10}>
+        <Spinner size="xl" />
       </Box>
+    )
+  }
+
+  if (error) {
+    return (
+      <Alert status="error" variant="subtle" flexDirection="column" alignItems="center" justifyContent="center" textAlign="center" height="200px">
+        <AlertIcon boxSize="40px" mr={0} />
+        <Text mt={4}>{error}</Text>
+      </Alert>
     )
   }
 
@@ -74,17 +97,17 @@ export default function Blog() {
     <MDXProvider components={components}>
       <Box bg={bgColor} py={20}>
         <SEO
-          title="Blog - Mental Health Insights"
-          description="Explore articles about mental health, therapy, and personal growth. Professional insights from Tomáš Nováček, a licensed psychotherapist in Brno."
+          title={t('blog.title')}
+          description={t('blog.description')}
           keywords="mental health blog, therapy insights, personal growth, anxiety, depression, trauma, psychotherapy articles, Brno"
           url="https://tomnovacek.com/blog"
           image="/src/assets/img/mindfulness.webp"
         />
         <Container maxW={'7xl'}>
           <Stack spacing={4} maxW={'7xl'} textAlign={'center'} mb={10}>
-            <Heading fontSize={'3xl'}>Blog</Heading>
+            <Heading fontSize={'3xl'}>{t('blog.title')}</Heading>
             <Text color={textColor} fontSize={'xl'}>
-              Insights and resources to support your mental health journey
+              {t('blog.description')}
             </Text>
           </Stack>
           <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={10}>
@@ -140,7 +163,7 @@ export default function Blog() {
                           <OptimizedAvatar src={frontmatter.author.image} alt={frontmatter.author.name} />
                           <Stack direction={'column'} spacing={0} fontSize={'sm'}>
                             <Text fontWeight={600}>{frontmatter.author.name}</Text>
-                            <Text color={textColor}>{frontmatter.date} · {frontmatter.readTime}</Text>
+                            <Text color={textColor}>{format(new Date(frontmatter.date), 'PPP', { locale: dateLocale })} · {frontmatter.readTime}</Text>
                           </Stack>
                         </Stack>
                       )}
@@ -158,7 +181,7 @@ export default function Blog() {
               variant={'outline'}
               size={'lg'}
             >
-              Read More Posts
+              {t('blog.readMore')}
             </Button>
           </Stack>
         </Container>

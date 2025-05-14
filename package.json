@@ -9,7 +9,8 @@
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "optimize-images": "node scripts/optimize-images.js",
-    "prebuild": "npm run optimize-images"
+    "prebuild": "npm run optimize-images",
+    "generate-sitemap": "node scripts/generate-sitemap.js"
   },
   "dependencies": {
     "@chakra-ui/icons": "2.2.4",
@@ -21,11 +22,16 @@
     "@mdx-js/rollup": "3.1.0",
     "@next/mdx": "15.3.2",
     "@types/mdx": "2.0.13",
+    "date-fns": "4.1.0",
     "framer-motion": "^10.18.0",
     "gray-matter": "4.0.3",
+    "i18next": "25.1.2",
+    "i18next-browser-languagedetector": "8.1.0",
+    "next-mdx-remote": "5.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-helmet-async": "2.0.5",
+    "react-i18next": "15.5.1",
     "react-icons": "^4.12.0",
     "react-markdown": "10.1.0",
     "react-router-dom": "^6.21.3",
@@ -43,6 +49,7 @@
     "eslint-plugin-react": "^7.33.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.5",
+    "glob": "11.0.2",
     "sharp": "0.34.1",
     "terser": "5.39.1",
     "vite": "^4.5.2"

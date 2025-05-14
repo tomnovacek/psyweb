@@ -1,87 +1,79 @@
-// Import MDX files directly
-import anxietyGuide from '../blogPosts/anxiety-guide.mdx'
-import mindfulnessTherapy from '../blogPosts/mindfulness-therapy.mdx'
-import healthyRelationships from '../blogPosts/healthy-relationships.mdx'
+import { useTranslation } from 'react-i18next';
+import { serialize } from 'next-mdx-remote/serialize'
+import matter from 'gray-matter'
 
-// Map of all posts with their frontmatter
-const posts = {
-  'anxiety-guide': {
-    slug: 'anxiety-guide',
-    frontmatter: {
-      title: "Understanding Anxiety: A Complete Guide",
-      date: "2024-03-16",
-      readTime: "12 min read",
-      excerpt: "A comprehensive guide to understanding anxiety, its symptoms, and effective management strategies for better mental health.",
-      tags: ["Anxiety", "Mental Health", "Self-Care", "Wellness"],
-      image: "/src/assets/img/stress.webp",
-      author: {
-        name: "Tom Novacek",
-        role: "Licensed Psychotherapist",
-        image: "/src/assets/img/tom-home.webp"
-      }
-    },
-    Component: anxietyGuide
-  },
-  'mindfulness-therapy': {
-    slug: 'mindfulness-therapy',
-    frontmatter: {
-      title: "The Power of Mindfulness in Therapy",
-      date: "2024-03-10",
-      readTime: "8 min read",
-      excerpt: "Discover how mindfulness practices can enhance your therapeutic journey and improve your overall well-being.",
-      tags: ["Mindfulness", "Therapy", "Well-being"],
-      image: "/src/assets/img/mindfulness.webp",
-      author: {
-        name: "Tom Novacek",
-        role: "Licensed Psychotherapist",
-        image: "/src/assets/img/tom-home.webp"
-      }
-    },
-    Component: mindfulnessTherapy
-  },
-  'healthy-relationships': {
-    slug: 'healthy-relationships',
-    frontmatter: {
-      title: "Building Healthy Relationships: A Guide to Connection",
-      date: "2024-03-05",
-      readTime: "12 min read",
-      excerpt: "Learn essential strategies for building and maintaining healthy relationships in all areas of your life.",
-      tags: ["Relationships", "Communication", "Personal Growth"],
-      image: "/src/assets/img/relationships.webp",
-      author: {
-        name: "Tom Novacek",
-        role: "Licensed Psychotherapist",
-        image: "/src/assets/img/tom-home.webp"
-      }
-    },
-    Component: healthyRelationships
+// Content directory paths
+const CONTENT_DIR = {
+  cs: '/content/cs',
+  en: '/content/en'
+}
+
+/**
+ * Get all posts for a specific language
+ * @param {string} lang - Language code ('cs' or 'en')
+ * @returns {Promise<Array>} Array of posts
+ */
+export async function getAllPosts(lang = 'cs') {
+  try {
+    const response = await fetch(`${CONTENT_DIR[lang]}/blog/index.json`);
+    if (!response.ok) {
+      throw new Error(`Failed to fetch posts: ${response.statusText}`);
+    }
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Error loading posts:', error);
+    return [];
   }
 }
 
-// Debug log to see what files we're getting
-console.log('Available MDX files:', Object.keys(posts))
-
-export function getPostBySlug(slug) {
-  const post = posts[slug]
-  if (!post) {
-    console.log('No post found for slug:', slug) // Debug log
-    return null
+/**
+ * Get a single post by slug
+ * @param {string} slug - Post slug
+ * @param {string} lang - Language code ('cs' or 'en')
+ * @returns {Promise<Object>} Post data
+ */
+export async function getPostBySlug(slug, lang = 'cs') {
+  try {
+    const response = await fetch(`${CONTENT_DIR[lang]}/blog/${slug}.mdx`);
+    if (!response.ok) {
+      throw new Error(`Failed to fetch post: ${response.statusText}`);
+    }
+    const content = await response.text();
+    return content;
+  } catch (error) {
+    console.error('Error loading post:', error);
+    return null;
   }
-
-  console.log('Post content for', slug, ':', post) // Debug log
-  
-  return post
 }
 
-export function getAllPosts() {
-  console.log('Getting all posts...') // Debug log
-  const allPosts = Object.values(posts)
-    .filter(post => {
-      console.log('Filtering post:', post) // Debug log
-      return post.frontmatter && post.frontmatter.date
-    })
-    .sort((a, b) => new Date(b.frontmatter.date) - new Date(a.frontmatter.date))
+/**
+ * Get a page by slug
+ * @param {string} slug - Page slug
+ * @param {string} lang - Language code ('cs' or 'en')
+ * @returns {Promise<Object>} Page data
+ */
+export async function getPageBySlug(slug, lang = 'cs') {
+  try {
+    const response = await fetch(`${CONTENT_DIR[lang]}/${slug}.mdx`);
+    if (!response.ok) {
+      throw new Error(`Failed to fetch page: ${response.statusText}`);
+    }
+    const content = await response.text();
+    return content;
+  } catch (error) {
+    console.error('Error loading page:', error);
+    return null;
+  }
+}
 
-  console.log('All processed posts:', allPosts) // Debug log
-  return allPosts
+export function useLocalizedContent() {
+  const { i18n } = useTranslation();
+  const lang = i18n.language;
+
+  return {
+    getAllPosts: () => getAllPosts(lang),
+    getPostBySlug: (slug) => getPostBySlug(slug, lang),
+    getPageBySlug: (slug) => getPageBySlug(slug, lang)
+  };
 } 

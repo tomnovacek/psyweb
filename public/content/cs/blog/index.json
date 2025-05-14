@@ -1,0 +1,20 @@
+[
+  {
+    "slug": "uvod-do-mindfulness",
+    "title": "Úvod do Mindfulness",
+    "description": "Základní principy a praktiky mindfulness pro každodenní život",
+    "date": "2024-03-20",
+    "author": "Tom Nováček",
+    "category": "Mindfulness",
+    "tags": ["mindfulness", "meditace", "duševní zdraví"]
+  },
+  {
+    "slug": "jak-zvladat-stres",
+    "title": "Jak zvládat stres",
+    "description": "Praktické tipy a techniky pro efektivní zvládání stresu",
+    "date": "2024-03-15",
+    "author": "Tom Nováček",
+    "category": "Stres",
+    "tags": ["stres", "wellbeing", "seberozvoj"]
+  }
+] 

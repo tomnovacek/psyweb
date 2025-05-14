@@ -14,6 +14,25 @@ import {
   useBreakpointValue,
 } from '@chakra-ui/react'
 import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons'
+import { useTranslation } from 'react-i18next'
+import LanguageSwitcher from './LanguageSwitcher'
+
+const NavLink = ({ children, to }) => (
+  <RouterLink to={to}>
+    <Button
+      variant="ghost"
+      px={2}
+      py={1}
+      rounded={'md'}
+      _hover={{
+        textDecoration: 'none',
+        bg: useColorModeValue('gray.200', 'gray.700'),
+      }}
+    >
+      {children}
+    </Button>
+  </RouterLink>
+)
 
 const DesktopNav = () => {
   return (
@@ -38,6 +57,8 @@ const DesktopNav = () => {
 }
 
 const MobileNav = () => {
+  const { t } = useTranslation()
+  
   return (
     <Stack
       bg={useColorModeValue('white', 'gray.800')}
@@ -45,21 +66,11 @@ const MobileNav = () => {
       display={{ md: 'none' }}
     >
       <Stack spacing={4} align="center">
-        <Button as={RouterLink} to="/" fontSize={'sm'} fontWeight={400} variant={'link'}>
-          Home
-        </Button>
-        <Button as={RouterLink} to="/about" fontSize={'sm'} fontWeight={400} variant={'link'}>
-          About
-        </Button>
-        <Button as={RouterLink} to="/services" fontSize={'sm'} fontWeight={400} variant={'link'}>
-          Services
-        </Button>
-        <Button as={RouterLink} to="/calendar" fontSize={'sm'} fontWeight={400} variant={'link'}>
-          Calendar
-        </Button>
-        <Button as={RouterLink} to="/blog" fontSize={'sm'} fontWeight={400} variant={'link'}>
-          Blog
-        </Button>
+        <NavLink to="/">{t('nav.home')}</NavLink>
+        <NavLink to="/about">{t('nav.about')}</NavLink>
+        <NavLink to="/services">{t('nav.services')}</NavLink>
+        <NavLink to="/calendar">{t('nav.calendar')}</NavLink>
+        <NavLink to="/blog">{t('nav.blog')}</NavLink>
         <Button
           as={RouterLink}
           to="/calendar"
@@ -70,7 +81,7 @@ const MobileNav = () => {
           bg={'green.400'}
           _hover={{ bg: 'green.500' }}
         >
-          Book a Consultation
+          {t('nav.bookConsultation')}
         </Button>
       </Stack>
     </Stack>
@@ -79,6 +90,7 @@ const MobileNav = () => {
 
 export default function Navbar() {
   const { isOpen, onToggle } = useDisclosure()
+  const { t } = useTranslation()
 
   return (
     <Box
@@ -126,7 +138,11 @@ export default function Navbar() {
             </Text>
 
             <Flex display={{ base: 'none', md: 'flex' }} ml={10}>
-              <DesktopNav />
+              <Stack direction={'row'} spacing={4}>
+                <NavLink to="/blog">{t('nav.blog')}</NavLink>
+                <NavLink to="/services">{t('nav.services')}</NavLink>
+                <NavLink to="/contact">{t('nav.contact')}</NavLink>
+              </Stack>
             </Flex>
           </Flex>
 
@@ -135,7 +151,9 @@ export default function Navbar() {
             justify={'flex-end'}
             direction={'row'}
             spacing={6}
+            align="center"
           >
+            <LanguageSwitcher />
             <Button
               as={RouterLink}
               to="/calendar"
@@ -144,12 +162,11 @@ export default function Navbar() {
               fontWeight={600}
               color={'white'}
               bg={'green.400'}
-              href={'#'}
               _hover={{
                 bg: 'green.300',
               }}
             >
-              Book a Consultation
+              {t('nav.bookConsultation')}
             </Button>
           </Stack>
         </Flex>

@@ -1,0 +1,20 @@
+[
+  {
+    "slug": "introduction-to-mindfulness",
+    "title": "Introduction to Mindfulness",
+    "description": "Basic principles and practices of mindfulness for everyday life",
+    "date": "2024-03-20",
+    "author": "Tom Novacek",
+    "category": "Mindfulness",
+    "tags": ["mindfulness", "meditation", "mental health"]
+  },
+  {
+    "slug": "managing-stress",
+    "title": "Managing Stress",
+    "description": "Practical tips and techniques for effective stress management",
+    "date": "2024-03-15",
+    "author": "Tom Novacek",
+    "category": "Stress",
+    "tags": ["stress", "wellbeing", "self-development"]
+  }
+] 
