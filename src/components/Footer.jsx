@@ -44,7 +44,24 @@ export default function Footer() {
               borderRadius="lg"
               overflow="hidden"
               boxShadow="md"
+              position="relative"
+              bg="gray.100"
             >
+              {/* Placeholder while iframe loads */}
+              <Box
+                position="absolute"
+                top={0}
+                left={0}
+                width="100%"
+                height="100%"
+                display="flex"
+                alignItems="center"
+                justifyContent="center"
+                bg="gray.100"
+                zIndex={1}
+              >
+                <Text color="gray.500">Loading map...</Text>
+              </Box>
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2606.123456789012!2d16.6075!3d49.1917!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4712944c1c1c1c1c%3A0x1234567890abcdef!2sSukova%204%2C%20602%2000%20Brno-st%C5%99ed!5e0!3m2!1scs!2scz!4v1234567890!5m2!1scs!2scz"
                 width="100%"
@@ -53,8 +70,17 @@ export default function Footer() {
                 allowFullScreen=""
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
+                title="Office Location"
+                aria-label="Google Maps showing office location"
+                onLoad={(e) => {
+                  // Hide placeholder when iframe loads
+                  e.target.previousSibling.style.display = 'none';
+                }}
               />
             </Box>
+            <Text fontSize="sm" color="gray.500" mt={2}>
+              Sukova 4, 602 00 Brno-střed
+            </Text>
           </Stack>
 
           {/* Contact Information */}
@@ -62,23 +88,26 @@ export default function Footer() {
             <Heading fontSize={'lg'} mb={4}>Contact</Heading>
             <Stack direction={'row'} align={'center'} spacing={2}>
               <Icon as={FaPhone} />
-              <Text>+420 123 456 789</Text>
+              <Text>+420 602 773 440</Text>
             </Stack>
             <Stack direction={'row'} align={'center'} spacing={2}>
               <Icon as={FaEnvelope} />
-              <Text>tom@example.com</Text>
+              <Text>terapie@tomnovacek.com</Text>
             </Stack>
             <Stack direction={'row'} align={'center'} spacing={2}>
               <Icon as={FaMapMarkerAlt} />
-              <Text>Prague, Czech Republic</Text>
+              <Text>Brno, Czech Republic</Text>
             </Stack>
             {/* Logo */}
-            <OptimizedImage
-              src="/src/assets/img/CAP.png"
-              alt="ČAP Logo"
-              width="200px"
-              height="auto"
-            />
+            <Box mt="auto">
+              <OptimizedImage
+                src="/src/assets/img/CAP.png"
+                alt="CAP Logo"
+                size="xs"
+                width="100px"
+                height="auto"
+              />
+            </Box>
           </Stack>
         </SimpleGrid>
       </Box>

@@ -1,92 +1,85 @@
-import React, { useState, useEffect } from 'react';
-import { Image as ChakraImage, Skeleton, Box, Text } from '@chakra-ui/react';
+import { useState, useEffect } from 'react'
+import { Image, Skeleton } from '@chakra-ui/react'
+import { getOptimizedImagePath } from '../utils/getOptimizedImage'
 
 const OptimizedImage = ({
   src,
   alt,
-  width,
-  height,
-  sizes = '(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw',
-  loading = 'lazy',
   size = 'md',
-  priority = false,
+  fallbackSrc = '/assets/optimized-images/CAP-md.webp',
   ...props
 }) => {
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState(false);
-  const [selectedSrc, setSelectedSrc] = useState('');
+  const [imageSrc, setImageSrc] = useState(null)
+  const [isLoading, setIsLoading] = useState(true)
+  const [error, setError] = useState(null)
 
   useEffect(() => {
-    let isMounted = true;
-    
-    // Clean up the source path
-    const cleanSrc = src.replace('/src/assets/img/', '');
-    
-    // Determine the correct path based on environment
-    const imagePath = import.meta.env.DEV
-      ? `/src/assets/img/${cleanSrc}`
-      : `/optimized-images/${cleanSrc.replace(/\.[^/.]+$/, '')}-${size}.webp`;
+    let isMounted = true
 
-    if (isMounted) {
-      setSelectedSrc(imagePath);
+    const loadImage = async () => {
+      try {
+        setIsLoading(true)
+        setError(null)
+        
+        const optimizedPath = await getOptimizedImagePath(src, size)
+        if (!optimizedPath) {
+          throw new Error('Failed to generate optimized image path')
+        }
+
+        // In development, we don't need to check if the image exists
+        if (import.meta.env.DEV) {
+          if (isMounted) {
+            setImageSrc(optimizedPath)
+            setIsLoading(false)
+          }
+          return
+        }
+
+        // In production, check if the image exists
+        const response = await fetch(optimizedPath)
+        if (!response.ok) {
+          console.warn(`Image not found at ${optimizedPath}, trying fallback`)
+          throw new Error('Failed to load image')
+        }
+
+        if (isMounted) {
+          setImageSrc(optimizedPath)
+          setIsLoading(false)
+        }
+      } catch (err) {
+        if (isMounted) {
+          console.error('Error loading optimized image:', { error: err, src, size, fallbackSrc })
+          setError(err)
+          setImageSrc(fallbackSrc)
+          setIsLoading(false)
+        }
+      }
     }
 
+    loadImage()
+
     return () => {
-      isMounted = false;
-    };
-  }, [src, size]);
+      isMounted = false
+    }
+  }, [src, size, fallbackSrc])
 
-  useEffect(() => {
-    if (!selectedSrc) return;
-
-    const img = new Image();
-    img.src = selectedSrc;
-    img.onload = () => setIsLoading(false);
-    img.onerror = () => {
-      console.error(`Failed to load image: ${selectedSrc}`);
-      setError(true);
-      setIsLoading(false);
-    };
-  }, [selectedSrc]);
-
-  if (error) {
-    return (
-      <Box
-        width={width}
-        height={height}
-        bg="gray.200"
-        display="flex"
-        alignItems="center"
-        justifyContent="center"
-      >
-        <Text color="gray.500">Failed to load image</Text>
-      </Box>
-    );
+  if (isLoading) {
+    return <Skeleton {...props} />
   }
 
   return (
-    <Skeleton
-      isLoaded={!isLoading}
-      width={width}
-      height={height}
-      startColor="gray.100"
-      endColor="gray.200"
-    >
-      <ChakraImage
-        src={selectedSrc}
-        alt={alt}
-        width={width}
-        height={height}
-        loading={priority ? 'eager' : loading}
-        sizes={sizes}
-        transition="all 0.3s"
-        _hover={{
-          transform: 'scale(1.02)',
-        }}
-        {...props}
-      />
-    </Skeleton>
-  );
-};
+    <Image
+      src={imageSrc || fallbackSrc}
+      alt={alt}
+      onError={(e) => {
+        console.warn(`Failed to load image ${imageSrc}, using fallback`)
+        if (imageSrc !== fallbackSrc) {
+          setImageSrc(fallbackSrc)
+        }
+      }}
+      {...props}
+    />
+  )
+}
 
-export default OptimizedImage; 
+export default OptimizedImage 

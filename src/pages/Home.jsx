@@ -16,6 +16,8 @@ import {
   Icon,
   Badge,
   Link,
+  VStack,
+  HStack,
 } from '@chakra-ui/react'
 import { Link as RouterLink } from 'react-router-dom'
 import { CheckCircleIcon } from '@chakra-ui/icons'
@@ -26,6 +28,7 @@ import OptimizedImage from '../components/OptimizedImage'
 import OptimizedAvatar from '../components/OptimizedAvatar'
 import SEO from '../components/SEO'
 import StructuredData from '../components/StructuredData'
+import { getOptimizedImagePath } from '../utils/getOptimizedImage'
 
 export default function Home() {
   const [newestPosts, setNewestPosts] = useState([])
@@ -56,16 +59,16 @@ export default function Home() {
   }, [])
 
   return (
-    <Box bg={bgColor}>
+    <>
       <SEO
-        title="Tomáš Nováček - Professional Psychotherapist in Brno"
-        description="Professional psychotherapy services in Brno, Czech Republic. Specializing in individual therapy, anxiety treatment, depression support, and trauma counseling. Book your session today."
-        keywords="psychotherapist, therapy, counseling, Brno, Czech Republic, anxiety treatment, depression support, trauma counseling, online therapy"
-        url="https://tomnovacek.com"
+        title="Home"
+        description="Professional psychotherapy services in Prague. Specializing in individual therapy, couples counseling, and family therapy. Book your session today."
+        keywords="psychotherapy, counseling, Prague, individual therapy, couples therapy, family therapy"
+        url="https://tomnovacek.cz"
         image="/src/assets/img/tom-home.webp"
         preloadImages={[
-          '/src/assets/img/tom-home.webp',
-          '/src/assets/img/forrest.webp'
+          '/src/assets/img/forrest.webp',  // Hero background
+          '/src/assets/img/tom-home.webp'  // Hero portrait
         ]}
       />
       <StructuredData type="MedicalBusiness" />
@@ -88,7 +91,7 @@ export default function Home() {
             objectFit="cover"
             width="100%"
             height="100%"
-            priority={true}
+            priority="true"
           />
           <Box
             position="absolute"
@@ -186,17 +189,41 @@ export default function Home() {
               maxW="2xl"
               position="relative"
               display={{ base: 'none', md: 'block' }}
+              bg="transparent"
             >
-              <OptimizedImage
-                src="/src/assets/img/tom-home.webp"
-                alt="Tom Novacek"
-                borderRadius="lg"
-                objectFit="cover"
+              <Box
+                position="relative"
                 width="100%"
                 height="auto"
+                borderRadius="lg"
+                overflow="hidden"
                 boxShadow="2xl"
-                priority={true}
-              />
+                bg="transparent"
+                _before={{
+                  content: '""',
+                  position: 'absolute',
+                  top: 0,
+                  left: 0,
+                  right: 0,
+                  bottom: 0,
+                  bg: 'transparent',
+                  zIndex: 1
+                }}
+              >
+                <OptimizedImage
+                  src="/src/assets/img/tom-home.webp"
+                  alt="Tom Novacek"
+                  objectFit="cover"
+                  width="100%"
+                  height="auto"
+                  priority="true"
+                  style={{
+                    mixBlendMode: 'normal',
+                    backgroundColor: 'transparent',
+                    filter: 'brightness(1.1) contrast(1.1)'
+                  }}
+                />
+              </Box>
             </Box>
           </Flex>
         </Container>
@@ -566,6 +593,6 @@ export default function Home() {
             </Button>
           </Stack>
       </Box>
-    </Box>
+    </>
   )
 } 

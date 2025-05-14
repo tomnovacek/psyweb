@@ -82,18 +82,40 @@ button:focus-visible {
 
 /* Prevent layout shifts */
 nav {
-  min-height: 64px; /* Adjust this value based on your navigation height */
+  min-height: 64px;
   display: flex;
   align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: var(--chakra-colors-white);
 }
 
+/* Ensure consistent skeleton dimensions */
 .chakra-skeleton {
   display: inline-block;
-  min-width: 100px; /* Adjust based on your content */
-  min-height: 24px; /* Adjust based on your content */
+  min-width: 100px;
+  min-height: 24px;
+  background: var(--chakra-colors-gray-100);
+}
+
+/* Prevent footer layout shifts */
+footer {
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 /* Ensure images maintain aspect ratio */
 img {
   aspect-ratio: attr(width) / attr(height);
+}
+
+/* Add smooth transitions */
+.chakra-container,
+.chakra-box,
+.chakra-stack,
+.chakra-flex {
+  transition: all 0.3s ease-in-out;
 }

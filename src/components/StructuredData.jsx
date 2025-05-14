@@ -1,110 +1,72 @@
-import { Helmet } from 'react-helmet-async'
+import { useEffect } from 'react'
 
-const StructuredData = ({ type, data }) => {
+export default function StructuredData({ type }) {
   const getStructuredData = () => {
     switch (type) {
+      case 'MedicalBusiness':
+        return {
+          '@context': 'https://schema.org',
+          '@type': 'MedicalBusiness',
+          name: 'Tomáš Nováček - Professional Psychotherapist',
+          description: 'Professional psychotherapy services in Prague. Specializing in individual therapy, couples counseling, and family therapy.',
+          url: 'https://tomnovacek.cz',
+          telephone: '+420 123 456 789',
+          email: 'info@tomnovacek.cz',
+          address: {
+            '@type': 'PostalAddress',
+            streetAddress: 'Example Street 123',
+            addressLocality: 'Prague',
+            postalCode: '110 00',
+            addressCountry: 'CZ'
+          },
+          priceRange: '$$',
+          openingHours: 'Mo-Fr 09:00-17:00'
+        }
       case 'Person':
         return {
           '@context': 'https://schema.org',
           '@type': 'Person',
           name: 'Tomáš Nováček',
-          jobTitle: 'Psychotherapist',
+          jobTitle: 'Professional Psychotherapist',
           worksFor: {
             '@type': 'Organization',
-            name: 'Tomáš Nováček - Psychotherapy',
-            address: {
-              '@type': 'PostalAddress',
-              addressLocality: 'Brno',
-              addressCountry: 'CZ'
-            }
+            name: 'Tomáš Nováček - Professional Psychotherapist'
           },
-          description: 'Professional psychotherapist specializing in individual therapy, anxiety, depression, and trauma support.',
-          image: 'https://tomnovacek.com/src/assets/img/tom-home.webp',
-          url: 'https://tomnovacek.com',
+          description: 'Licensed psychotherapist with extensive experience in helping individuals navigate through life\'s challenges and achieve personal growth.',
+          url: 'https://tomnovacek.cz',
           sameAs: [
             'https://www.linkedin.com/in/tomnovacek',
             'https://www.facebook.com/tomnovacek'
           ]
         }
-
-      case 'MedicalBusiness':
-        return {
-          '@context': 'https://schema.org',
-          '@type': 'MedicalBusiness',
-          name: 'Tomáš Nováček - Psychotherapy',
-          image: 'https://tomnovacek.com/src/assets/img/tom-home.webp',
-          url: 'https://tomnovacek.com',
-          telephone: '+420123456789',
-          address: {
-            '@type': 'PostalAddress',
-            streetAddress: 'Sukova 4',
-            addressLocality: 'Brno',
-            postalCode: '60200',
-            addressCountry: 'CZ'
-          },
-          geo: {
-            '@type': 'GeoCoordinates',
-            latitude: '49.1917',
-            longitude: '16.6075'
-          },
-          openingHoursSpecification: {
-            '@type': 'OpeningHoursSpecification',
-            dayOfWeek: [
-              'Monday',
-              'Tuesday',
-              'Wednesday',
-              'Thursday',
-              'Friday'
-            ],
-            opens: '09:00',
-            closes: '17:00'
-          },
-          priceRange: '$$'
-        }
-
-      case 'BlogPosting':
-        return {
-          '@context': 'https://schema.org',
-          '@type': 'BlogPosting',
-          headline: data.title,
-          image: data.image,
-          author: {
-            '@type': 'Person',
-            name: data.author.name
-          },
-          publisher: {
-            '@type': 'Organization',
-            name: 'Tomáš Nováček - Psychotherapy',
-            logo: {
-              '@type': 'ImageObject',
-              url: 'https://tomnovacek.com/src/assets/img/CAP.png'
-            }
-          },
-          datePublished: data.date,
-          dateModified: data.date,
-          description: data.excerpt,
-          mainEntityOfPage: {
-            '@type': 'WebPage',
-            '@id': data.url
-          }
-        }
-
       default:
         return null
     }
   }
 
-  const structuredData = getStructuredData()
+  useEffect(() => {
+    const structuredData = getStructuredData()
+    if (!structuredData) return
 
-  if (!structuredData) return null
+    // Remove any existing JSON-LD script
+    const existingScript = document.querySelector('script[type="application/ld+json"]')
+    if (existingScript) {
+      existingScript.remove()
+    }
 
-  return (
-    <Helmet>
-      <script type="application/ld+json">
-        {JSON.stringify(structuredData)}
-      </script>
-    </Helmet>
-  )
-}
+    // Create and append new JSON-LD script
+    const script = document.createElement('script')
+    script.type = 'application/ld+json'
+    script.text = JSON.stringify(structuredData)
+    document.head.appendChild(script)
 
-export default StructuredData 
+    // Cleanup on unmount
+    return () => {
+      if (script.parentNode) {
+        script.parentNode.removeChild(script)
+      }
+    }
+  }, [type])
+
+  return null
+} 

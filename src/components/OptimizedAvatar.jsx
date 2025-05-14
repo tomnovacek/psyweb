@@ -1,68 +1,85 @@
-import { useEffect, useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Avatar, Skeleton } from '@chakra-ui/react'
+import { getOptimizedImagePath } from '../utils/getOptimizedImage'
 
-export function OptimizedAvatar({ src, size = 'sm', ...props }) {
-  const [optimizedSrc, setOptimizedSrc] = useState('')
+const OptimizedAvatar = ({
+  src,
+  name,
+  size = 'md',
+  fallbackSrc = '/assets/optimized-images/CAP-md.webp',
+  ...props
+}) => {
+  const [imageSrc, setImageSrc] = useState(null)
   const [isLoading, setIsLoading] = useState(true)
+  const [error, setError] = useState(null)
 
   useEffect(() => {
     let isMounted = true
-    
-    // Clean up the source path
-    const cleanSrc = src.replace('/src/assets/img/', '')
-    
-    // Determine the correct path based on environment
-    const imagePath = import.meta.env.DEV
-      ? `/src/assets/img/${cleanSrc}`
-      : `/optimized-images/${cleanSrc.replace(/\.[^/.]+$/, '')}-${size}.webp`
 
-    if (isMounted) {
-      setOptimizedSrc(imagePath)
+    const loadImage = async () => {
+      try {
+        setIsLoading(true)
+        setError(null)
+        
+        const optimizedPath = await getOptimizedImagePath(src, size)
+        if (!optimizedPath) {
+          throw new Error('Failed to generate optimized image path')
+        }
+
+        // In development, we don't need to check if the image exists
+        if (import.meta.env.DEV) {
+          if (isMounted) {
+            setImageSrc(optimizedPath)
+            setIsLoading(false)
+          }
+          return
+        }
+
+        // In production, check if the image exists
+        const response = await fetch(optimizedPath)
+        if (!response.ok) {
+          console.warn(`Image not found at ${optimizedPath}, trying fallback`)
+          throw new Error('Failed to load image')
+        }
+
+        if (isMounted) {
+          setImageSrc(optimizedPath)
+          setIsLoading(false)
+        }
+      } catch (err) {
+        if (isMounted) {
+          console.error('Error loading optimized avatar:', { error: err, src, size, fallbackSrc })
+          setError(err)
+          setImageSrc(fallbackSrc)
+          setIsLoading(false)
+        }
+      }
     }
+
+    loadImage()
 
     return () => {
       isMounted = false
     }
-  }, [src, size])
+  }, [src, size, fallbackSrc])
 
-  // Preload the image
-  useEffect(() => {
-    if (!optimizedSrc) return
-
-    const img = new Image()
-    img.src = optimizedSrc
-    img.onload = () => setIsLoading(false)
-    img.onerror = () => setIsLoading(false)
-  }, [optimizedSrc])
-
-  // Get size dimensions based on Chakra UI's Avatar sizes
-  const getSize = () => {
-    switch (size) {
-      case 'xs': return '24px'
-      case 'sm': return '32px'
-      case 'md': return '40px'
-      case 'lg': return '56px'
-      case 'xl': return '72px'
-      case '2xl': return '96px'
-      default: return '32px'
-    }
+  if (isLoading) {
+    return <Skeleton {...props} />
   }
 
-  const avatarSize = getSize()
-
   return (
-    <Skeleton
-      isLoaded={!isLoading}
-      width={avatarSize}
-      height={avatarSize}
-      borderRadius="full"
-    >
-      <Avatar
-        src={optimizedSrc}
-        size={size}
-        {...props}
-      />
-    </Skeleton>
+    <Avatar
+      src={imageSrc || fallbackSrc}
+      name={name}
+      size={size}
+      onError={(e) => {
+        console.warn(`Failed to load avatar ${imageSrc}, using fallback`)
+        if (imageSrc !== fallbackSrc) {
+          setImageSrc(fallbackSrc)
+        }
+      }}
+      {...props}
+    />
   )
 }
 

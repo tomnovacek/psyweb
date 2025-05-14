@@ -1,45 +1,72 @@
 import { Helmet } from 'react-helmet-async'
+import { getOptimizedImagePath } from '../utils/getOptimizedImage'
 
-export default function SEO({ title, description, keywords, url, image, preloadImages = [] }) {
-  // Clean up the image path
-  const cleanImagePath = image ? image.replace('/src/assets/img/', '') : ''
-  
-  // Determine the correct image path based on environment
-  const imagePath = import.meta.env.DEV
-    ? `/src/assets/img/${cleanImagePath}`
-    : `/optimized-images/${cleanImagePath.replace(/\.[^/.]+$/, '')}-md.webp`
+const SEO = ({
+  title = '',
+  description = '',
+  keywords = '',
+  url = '',
+  image = '',
+  preloadImages = [],
+  children
+}) => {
+  const siteTitle = 'Tomáš Nováček - Professional Psychotherapist'
+  const fullTitle = title ? `${title} | ${siteTitle}` : siteTitle
+
+  // Ensure all values are strings
+  const safeTitle = String(fullTitle)
+  const safeDescription = String(description)
+  const safeKeywords = keywords ? String(keywords) : ''
+  const safeUrl = String(url)
+  const safeImage = image ? String(image) : ''
 
   return (
     <Helmet>
-      <title>{title}</title>
-      <meta name="description" content={description} />
-      {keywords && <meta name="keywords" content={keywords} />}
-      <meta property="og:title" content={title} />
-      <meta property="og:description" content={description} />
-      {url && <meta property="og:url" content={url} />}
-      {image && <meta property="og:image" content={imagePath} />}
+      {/* Basic meta tags */}
+      <title>{safeTitle}</title>
+      <meta name="description" content={safeDescription} />
+      {safeKeywords && <meta name="keywords" content={safeKeywords} />}
+      <link rel="canonical" href={safeUrl} />
+
+      {/* Open Graph meta tags */}
+      <meta property="og:title" content={safeTitle} />
+      <meta property="og:description" content={safeDescription} />
+      <meta property="og:url" content={safeUrl} />
+      <meta property="og:type" content="website" />
+      {safeImage && <meta property="og:image" content={safeImage} />}
+
+      {/* Twitter meta tags */}
       <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:title" content={title} />
-      <meta name="twitter:description" content={description} />
-      {image && <meta name="twitter:image" content={imagePath} />}
+      <meta name="twitter:title" content={safeTitle} />
+      <meta name="twitter:description" content={safeDescription} />
+      {safeImage && <meta name="twitter:image" content={safeImage} />}
 
       {/* Preload critical images */}
-      {preloadImages.map((img, index) => {
-        const cleanImgPath = img.replace('/src/assets/img/', '')
-        const optimizedPath = import.meta.env.DEV
-          ? `/src/assets/img/${cleanImgPath}`
-          : `/optimized-images/${cleanImgPath.replace(/\.[^/.]+$/, '')}-md.webp`
-        
-        return (
-          <link
-            key={index}
-            rel="preload"
-            as="image"
-            href={optimizedPath}
-            type="image/webp"
-          />
-        )
+      {preloadImages.map((imgSrc, index) => {
+        try {
+          const optimizedPath = getOptimizedImagePath(imgSrc, 'md')
+          if (typeof optimizedPath === 'string') {
+            return (
+              <link
+                key={`preload-${index}`}
+                rel="preload"
+                href={optimizedPath}
+                as="image"
+                type="image/webp"
+                fetchpriority="high"
+              />
+            )
+          }
+        } catch (error) {
+          console.error(`Failed to optimize image path for ${imgSrc}:`, error)
+        }
+        return null
       })}
+
+      {/* Additional meta tags */}
+      {children}
     </Helmet>
   )
-} 
+}
+
+export default SEO 
