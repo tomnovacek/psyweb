@@ -51,7 +51,7 @@ const Layout = ({ children }) => {
     >
       <Box
         width="100%"
-        maxW="1440px"
+        maxW="1680px"
         minH="100vh"
         display="flex"
         flexDirection="column"

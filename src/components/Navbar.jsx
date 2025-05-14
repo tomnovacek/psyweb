@@ -91,7 +91,7 @@ export default function Navbar() {
       borderColor={useColorModeValue('gray.200', 'gray.900')}
       width="100%"
     >
-      <Container maxW="1440px">
+      <Container maxW="1680px">
         <Flex
           bg={useColorModeValue('white', 'gray.800')}
           color={useColorModeValue('gray.600', 'white')}
