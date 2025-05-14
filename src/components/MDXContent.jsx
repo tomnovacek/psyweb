@@ -1,5 +1,6 @@
 import { MDXProvider } from '@mdx-js/react'
-import { Box, Heading, Text, Image, Link, List, ListItem } from '@chakra-ui/react'
+import { Box, Heading, Text, Link, List, ListItem } from '@chakra-ui/react'
+import OptimizedImage from './OptimizedImage'
 
 const components = {
   h1: (props) => <Heading as="h1" fontSize="3xl" fontWeight="bold" mb={4} {...props} />,
@@ -12,7 +13,7 @@ const components = {
   li: (props) => <ListItem mb={1} {...props} />,
   img: (props) => (
     <Box my={6}>
-      <Image
+      <OptimizedImage
         src={props.src}
         alt={props.alt}
         borderRadius="md"

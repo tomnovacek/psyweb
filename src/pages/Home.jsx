@@ -22,6 +22,7 @@ import { CheckCircleIcon } from '@chakra-ui/icons'
 import { FaUserFriends, FaHeart, FaBrain, FaComments, FaLightbulb, FaHandHoldingHeart } from 'react-icons/fa'
 import { useEffect, useState } from 'react'
 import { getAllPosts } from '../utils/mdx'
+import OptimizedImage from '../components/OptimizedImage'
 
 export default function Home() {
   const [newestPosts, setNewestPosts] = useState([])
@@ -55,7 +56,7 @@ export default function Home() {
     <>
       {/* Hero Section */}
       <Box position="relative" width="100%" height="100vh">
-        <Image
+        <OptimizedImage
           src="/src/assets/img/forrest.webp"
           alt="Forest path"
           objectFit="cover"
@@ -158,7 +159,7 @@ export default function Home() {
               position="relative"
               display={{ base: 'none', md: 'block' }}
             >
-              <Image
+              <OptimizedImage
                 src="/src/assets/img/tom-home.webp"
                 alt="Tom Novacek"
                 borderRadius="lg"
@@ -225,7 +226,7 @@ export default function Home() {
                     border="4px solid"
                     borderColor={borderColor}
                   >
-                    <Image
+                    <OptimizedImage
                       src="/src/assets/img/room.jpeg"
                       alt="Therapy Room"
                       objectFit="cover"
@@ -264,7 +265,7 @@ export default function Home() {
                     border="4px solid"
                     borderColor={borderColor}
                   >
-                    <Image
+                    <OptimizedImage
                       src="/src/assets/img/family.webp"
                       alt="Family Therapy"
                       objectFit="cover"
@@ -475,7 +476,7 @@ export default function Home() {
                     height={{ base: '200px', md: 'auto' }}
                     minHeight={{ md: '300px' }}
                   >
-                    <Image
+                    <OptimizedImage
                       src={post.frontmatter.image}
                       alt={post.frontmatter.title}
                       objectFit="cover"

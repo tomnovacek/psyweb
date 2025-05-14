@@ -7,10 +7,10 @@ import {
   SimpleGrid,
   Heading,
   Icon,
-  Image,
 } from '@chakra-ui/react'
 import { FaEnvelope, FaPhone, FaMapMarkerAlt } from 'react-icons/fa'
 import { Link as RouterLink } from 'react-router-dom'
+import OptimizedImage from './OptimizedImage'
 
 export default function Footer() {
   return (
@@ -58,26 +58,29 @@ export default function Footer() {
           </Stack>
 
           {/* Contact Information */}
-          <Stack align={'flex-end'}>
+          <Stack align={'flex-start'}>
             <Heading fontSize={'lg'} mb={4}>Contact</Heading>
             <Stack direction={'row'} align={'center'} spacing={2}>
-              <Icon as={FaMapMarkerAlt} />
-              <Text>Sukova 4, Brno</Text>
-            </Stack>
-            <Stack direction={'row'} align={'center'} spacing={2}>
               <Icon as={FaPhone} />
-              <Text>+420 602 773 440</Text>
+              <Text>+420 123 456 789</Text>
             </Stack>
             <Stack direction={'row'} align={'center'} spacing={2}>
               <Icon as={FaEnvelope} />
-              <Link href="mailto:terapie@tomnovacek.com" color={useColorModeValue('gray.700', 'gray.200')}>
-                terapie@tomnovacek.com
-              </Link>
+              <Text>tom@example.com</Text>
             </Stack>
-            <Image
+            <Stack direction={'row'} align={'center'} spacing={2}>
+              <Icon as={FaMapMarkerAlt} />
+              <Text>Prague, Czech Republic</Text>
+            </Stack>
+          </Stack>
+
+          {/* Logo */}
+          <Stack align={'flex-start'}>
+            <Heading fontSize={'lg'} mb={4}>Professional Memberships</Heading>
+            <OptimizedImage
               src="/src/assets/img/CAP.png"
               alt="ČAP Logo"
-              width="120px"
+              width="200px"
               height="auto"
             />
           </Stack>

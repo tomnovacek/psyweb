@@ -18,6 +18,7 @@ import {
 } from '@chakra-ui/react'
 import { CheckCircleIcon } from '@chakra-ui/icons'
 import { FaGraduationCap, FaUserMd, FaHeart, FaBrain, FaHandHoldingHeart, FaLightbulb, FaHeartbeat, FaUserShield, FaUsers, FaExchangeAlt, FaBalanceScale, FaSeedling } from 'react-icons/fa'
+import OptimizedImage from '../components/OptimizedImage'
 
 export default function About() {
   const bgColor = useColorModeValue('gray.50', 'gray.900')
@@ -81,7 +82,7 @@ export default function About() {
               position="relative"
               display={{ base: 'none', md: 'block' }}
             >
-              <Image
+              <OptimizedImage
                 src="/src/assets/img/tom-home.webp"
                 alt="Tom Novacek"
                 borderRadius="lg"
@@ -90,7 +91,7 @@ export default function About() {
                 height="auto"
                 transition="all 0.3s"
                 _hover={{
-                  transform: 'scale(1.02)', 
+                  transform: 'scale(1.02)',
                 }}
               />
             </Box>
@@ -271,7 +272,7 @@ export default function About() {
             </Box>
           </SimpleGrid>
           <Center mt={10}>
-            <Image
+            <OptimizedImage
               src="/src/assets/img/CAP.png"
               alt="ČAP Logo"
               width="200px"

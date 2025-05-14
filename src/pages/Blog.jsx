@@ -5,7 +5,6 @@ import {
   Text,
   Stack,
   SimpleGrid,
-  Image,
   useColorModeValue,
   Button,
   Badge,
@@ -16,6 +15,7 @@ import { Link as RouterLink } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { getAllPosts } from '../utils/mdx'
 import { MDXProvider } from '@mdx-js/react'
+import OptimizedImage from '../components/OptimizedImage'
 
 // MDX components configuration
 const components = {
@@ -100,7 +100,7 @@ export default function Blog() {
                   }}
                 >
                   {frontmatter.image && (
-                    <Image
+                    <OptimizedImage
                       src={frontmatter.image}
                       alt={frontmatter.title}
                       objectFit="cover"

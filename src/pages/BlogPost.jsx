@@ -4,7 +4,6 @@ import {
   Heading,
   Text,
   Stack,
-  Image,
   useColorModeValue,
   Badge,
   Avatar,
@@ -16,6 +15,7 @@ import { useEffect, useState } from 'react'
 import { getPostBySlug } from '../utils/mdx'
 import MDXContent from '../components/MDXContent'
 import { MDXProvider } from '@mdx-js/react'
+import OptimizedImage from '../components/OptimizedImage'
 
 export default function BlogPost() {
   const { slug } = useParams()
@@ -99,7 +99,7 @@ export default function BlogPost() {
 
           {/* Featured Image */}
           <Box>
-            <Image
+            <OptimizedImage
               rounded={'md'}
               alt={frontmatter.title}
               src={frontmatter.image}
