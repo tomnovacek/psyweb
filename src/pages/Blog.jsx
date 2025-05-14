@@ -9,13 +9,13 @@ import {
   Button,
   Badge,
   Flex,
-  Avatar,
 } from '@chakra-ui/react'
 import { Link as RouterLink } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { getAllPosts } from '../utils/mdx'
 import { MDXProvider } from '@mdx-js/react'
 import OptimizedImage from '../components/OptimizedImage'
+import OptimizedAvatar from '../components/OptimizedAvatar'
 import SEO from '../components/SEO'
 
 // MDX components configuration
@@ -137,7 +137,7 @@ export default function Blog() {
                       <Text color={textColor}>{frontmatter.excerpt}</Text>
                       {frontmatter.author && (
                         <Stack mt={6} direction={'row'} spacing={4} align={'center'}>
-                          <Avatar src={frontmatter.author.image} alt={frontmatter.author.name} />
+                          <OptimizedAvatar src={frontmatter.author.image} alt={frontmatter.author.name} />
                           <Stack direction={'column'} spacing={0} fontSize={'sm'}>
                             <Text fontWeight={600}>{frontmatter.author.name}</Text>
                             <Text color={textColor}>{frontmatter.date} · {frontmatter.readTime}</Text>

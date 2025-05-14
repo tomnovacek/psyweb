@@ -15,7 +15,6 @@ import {
   ListIcon,
   Icon,
   Badge,
-  Avatar,
   Link,
 } from '@chakra-ui/react'
 import { Link as RouterLink } from 'react-router-dom'
@@ -24,6 +23,7 @@ import { FaUserFriends, FaHeart, FaBrain, FaComments, FaLightbulb, FaHandHolding
 import { useEffect, useState } from 'react'
 import { getAllPosts } from '../utils/mdx'
 import OptimizedImage from '../components/OptimizedImage'
+import OptimizedAvatar from '../components/OptimizedAvatar'
 import SEO from '../components/SEO'
 import StructuredData from '../components/StructuredData'
 
@@ -514,10 +514,10 @@ export default function Home() {
                       </Heading>
                       <Text color={textColor}>{post.frontmatter.excerpt}</Text>
                       <Stack direction={'row'} spacing={4} align={'center'}>
-                        <Avatar
+                        <OptimizedAvatar
                           src={post.frontmatter.author.image}
                           alt={post.frontmatter.author.name}
-                          size={'md'}
+                          size="md"
                         />
                         <Stack direction={'column'} spacing={0} fontSize={'sm'}>
                           <Text fontWeight={600}>{post.frontmatter.author.name}</Text>

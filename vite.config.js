@@ -32,6 +32,33 @@ export default defineConfig({
       '@': '/src'
     }
   },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          'react-vendor': ['react', 'react-dom'],
+          'router': ['react-router-dom'],
+          'chakra': ['@chakra-ui/react', '@emotion/react', '@emotion/styled'],
+          'animations': ['framer-motion'],
+          'mdx-core': ['@mdx-js/react', '@mdx-js/rollup'],
+          'mdx-plugins': [
+            'remark-parse',
+            'remark-gfm',
+            'rehype-slug',
+            'rehype-autolink-headings'
+          ]
+        }
+      }
+    },
+    chunkSizeWarningLimit: 1000,
+    minify: 'terser',
+    terserOptions: {
+      compress: {
+        drop_console: true,
+        drop_debugger: true
+      }
+    }
+  },
   server: {
     port: 3000,
     host: true,

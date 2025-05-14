@@ -1,48 +1,27 @@
 import { Helmet } from 'react-helmet-async'
 
-const SEO = ({
-  title,
-  description,
-  keywords,
-  image,
-  url,
-  type = 'website',
-  author = 'Tom Novacek',
-  siteName = 'Tom Novacek - Psychotherapy',
-}) => {
-  const defaultDescription = 'Professional psychotherapy services in Prague, Czech Republic. Specializing in individual therapy, anxiety, depression, and trauma support.'
-  const defaultKeywords = 'psychotherapy, mental health, therapy, counseling, Prague, Czech Republic, anxiety, depression, trauma, personal growth'
-  const defaultImage = '/src/assets/img/tom-home.webp'
+export default function SEO({ title, description, keywords, url, image }) {
+  // Clean up the image path
+  const cleanImagePath = image ? image.replace('/src/assets/img/', '') : ''
+  
+  // Determine the correct image path based on environment
+  const imagePath = import.meta.env.DEV
+    ? `/src/assets/img/${cleanImagePath}`
+    : `/optimized-images/${cleanImagePath.replace(/\.[^/.]+$/, '')}-md.webp`
 
   return (
     <Helmet>
-      {/* Basic meta tags */}
-      <title>{title} | {siteName}</title>
-      <meta name="description" content={description || defaultDescription} />
-      <meta name="keywords" content={keywords || defaultKeywords} />
-      <meta name="author" content={author} />
-
-      {/* Open Graph meta tags */}
-      <meta property="og:title" content={`${title} | ${siteName}`} />
-      <meta property="og:description" content={description || defaultDescription} />
-      <meta property="og:type" content={type} />
-      <meta property="og:url" content={url} />
-      <meta property="og:image" content={image || defaultImage} />
-      <meta property="og:site_name" content={siteName} />
-
-      {/* Twitter Card meta tags */}
+      <title>{title}</title>
+      <meta name="description" content={description} />
+      {keywords && <meta name="keywords" content={keywords} />}
+      <meta property="og:title" content={title} />
+      <meta property="og:description" content={description} />
+      {url && <meta property="og:url" content={url} />}
+      {image && <meta property="og:image" content={imagePath} />}
       <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:title" content={`${title} | ${siteName}`} />
-      <meta name="twitter:description" content={description || defaultDescription} />
-      <meta name="twitter:image" content={image || defaultImage} />
-
-      {/* Additional meta tags */}
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
-      <meta name="robots" content="index, follow" />
-      <link rel="canonical" href={url} />
+      <meta name="twitter:title" content={title} />
+      <meta name="twitter:description" content={description} />
+      {image && <meta name="twitter:image" content={imagePath} />}
     </Helmet>
   )
-}
-
-export default SEO 
+} 

@@ -1,16 +1,5 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Image as ChakraImage, Skeleton, Box, Text } from '@chakra-ui/react';
-
-// Load the image manifest
-const imageManifest = async () => {
-  try {
-    const response = await fetch('/image-manifest.json');
-    return await response.json();
-  } catch (error) {
-    console.error('Failed to load image manifest:', error);
-    return {};
-  }
-};
 
 const OptimizedImage = ({
   src,
@@ -19,75 +8,41 @@ const OptimizedImage = ({
   height,
   sizes = '(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw',
   loading = 'lazy',
+  size = 'md',
   ...props
 }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(false);
-  const [manifest, setManifest] = useState(null);
-  const [selectedSrc, setSelectedSrc] = useState(src);
-
-  // Get the relative path from the src
-  const relativePath = useMemo(() => {
-    try {
-      const url = new URL(src, window.location.origin);
-      return url.pathname.replace(/^\//, '');
-    } catch {
-      return src;
-    }
-  }, [src]);
+  const [selectedSrc, setSelectedSrc] = useState('');
 
   useEffect(() => {
-    let mounted = true;
+    let isMounted = true;
+    
+    // Clean up the source path
+    const cleanSrc = src.replace('/src/assets/img/', '');
+    
+    // Determine the correct path based on environment
+    const imagePath = import.meta.env.DEV
+      ? `/src/assets/img/${cleanSrc}`
+      : `/optimized-images/${cleanSrc.replace(/\.[^/.]+$/, '')}-${size}.webp`;
 
-    const loadManifest = async () => {
-      const manifestData = await imageManifest();
-      if (mounted) {
-        setManifest(manifestData);
-      }
-    };
+    if (isMounted) {
+      setSelectedSrc(imagePath);
+    }
 
-    loadManifest();
     return () => {
-      mounted = false;
+      isMounted = false;
     };
-  }, []);
+  }, [src, size]);
 
   useEffect(() => {
-    if (!manifest) return;
+    if (!selectedSrc) return;
 
-    const imageData = manifest[relativePath];
-    if (!imageData) {
-      setSelectedSrc(src);
-      return;
-    }
-
-    // Get the best image size based on viewport width
-    const getBestImageSize = () => {
-      const viewportWidth = window.innerWidth;
-      const sizes = imageData.responsive;
-      
-      // Find the smallest image that's larger than the viewport width
-      const bestSize = sizes.find(size => size.width >= viewportWidth) || sizes[sizes.length - 1];
-      return bestSize.path;
-    };
-
-    // Set initial size
-    setSelectedSrc(getBestImageSize());
-
-    // Update size on resize
-    const handleResize = () => {
-      setSelectedSrc(getBestImageSize());
-    };
-
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, [manifest, relativePath, src]);
-
-  useEffect(() => {
     const img = new Image();
     img.src = selectedSrc;
     img.onload = () => setIsLoading(false);
     img.onerror = () => {
+      console.error(`Failed to load image: ${selectedSrc}`);
       setError(true);
       setIsLoading(false);
     };

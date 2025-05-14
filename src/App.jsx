@@ -1,15 +1,40 @@
 import { ChakraProvider, CSSReset, Box, Container, useColorModeValue } from '@chakra-ui/react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { HelmetProvider } from 'react-helmet-async'
+import { Suspense, lazy } from 'react'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
-import Home from './pages/Home'
-import About from './pages/About'
-import Services from './pages/Services'
-import Blog from './pages/Blog'
-import BlogPost from './pages/BlogPost'
-import Contact from './pages/Contact'
-import Calendar from './pages/Calendar'
+
+// Lazy load route components
+const Home = lazy(() => import('./pages/Home'))
+const About = lazy(() => import('./pages/About'))
+const Services = lazy(() => import('./pages/Services'))
+const Blog = lazy(() => import('./pages/Blog'))
+const BlogPost = lazy(() => import('./pages/BlogPost'))
+const Contact = lazy(() => import('./pages/Contact'))
+const Calendar = lazy(() => import('./pages/Calendar'))
+
+// Loading component
+const LoadingFallback = () => (
+  <Box
+    display="flex"
+    justifyContent="center"
+    alignItems="center"
+    minH="50vh"
+  >
+    <Box
+      as="div"
+      className="loading-spinner"
+      width="40px"
+      height="40px"
+      border="4px solid"
+      borderColor="gray.200"
+      borderTopColor="blue.500"
+      borderRadius="full"
+      animation="spin 1s linear infinite"
+    />
+  </Box>
+)
 
 function App() {
   return (
@@ -37,15 +62,17 @@ function App() {
             >
               <Navbar />
               <Box flex="1" width="100%">
-                <Routes>
-                  <Route path="/" element={<Home />} />
-                  <Route path="/about" element={<About />} />
-                  <Route path="/services" element={<Services />} />
-                  <Route path="/calendar" element={<Calendar />} />
-                  <Route path="/blog" element={<Blog />} />
-                  <Route path="/contact" element={<Contact />} />
-                  <Route path="/blog/:slug" element={<BlogPost />} />
-                </Routes>
+                <Suspense fallback={<LoadingFallback />}>
+                  <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/about" element={<About />} />
+                    <Route path="/services" element={<Services />} />
+                    <Route path="/calendar" element={<Calendar />} />
+                    <Route path="/blog" element={<Blog />} />
+                    <Route path="/contact" element={<Contact />} />
+                    <Route path="/blog/:slug" element={<BlogPost />} />
+                  </Routes>
+                </Suspense>
               </Box>
               <Footer />
             </Box>
