@@ -79,3 +79,21 @@ button:focus-visible {
 .loading-spinner {
   animation: spin 1s linear infinite;
 }
+
+/* Prevent layout shifts */
+nav {
+  min-height: 64px; /* Adjust this value based on your navigation height */
+  display: flex;
+  align-items: center;
+}
+
+.chakra-skeleton {
+  display: inline-block;
+  min-width: 100px; /* Adjust based on your content */
+  min-height: 24px; /* Adjust based on your content */
+}
+
+/* Ensure images maintain aspect ratio */
+img {
+  aspect-ratio: attr(width) / attr(height);
+}

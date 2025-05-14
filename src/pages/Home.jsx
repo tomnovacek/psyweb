@@ -63,29 +63,44 @@ export default function Home() {
         keywords="psychotherapist, therapy, counseling, Brno, Czech Republic, anxiety treatment, depression support, trauma counseling, online therapy"
         url="https://tomnovacek.com"
         image="/src/assets/img/tom-home.webp"
+        preloadImages={[
+          '/src/assets/img/tom-home.webp',
+          '/src/assets/img/forrest.webp'
+        ]}
       />
       <StructuredData type="MedicalBusiness" />
       <StructuredData type="Person" />
+      
       {/* Hero Section */}
-      <Box position="relative" width="100%" height="100vh">
-        <OptimizedImage
-          src="/src/assets/img/forrest.webp"
-          alt="Forest path"
-          objectFit="cover"
-          width="100%"
-          height="100%"
-          position="absolute"
-          top={0}
-          left={0}
-        />
+      <Box position="relative" width="100%" height="100vh" overflow="hidden">
+        {/* Background Image */}
         <Box
           position="absolute"
           top={0}
           left={0}
           width="100%"
           height="100%"
-          bg="blackAlpha.100"
-        />
+          zIndex={0}
+        >
+          <OptimizedImage
+            src="/src/assets/img/forrest.webp"
+            alt="Forest path"
+            objectFit="cover"
+            width="100%"
+            height="100%"
+            priority={true}
+          />
+          <Box
+            position="absolute"
+            top={0}
+            left={0}
+            width="100%"
+            height="100%"
+            bg="blackAlpha.100"
+          />
+        </Box>
+
+        {/* Content Container */}
         <Container maxW="7xl" height="100%" position="relative" zIndex={1}>
           <Flex
             height="100%"
@@ -102,6 +117,7 @@ export default function Home() {
               borderRadius="lg"
               maxW="2xl"
               flex="1"
+              backdropFilter="blur(10px)"
             >
               <Heading
                 lineHeight={1.1}
@@ -179,6 +195,7 @@ export default function Home() {
                 width="100%"
                 height="auto"
                 boxShadow="2xl"
+                priority={true}
               />
             </Box>
           </Flex>
@@ -186,7 +203,7 @@ export default function Home() {
       </Box>
 
       {/* About Section */}
-      <Box py={20} bg={cardBg}>
+      <Box py={20} bg={cardBg} position="relative" zIndex={2}>
         <Container maxW={'7xl'} centerContent>
           <Stack spacing={4} maxW={'3xl'} textAlign={'center'} mb={140}>
             <Heading
@@ -197,16 +214,7 @@ export default function Home() {
               <Text
                 as={'span'}
                 position={'relative'}
-                _after={{
-                  content: "''",
-                  width: 'full',
-                  height: '30%',
-                  position: 'absolute',
-                  bottom: 1,
-                  left: 0,
-                  bg: 'green.400',
-                  zIndex: -1,
-                }}
+
               >
                 About Me
               </Text>
@@ -314,20 +322,14 @@ export default function Home() {
               lineHeight={1.1}
               fontWeight={600}
               fontSize={{ base: '3xl', sm: '4xl', lg: '5xl' }}
+              position="relative"
+              display="inline-block"
             >
               <Text
                 as={'span'}
                 position={'relative'}
-                _after={{
-                  content: "''",
-                  width: 'full',
-                  height: '30%',
-                  position: 'absolute',
-                  bottom: 1,
-                  left: 0,
-                  bg: 'green.400',
-                  zIndex: -1,
-                }}
+                zIndex={1}
+
               >
                 My Services
               </Text>

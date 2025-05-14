@@ -1,6 +1,6 @@
 import { Helmet } from 'react-helmet-async'
 
-export default function SEO({ title, description, keywords, url, image }) {
+export default function SEO({ title, description, keywords, url, image, preloadImages = [] }) {
   // Clean up the image path
   const cleanImagePath = image ? image.replace('/src/assets/img/', '') : ''
   
@@ -22,6 +22,24 @@ export default function SEO({ title, description, keywords, url, image }) {
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
       {image && <meta name="twitter:image" content={imagePath} />}
+
+      {/* Preload critical images */}
+      {preloadImages.map((img, index) => {
+        const cleanImgPath = img.replace('/src/assets/img/', '')
+        const optimizedPath = import.meta.env.DEV
+          ? `/src/assets/img/${cleanImgPath}`
+          : `/optimized-images/${cleanImgPath.replace(/\.[^/.]+$/, '')}-md.webp`
+        
+        return (
+          <link
+            key={index}
+            rel="preload"
+            as="image"
+            href={optimizedPath}
+            type="image/webp"
+          />
+        )
+      })}
     </Helmet>
   )
 } 

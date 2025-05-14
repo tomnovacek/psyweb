@@ -9,6 +9,7 @@ const OptimizedImage = ({
   sizes = '(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw',
   loading = 'lazy',
   size = 'md',
+  priority = false,
   ...props
 }) => {
   const [isLoading, setIsLoading] = useState(true);
@@ -64,13 +65,19 @@ const OptimizedImage = ({
   }
 
   return (
-    <Skeleton isLoaded={!isLoading}>
+    <Skeleton
+      isLoaded={!isLoading}
+      width={width}
+      height={height}
+      startColor="gray.100"
+      endColor="gray.200"
+    >
       <ChakraImage
         src={selectedSrc}
         alt={alt}
         width={width}
         height={height}
-        loading={loading}
+        loading={priority ? 'eager' : loading}
         sizes={sizes}
         transition="all 0.3s"
         _hover={{
