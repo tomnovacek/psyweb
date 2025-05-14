@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import { Image, Skeleton, Box, Text } from '@chakra-ui/react';
+import { Image as ChakraImage, Skeleton, Box, Text } from '@chakra-ui/react';
 
 // Load the image manifest
 const imageManifest = async () => {
   try {
-    const response = await fetch('/optimized-images/image-manifest.json');
+    const response = await fetch('/image-manifest.json');
     return await response.json();
   } catch (error) {
     console.error('Failed to load image manifest:', error);
@@ -110,7 +110,7 @@ const OptimizedImage = ({
 
   return (
     <Skeleton isLoaded={!isLoading}>
-      <Image
+      <ChakraImage
         src={selectedSrc}
         alt={alt}
         width={width}
