@@ -16,6 +16,8 @@ import { getPostBySlug } from '../utils/mdx'
 import MDXContent from '../components/MDXContent'
 import { MDXProvider } from '@mdx-js/react'
 import OptimizedImage from '../components/OptimizedImage'
+import SEO from '../components/SEO'
+import StructuredData from '../components/StructuredData'
 
 export default function BlogPost() {
   const { slug } = useParams()
@@ -70,6 +72,21 @@ export default function BlogPost() {
 
   return (
     <Box bg={useColorModeValue('gray.50', 'gray.900')}>
+      <SEO
+        title={frontmatter.title}
+        description={frontmatter.excerpt}
+        keywords={frontmatter.tags.join(', ')}
+        url={`https://tomnovacek.com/blog/${slug}`}
+        image={frontmatter.image}
+        type="article"
+      />
+      <StructuredData 
+        type="BlogPosting" 
+        data={{
+          ...frontmatter,
+          url: `https://tomnovacek.com/blog/${slug}`
+        }}
+      />
       <Container maxW={'7xl'} py={12}>
         <Stack spacing={8}>
           {/* Header */}

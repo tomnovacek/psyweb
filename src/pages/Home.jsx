@@ -16,13 +16,16 @@ import {
   Icon,
   Badge,
   Avatar,
+  Link,
 } from '@chakra-ui/react'
 import { Link as RouterLink } from 'react-router-dom'
 import { CheckCircleIcon } from '@chakra-ui/icons'
-import { FaUserFriends, FaHeart, FaBrain, FaComments, FaLightbulb, FaHandHoldingHeart } from 'react-icons/fa'
+import { FaUserFriends, FaHeart, FaBrain, FaComments, FaLightbulb, FaHandHoldingHeart, FaUserMd, FaVideo, FaCalendarAlt, FaCreditCard, FaShieldAlt, FaClock, FaInfoCircle } from 'react-icons/fa'
 import { useEffect, useState } from 'react'
 import { getAllPosts } from '../utils/mdx'
 import OptimizedImage from '../components/OptimizedImage'
+import SEO from '../components/SEO'
+import StructuredData from '../components/StructuredData'
 
 export default function Home() {
   const [newestPosts, setNewestPosts] = useState([])
@@ -35,7 +38,7 @@ export default function Home() {
   const headingColor = useColorModeValue('gray.700', 'white')
   const textColor = useColorModeValue('gray.600', 'gray.400')
   const serviceBg = useColorModeValue('green.100', 'gray.800')
-  const borderColor = useColorModeValue('white', 'gray.800')
+  const borderColor = useColorModeValue('gray.200', 'gray.700')
 
   useEffect(() => {
     const loadPosts = async () => {
@@ -53,7 +56,16 @@ export default function Home() {
   }, [])
 
   return (
-    <>
+    <Box bg={bgColor}>
+      <SEO
+        title="Tomáš Nováček - Professional Psychotherapist in Brno"
+        description="Professional psychotherapy services in Brno, Czech Republic. Specializing in individual therapy, anxiety treatment, depression support, and trauma counseling. Book your session today."
+        keywords="psychotherapist, therapy, counseling, Brno, Czech Republic, anxiety treatment, depression support, trauma counseling, online therapy"
+        url="https://tomnovacek.com"
+        image="/src/assets/img/tom-home.webp"
+      />
+      <StructuredData type="MedicalBusiness" />
+      <StructuredData type="Person" />
       {/* Hero Section */}
       <Box position="relative" width="100%" height="100vh">
         <OptimizedImage
@@ -552,6 +564,6 @@ export default function Home() {
             </Button>
           </Stack>
       </Box>
-    </>
+    </Box>
   )
 } 

@@ -1,0 +1,17 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://tomnovacek.com/sitemap.xml
+
+# Disallow admin and private routes
+Disallow: /admin/
+Disallow: /private/
+Disallow: /api/
+
+# Allow all other routes
+Allow: /blog/
+Allow: /services/
+Allow: /about/
+Allow: /contact/
+Allow: /calendar/ 

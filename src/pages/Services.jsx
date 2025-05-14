@@ -33,6 +33,8 @@ import {
   FaInfoCircle
 } from 'react-icons/fa'
 import { Link as RouterLink } from 'react-router-dom'
+import SEO from '../components/SEO'
+import StructuredData from '../components/StructuredData'
 
 export default function Services() {
   const { isOpen, onOpen, onClose } = useDisclosure()
@@ -44,6 +46,14 @@ export default function Services() {
 
   return (
     <Box bg={bgColor}>
+      <SEO
+        title="Psychotherapy Services"
+        description="Professional psychotherapy services in Brno, Czech Republic. Offering individual therapy, anxiety treatment, depression support, and trauma counseling."
+        keywords="psychotherapy services, individual therapy, anxiety treatment, depression support, trauma counseling, Brno, Czech Republic"
+        url="https://tomnovacek.com/services"
+        image="/src/assets/img/room.jpeg"
+      />
+      <StructuredData type="MedicalBusiness" />
       {/* Hero Section */}
       <Box py={20} bg={cardBg}>
         <Container maxW={'7xl'}>

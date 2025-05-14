@@ -19,6 +19,8 @@ import {
 import { CheckCircleIcon } from '@chakra-ui/icons'
 import { FaGraduationCap, FaUserMd, FaHeart, FaBrain, FaHandHoldingHeart, FaLightbulb, FaHeartbeat, FaUserShield, FaUsers, FaExchangeAlt, FaBalanceScale, FaSeedling } from 'react-icons/fa'
 import OptimizedImage from '../components/OptimizedImage'
+import SEO from '../components/SEO'
+import StructuredData from '../components/StructuredData'
 
 export default function About() {
   const bgColor = useColorModeValue('gray.50', 'gray.900')
@@ -29,6 +31,14 @@ export default function About() {
 
   return (
     <Box bg={bgColor}>
+      <SEO
+        title="About Tomáš Nováček"
+        description="Learn about Tomáš Nováček, a professional psychotherapist in Brno, Czech Republic. Specializing in individual therapy, anxiety, depression, and trauma support."
+        keywords="psychotherapist, Tomáš Nováček, therapy, counseling, Brno, Czech Republic, professional experience, qualifications"
+        url="https://tomnovacek.com/about"
+        image="/src/assets/img/tom-home.webp"
+      />
+      <StructuredData type="Person" />
       {/* Hero Section */}
       <Box py={20} bg={cardBg}>
         <Container maxW="7xl">

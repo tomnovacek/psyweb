@@ -16,6 +16,7 @@ import { useEffect, useState } from 'react'
 import { getAllPosts } from '../utils/mdx'
 import { MDXProvider } from '@mdx-js/react'
 import OptimizedImage from '../components/OptimizedImage'
+import SEO from '../components/SEO'
 
 // MDX components configuration
 const components = {
@@ -72,6 +73,13 @@ export default function Blog() {
   return (
     <MDXProvider components={components}>
       <Box bg={bgColor} py={20}>
+        <SEO
+          title="Blog - Mental Health Insights"
+          description="Explore articles about mental health, therapy, and personal growth. Professional insights from Tomáš Nováček, a licensed psychotherapist in Brno."
+          keywords="mental health blog, therapy insights, personal growth, anxiety, depression, trauma, psychotherapy articles, Brno"
+          url="https://tomnovacek.com/blog"
+          image="/src/assets/img/mindfulness.webp"
+        />
         <Container maxW={'7xl'}>
           <Stack spacing={4} maxW={'7xl'} textAlign={'center'} mb={10}>
             <Heading fontSize={'3xl'}>Blog</Heading>
