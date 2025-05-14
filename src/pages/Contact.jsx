@@ -38,10 +38,10 @@ export default function Contact() {
     <Box bg={useColorModeValue('gray.50', 'gray.900')}>
       <Container maxW={'7xl'} py={12}>
         <Stack spacing={4} as={Container} maxW={'3xl'} textAlign={'center'}>
-          <Heading fontSize={'3xl'}>Contact Me</Heading>
+          <Heading fontSize={'3xl'}>Kontaktujte mě</Heading>
           <Text color={'gray.600'} fontSize={'xl'}>
-            I'm here to help. Please feel free to reach out with any questions
-            or to schedule a consultation.
+            Jsem tu, abych vám pomohl. Neváhejte mě kontaktovat s jakýmikoli otázkami
+            nebo pro domluvení konzultace.
           </Text>
         </Stack>
 
@@ -58,7 +58,7 @@ export default function Contact() {
           <form onSubmit={handleSubmit}>
             <Stack spacing={4}>
               <FormControl id="name" isRequired>
-                <FormLabel>Name</FormLabel>
+                <FormLabel>Jméno</FormLabel>
                 <Input
                   type="text"
                   name="name"
@@ -76,7 +76,7 @@ export default function Contact() {
                 />
               </FormControl>
               <FormControl id="message" isRequired>
-                <FormLabel>Message</FormLabel>
+                <FormLabel>Zpráva</FormLabel>
                 <Textarea
                   name="message"
                   value={formData.message}
@@ -92,20 +92,20 @@ export default function Contact() {
                   bg: 'green.500',
                 }}
               >
-                Send Message
+                Odeslat zprávu
               </Button>
             </Stack>
           </form>
         </Stack>
 
         <Stack spacing={4} mt={10} as={Container} maxW={'3xl'} textAlign={'center'}>
-          <Heading fontSize={'2xl'}>Other Ways to Reach Me</Heading>
+          <Heading fontSize={'2xl'}>Další způsoby kontaktu</Heading>
           <Text color={'gray.600'} fontSize={'lg'}>
             Email: tom@tomnovacek.com
             <br />
-            Phone: +420 123 456 789
+            Telefon: +420 123 456 789
             <br />
-            Location: Prague, Czech Republic
+            Lokace: Brno, Česká republika
           </Text>
         </Stack>
       </Container>

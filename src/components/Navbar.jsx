@@ -19,16 +19,16 @@ const DesktopNav = () => {
   return (
     <Stack direction={'row'} spacing={4}>
       <Button as={RouterLink} to="/" fontSize={'sm'} fontWeight={400} variant={'link'}>
-        Home
+        Domů
       </Button>
       <Button as={RouterLink} to="/about" fontSize={'sm'} fontWeight={400} variant={'link'}>
-        About
+        O mně
       </Button>
       <Button as={RouterLink} to="/services" fontSize={'sm'} fontWeight={400} variant={'link'}>
-        Services
+        Služby
       </Button>
       <Button as={RouterLink} to="/calendar" fontSize={'sm'} fontWeight={400} variant={'link'}>
-        Calendar
+        Kalendář
       </Button>
       <Button as={RouterLink} to="/blog" fontSize={'sm'} fontWeight={400} variant={'link'}>
         Blog
@@ -46,16 +46,16 @@ const MobileNav = () => {
     >
       <Stack spacing={4} align="center">
         <Button as={RouterLink} to="/" fontSize={'sm'} fontWeight={400} variant={'link'}>
-          Home
+          Domů
         </Button>
         <Button as={RouterLink} to="/about" fontSize={'sm'} fontWeight={400} variant={'link'}>
-          About
+          O mně
         </Button>
         <Button as={RouterLink} to="/services" fontSize={'sm'} fontWeight={400} variant={'link'}>
-          Services
+          Služby
         </Button>
         <Button as={RouterLink} to="/calendar" fontSize={'sm'} fontWeight={400} variant={'link'}>
-          Calendar
+          Kalendář
         </Button>
         <Button as={RouterLink} to="/blog" fontSize={'sm'} fontWeight={400} variant={'link'}>
           Blog
@@ -70,7 +70,7 @@ const MobileNav = () => {
           bg={'green.400'}
           _hover={{ bg: 'green.500' }}
         >
-          Book a Consultation
+          Domluvit konzultaci
         </Button>
       </Stack>
     </Stack>
@@ -111,7 +111,7 @@ export default function Navbar() {
                 isOpen ? <CloseIcon w={3} h={3} /> : <HamburgerIcon w={5} h={5} />
               }
               variant={'ghost'}
-              aria-label={'Toggle Navigation'}
+              aria-label={'Přepnout navigaci'}
             />
           </Flex>
           <Flex flex={{ base: 1 }} justify={{ base: 'center', md: 'start' }}>
@@ -122,7 +122,7 @@ export default function Navbar() {
               as={RouterLink}
               to="/"
             >
-              Tom Novacek
+              Tom Nováček
             </Text>
 
             <Flex display={{ base: 'none', md: 'flex' }} ml={10}>
@@ -149,7 +149,7 @@ export default function Navbar() {
                 bg: 'green.300',
               }}
             >
-              Book a Consultation
+              Domluvit konzultaci
             </Button>
           </Stack>
         </Flex>

@@ -26,18 +26,18 @@ export default function Footer() {
         <SimpleGrid columns={{ base: 1, md: 3 }} spacing={8}>
           {/* Navigation Links */}
           <Stack align={'flex-start'}>
-            <Heading fontSize={'lg'} mb={4}>Navigation</Heading>
-            <Link as={RouterLink} to="/">Home</Link>
-            <Link as={RouterLink} to="/about">About</Link>
-            <Link as={RouterLink} to="/services">Services</Link>
-            <Link as={RouterLink} to="/calendar">Calendar</Link>
+            <Heading fontSize={'lg'} mb={4}>Navigace</Heading>
+            <Link as={RouterLink} to="/">Domů</Link>
+            <Link as={RouterLink} to="/about">O mně</Link>
+            <Link as={RouterLink} to="/services">Služby</Link>
+            <Link as={RouterLink} to="/calendar">Kalendář</Link>
             <Link as={RouterLink} to="/blog">Blog</Link>
-            <Link as={RouterLink} to="/contact">Contact</Link>
+            <Link as={RouterLink} to="/contact">Kontakt</Link>
           </Stack>
 
           {/* Google Maps */}
           <Stack align={'center'}>
-            <Heading fontSize={'lg'} mb={4}>Location</Heading>
+            <Heading fontSize={'lg'} mb={4}>Lokace</Heading>
             <Box
               width="100%"
               height="250px"
@@ -60,7 +60,7 @@ export default function Footer() {
                 bg="gray.100"
                 zIndex={1}
               >
-                <Text color="gray.500">Loading map...</Text>
+                <Text color="gray.500">Načítání mapy...</Text>
               </Box>
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2606.123456789012!2d16.6075!3d49.1917!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4712944c1c1c1c1c%3A0x1234567890abcdef!2sSukova%204%2C%20602%2000%20Brno-st%C5%99ed!5e0!3m2!1scs!2scz!4v1234567890!5m2!1scs!2scz"
@@ -70,8 +70,8 @@ export default function Footer() {
                 allowFullScreen=""
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
-                title="Office Location"
-                aria-label="Google Maps showing office location"
+                title="Umístění ordinace"
+                aria-label="Google Maps zobrazující umístění ordinace"
                 onLoad={(e) => {
                   // Hide placeholder when iframe loads
                   e.target.previousSibling.style.display = 'none';
@@ -85,7 +85,7 @@ export default function Footer() {
 
           {/* Contact Information */}
           <Stack align={'flex-end'}>
-            <Heading fontSize={'lg'} mb={4}>Contact</Heading>
+            <Heading fontSize={'lg'} mb={4}>Kontakt</Heading>
             <Stack direction={'row'} align={'center'} spacing={2}>
               <Icon as={FaPhone} />
               <Text>+420 602 773 440</Text>
@@ -96,13 +96,13 @@ export default function Footer() {
             </Stack>
             <Stack direction={'row'} align={'center'} spacing={2}>
               <Icon as={FaMapMarkerAlt} />
-              <Text>Brno, Czech Republic</Text>
+              <Text>Brno, Česká republika</Text>
             </Stack>
             {/* Logo */}
             <Box mt="auto">
               <OptimizedImage
                 src="/src/assets/img/CAP.png"
-                alt="CAP Logo"
+                alt="Logo CAP"
                 size="xs"
                 width="100px"
                 height="auto"
@@ -125,10 +125,10 @@ export default function Footer() {
           justify={{ base: 'center', md: 'space-between' }}
           align={{ base: 'center', md: 'center' }}
         >
-          <Text>© 2025 Tom Novacek. All rights reserved</Text>
+          <Text>© 2025 Tom Nováček. Všechna práva vyhrazena</Text>
           <Stack direction={'row'} spacing={6}>
-            <Link href={'#'}>Privacy Policy</Link>
-            <Link href={'#'}>Terms of Service</Link>
+            <Link href={'#'}>Ochrana soukromí</Link>
+            <Link href={'#'}>Podmínky služby</Link>
           </Stack>
         </Stack>
       </Box>

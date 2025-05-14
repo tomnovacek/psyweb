@@ -47,9 +47,9 @@ export default function Services() {
   return (
     <Box bg={bgColor}>
       <SEO
-        title="Psychotherapy Services"
-        description="Professional psychotherapy services in Brno, Czech Republic. Offering individual therapy, anxiety treatment, depression support, and trauma counseling."
-        keywords="psychotherapy services, individual therapy, anxiety treatment, depression support, trauma counseling, Brno, Czech Republic"
+        title="Psychoterapeutické služby"
+        description="Profesionální psychoterapeutické služby v Brně, Česká republika. Nabízíme individuální terapii, léčbu úzkosti, podporu při depresi a poradenství při traumatu."
+        keywords="psychoterapeutické služby, individuální terapie, léčba úzkosti, podpora při depresi, poradenství při traumatu, Brno, Česká republika"
         url="https://tomnovacek.com/services"
         image="/src/assets/img/room.jpeg"
       />
@@ -77,11 +77,11 @@ export default function Services() {
                   zIndex: -1,
                 }}
               >
-                Therapeutic Services
+                Terapeutické služby
               </Text>
             </Heading>
             <Text color={textColor} fontSize={'xl'}>
-              I offer a range of therapeutic services to support your mental health and personal growth journey. Each service is tailored to meet your unique needs and goals.
+              Nabízím řadu terapeutických služeb na podporu vašeho duševního zdraví a osobního růstu. Každá služba je přizpůsobena vašim jedinečným potřebám a cílům.
             </Text>
           </Stack>
         </Container>
@@ -93,34 +93,34 @@ export default function Services() {
           <SimpleGrid columns={{ base: 1, md: 2 }} spacing={10}>
             {[
               {
-                title: 'Individual Therapy',
-                price: 'CZK 1100',
-                duration: '50 minutes',
-                description: 'One-on-one sessions focused on your personal growth and healing',
+                title: 'Individuální terapie',
+                price: '1100 Kč',
+                duration: '50 minut',
+                description: 'Individuální sezení zaměřená na váš osobní růst a uzdravení',
                 icon: FaUserMd,
                 features: [
-                  'Personalized treatment plan',
-                  'Weekly or bi-weekly sessions',
-                  'Flexible scheduling',
-                  'Secure video sessions available',
-                  'Email support between sessions',
+                  'Osobní léčebný plán',
+                  'Týdenní nebo čtrnáctidenní sezení',
+                  'Flexibilní rozvrh',
+                  'Dostupná zabezpečená video sezení',
+                  'Emailová podpora mezi sezeními',
                 ],
-                badge: 'Most Popular',
+                badge: 'Nejoblíbenější',
               },
               {
-                title: 'Online Therapy',
-                price: 'CZK 1200',
-                duration: '50 minutes',
-                description: 'One-on-one sessions online focused on your personal growth and healing',
+                title: 'Online terapie',
+                price: '1200 Kč',
+                duration: '50 minut',
+                description: 'Individuální online sezení zaměřená na váš osobní růst a uzdravení',
                 icon: FaVideo,
                 features: [
-                  'Relationship assessment',
-                  'Communication skills building',
-                  'Conflict resolution strategies',
-                  'Weekly or bi-weekly sessions',
-                  'Secure video sessions available',
+                  'Hodnocení vztahu',
+                  'Rozvoj komunikačních dovedností',
+                  'Strategie řešení konfliktů',
+                  'Týdenní nebo čtrnáctidenní sezení',
+                  'Dostupná zabezpečená video sezení',
                 ],
-                badge: 'Convenient',
+                badge: 'Pohodlné',
               },
             ].map((service, index) => (
               <Box
@@ -191,7 +191,7 @@ export default function Services() {
                     size={'lg'}
                     leftIcon={<FaCalendarAlt />}
                   >
-                    Schedule Session
+                    Domluvit sezení
                   </Button>
                 </Stack>
               </Box>
@@ -224,7 +224,7 @@ export default function Services() {
                     zIndex: -1,
                   }}
                 >
-                  What to Expect
+                  Co můžete očekávat
                 </Text>
               </Heading>
             </Stack>
@@ -239,10 +239,10 @@ export default function Services() {
                 <Stack spacing={4}>
                   <Flex align="center" gap={3}>
                     <Icon as={FaInfoCircle} w={6} h={6} color="green.400" />
-                    <Heading fontSize={'xl'}>Initial Consultation</Heading>
+                    <Heading fontSize={'xl'}>Úvodní konzultace</Heading>
                   </Flex>
                   <Text color={textColor} fontSize={'lg'}>
-                    Your first session is an opportunity for us to get to know each other and discuss your goals for therapy. We'll review your history, current concerns, and develop a personalized treatment plan.
+                    Vaše první sezení je příležitostí, abychom se navzájem poznali a prodiskutovali vaše cíle pro terapii. Probereme vaši historii, současné obavy a vytvoříme osobní léčebný plán.
                   </Text>
                 </Stack>
               </Box>
@@ -255,10 +255,10 @@ export default function Services() {
                 <Stack spacing={4}>
                   <Flex align="center" gap={3}>
                     <Icon as={FaClock} w={6} h={6} color="green.400" />
-                    <Heading fontSize={'xl'}>Ongoing Sessions</Heading>
+                    <Heading fontSize={'xl'}>Délka a frekvence</Heading>
                   </Flex>
                   <Text color={textColor} fontSize={'lg'}>
-                    Regular sessions provide a consistent space for growth and healing. We'll work together to develop practical strategies and insights that you can apply in your daily life.
+                    Standardní sezení trvá 50 minut. Frekvence sezení je obvykle týdenní nebo čtrnáctidenní, v závislosti na vašich potřebách a cílech.
                   </Text>
                 </Stack>
               </Box>

@@ -46,10 +46,12 @@ export default function Home() {
   useEffect(() => {
     const loadPosts = async () => {
       try {
+        console.log('Načítání příspěvků...')
         const allPosts = await getAllPosts()
+        console.log('Načtené příspěvky:', allPosts)
         setNewestPosts(allPosts.slice(0, 2))
       } catch (error) {
-        console.error('Error loading posts:', error)
+        console.error('Chyba při načítání příspěvků:', error)
       } finally {
         setLoading(false)
       }
@@ -61,9 +63,9 @@ export default function Home() {
   return (
     <>
       <SEO
-        title="Home"
-        description="Professional psychotherapy services in Prague. Specializing in individual therapy, couples counseling, and family therapy. Book your session today."
-        keywords="psychotherapy, counseling, Prague, individual therapy, couples therapy, family therapy"
+        title="Domů"
+        description="Profesionální psychoterapeutické služby v Brně. Specializace na individuální terapii, párové poradenství a rodinnou terapii. Objednejte si svou konzultaci ještě dnes."
+        keywords="psychoterapie, poradenství, Brno, individuální terapie, párová terapie, rodinná terapie"
         url="https://tomnovacek.cz"
         image="/src/assets/img/tom-home.webp"
         preloadImages={[
@@ -87,7 +89,7 @@ export default function Home() {
         >
           <OptimizedImage
             src="/src/assets/img/forrest.webp"
-            alt="Forest path"
+            alt="Lesní cesta"
             objectFit="cover"
             width="1920"
             height="1080"
@@ -146,15 +148,15 @@ export default function Home() {
                     zIndex: -1,
                   }}
                 >
-                  Psychotherapy
+                  Psychoterapie
                 </Text>
                 <br />
                 <Text as={'span'} color={'green.400'}>
-                  & Personal Growth
+                  & Osobní růst
                 </Text>
               </Heading>
               <Text color={'white'} fontSize={'xl'} mb={8}>
-                I am a licensed psychotherapist dedicated to helping individuals navigate life's challenges and achieve personal growth. Through a combination of evidence-based approaches and compassionate care, I provide a safe space for healing and transformation.
+                Jsem licencovaný psychoterapeut, který se věnuje pomoci lidem překonávat životní výzvy a dosahovat osobního růstu. Kombinací ověřených přístupů a soucitné péče vytvářím bezpečný prostor pro uzdravení a transformaci.
               </Text>
               <Stack
                 spacing={{ base: 4, sm: 6 }}
@@ -171,7 +173,7 @@ export default function Home() {
                   bg={'green.400'}
                   _hover={{ bg: 'green.300' }}
                 >
-                  Schedule a Consultation
+                  Objednat konzultaci
                 </Button>
                 <Button
                   as={RouterLink}
@@ -181,7 +183,7 @@ export default function Home() {
                   fontWeight={'normal'}
                   px={6}
                 >
-                  Learn More
+                  Zjistit více
                 </Button>
               </Stack>
             </Box>
@@ -215,7 +217,7 @@ export default function Home() {
               >
                 <OptimizedImage
                   src="/src/assets/img/tom-home.webp"
-                  alt="Tom Novacek"
+                  alt="Tom Nováček"
                   objectFit="cover"
                   width="100%"
                   height="auto"
@@ -244,13 +246,12 @@ export default function Home() {
               <Text
                 as={'span'}
                 position={'relative'}
-
               >
-                About Me
+                O mně
               </Text>
             </Heading>
             <Text color={textColor} fontSize={'xl'}>
-              I am a licensed psychotherapist with extensive experience in helping individuals navigate through life's challenges and achieve personal growth.
+              Jsem licencovaný psychoterapeut s rozsáhlými zkušenostmi v pomoci lidem překonávat životní výzvy a dosahovat osobního růstu.
             </Text>
           </Stack>
           <SimpleGrid columns={{ base: 1, md: 2 }} spacing={10} w="full">
@@ -278,18 +279,18 @@ export default function Home() {
                   >
                     <OptimizedImage
                       src="/src/assets/img/room.jpeg"
-                      alt="Therapy Room"
+                      alt="Terapeutická místnost"
                       objectFit="cover"
                       width="100%"
                       height="100%"
                     />
                   </Box>
                 </Center>
-                <Heading fontSize={'2xl'} mb={4} mt={4} textAlign="center">My Practice</Heading>
+                <Heading fontSize={'2xl'} mb={4} mt={4} textAlign="center">Moje praxe</Heading>
                 <Text fontSize={'lg'} mb={4}>
-                  For the past seven years, I have been deeply engaged in psychological counseling and have been practicing therapy for four years. My expertise is grounded in thorough education and continuous professional development. I have completed a two-year specialized training in coaching and a six-year certified training in integrative psychotherapy. I am also a full member of the Czech Association for Psychotherapy.
+                  Posledních sedm let se intenzivně věnuji psychologickému poradenství a čtyři roky praktikuji terapii. Moje odbornost je založena na důkladném vzdělání a kontinuálním profesním rozvoji. Absolvoval jsem dvouletý specializovaný výcvik v koučování a šestiletý certifikovaný výcvik v integrativní psychoterapii. Jsem také řádným členem České asociace pro psychoterapii.
                   
-                  I am part of a professional community that emphasizes ethical standards and high qualifications in the field of psychotherapy.
+                  Jsem součástí profesionální komunity, která klade důraz na etické standardy a vysokou kvalifikaci v oboru psychoterapie.
                 </Text>
               </Box>
             </Stack>
@@ -317,16 +318,16 @@ export default function Home() {
                   >
                     <OptimizedImage
                       src="/src/assets/img/family.webp"
-                      alt="Family Therapy"
+                      alt="Rodinná terapie"
                       objectFit="cover"
                       width="100%"
                       height="100%"
                     />
                   </Box>
                 </Center>
-                <Heading fontSize={'2xl'} mb={4} mt={4} textAlign="center">My Approach</Heading>
+                <Heading fontSize={'2xl'} mb={4} mt={4} textAlign="center">Můj přístup</Heading>
                 <Text fontSize={'lg'} mb={4}>
-                  I believe that every person has inner resources to cope with life's challenges. However, there are times when we may feel stuck or powerless to deal with difficult situations. In such moments, I support you in understanding your problems and finding effective ways to overcome them. I respect the uniqueness of each client, which is why I take an individual approach to everyone. Together, we explore your personal journey of self-discovery and uncover the inner strengths that can help you live a more fulfilling and satisfying life.
+                  Věřím, že každý člověk má vnitřní zdroje, jak se vyrovnat s životními výzvami. Existují však chvíle, kdy se můžeme cítit uvězněni nebo bezmocní v řešení obtížných situací. V takových chvílích vás podporuji v pochopení vašich problémů a hledání efektivních způsobů, jak je překonat. Respektuji jedinečnost každého klienta, proto k každému přistupuji individuálně. Společně prozkoumáváme vaši osobní cestu sebepoznání a odhalujeme vnitřní síly, které vám mohou pomoci žít plnější a spokojenější život.
                 </Text>
               </Box>
             </Stack>
@@ -339,7 +340,7 @@ export default function Home() {
             variant={'outline'}
             size={'lg'}
           >
-            Read More
+            Více o mně
           </Button>
         </Container>
       </Box>
@@ -359,70 +360,47 @@ export default function Home() {
                 as={'span'}
                 position={'relative'}
                 zIndex={1}
-
               >
-                My Services
+                Moje služby
               </Text>
             </Heading>
             <Text color={textColor} fontSize={'xl'}>
-              I offer a range of therapeutic services to support your mental health and personal growth journey.
+              Nabízím širokou škálu terapeutických služeb na podporu vašeho duševního zdraví a osobního růstu.
             </Text>
           </Stack>
           <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={10} w="full">
             {[
               {
                 icon: FaUserFriends,
-                title: 'Individual Therapy',
-                description: 'One-on-one sessions focused on your personal growth and healing.',
+                title: 'Individuální terapie',
+                description: 'Osobní terapeutická sezení zaměřená na váš osobní růst a uzdravení.',
                 features: [
-                  'Personalized treatment plans',
-                  'Safe, confidential environment',
-                  'Evidence-based approaches',
-                  'Flexible scheduling options'
+                  'Individuální léčebné plány',
+                  'Bezpečné, důvěrné prostředí',
+                  'Ověřené přístupy',
+                  'Flexibilní možnosti plánování'
                 ]
               },
-/*               {
-                icon: FaHeart,
-                title: 'Couples Therapy',
-                description: 'Support for couples looking to improve their relationship and communication.',
-                features: [
-                  'Relationship assessment',
-                  'Communication skills',
-                  'Conflict resolution',
-                  'Trust building'
-                ]
-              }, */
               {
                 icon: FaBrain,
-                title: 'Anxiety & Depression',
-                description: 'Specialized treatment using evidence-based approaches.',
+                title: 'Úzkost a deprese',
+                description: 'Specializovaná léčba pomocí ověřených přístupů.',
                 features: [
-                  'Coping strategies',
-                  'Stress management',
-                  'Mood regulation',
-                  'Lifestyle changes'
+                  'Strategie zvládání',
+                  'Zvládání stresu',
+                  'Regulace nálady',
+                  'Životní změny'
                 ]
               },
-/*               {
-                icon: FaComments,
-                title: 'Life Coaching',
-                description: 'Guidance for personal and professional development.',
-                features: [
-                  'Goal setting',
-                  'Career guidance',
-                  'Life balance',
-                  'Personal growth'
-                ]
-              }, */
               {
                 icon: FaHandHoldingHeart,
-                title: 'Trauma Support',
-                description: 'Specialized care for processing and healing from trauma.',
+                title: 'Podpora při traumatu',
+                description: 'Specializovaná péče o zpracování a uzdravení z traumatu.',
                 features: [
-                  'Trauma-informed care',
-                  'Safe processing',
-                  'Healing techniques',
-                  'Supportive environment'
+                  'Trauma-informed péče',
+                  'Bezpečné zpracování',
+                  'Techniky uzdravení',
+                  'Podpůrné prostředí'
                 ]
               }
             ].map((service, index) => (
@@ -482,7 +460,7 @@ export default function Home() {
                 color: 'white',
               }}
             >
-              View All Services
+              Zobrazit všechny služby
             </Button>
           </Stack>
         </Container>
@@ -492,9 +470,9 @@ export default function Home() {
       <Box py={20} bg={cardBg}>
         <Container maxW={'7xl'} centerContent>
           <Stack spacing={4} maxW={'3xl'} textAlign={'center'} mb={10}>
-            <Heading fontSize={'3xl'}>Latest from the Blog</Heading>
+            <Heading fontSize={'3xl'}>Nejnovější z blogu</Heading>
             <Text color={textColor} fontSize={'xl'}>
-              Insights and resources to support your mental health journey
+              Postřehy a zdroje na podporu vaší cesty k duševnímu zdraví
             </Text>
           </Stack>
           <SimpleGrid columns={{ base: 1, md: 2 }} spacing={10} w="full">
@@ -576,7 +554,7 @@ export default function Home() {
                 color: 'white',
               }}
             >
-              Read More Posts
+              Číst více článků
             </Button>
           </Stack>
         </Container>
@@ -592,7 +570,7 @@ export default function Home() {
                 color: 'white',
               }}
             >
-              Book a Consultation
+              Objednat konzultaci
             </Button>
           </Stack>
       </Box>

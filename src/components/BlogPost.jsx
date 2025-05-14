@@ -5,32 +5,32 @@ import MDXContent from './MDXContent'
 // Blog post data
 export const blogPosts = [
   {
-    title: 'Understanding Anxiety: A Comprehensive Guide',
-    excerpt: 'Learn about the different types of anxiety, their symptoms, and effective coping strategies for managing anxiety in daily life.',
-    date: 'March 15, 2024',
+    title: 'Porozumění úzkosti: Kompletní průvodce',
+    excerpt: 'Naučte se o různých typech úzkosti, jejich příznacích a efektivních strategiích zvládání úzkosti v každodenním životě.',
+    date: '15. března 2024',
     readTime: '5 min',
     author: {
-      name: 'Tom Novacek',
+      name: 'Tom Nováček',
       image: '/src/assets/img/tom-home.webp',
-      role: 'Licensed Psychotherapist'
+      role: 'Licencovaný psychoterapeut'
     },
-    tags: ['Anxiety', 'Mental Health', 'Coping Strategies'],
+    tags: ['Úzkost', 'Duševní zdraví', 'Strategie zvládání'],
     image: '/src/assets/img/stress.webp',
-    slug: 'understanding-anxiety-comprehensive-guide'
+    slug: 'porozumeni-uzkosti-kompletni-pruvodce'
   },
   {
-    title: 'The Power of Mindfulness in Therapy',
-    excerpt: 'Discover how mindfulness practices can enhance your therapeutic journey and improve your overall well-being.',
-    date: 'March 10, 2024',
+    title: 'Síla všímavosti v terapii',
+    excerpt: 'Objevte, jak mohou praktiky všímavosti posílit vaši terapeutickou cestu a zlepšit celkovou pohodu.',
+    date: '10. března 2024',
     readTime: '4 min',
     author: {
-      name: 'Tom Novacek',
+      name: 'Tom Nováček',
       image: '/src/assets/img/tom-home.webp',
-      role: 'Licensed Psychotherapist'
+      role: 'Licencovaný psychoterapeut'
     },
-    tags: ['Mindfulness', 'Therapy', 'Well-being'],
+    tags: ['Všímavost', 'Terapie', 'Pohoda'],
     image: '/src/assets/img/mindfulness.webp',
-    slug: 'power-of-mindfulness-in-therapy'
+    slug: 'sila-vsimavosti-v-terapii'
   }
 ]
 
@@ -39,7 +39,7 @@ export default function BlogPost() {
   const post = getPostBySlug(slug)
 
   if (!post) {
-    return <div>Post not found</div>
+    return <div>Článek nenalezen</div>
   }
 
   const { frontmatter, Component } = post

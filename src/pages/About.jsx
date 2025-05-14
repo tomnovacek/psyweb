@@ -32,9 +32,9 @@ export default function About() {
   return (
     <Box bg={bgColor}>
       <SEO
-        title="About Tomáš Nováček"
-        description="Learn about Tomáš Nováček, a professional psychotherapist in Brno, Czech Republic. Specializing in individual therapy, anxiety, depression, and trauma support."
-        keywords="psychotherapist, Tomáš Nováček, therapy, counseling, Brno, Czech Republic, professional experience, qualifications"
+        title="O Tomáši Nováčkovi"
+        description="Seznamte se s Tomášem Nováčkem, profesionálním psychoterapeutem v Brně, Česká republika. Specializace na individuální terapii, úzkost, depresi a podporu při traumatu."
+        keywords="psychoterapeut, Tomáš Nováček, terapie, poradenství, Brno, Česká republika, profesionální zkušenosti, kvalifikace"
         url="https://tomnovacek.com/about"
         image="/src/assets/img/tom-home.webp"
       />
@@ -73,15 +73,15 @@ export default function About() {
                     zIndex: -1,
                   }}
                 >
-                  My Journey
+                  Moje cesta
                 </Text>
                 <br />
                 <Text as={'span'} color={'green.400'}>
-                  & Professional Path
+                  & Profesionální dráha
                 </Text>
               </Heading>
               <Text color={textColor} fontSize={'xl'} mb={8}>
-                With over a decade of experience in psychotherapy, I am dedicated to helping individuals navigate life's challenges and achieve personal growth through evidence-based approaches and compassionate care.
+                S více než desetiletou zkušeností v psychoterapii se věnuji pomoci lidem překonávat životní výzvy a dosahovat osobního růstu prostřednictvím ověřených přístupů a soucitné péče.
               </Text>
             </Box>
 
@@ -94,7 +94,7 @@ export default function About() {
             >
               <OptimizedImage
                 src="/src/assets/img/tom-home.webp"
-                alt="Tom Novacek"
+                alt="Tom Nováček"
                 borderRadius="lg"
                 objectFit="cover"
                 width="100%"
@@ -132,11 +132,11 @@ export default function About() {
                   zIndex: -1,
                 }}
               >
-                My Approach
+                Můj přístup
               </Text>
             </Heading>
             <Text color={textColor} fontSize={'xl'}>
-              I believe in creating a safe, non-judgmental space where clients can explore their thoughts, feelings, and experiences. My therapeutic approach is integrative, drawing from various evidence-based modalities to meet your unique needs.
+              Věřím v vytváření bezpečného, nehodnotícího prostoru, kde klienti mohou prozkoumávat své myšlenky, pocity a zkušenosti. Můj terapeutický přístup je integrativní, čerpající z různých ověřených modalit, které odpovídají vašim jedinečným potřebám.
             </Text>
           </Stack>
 
@@ -144,18 +144,18 @@ export default function About() {
             {[
               {
                 icon: FaHeart,
-                title: 'Person-Centered',
-                text: 'Creating a warm, empathetic environment where you feel heard and understood.',
+                title: 'Na klienta zaměřený',
+                text: 'Vytváření teplého, empatického prostředí, kde se cítíte slyšeni a pochopeni.',
               },
               {
                 icon: FaBrain,
-                title: 'Evidence-Based',
-                text: 'Utilizing proven therapeutic approaches that have shown positive results.',
+                title: 'Ověřený',
+                text: 'Využívání prokázaných terapeutických přístupů, které prokázaly pozitivní výsledky.',
               },
               {
                 icon: FaHandHoldingHeart,
-                title: 'Holistic',
-                text: 'Addressing the whole person - mind, body, and spirit - in the healing process.',
+                title: 'Holistický',
+                text: 'Zaměření na celou osobu - mysl, tělo a duši - v procesu uzdravení.',
               },
             ].map((feature, index) => (
               <Box
@@ -211,11 +211,11 @@ export default function About() {
                   zIndex: -1,
                 }}
               >
-                Education & Credentials
+                Vzdělání & Kvalifikace
               </Text>
             </Heading>
             <Text color={textColor} fontSize={'xl'}>
-              My professional journey has been dedicated to continuous learning and growth in the field of psychotherapy.
+              Moje profesionální cesta byla věnována kontinuálnímu učení a růstu v oboru psychoterapie.
             </Text>
           </Stack>
 
@@ -232,23 +232,23 @@ export default function About() {
                 boxShadow: '2xl',
               }}
             >
-              <Heading fontSize={'2xl'} mb={4}>Education</Heading>
+              <Heading fontSize={'2xl'} mb={4}>Vzdělání</Heading>
               <List spacing={3}>
                 <ListItem>
                   <ListIcon as={CheckCircleIcon} color="green.400" />
-                  Master's Degree in Psychology
+                  Magisterský titul v psychologii
                 </ListItem>
                 <ListItem>
                   <ListIcon as={CheckCircleIcon} color="green.400" />
-                  Master's Degree in Management
+                  Magisterský titul v managementu
                 </ListItem>
                 <ListItem>
                   <ListIcon as={CheckCircleIcon} color="green.400" />
-                  Specialized Training in Integrative Psychotherapy
+                  Specializovaný výcvik v integrativní psychoterapii
                 </ListItem>
                 <ListItem>
                   <ListIcon as={CheckCircleIcon} color="green.400" />
-                  Specialized Training in Coaching
+                  Certifikovaný výcvik v koučování
                 </ListItem>
               </List>
             </Box>
@@ -264,19 +264,19 @@ export default function About() {
                 boxShadow: '2xl',
               }}
             >
-              <Heading fontSize={'2xl'} mb={4}>Professional Memberships</Heading>
+              <Heading fontSize={'2xl'} mb={4}>Profesionální členství</Heading>
               <List spacing={3}>
                 <ListItem>
                   <ListIcon as={CheckCircleIcon} color="green.400" />
-                  Certified Psychoterapist
+                  Certifikovaný psychoterapeut
                 </ListItem>
                 <ListItem>
                   <ListIcon as={CheckCircleIcon} color="green.400" />
-                  Certified Coach
+                  Certifikovaný kouč
                 </ListItem>
                 <ListItem>
                   <ListIcon as={CheckCircleIcon} color="green.400" />
-                  Member of Professional Psychotherapy Association <Link href="https://czap.cz/" isExternal color="green.400">(ČAP)</Link>
+                  Člen profesionální psychoterapeutické asociace <Link href="https://czap.cz/" isExternal color="green.400">(ČAP)</Link>
                 </ListItem>
               </List>
             </Box>
@@ -319,18 +319,18 @@ export default function About() {
                   zIndex: -1,
                 }}
               >
-                Areas of Expertise
+                Oblasti odbornosti
               </Text>
             </Heading>
             <Text color={textColor} fontSize={'xl'}>
-              I specialize in helping clients navigate various mental health challenges and life transitions.
+              Specializuji se na pomoc klientům při zvládání různých psychických obtíží a životních změn.
             </Text>
           </Stack>
 
           <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={6}>
             {[
               {
-                title: 'Anxiety & Depression',
+                title: 'Úzkost & Deprese',
                 icon: FaHeartbeat
               },
               {
@@ -338,19 +338,19 @@ export default function About() {
                 icon: FaUserShield
               },
               {
-                title: 'Relationship Issues',
+                title: 'Vztahové problémy',
                 icon: FaUsers
               },
               {
-                title: 'Life Transitions',
+                title: 'Životní změny',
                 icon: FaExchangeAlt
               },
               {
-                title: 'Stress Management',
+                title: 'Zvládání stresu',
                 icon: FaBalanceScale
               },
               {
-                title: 'Personal Growth',
+                title: 'Osobní růst',
                 icon: FaSeedling
               },
             ].map((expertise, index) => (
@@ -384,7 +384,7 @@ export default function About() {
       </Box>
 
       {/* Therapeutic Methods */}
-{/*       <Box py={20} bg={cardBg}>
+      <Box py={20} bg={cardBg}>
         <Container maxW={'7xl'}>
           <Stack spacing={4} as={Container} maxW={'3xl'} textAlign={'center'} mb={10}>
             <Heading
@@ -406,31 +406,31 @@ export default function About() {
                   zIndex: -1,
                 }}
               >
-                Therapeutic Methods
+                Terapeutické metody
               </Text>
             </Heading>
             <Text color={textColor} fontSize={'xl'}>
-              I utilize a variety of evidence-based therapeutic approaches tailored to your unique needs and goals.
+              Využívám různé ověřené terapeutické přístupy přizpůsobené vašim jedinečným potřebám a cílům.
             </Text>
           </Stack>
 
           <SimpleGrid columns={{ base: 1, md: 2 }} spacing={10}>
             {[
               {
-                title: 'Individual Therapy',
-                description: 'One-on-one sessions focused on personal growth, healing, and developing coping strategies.',
+                title: 'Individuální terapie',
+                description: 'Individuální sezení zaměřená na osobní růst, uzdravení a rozvoj strategií zvládání.',
               },
               {
-                title: 'Couples Counseling',
-                description: 'Supporting partners in improving communication, resolving conflicts, and strengthening their relationship.',
+                title: 'Partnerské poradenství',
+                description: 'Podpora partnerů v zlepšování komunikace, řešení konfliktů a posilování jejich vztahu.',
               },
               {
-                title: 'Group Therapy',
-                description: 'Shared healing experiences in a supportive group setting, fostering connection and mutual understanding.',
+                title: 'Skupinová terapie',
+                description: 'Sdílené zkušenosti uzdravení v podpůrném skupinovém prostředí, podporující spojení a vzájemné porozumění.',
               },
               {
-                title: 'Online Sessions',
-                description: 'Flexible and accessible therapy through secure video sessions, maintaining the same quality of care.',
+                title: 'Online sezení',
+                description: 'Flexibilní a dostupná terapie prostřednictvím zabezpečených video sezení, zachovávající stejnou kvalitu péče.',
               },
             ].map((method, index) => (
               <Box
@@ -456,7 +456,7 @@ export default function About() {
             ))}
           </SimpleGrid>
         </Container>
-      </Box> */}
+      </Box>
     </Box>
   )
 } 

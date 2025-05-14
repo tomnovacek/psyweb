@@ -8,15 +8,15 @@ const posts = {
   'anxiety-guide': {
     slug: 'anxiety-guide',
     frontmatter: {
-      title: "Understanding Anxiety: A Complete Guide",
+      title: "Porozumění úzkosti: Kompletní průvodce",
       date: "2024-03-16",
-      readTime: "12 min read",
-      excerpt: "A comprehensive guide to understanding anxiety, its symptoms, and effective management strategies for better mental health.",
-      tags: ["Anxiety", "Mental Health", "Self-Care", "Wellness"],
+      readTime: "12 min čtení",
+      excerpt: "Komplexní průvodce porozuměním úzkosti, jejím příznakům a efektivním strategiím zvládání pro lepší duševní zdraví.",
+      tags: ["Úzkost", "Duševní zdraví", "Sebepéče", "Pohoda"],
       image: "/src/assets/img/stress.webp",
       author: {
-        name: "Tom Novacek",
-        role: "Licensed Psychotherapist",
+        name: "Tom Nováček",
+        role: "Licencovaný psychoterapeut",
         image: "/src/assets/img/tom-home.webp"
       }
     },
@@ -25,15 +25,15 @@ const posts = {
   'mindfulness-therapy': {
     slug: 'mindfulness-therapy',
     frontmatter: {
-      title: "The Power of Mindfulness in Therapy",
+      title: "Síla všímavosti v terapii",
       date: "2024-03-10",
-      readTime: "8 min read",
-      excerpt: "Discover how mindfulness practices can enhance your therapeutic journey and improve your overall well-being.",
-      tags: ["Mindfulness", "Therapy", "Well-being"],
+      readTime: "8 min čtení",
+      excerpt: "Objevte, jak mohou praktiky všímavosti posílit vaši terapeutickou cestu a zlepšit celkovou pohodu.",
+      tags: ["Všímavost", "Terapie", "Pohoda"],
       image: "/src/assets/img/mindfulness.webp",
       author: {
-        name: "Tom Novacek",
-        role: "Licensed Psychotherapist",
+        name: "Tom Nováček",
+        role: "Licencovaný psychoterapeut",
         image: "/src/assets/img/tom-home.webp"
       }
     },
@@ -42,15 +42,15 @@ const posts = {
   'healthy-relationships': {
     slug: 'healthy-relationships',
     frontmatter: {
-      title: "Building Healthy Relationships: A Guide to Connection",
+      title: "Budování zdravých vztahů: Průvodce propojením",
       date: "2024-03-05",
-      readTime: "12 min read",
-      excerpt: "Learn essential strategies for building and maintaining healthy relationships in all areas of your life.",
-      tags: ["Relationships", "Communication", "Personal Growth"],
+      readTime: "12 min čtení",
+      excerpt: "Naučte se základní strategie pro budování a udržování zdravých vztahů ve všech oblastech vašeho života.",
+      tags: ["Vztahy", "Komunikace", "Osobní růst"],
       image: "/src/assets/img/relationships.webp",
       author: {
-        name: "Tom Novacek",
-        role: "Licensed Psychotherapist",
+        name: "Tom Nováček",
+        role: "Licencovaný psychoterapeut",
         image: "/src/assets/img/tom-home.webp"
       }
     },
@@ -59,29 +59,29 @@ const posts = {
 }
 
 // Debug log to see what files we're getting
-console.log('Available MDX files:', Object.keys(posts))
+console.log('Dostupné MDX soubory:', Object.keys(posts))
 
 export function getPostBySlug(slug) {
   const post = posts[slug]
   if (!post) {
-    console.log('No post found for slug:', slug) // Debug log
+    console.log('Článek se slugem nenalezen:', slug) // Debug log
     return null
   }
 
-  console.log('Post content for', slug, ':', post) // Debug log
+  console.log('Obsah článku pro', slug, ':', post) // Debug log
   
   return post
 }
 
 export function getAllPosts() {
-  console.log('Getting all posts...') // Debug log
+  console.log('Načítání všech článků...') // Debug log
   const allPosts = Object.values(posts)
     .filter(post => {
-      console.log('Filtering post:', post) // Debug log
+      console.log('Filtrování článku:', post) // Debug log
       return post.frontmatter && post.frontmatter.date
     })
     .sort((a, b) => new Date(b.frontmatter.date) - new Date(a.frontmatter.date))
 
-  console.log('All processed posts:', allPosts) // Debug log
+  console.log('Všechny zpracované články:', allPosts) // Debug log
   return allPosts
 } 

@@ -64,7 +64,7 @@ export default function Blog() {
     return (
       <Box py={20}>
         <Container maxW={'7xl'}>
-          <Text>Loading...</Text>
+          <Text>Načítání...</Text>
         </Container>
       </Box>
     )
@@ -74,9 +74,9 @@ export default function Blog() {
     <MDXProvider components={components}>
       <Box bg={bgColor} py={20}>
         <SEO
-          title="Blog - Mental Health Insights"
-          description="Explore articles about mental health, therapy, and personal growth. Professional insights from Tomáš Nováček, a licensed psychotherapist in Brno."
-          keywords="mental health blog, therapy insights, personal growth, anxiety, depression, trauma, psychotherapy articles, Brno"
+          title="Blog - Duševní zdraví"
+          description="Prozkoumejte články o duševním zdraví, terapii a osobním růstu. Profesionální pohledy od Tomáše Nováčka, licencovaného psychoterapeuta v Brně."
+          keywords="blog o duševním zdraví, terapeutické poznatky, osobní růst, úzkost, deprese, trauma, psychoterapeutické články, Brno"
           url="https://tomnovacek.com/blog"
           image="/src/assets/img/mindfulness.webp"
         />
@@ -84,7 +84,7 @@ export default function Blog() {
           <Stack spacing={4} maxW={'7xl'} textAlign={'center'} mb={10}>
             <Heading fontSize={'3xl'}>Blog</Heading>
             <Text color={textColor} fontSize={'xl'}>
-              Insights and resources to support your mental health journey
+              Poznatky a zdroje na podporu vaší cesty k duševnímu zdraví
             </Text>
           </Stack>
           <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={10}>
@@ -158,7 +158,7 @@ export default function Blog() {
               variant={'outline'}
               size={'lg'}
             >
-              Read More Posts
+              Více článků
             </Button>
           </Stack>
         </Container>
