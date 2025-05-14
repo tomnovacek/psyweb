@@ -37,7 +37,7 @@ export default function Footer() {
 
           {/* Google Maps */}
           <Stack align={'center'}>
-            <Heading fontSize={'lg'} mb={4}>Lokace</Heading>
+            <Heading fontSize={'lg'} mb={4}>Mapa</Heading>
             <Box
               width="100%"
               height="250px"
@@ -96,7 +96,7 @@ export default function Footer() {
             </Stack>
             <Stack direction={'row'} align={'center'} spacing={2}>
               <Icon as={FaMapMarkerAlt} />
-              <Text>Brno, Česká republika</Text>
+              <Text>Sukova 4, Brno, Česká republika</Text>
             </Stack>
             {/* Logo */}
             <Box mt="auto">
@@ -104,7 +104,7 @@ export default function Footer() {
                 src="/src/assets/img/CAP.png"
                 alt="Logo CAP"
                 size="xs"
-                width="100px"
+                width="200px"
                 height="auto"
               />
             </Box>

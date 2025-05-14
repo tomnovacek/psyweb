@@ -24,7 +24,7 @@ import {
 } from '@chakra-ui/react'
 import { CheckCircleIcon } from '@chakra-ui/icons'
 import { 
-  FaUserMd, 
+  FaUserFriends, 
   FaVideo, 
   FaCalendarAlt, 
   FaCreditCard, 
@@ -77,11 +77,11 @@ export default function Services() {
                   zIndex: -1,
                 }}
               >
-                Terapeutické služby
+                Moje služby
               </Text>
             </Heading>
             <Text color={textColor} fontSize={'xl'}>
-              Nabízím řadu terapeutických služeb na podporu vašeho duševního zdraví a osobního růstu. Každá služba je přizpůsobena vašim jedinečným potřebám a cílům.
+              Nabízím řadu terapeutických služeb na podporu vašeho duševního zdraví a osobního růstu.
             </Text>
           </Stack>
         </Container>
@@ -97,7 +97,7 @@ export default function Services() {
                 price: '1100 Kč',
                 duration: '50 minut',
                 description: 'Individuální sezení zaměřená na váš osobní růst a uzdravení',
-                icon: FaUserMd,
+                icon: FaUserFriends,
                 features: [
                   'Osobní léčebný plán',
                   'Týdenní nebo čtrnáctidenní sezení',
@@ -242,7 +242,7 @@ export default function Services() {
                     <Heading fontSize={'xl'}>Úvodní konzultace</Heading>
                   </Flex>
                   <Text color={textColor} fontSize={'lg'}>
-                    Vaše první sezení je příležitostí, abychom se navzájem poznali a prodiskutovali vaše cíle pro terapii. Probereme vaši historii, současné obavy a vytvoříme osobní léčebný plán.
+                    Vaše první sezení je příležitostí, abychom se navzájem poznali a prodiskutovali vaše cíle pro terapii. Probereme vaši historii, současné trápění a zformuluje základ plánu terapie.
                   </Text>
                 </Stack>
               </Box>
@@ -291,7 +291,7 @@ export default function Services() {
                     zIndex: -1,
                   }}
                 >
-                  Insurance & Payment
+                  Platby
                 </Text>
               </Heading>
             </Stack>
@@ -307,18 +307,18 @@ export default function Services() {
               <Stack spacing={6}>
                 <Flex align="center" gap={3}>
                   <Icon as={FaCreditCard} w={6} h={6} color="green.400" />
-                  <Heading fontSize={'xl'}>Payment Information</Heading>
+                  <Heading fontSize={'xl'}>Platba</Heading>
                 </Flex>
                 <Text color={textColor} fontSize={'lg'}>
-                  I am an out-of-network provider. Many insurance plans offer partial reimbursement for out-of-network mental health services. I can provide you with a detailed receipt for insurance reimbursement.
+                  Nejse zdravotnické zařízení. Zákazníci platí za sluby přímou platbou.
                 </Text>
                 <Divider />
                 <Flex align="center" gap={3}>
                   <Icon as={FaShieldAlt} w={6} h={6} color="green.400" />
-                  <Heading fontSize={'xl'}>Accepted Payment Methods</Heading>
+                  <Heading fontSize={'xl'}>Platební metody</Heading>
                 </Flex>
                 <Text color={textColor} fontSize={'lg'}>
-                  Payment is due at the time of service, and I accept all major credit cards.
+                  Platba je možná v hotovosti nebo převodem na můj účet. Posílám fakturu s qr kódem pro zjednodušení platební operace.
                 </Text>
                 <Button
                   as={RouterLink}

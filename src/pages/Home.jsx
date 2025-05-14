@@ -202,7 +202,6 @@ export default function Home() {
                 height="auto"
                 borderRadius="lg"
                 overflow="hidden"
-                boxShadow="2xl"
                 bg="transparent"
                 _before={{
                   content: '""',
