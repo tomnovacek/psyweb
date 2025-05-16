@@ -63,10 +63,9 @@ export default function Home() {
   return (
     <>
       <SEO
-        title="Domů"
-        description="Profesionální psychoterapeutické služby v Brně. Specializace na individuální terapii, párové poradenství a rodinnou terapii. Objednejte si svou konzultaci ještě dnes."
-        keywords="psychoterapie, poradenství, Brno, individuální terapie, párová terapie, rodinná terapie"
-        url="https://tomnovacek.cz"
+        title="Tomáš Nováček - Psychoterapie | Centrum Brna"
+        description="Psychoterapie v centru Brna. Specializace na individuální terapii pro dospělé. Objednejte si svou konzultaci ještě dnes."
+        keywords="psychoterapie, poradenství, Brno, individuální terapie"
         image="/src/assets/img/tom-home.webp"
         preloadImages={[
           '/src/assets/img/forrest.webp',  // Hero background
@@ -77,7 +76,7 @@ export default function Home() {
       <StructuredData type="Person" />
       
       {/* Hero Section */}
-      <Box position="relative" width="100%" height="100vh" overflow="hidden">
+      <Box position="relative" width="100%" height={{ base: "auto", md: "calc(100vh - 224px)" }} overflow="hidden">
         {/* Background Image */}
         <Box
           position="absolute"
@@ -97,6 +96,11 @@ export default function Home() {
             fetchpriority="high"
             loading="eager"
             decoding="sync"
+            style={{
+              height: '100%',
+              width: '100%',
+              objectFit: 'cover'
+            }}
           />
           <Box
             position="absolute"
@@ -116,16 +120,22 @@ export default function Home() {
             align="center"
             direction={{ base: 'column', md: 'row' }}
             gap={8}
-            py={{ base: 20, md: 28 }}
+            pt={{ base: 10, md: 28 }}
+            mt={{ base: 0, md: 0 }}
           >
             {/* Text Box */}
             <Box
               bg={heroCardBg}
-              p={8}
+              p={{ base: 6, md: 8 }}
               borderRadius="lg"
               maxW="2xl"
               flex="1"
               backdropFilter="blur(10px)"
+              minH={{ base: "auto", md: "500px" }}
+              display="flex"
+              flexDirection="column"
+              justifyContent="flex-start"
+              pt={{ base: 8, md: 10 }}
             >
               <Heading
                 lineHeight={1.1}
@@ -158,9 +168,12 @@ export default function Home() {
               <Text color={'white'} fontSize={'xl'} mb={8}>
                 Jsem licencovaný psychoterapeut, který se věnuje pomoci lidem překonávat životní výzvy a dosahovat osobního růstu. Kombinací ověřených přístupů a soucitné péče vytvářím bezpečný prostor pro uzdravení a transformaci.
               </Text>
+
+              {/* button stack */}
               <Stack
                 spacing={{ base: 4, sm: 6 }}
                 direction={{ base: 'column', sm: 'row' }}
+                mt="auto"
               >
                 <Button
                   as={RouterLink}
@@ -193,8 +206,11 @@ export default function Home() {
               flex="1"
               maxW="2xl"
               position="relative"
-              display={{ base: 'none', md: 'block' }}
               bg="transparent"
+              minH={{ base: "400px", md: "500px" }}
+              display="flex"
+              alignItems="center"
+              justifyContent="center"
             >
               <Box
                 position="relative"
@@ -236,7 +252,7 @@ export default function Home() {
       {/* About Section */}
       <Box py={20} bg={cardBg} position="relative" zIndex={2}>
         <Container maxW={'7xl'} centerContent>
-          <Stack spacing={4} maxW={'3xl'} textAlign={'center'} mb={140}>
+          <Stack spacing={4} maxW={'3xl'} textAlign={'center'} mb={40}>
             <Heading
               lineHeight={1.1}
               fontWeight={600}
@@ -298,6 +314,7 @@ export default function Home() {
                 bg={serviceBg}
                 p={6}
                 pt={24}
+                mt={{ base: 40, md: 0 }}
                 rounded="xl"
                 boxShadow="lg"
                 width="100%"

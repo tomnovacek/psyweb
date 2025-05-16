@@ -40,7 +40,7 @@ export default function About() {
       />
       <StructuredData type="Person" />
       {/* Hero Section */}
-      <Box py={20} bg={cardBg}>
+      <Box pt={20} bg={cardBg}>
         <Container maxW="7xl">
           <Flex
             justify="center"
@@ -90,7 +90,7 @@ export default function About() {
               flex="1"
               maxW="xs"
               position="relative"
-              display={{ base: 'none', md: 'block' }}
+              display='block'
             >
               <OptimizedImage
                 src="/src/assets/img/tom-home.webp"
