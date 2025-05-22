@@ -3,7 +3,9 @@ const sizeSuffixMap = {
   'sm': 'sm',
   'md': 'md',
   'lg': 'lg',
-  'xl': 'xl'
+  'xl': 'xl',
+  'xs': 'xs',
+  '2xl': '2xl'
 }
 
 export const getOptimizedImagePath = async (src, size = 'md') => {
@@ -21,18 +23,16 @@ export const getOptimizedImagePath = async (src, size = 'md') => {
       return null
     }
 
-    // Resolve the image source
-    const resolvedPath = resolvedSrc.startsWith('/') ? resolvedSrc : `/${resolvedSrc}`
-    
-    // Clean the path and get the filename without extension
-    const cleanPath = resolvedPath.replace(/^\/+/, '')
-    const filename = cleanPath.split('/').pop().split('.')[0]
+    // Extract filename from path, handling both formats
+    const filename = resolvedSrc.includes('/') 
+      ? resolvedSrc.split('/').pop().split('.')[0]
+      : resolvedSrc.split('.')[0]
     
     // Get the size suffix
     const suffix = sizeSuffixMap[size] || 'md'
     
     // Return the optimized image path
-    const optimizedPath = `/assets/optimized-images/${filename}-${suffix}.webp`
+    const optimizedPath = `/optimized-images/${filename}-${suffix}.webp`
     console.log('Using optimized path:', { optimizedPath, size, suffix })
     return optimizedPath
   } catch (error) {

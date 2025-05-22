@@ -66,10 +66,10 @@ export default function Home() {
         title="Tomáš Nováček - Psychoterapie | Centrum Brna"
         description="Psychoterapie v centru Brna. Specializace na individuální terapii pro dospělé. Objednejte si svou konzultaci ještě dnes."
         keywords="psychoterapie, poradenství, Brno, individuální terapie"
-        image="/src/assets/img/tom-home.webp"
+        image="tom-home.webp"
         preloadImages={[
-          '/src/assets/img/forrest.webp',  // Hero background
-          '/src/assets/img/tom-home.webp'  // Hero portrait
+          'forrest.webp',  // Hero background
+          'tom-home.webp'  // Hero portrait
         ]}
       />
       <StructuredData type="MedicalBusiness" />
@@ -87,7 +87,7 @@ export default function Home() {
           zIndex={0}
         >
           <OptimizedImage
-            src="/src/assets/img/forrest.webp"
+            src="forrest.webp"
             alt="Lesní cesta"
             objectFit="cover"
             width="1920"
@@ -176,8 +176,8 @@ export default function Home() {
                 mt="auto"
               >
                 <Button
-                  as={RouterLink}
-                  to="/contact"
+                  as="a"
+                  href="mailto:terapie@tomnovacek.com"
                   rounded={'full'}
                   size={'lg'}
                   fontWeight={'normal'}
@@ -185,6 +185,7 @@ export default function Home() {
                   colorScheme={'green'}
                   bg={'green.400'}
                   _hover={{ bg: 'green.300' }}
+                  leftIcon={<FaCalendarAlt />}
                 >
                   Objednat konzultaci
                 </Button>
@@ -231,7 +232,7 @@ export default function Home() {
                 }}
               >
                 <OptimizedImage
-                  src="/src/assets/img/tom-home.webp"
+                  src="tom-home.webp"
                   alt="Tom Nováček"
                   objectFit="cover"
                   width="100%"

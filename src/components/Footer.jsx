@@ -15,7 +15,7 @@ import OptimizedImage from './OptimizedImage'
 export default function Footer() {
   return (
     <Box
-      bg={useColorModeValue('gray.50', 'gray.900')}
+      bg={useColorModeValue('gray.100', 'gray.800')}
       color={useColorModeValue('gray.700', 'gray.200')}
       borderTop={1}
       borderStyle={'solid'}
@@ -32,7 +32,7 @@ export default function Footer() {
             <Link as={RouterLink} to="/services">Služby</Link>
             <Link as={RouterLink} to="/calendar">Kalendář</Link>
             <Link as={RouterLink} to="/blog">Blog</Link>
-            <Link as={RouterLink} to="/contact">Kontakt</Link>
+            <Link as="a" href="mailto:terapie@tomnovacek.com">Kontakt</Link>
           </Stack>
 
           {/* Google Maps */}

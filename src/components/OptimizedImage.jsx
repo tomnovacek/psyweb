@@ -14,6 +14,9 @@ const OptimizedImage = ({
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState(null)
 
+  // Ensure priority is a boolean
+  const isPriority = typeof priority === 'string' ? priority === 'true' : Boolean(priority)
+
   useEffect(() => {
     let isMounted = true
 
@@ -72,9 +75,9 @@ const OptimizedImage = ({
     <Image
       src={imageSrc || fallbackSrc}
       alt={alt}
-      loading={priority ? "eager" : "lazy"}
-      decoding={priority ? "sync" : "async"}
-      fetchpriority={priority ? "high" : "auto"}
+      loading={isPriority ? "eager" : "lazy"}
+      decoding={isPriority ? "sync" : "async"}
+      fetchpriority={isPriority ? "high" : "auto"}
       onError={(e) => {
         console.warn(`Failed to load image ${imageSrc}, using fallback`)
         if (imageSrc !== fallbackSrc) {

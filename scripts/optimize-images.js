@@ -1,88 +1,127 @@
-import sharp from 'sharp';
-import glob from 'glob';
-import path from 'path';
-import fs from 'fs/promises';
+const sharp = require('sharp');
+const path = require('path');
+const fs = require('fs').promises;
+const glob = require('glob');
 
-const config = {
-  sourceDir: 'src/assets/img',
-  outputDir: 'dist/assets/optimized-images',
-  manifestPath: 'dist/assets/image-manifest.json',
-  sizes: [
-    { width: 300, suffix: 'xs' },  // Smaller initial size for faster LCP
-    { width: 600, suffix: 'md' },  // Current size
-    { width: 900, suffix: 'lg' },  // Larger size for high-res displays
-    { width: 1200, suffix: 'xl' },
-    { width: 1600, suffix: '2xl' }
-  ],
-  quality: 75  // Slightly lower quality for faster loading
-};
+// Configuration
+const projectRoot = process.cwd();
+const sourceDir = path.join(projectRoot, 'src/assets/img');
+const outputDir = path.join(projectRoot, 'public/optimized-images');
+const manifestPath = path.join(projectRoot, 'public/image-manifest.json');
 
-async function optimizeImage(filePath) {
+const sizes = [
+  { name: 'xs', width: 150 },
+  { name: 'sm', width: 300 },
+  { name: 'md', width: 400 },
+  { name: 'lg', width: 800 },
+  { name: 'xl', width: 1200 },
+  { name: '2xl', width: 1600 }
+];
+
+async function optimizeImage(filePath, manifest) {
+  const relativePath = path.relative(projectRoot, filePath);
+  console.log(`\nProcessing image: ${relativePath}`);
+  console.log('----------------------------------------');
+
   try {
-    const fileName = path.basename(filePath);
-    const fileNameWithoutExt = path.parse(fileName).name;
-    const manifest = JSON.parse(await fs.readFile(config.manifestPath, 'utf-8'));
-
-    // Process each size
-    for (const size of config.sizes) {
-      const outputPath = path.join(
-        config.outputDir,
-        `${fileNameWithoutExt}-${size.suffix}.webp`
-      );
-
-      await sharp(filePath)
-        .resize(size.width, null, { withoutEnlargement: true })
-        .webp({ quality: config.quality })
-        .toFile(outputPath);
-
-      // Update manifest
-      if (!manifest[fileNameWithoutExt]) {
-        manifest[fileNameWithoutExt] = {};
-      }
-      manifest[fileNameWithoutExt][size.suffix] = {
-        path: `/assets/optimized-images/${fileNameWithoutExt}-${size.suffix}.webp`,
-        width: size.width
+    // Initialize manifest entry if it doesn't exist
+    if (!manifest.images) {
+      manifest.images = {};
+    }
+    
+    if (!manifest.images[relativePath]) {
+      manifest.images[relativePath] = {
+        responsive: []
       };
     }
 
-    // Save updated manifest
-    await fs.writeFile(config.manifestPath, JSON.stringify(manifest, null, 2));
+    for (const size of sizes) {
+      console.log(`\nProcessing size ${size.name}:`);
+      console.log(`- Target width: ${size.width}`);
+      
+      const fileName = path.basename(filePath, path.extname(filePath));
+      const outputFileName = `${fileName}-${size.name}.webp`;
+      const outputPath = path.join(outputDir, outputFileName);
+      console.log(`- Output path: ${outputPath}`);
+
+      try {
+        console.log('- Processing image...');
+        
+        // Process the image using the working pattern
+        let pipeline = sharp(filePath);
+        pipeline = pipeline.resize(size.width, null, {
+          fit: 'cover',
+          position: 'center'
+        });
+        pipeline = pipeline.webp({ quality: 80 });
+        await pipeline.toFile(outputPath);
+
+        // Add to responsive array if not already present
+        const existingSize = manifest.images[relativePath].responsive.find(
+          r => r.width === size.width
+        );
+        
+        if (!existingSize) {
+          manifest.images[relativePath].responsive.push({
+            width: size.width,
+            path: `/optimized-images/${outputFileName}`
+          });
+        }
+
+        console.log(`✓ Successfully processed size ${size.name}`);
+      } catch (error) {
+        console.error(`✗ Error processing size ${size.name} for ${relativePath}:`, {
+          error: error.message,
+          code: error.code,
+          stack: error.stack
+        });
+      }
+    }
+
+    // Save manifest after each image is processed
+    await fs.writeFile(manifestPath, JSON.stringify(manifest, null, 2));
+    console.log(`\n✓ Successfully optimized ${relativePath}`);
+    console.log('----------------------------------------');
+
   } catch (error) {
-    console.error(`Error optimizing ${filePath}:`, error);
+    console.error(`✗ Error processing ${relativePath}:`, {
+      error: error.message,
+      code: error.code,
+      stack: error.stack
+    });
   }
 }
 
 async function processImages() {
   try {
     // Create output directory if it doesn't exist
-    await fs.mkdir(config.outputDir, { recursive: true });
+    await fs.mkdir(outputDir, { recursive: true });
 
-    // Initialize or load manifest
+    // Load existing manifest
+    let manifest;
     try {
-      await fs.access(config.manifestPath);
-    } catch {
-      await fs.writeFile(config.manifestPath, '{}');
+      const manifestContent = await fs.readFile(manifestPath, 'utf8');
+      manifest = JSON.parse(manifestContent);
+      console.log('Loaded existing manifest');
+    } catch (error) {
+      console.error('Error loading manifest:', error);
+      process.exit(1);
     }
 
     // Find all images
-    const files = await new Promise((resolve, reject) => {
-      glob(`${config.sourceDir}/*.{jpg,jpeg,png,webp}`, (err, files) => {
-        if (err) reject(err);
-        else resolve(files);
-      });
-    });
-
+    const files = glob.sync(path.join(sourceDir, '*.{jpg,jpeg,png,webp}'));
     console.log(`Found ${files.length} images to optimize`);
 
     // Process each image
     for (const file of files) {
-      console.log(`Processing ${file}...`);
-      await optimizeImage(file);
+      await optimizeImage(file, manifest);
     }
 
-    console.log('Image optimization complete!');
+    console.log('\n✓ Image optimization complete!');
+    console.log('========================================');
+
   } catch (error) {
-    console.error('Error processing images:', error);
+    console.error('Error:', error);
     process.exit(1);
   }
 }

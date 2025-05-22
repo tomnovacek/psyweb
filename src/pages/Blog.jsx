@@ -84,7 +84,7 @@ export default function Blog() {
           <Stack spacing={4} maxW={'7xl'} textAlign={'center'} mb={10}>
             <Heading fontSize={'3xl'}>Blog</Heading>
             <Text color={textColor} fontSize={'xl'}>
-              Poznatky a zdroje na podporu vaší cesty k duševnímu zdraví
+              Něco z toho o čem přemýšlím, na co se mě klienti ptali a co by mohl být užitečné i vám.
             </Text>
           </Stack>
           <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={10}>
