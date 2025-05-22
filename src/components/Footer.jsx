@@ -92,7 +92,7 @@ export default function Footer() {
             </Stack>
             <Stack direction={'row'} align={'center'} spacing={2}>
               <Icon as={FaEnvelope} />
-              <Text>terapie@tomnovacek.com</Text>
+              <Text><a href="mailto:terapie@tomnovacek.com">terapie@tomnovacek.com</a></Text>
             </Stack>
             <Stack direction={'row'} align={'center'} spacing={2}>
               <Icon as={FaMapMarkerAlt} />

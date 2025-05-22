@@ -21,7 +21,7 @@ import {
 } from '@chakra-ui/react'
 import { Link as RouterLink } from 'react-router-dom'
 import { CheckCircleIcon } from '@chakra-ui/icons'
-import { FaUserFriends, FaHeart, FaBrain, FaComments, FaLightbulb, FaHandHoldingHeart, FaUserMd, FaVideo, FaCalendarAlt, FaCreditCard, FaShieldAlt, FaClock, FaInfoCircle } from 'react-icons/fa'
+import { FaUserFriends, FaHeart, FaBrain, FaBalanceScale, FaComments, FaLightbulb, FaHandHoldingHeart, FaUserMd, FaVideo, FaCalendarAlt, FaCreditCard, FaShieldAlt, FaClock, FaInfoCircle } from 'react-icons/fa'
 import { useEffect, useState } from 'react'
 import { getAllPosts } from '../utils/mdx'
 import OptimizedImage from '../components/OptimizedImage'
@@ -166,7 +166,7 @@ export default function Home() {
                 </Text>
               </Heading>
               <Text color={'white'} fontSize={'xl'} mb={8}>
-                Jsem licencovaný psychoterapeut, který se věnuje pomoci lidem překonávat životní výzvy a dosahovat osobního růstu. Kombinací ověřených přístupů a soucitné péče vytvářím bezpečný prostor pro uzdravení a transformaci.
+                Vítejte, <br /> jmenuji se Tomáš Nováček. <br /> Věnuji se pomoci lidem překonávat životní výzvy a dosahovat osobního růstu. Společně s klienty se vydávám na cestu k hlubšímu porozumění sobě sama, svým vztahům a slepým uličkám, ve kterých se nacházejí. Snažím se, aby se na této cestě cítili bezpečně a našli v sobě schopnost zahlédnout světlo nadějě prosvítající i potemnělým lesem.
               </Text>
 
               {/* button stack */}
@@ -252,7 +252,7 @@ export default function Home() {
       {/* About Section */}
       <Box py={20} bg={cardBg} position="relative" zIndex={2}>
         <Container maxW={'7xl'} centerContent>
-          <Stack spacing={4} maxW={'3xl'} textAlign={'center'} mb={40}>
+          <Stack spacing={4} maxW={'6xl'} textAlign={'center'} mb={40}>
             <Heading
               lineHeight={1.1}
               fontWeight={600}
@@ -266,7 +266,7 @@ export default function Home() {
               </Text>
             </Heading>
             <Text color={textColor} fontSize={'xl'}>
-              Jsem licencovaný psychoterapeut s rozsáhlými zkušenostmi v pomoci lidem překonávat životní výzvy a dosahovat osobního růstu.
+              Jsem psycholog a terapeut s multioborovým vzděláním a bohatými zkušenostmi v doprovázení lidí překonávajících své životní výzvy. Znalosti a perspektivy z různých profesních oblastí mi pomáhají nejprve pochopit klientovu situaci a následně společněpostupně rozšiřovat obzory o nové úhly pohledu, které mohou přinášet větší svobodu při hledání cesty vpřed.
             </Text>
           </Stack>
           <SimpleGrid columns={{ base: 1, md: 2 }} spacing={10} w="full">
@@ -303,9 +303,7 @@ export default function Home() {
                 </Center>
                 <Heading fontSize={'2xl'} mb={4} mt={4} textAlign="center">Moje praxe</Heading>
                 <Text fontSize={'lg'} mb={4}>
-                  Posledních sedm let se intenzivně věnuji psychologickému poradenství a čtyři roky praktikuji terapii. Moje odbornost je založena na důkladném vzdělání a kontinuálním profesním rozvoji. Absolvoval jsem dvouletý specializovaný výcvik v koučování a šestiletý certifikovaný výcvik v integrativní psychoterapii. Jsem také řádným členem České asociace pro psychoterapii.
-                  
-                  Jsem součástí profesionální komunity, která klade důraz na etické standardy a vysokou kvalifikaci v oboru psychoterapie.
+                  Posledních sedm let se intenzivně věnuji psychologickému poradenství a čtyři roky praktikuji terapii. Moje odbornost je založena na důkladném vzdělání a kontinuálním profesním rozvoji. Absolvoval jsem dvouletý specializovaný výcvik v koučování a šestiletý certifikovaný výcvik v integrativní psychoterapii. Jsem také řádným členem České asociace pro psychoterapii - komunity, která klade důraz na etické standardy a vysokou kvalifikaci v oboru psychoterapie.
                 </Text>
               </Box>
             </Stack>
@@ -364,7 +362,7 @@ export default function Home() {
       {/* Services Section */}
       <Box py={20} bg={bgColor}>
         <Container maxW={'7xl'} centerContent>
-          <Stack spacing={4} maxW={'3xl'} textAlign={'center'} mb={10}>
+          <Stack spacing={4} maxW={'6xl'} textAlign={'center'} mb={10}>
             <Heading
               lineHeight={1.1}
               fontWeight={600}
@@ -377,18 +375,18 @@ export default function Home() {
                 position={'relative'}
                 zIndex={1}
               >
-                Moje služby
+                S čím vám mohu pomoci
               </Text>
             </Heading>
             <Text color={textColor} fontSize={'xl'}>
-              Nabízím širokou škálu terapeutických služeb na podporu vašeho duševního zdraví a osobního růstu.
+              Nejčastější témata, které mi lidé přinášejí jsou komplikované vztahy, propady nálady, úzkosti, stres a nízké sebevědomí.
             </Text>
           </Stack>
           <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={10} w="full">
             {[
               {
                 icon: FaUserFriends,
-                title: 'Individuální terapie',
+                title: 'Vztahy a vztahové problémy',
                 description: 'Osobní terapeutická sezení zaměřená na váš osobní růst a uzdravení.',
                 features: [
                   'Individuální léčebné plány',
@@ -399,7 +397,7 @@ export default function Home() {
               },
               {
                 icon: FaBrain,
-                title: 'Úzkost a deprese',
+                title: 'Deprese a úzkost',
                 description: 'Specializovaná léčba pomocí ověřených přístupů.',
                 features: [
                   'Strategie zvládání',
@@ -409,8 +407,8 @@ export default function Home() {
                 ]
               },
               {
-                icon: FaHandHoldingHeart,
-                title: 'Podpora při traumatu',
+                icon: FaBalanceScale,
+                title: 'Zvládání stresu',
                 description: 'Specializovaná péče o zpracování a uzdravení z traumatu.',
                 features: [
                   'Trauma-informed péče',
@@ -476,7 +474,7 @@ export default function Home() {
                 color: 'white',
               }}
             >
-              Zobrazit všechny služby
+              Více o službách a podmínkách
             </Button>
           </Stack>
         </Container>
@@ -485,7 +483,7 @@ export default function Home() {
       {/* Blog Section */}
       <Box py={20} bg={cardBg}>
         <Container maxW={'7xl'} centerContent>
-          <Stack spacing={4} maxW={'3xl'} textAlign={'center'} mb={10}>
+          <Stack spacing={4} maxW={'6xl'} textAlign={'center'} mb={10}>
             <Heading fontSize={'3xl'}>Nejnovější z blogu</Heading>
             <Text color={textColor} fontSize={'xl'}>
               Postřehy a zdroje na podporu vaší cesty k duševnímu zdraví

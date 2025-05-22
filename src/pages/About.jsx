@@ -17,7 +17,7 @@ import {
   Link,
 } from '@chakra-ui/react'
 import { CheckCircleIcon } from '@chakra-ui/icons'
-import { FaGraduationCap, FaUserMd, FaHeart, FaBrain, FaHandHoldingHeart, FaLightbulb, FaHeartbeat, FaUserShield, FaUsers, FaExchangeAlt, FaBalanceScale, FaSeedling } from 'react-icons/fa'
+import { FaGraduationCap, FaUserMd, FaHeart, FaBrain, FaIcons,FaHandHoldingHeart, FaLightbulb, FaHeartbeat, FaUserShield, FaUsers, FaExchangeAlt, FaBalanceScale, FaSeedling } from 'react-icons/fa'
 import OptimizedImage from '../components/OptimizedImage'
 import SEO from '../components/SEO'
 import StructuredData from '../components/StructuredData'
@@ -77,11 +77,11 @@ export default function About() {
                 </Text>
                 <br />
                 <Text as={'span'} color={'green.400'}>
-                  & Profesionální dráha
+                  & Můj přístup
                 </Text>
               </Heading>
               <Text color={textColor} fontSize={'xl'} mb={8}>
-                S více než desetiletou zkušeností v psychoterapii se věnuji pomoci lidem překonávat životní výzvy a dosahovat osobního růstu prostřednictvím ověřených přístupů a soucitné péče.
+               Posledních sedm let věnuji snaze pomáhat lidem překonávat životní výzvy a dosahovat osobního růstu. Psychoterapii nevnímám jako místo, kde se rychle vyřeší problémy. Spíš jako prostor, kde se dá postupně zastavit, začít víc vnímat sama sebe a porozumět sobě i světu, ve kterém žijeme. Někdy je to cesta klikatá, ale často se na ní začnou objevovat nové možnosti, které dřív nebyly možné.
               </Text>
             </Box>
 
@@ -112,7 +112,7 @@ export default function About() {
       {/* About Section */}
       <Box py={20} bg={bgColor}>
         <Container maxW={'7xl'}>
-          <Stack spacing={4} as={Container} maxW={'3xl'} textAlign={'center'} mb={10}>
+          <Stack spacing={4} as={Container} maxW={'5xl'} textAlign={'center'} mb={10}>
             <Heading
               lineHeight={1.1}
               fontWeight={600}
@@ -132,11 +132,11 @@ export default function About() {
                   zIndex: -1,
                 }}
               >
-                Můj přístup
+                Jak pracuji
               </Text>
             </Heading>
             <Text color={textColor} fontSize={'xl'}>
-              Věřím v vytváření bezpečného, nehodnotícího prostoru, kde klienti mohou prozkoumávat své myšlenky, pocity a zkušenosti. Můj terapeutický přístup je integrativní, čerpající z různých ověřených modalit, které odpovídají vašim jedinečným potřebám.
+            Věřím, že každý člověk má vnitřní schopnosti zvládat životní výzvy. Přesto se někdy můžeme cítit zablokovaní nebo bezmocní řešit složité situace. V takových chvílích vám pomáhám porozumět vašim problémům a nacházet efektivní cesty jejich překonání. Respektuji jedinečnost každého klienta, a proto přistupuji ke každému individuálně. Společně prozkoumáváme vaši osobní cestu sebepoznání a objevujeme vnitřní zdroje, které vám pomohou žít spokojenější a naplněnější život. Můj terapeutický přístup je integrativní, čerpající z různých ověřených modalit, které odpovídají vašim jedinečným potřebám. 
             </Text>
           </Stack>
 
@@ -145,7 +145,7 @@ export default function About() {
               {
                 icon: FaHeart,
                 title: 'Na klienta zaměřený',
-                text: 'Vytváření teplého, empatického prostředí, kde se cítíte slyšeni a pochopeni.',
+                text: 'Vytváření bezpečného, empatického prostředí, kde se cítíte slyšeni a pochopeni.',
               },
               {
                 icon: FaBrain,
@@ -153,9 +153,9 @@ export default function About() {
                 text: 'Využívání prokázaných terapeutických přístupů, které prokázaly pozitivní výsledky.',
               },
               {
-                icon: FaHandHoldingHeart,
-                title: 'Holistický',
-                text: 'Zaměření na celou osobu - mysl, tělo a duši - v procesu uzdravení.',
+                icon: FaIcons,
+                title: 'Celostní',
+                text: 'Zaměření na celou osobu - mysl, imaginace, tělo a emoce - v procesu integrace.',
               },
             ].map((feature, index) => (
               <Box
@@ -191,7 +191,7 @@ export default function About() {
       {/* Education & Credentials */}
       <Box py={20} bg={cardBg}>
         <Container maxW={'7xl'}>
-          <Stack spacing={4} as={Container} maxW={'3xl'} textAlign={'center'} mb={10}>
+          <Stack spacing={4} as={Container} maxW={'5xl'} textAlign={'center'} mb={10}>
             <Heading
               lineHeight={1.1}
               fontWeight={600}
@@ -215,7 +215,7 @@ export default function About() {
               </Text>
             </Heading>
             <Text color={textColor} fontSize={'xl'}>
-              Moje profesionální cesta byla věnována kontinuálnímu učení a růstu v oboru psychoterapie.
+              Moje profesionální cesta byla je postavena na jednooborovém studiu psychologie, dlouhodobém psychoterapeutickém výcviku a kontinuálnímu vzělávání v oboru psychoterapie.
             </Text>
           </Stack>
 
@@ -279,114 +279,38 @@ export default function About() {
                   Člen profesionální psychoterapeutické asociace <Link href="https://czap.cz/" isExternal color="green.400">(ČAP)</Link>
                 </ListItem>
               </List>
-            </Box>
-          </SimpleGrid>
-          <Center mt={10}>
-            <OptimizedImage
-              src="/src/assets/img/CAP.png"
-              alt="ČAP Logo"
-              width="200px"
-              height="auto"
-              transition="all 0.3s"
-              _hover={{
-                transform: 'scale(1.05)',
-              }}
-            />
-          </Center>
-        </Container>
-      </Box>
-
-      {/* Areas of Expertise */}
-      <Box py={20} bg={bgColor}>
-        <Container maxW={'7xl'}>
-          <Stack spacing={4} as={Container} maxW={'3xl'} textAlign={'center'} mb={10}>
-            <Heading
-              lineHeight={1.1}
-              fontWeight={600}
-              fontSize={{ base: '3xl', sm: '4xl', lg: '5xl' }}
-            >
-              <Text
-                as={'span'}
-                position={'relative'}
-                _after={{
-                  content: "''",
-                  width: 'full',
-                  height: '30%',
-                  position: 'absolute',
-                  bottom: 1,
-                  left: 0,
-                  bg: 'green.400',
-                  zIndex: -1,
-                }}
-              >
-                Oblasti odbornosti
-              </Text>
-            </Heading>
-            <Text color={textColor} fontSize={'xl'}>
-              Specializuji se na pomoc klientům při zvládání různých psychických obtíží a životních změn.
-            </Text>
-          </Stack>
-
-          <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={6}>
-            {[
-              {
-                title: 'Úzkost & Deprese',
-                icon: FaHeartbeat
-              },
-              {
-                title: 'Trauma & PTSD',
-                icon: FaUserShield
-              },
-              {
-                title: 'Vztahové problémy',
-                icon: FaUsers
-              },
-              {
-                title: 'Životní změny',
-                icon: FaExchangeAlt
-              },
-              {
-                title: 'Zvládání stresu',
-                icon: FaBalanceScale
-              },
-              {
-                title: 'Osobní růst',
-                icon: FaSeedling
-              },
-            ].map((expertise, index) => (
               <Box
-                key={index}
-                bg={cardBg}
-                boxShadow={'xl'}
-                rounded={'xl'}
-                p={6}
-                textAlign="center"
+                position="absolute"
+                bottom="-20px"
+                right="-20px"
+                width="16 0px"
+                height="160px"
+                opacity="0.8"
+                transform="rotate(-15deg)"
                 transition="all 0.3s"
                 _hover={{
-                  transform: 'translateY(-5px)',
-                  boxShadow: '2xl',
+                  transform: 'rotate(-15deg) scale(1.1)',
+                  opacity: '1',
                 }}
               >
-                <Icon
-                  as={expertise.icon}
-                  w={8}
-                  h={8}
-                  color="green.400"
-                  mb={3}
+                <OptimizedImage
+                  src="/src/assets/img/CAP.png"
+                  alt="ČAP Logo"
+                  width="100%"
+                  height="100%"
+                  objectFit="contain"
                 />
-                <Text fontSize={'lg'} fontWeight="medium" color={headingColor}>
-                  {expertise.title}
-                </Text>
               </Box>
-            ))}
+            </Box>
           </SimpleGrid>
         </Container>
       </Box>
+
 
       {/* Therapeutic Methods */}
       <Box py={20} bg={cardBg}>
         <Container maxW={'7xl'}>
-          <Stack spacing={4} as={Container} maxW={'3xl'} textAlign={'center'} mb={10}>
+          <Stack spacing={4} as={Container} maxW={'5xl'} textAlign={'center'} mb={10}>
             <Heading
               lineHeight={1.1}
               fontWeight={600}
@@ -417,19 +341,19 @@ export default function About() {
           <SimpleGrid columns={{ base: 1, md: 2 }} spacing={10}>
             {[
               {
-                title: 'Individuální terapie',
+                title: 'Svět klienta',
                 description: 'Individuální sezení zaměřená na osobní růst, uzdravení a rozvoj strategií zvládání.',
               },
               {
-                title: 'Partnerské poradenství',
+                title: 'Terapie na míru',
                 description: 'Podpora partnerů v zlepšování komunikace, řešení konfliktů a posilování jejich vztahu.',
               },
               {
-                title: 'Skupinová terapie',
+                title: 'Dialog',
                 description: 'Sdílené zkušenosti uzdravení v podpůrném skupinovém prostředí, podporující spojení a vzájemné porozumění.',
               },
               {
-                title: 'Online sezení',
+                title: 'Spoluvytváření',
                 description: 'Flexibilní a dostupná terapie prostřednictvím zabezpečených video sezení, zachovávající stejnou kvalitu péče.',
               },
             ].map((method, index) => (

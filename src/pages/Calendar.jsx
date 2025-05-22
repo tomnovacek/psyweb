@@ -14,7 +14,8 @@ export default function Calendar() {
         <Stack spacing={4} maxW={'7xl'} textAlign={'center'} mb={10}>
           <Heading fontSize={'3xl'}>Domluvte si sezení</Heading>
           <Text color={'gray.600'} fontSize={'xl'}>
-            Rezervujte si termín, který vám vyhovuje
+            Rezervujte si termín, který vám vyhovuje přímo v kalendáři. <br /> 
+            Pokud nenajdete vyhovující termín, nebo preferujete osobní kontakt emailem, napiště na <a href="mailto:terapie@tomnovacek.com">terapie@tomnovacek.com</a>.
           </Text>
         </Stack>
         <Box
