@@ -544,7 +544,7 @@ export default function About() {
             >
               <Button
                 as="a"
-                href="mailto:terapie@tomnovacek.com"
+                href="/calendar"
                 rounded={'full'}
                 size={'lg'}
                 fontWeight={'normal'}

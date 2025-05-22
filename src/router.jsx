@@ -11,7 +11,6 @@ const About = lazy(() => import('./pages/About'))
 const Services = lazy(() => import('./pages/Services'))
 const Blog = lazy(() => import('./pages/Blog'))
 const BlogPost = lazy(() => import('./pages/BlogPost'))
-const Contact = lazy(() => import('./pages/Contact'))
 const Calendar = lazy(() => import('./pages/Calendar'))
 
 // Loading component
@@ -90,10 +89,6 @@ export const router = createBrowserRouter(
     {
       path: '/blog',
       element: <Layout><Blog /></Layout>,
-    },
-    {
-      path: '/contact',
-      element: <Layout><Contact /></Layout>,
     },
     {
       path: '/blog/:slug',

@@ -1,7 +1,12 @@
-const sharp = require('sharp');
-const path = require('path');
-const fs = require('fs').promises;
-const glob = require('glob');
+import sharp from 'sharp';
+import path from 'path';
+import { promises as fs } from 'fs';
+import { glob } from 'glob';
+import { fileURLToPath } from 'url';
+
+// Get current file's directory
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 // Configuration
 const projectRoot = process.cwd();
@@ -109,7 +114,7 @@ async function processImages() {
     }
 
     // Find all images
-    const files = glob.sync(path.join(sourceDir, '*.{jpg,jpeg,png,webp}'));
+    const files = await glob(path.join(sourceDir, '*.{jpg,jpeg,png,webp}'));
     console.log(`Found ${files.length} images to optimize`);
 
     // Process each image
