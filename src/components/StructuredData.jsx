@@ -7,32 +7,32 @@ export default function StructuredData({ type }) {
         return {
           '@context': 'https://schema.org',
           '@type': 'MedicalBusiness',
-          name: 'Tomáš Nováček - Professional Psychotherapist',
-          description: 'Professional psychotherapy services in Prague. Specializing in individual therapy, couples counseling, and family therapy.',
+          name: 'Tomáš Nováček - Psycholog a terapeut | Brno',
+          description: 'Soukromá psychoterapeutická praxe v centru Brna se zaměřením na individuální terapii dospělých.',
           url: 'https://tomnovacek.cz',
-          telephone: '+420 123 456 789',
+          telephone: '+420 603 773 440',
           email: 'info@tomnovacek.cz',
           address: {
             '@type': 'PostalAddress',
-            streetAddress: 'Example Street 123',
-            addressLocality: 'Prague',
-            postalCode: '110 00',
+            streetAddress: 'Sukova 4',
+            addressLocality: 'Brno',
+            postalCode: '602 00',
             addressCountry: 'CZ'
           },
           priceRange: '$$',
-          openingHours: 'Mo-Fr 09:00-17:00'
+          openingHours: 'Po-Pá 08:00-19:00'
         }
       case 'Person':
         return {
           '@context': 'https://schema.org',
           '@type': 'Person',
           name: 'Tomáš Nováček',
-          jobTitle: 'Professional Psychotherapist',
+          jobTitle: 'Certifikovaný psychoterapeut',
           worksFor: {
             '@type': 'Organization',
-            name: 'Tomáš Nováček - Professional Psychotherapist'
+            name: 'Tomáš Nováček - Soukromá psychoterapeutická praxe v centru Brna.'
           },
-          description: 'Licensed psychotherapist with extensive experience in helping individuals navigate through life\'s challenges and achieve personal growth.',
+          description: 'Certifikovaný psychoterapeut se soukromou praxí v centru Brno. Specializuje se na individuální terapii dospělých.',
           url: 'https://tomnovacek.cz',
           sameAs: [
             'https://www.linkedin.com/in/tomnovacek',

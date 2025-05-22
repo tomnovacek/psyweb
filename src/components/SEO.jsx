@@ -10,7 +10,7 @@ const SEO = ({
   preloadImages = [],
   children
 }) => {
-  const siteTitle = 'Tomáš Nováček - Professional Psychotherapist'
+  const siteTitle = 'Tomáš Nováček - Psycholog a terapeut | Brno'
   const fullTitle = title ? `${title} | ${siteTitle}` : siteTitle
 
   // Ensure all values are strings
