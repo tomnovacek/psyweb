@@ -8,7 +8,7 @@ import {
   Heading,
   Icon,
 } from '@chakra-ui/react'
-import { FaEnvelope, FaPhone, FaMapMarkerAlt } from 'react-icons/fa'
+import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaInbox, FaUser } from 'react-icons/fa'
 import { Link as RouterLink } from 'react-router-dom'
 import OptimizedImage from './OptimizedImage'
 
@@ -86,6 +86,10 @@ export default function Footer() {
           {/* Contact Information */}
           <Stack align={'flex-end'}>
             <Heading fontSize={'lg'} mb={4}>Kontakt</Heading>
+            <Stack direction={'row'} align={'center'} spacing={2}>
+              <Icon as={FaUser} />
+              <Text>Tomáš Nováček</Text>
+            </Stack>
             <Stack direction={'row'} align={'center'} spacing={2}>
               <Icon as={FaPhone} />
               <Text>+420 602 773 440</Text>
