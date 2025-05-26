@@ -15,6 +15,7 @@ import {
 } from '@chakra-ui/react'
 import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons'
 import { FaCalendarAlt } from 'react-icons/fa'
+import OptimizedImage from './OptimizedImage'
 
 const DesktopNav = () => {
   return (
@@ -112,19 +113,19 @@ export default function Navbar() {
                 isOpen ? <CloseIcon w={3} h={3} /> : <HamburgerIcon w={5} h={5} />
               }
               variant={'ghost'}
-              aria-label={'Přepnout navigaci'}
+              aria-label={'Toggle Navigation'}
             />
           </Flex>
           <Flex flex={{ base: 1 }} justify={{ base: 'center', md: 'start' }}>
-            <Text
-              textAlign={useBreakpointValue({ base: 'center', md: 'left' })}
-              fontFamily={'heading'}
-              color={useColorModeValue('gray.800', 'white')}
-              as={RouterLink}
-              to="/"
-            >
-              Tom Nováček
-            </Text>
+            <Box as={RouterLink} to="/" display="flex" alignItems="center">
+              <OptimizedImage
+                src="/optimized-images/website-icon-300x298-md.webp"
+                alt="Tom Nováček"
+                width={12}
+                height={12}
+                objectFit="contain"
+              />
+            </Box>
 
             <Flex display={{ base: 'none', md: 'flex' }} ml={10}>
               <DesktopNav />
