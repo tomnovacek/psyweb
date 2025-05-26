@@ -33,7 +33,8 @@ import {
   FaBalanceScale, 
   FaSeedling,
   FaCalendarAlt,
-  FaArrowRight
+  FaArrowRight,
+  FaCertificate
 } from 'react-icons/fa'
 import { Link as RouterLink } from 'react-router-dom'
 import OptimizedImage from '../components/OptimizedImage'
@@ -376,7 +377,7 @@ export default function About() {
                   <List spacing={3}>
                     <ListItem>
                       <ListIcon as={CheckCircleIcon} color="green.400" />
-                      Magisterský titul v psychologii
+                      Magisterský titul v jednooborové psychologii
                     </ListItem>
                     <ListItem>
                       <ListIcon as={CheckCircleIcon} color="green.400" />
@@ -388,19 +389,23 @@ export default function About() {
                     </ListItem>
                     <ListItem>
                       <ListIcon as={CheckCircleIcon} color="green.400" />
-                      Certifikovaný výcvik v koučování
+                      Certifikovaný výcvik v koučování (Eklektická modalita - CBC, Gestalt, Existenciální)
+                    </ListItem>
+                    <ListItem>
+                      <ListIcon as={CheckCircleIcon} color="green.400" />
+                      Absolvované kurzy: Základy psychofarmak, Neurodiverzita (vs. ADHD, ADD, Autismus), Práce s tělem při traumatu
                     </ListItem>
                   </List>
                 </Box>
                 <Box>
                   <Flex align="center" gap={3} mb={4}>
-                    <Icon as={FaUserMd} w={8} h={8} color="green.400" />
+                    <Icon as={FaCertificate} w={8} h={8} color="green.400" />
                     <Heading fontSize={'xl'}>Profesionální členství</Heading>
                   </Flex>
                   <List spacing={3}>
                     <ListItem>
                       <ListIcon as={CheckCircleIcon} color="green.400" />
-                      Certifikovaný psychoterapeut
+                      Certifikovaný psychoterapeut (x hodin výcviku)<a href='exterala/diplom.pdf' target='_blank' rel='noopener noreferrer'>(Diplom)</a>
                     </ListItem>
                     <ListItem>
                       <ListIcon as={CheckCircleIcon} color="green.400" />

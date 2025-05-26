@@ -510,9 +510,7 @@ export default function Services() {
                 features: [
                   'Osobní setkání v terapeutické místnosti',
                   'Individuální přístup',
-                  'Flexibilní termíny',
                   'Bezpečný a důvěrný prostor',
-                  'Možnost dlouhodobé spolupráce'
                 ],
                 icon: FaUserFriends,
                 image: 'room.webp',
@@ -525,9 +523,7 @@ export default function Services() {
                 description: 'Terapeutické sezení přes video hovor pro vaše pohodlí.',
                 features: [
                   'Bezpečné video hovory',
-                  'Flexibilní termíny',
                   'Komfort vašeho domova',
-                  'Technická podpora',
                   'Dostupnost odkudkoliv'
                 ],
                 icon: FaVideo,
@@ -565,7 +561,7 @@ export default function Services() {
                 )}
                 <Box
                   position="relative"
-                  height="200px"
+                  height="260px"
                   overflow="hidden"
                 >
                   <OptimizedImage
@@ -575,7 +571,7 @@ export default function Services() {
                     width="100%"
                     height="100%"
                     style={{
-                      filter: 'brightness(0.8)',
+                      filter: 'brightness(1.3)',
                     }}
                   />
                   <Box
@@ -584,7 +580,7 @@ export default function Services() {
                     left={0}
                     right={0}
                     bottom={0}
-                    bg="blackAlpha.300"
+                    bg="blackAlpha.100"
                   />
                   <Box
                     position="absolute"
@@ -628,8 +624,8 @@ export default function Services() {
                     rounded="full"
                     size="lg"
                     _hover={{
-                      transform: 'scale(1.02)',
-                      boxShadow: 'lg',
+                      bg: 'green.400',
+                      color: 'white',
                     }}
                   >
                     Objednat sezení

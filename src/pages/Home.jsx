@@ -21,7 +21,7 @@ import {
 } from '@chakra-ui/react'
 import { Link as RouterLink } from 'react-router-dom'
 import { CheckCircleIcon } from '@chakra-ui/icons'
-import { FaUserFriends, FaHeart, FaBrain, FaBalanceScale, FaComments, FaLightbulb, FaHandHoldingHeart, FaUserMd, FaVideo, FaCalendarAlt, FaCreditCard, FaShieldAlt, FaClock, FaInfoCircle, FaHeartbeat, FaArrowRight } from 'react-icons/fa'
+import { FaUserFriends, FaHeart, FaBrain, FaBalanceScale, FaComments, FaLightbulb, FaHandHoldingHeart, FaUserMd, FaVideo, FaCalendarAlt, FaCreditCard, FaShieldAlt, FaClock, FaInfoCircle, FaHeartbeat, FaArrowRight, FaUser } from 'react-icons/fa'
 import { useEffect, useState } from 'react'
 import { getAllPosts } from '../utils/mdx'
 import OptimizedImage from '../components/OptimizedImage'
@@ -281,7 +281,7 @@ export default function Home() {
               Jsem psycholog a terapeut s multioborovým vzděláním a bohatými zkušenostmi v doprovázení lidí překonávajících své životní výzvy. Znalosti a perspektivy z různých profesních oblastí mi pomáhají nejprve pochopit klientovu situaci a následně společněpostupně rozšiřovat obzory o nové úhly pohledu, které mohou přinášet větší svobodu při hledání cesty vpřed.
             </Text>
           </Stack>
-          <SimpleGrid columns={{ base: 1, md: 2 }} spacing={10} w="full">
+          <SimpleGrid columns={{ base: 1, md: 2 }} spacing={16} w="full">
             <Box
               bg={useColorModeValue('white', 'gray.800')}
               boxShadow={'xl'}
@@ -296,7 +296,7 @@ export default function Home() {
             >
               <Box
                 position="relative"
-                height="200px"
+                height="260px"
                 overflow="hidden"
               >
                 <OptimizedImage
@@ -306,7 +306,7 @@ export default function Home() {
                   width="100%"
                   height="100%"
                   style={{
-                    filter: 'brightness(0.8)',
+                    filter: 'brightness(1.3)',
                   }}
                 />
                 <Box
@@ -326,7 +326,7 @@ export default function Home() {
                   bg="linear-gradient(to top, rgba(0,0,0,0.8), transparent)"
                 >
                   <Flex align="center" gap={3}>
-                    <Icon as={FaUserMd} w={8} h={8} color="white" />
+                    <Icon as={FaUser} w={8} h={8} color="white" />
                     <Heading fontSize={'2xl'} color="white">Moje praxe</Heading>
                   </Flex>
                 </Box>
@@ -343,8 +343,8 @@ export default function Home() {
                   rounded="full"
                   size="lg"
                   _hover={{
-                    transform: 'scale(1.02)',
-                    boxShadow: 'lg',
+                    bg: 'green.400',
+                    color: 'white',
                   }}
                 >
                   Více o mně
@@ -365,17 +365,17 @@ export default function Home() {
             >
               <Box
                 position="relative"
-                height="200px"
+                height="260px"
                 overflow="hidden"
               >
                 <OptimizedImage
-                  src="family.webp"
-                  alt="Rodinná terapie"
+                  src="mountinHikeGroup.webp"
+                  alt="Skupina lidí na horách"
                   objectFit="cover"
                   width="100%"
                   height="100%"
                   style={{
-                    filter: 'brightness(0.8)',
+                    filter: 'brightness(1.3)',
                   }}
                 />
                 <Box
@@ -412,8 +412,8 @@ export default function Home() {
                   rounded="full"
                   size="lg"
                   _hover={{
-                    transform: 'scale(1.02)',
-                    boxShadow: 'lg',
+                    bg: 'green.400',
+                    color: 'white',
                   }}
                 >
                   Moje služby
