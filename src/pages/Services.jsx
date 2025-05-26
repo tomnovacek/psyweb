@@ -168,7 +168,7 @@ export default function Services() {
                 </Text>
               </Heading>
               <Text color={'white'} fontSize={'xl'} mb={8}>
-                Nabízím terapeutické sezení na podporu vašeho duševního zdraví a osobního růstu. Společně prozkoumáme vaše potřeby a vytvoříme plán, který vám pomůže dosáhnout vašich cílů.
+                Nabízím terapeutická sezení na podporu vašeho duševního zdraví a osobního růstu. Společně prozkoumáme vaše potřeby a vytvoříme plán, který Vám pomůže, aby jste žili plnější a spokojenější život.
               </Text>
 
               {/* button stack */}
@@ -267,7 +267,7 @@ export default function Services() {
       {/* Areas of Expertise */}
       <Box py={20} bg={bgColor}>
         <Container maxW={'7xl'}>
-          <Stack spacing={4} maxW={'3xl'} textAlign={'center'} mb={10} mx="auto">
+          <Stack spacing={4} maxW={'3xl'} textAlign={'center'} mb={8} mx="auto">
             <Heading
               lineHeight={1.1}
               fontWeight={600}
@@ -287,15 +287,15 @@ export default function Services() {
                   zIndex: -1,
                 }}
               >
-                Na čem s kienty nejčastěji pracujeme
+                Nejčastější témata
               </Text>
             </Heading>
             <Text color={textColor} fontSize={'xl'}>
-              Nabízím širokou škálu terapeutických služeb zaměřených na vaše specifické potřeby a cíle.
+             S klienty se nejčastějí věnujeme následujícím otázkám.
             </Text>
           </Stack>
 
-          <SimpleGrid columns={{ base: 1, md: 2 }} spacing={10}>
+          <SimpleGrid columns={{ base: 1, md: 2 }} spacing={8}>
             {[
               {
                 title: 'Osobní rozvoj',
@@ -339,7 +339,7 @@ export default function Services() {
                 bg={cardBg}
                 boxShadow={'xl'}
                 rounded={'xl'}
-                p={8}
+                p={6}
                 position="relative"
                 transition="all 0.3s"
                 _hover={{
@@ -350,8 +350,8 @@ export default function Services() {
                 <Flex direction={{ base: 'column', md: 'row' }} gap={6}>
                   <Box
                     position="relative"
-                    width={{ base: '100%', md: '200px' }}
-                    height={{ base: '200px', md: '200px' }}
+                    width={{ base: '100%', md: '140px' }}
+                    height={{ base: '140px', md: '140px' }}
                     borderRadius="lg"
                     overflow="hidden"
                     flexShrink={0}
@@ -367,8 +367,8 @@ export default function Services() {
                   <Box flex="1">
                     <Icon
                       as={service.icon}
-                      w={10}
-                      h={10}
+                      w={8}
+                      h={8}
                       color="green.400"
                       mb={4}
                     />
@@ -510,10 +510,13 @@ export default function Services() {
                 features: [
                   'Osobní setkání v terapeutické místnosti',
                   'Individuální přístup',
-                  'Flexibilní termíny'
+                  'Flexibilní termíny',
+                  'Bezpečný a důvěrný prostor',
+                  'Možnost dlouhodobé spolupráce'
                 ],
                 icon: FaUserFriends,
-                image: 'tom-home.webp'
+                image: 'room.webp',
+                popular: true
               },
               {
                 title: 'Online terapie',
@@ -523,7 +526,9 @@ export default function Services() {
                 features: [
                   'Bezpečné video hovory',
                   'Flexibilní termíny',
-                  'Komfort vašeho domova'
+                  'Komfort vašeho domova',
+                  'Technická podpora',
+                  'Dostupnost odkudkoliv'
                 ],
                 icon: FaVideo,
                 image: 'laptop2.jpg'
@@ -531,30 +536,37 @@ export default function Services() {
             ].map((service, index) => (
               <Box
                 key={index}
-                bg={useColorModeValue('green.100', 'gray.800')}
+                bg={useColorModeValue('white', 'gray.800')}
                 boxShadow={'xl'}
-                rounded={'xl'}
-                p={8}
+                rounded={'2xl'}
                 position="relative"
                 transition="all 0.3s"
                 _hover={{
                   transform: 'translateY(-5px)',
                   boxShadow: '2xl',
                 }}
-                pt={20}
+                overflow="hidden"
               >
+                {service.popular && (
+                  <Box
+                    position="absolute"
+                    top={0}
+                    right={0}
+                    bg="green.400"
+                    color="white"
+                    px={4}
+                    py={1}
+                    fontSize="sm"
+                    fontWeight="bold"
+                    borderBottomLeftRadius="lg"
+                  >
+                    Nejpopulárnější
+                  </Box>
+                )}
                 <Box
-                  position="absolute"
-                  top="-60px"
-                  left="50%"
-                  transform="translateX(-50%)"
-                  width="120px"
-                  height="120px"
-                  rounded="full"
+                  position="relative"
+                  height="200px"
                   overflow="hidden"
-                  boxShadow="lg"
-                  border="4px solid"
-                  borderColor={useColorModeValue('white', 'gray.700')}
                 >
                   <OptimizedImage
                     src={service.image}
@@ -562,28 +574,67 @@ export default function Services() {
                     objectFit="cover"
                     width="100%"
                     height="100%"
+                    style={{
+                      filter: 'brightness(0.8)',
+                    }}
                   />
+                  <Box
+                    position="absolute"
+                    top={0}
+                    left={0}
+                    right={0}
+                    bottom={0}
+                    bg="blackAlpha.300"
+                  />
+                  <Box
+                    position="absolute"
+                    bottom={0}
+                    left={0}
+                    right={0}
+                    p={6}
+                    bg="linear-gradient(to top, rgba(0,0,0,0.8), transparent)"
+                  >
+                    <Flex align="center" gap={3}>
+                      <Icon as={service.icon} w={8} h={8} color="white" />
+                      <Heading fontSize={'2xl'} color="white">{service.title}</Heading>
+                    </Flex>
+                  </Box>
                 </Box>
-                <Stack spacing={6} align="center">
-                  <Flex align="center" gap={3} mb={4}>
-                    <Icon as={service.icon} w={8} h={8} color="green.400" />
-                    <Heading fontSize={'2xl'} textAlign="center">{service.title}</Heading>
-                  </Flex>
-                  <Text fontSize={'3xl'} fontWeight="bold" color="green.400" textAlign="center">
-                    {service.price} <span style={{ fontSize: '1rem'}}>/{service.duration}</span>
-                  </Text>
-                  <Text color={textColor} mb={4} textAlign="center">
+                <Box p={8}>
+                  <Box textAlign="center" mb={6}>
+                    <Text fontSize={'4xl'} fontWeight="bold" color="green.400">
+                      {service.price}
+                    </Text>
+                    <Text fontSize={'sm'} color={textColor}>
+                      /{service.duration}
+                    </Text>
+                  </Box>
+                  <Text color={textColor} mb={6} textAlign="center">
                     {service.description}
                   </Text>
-                  <List spacing={3} width="100%">
+                  <List spacing={4} mb={8}>
                     {service.features.map((feature, idx) => (
-                      <ListItem key={idx}>
-                        <ListIcon as={CheckCircleIcon} color="green.400" />
-                        {feature}
+                      <ListItem key={idx} display="flex" alignItems="center" gap={3}>
+                        <Icon as={CheckCircleIcon} color="green.400" boxSize={5} />
+                        <Text>{feature}</Text>
                       </ListItem>
                     ))}
                   </List>
-                </Stack>
+                  <Button
+                    as="a"
+                    href="mailto:terapie@tomnovacek.com"
+                    w="full"
+                    colorScheme="green"
+                    rounded="full"
+                    size="lg"
+                    _hover={{
+                      transform: 'scale(1.02)',
+                      boxShadow: 'lg',
+                    }}
+                  >
+                    Objednat sezení
+                  </Button>
+                </Box>
               </Box>
             ))}
           </SimpleGrid>

@@ -108,7 +108,7 @@ export default function Footer() {
                 src="/src/assets/img/CAP.png"
                 alt="Logo CAP"
                 size="xs"
-                width="200px"
+                width="180px"
                 height="auto"
               />
             </Box>

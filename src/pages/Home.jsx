@@ -108,7 +108,6 @@ export default function Home() {
             left={0}
             width="100%"
             height="100%"
-            bg="blackAlpha.100"
           />
         </Box>
 
@@ -166,7 +165,7 @@ export default function Home() {
                 </Text>
               </Heading>
               <Text color={'white'} fontSize={'xl'} mb={8}>
-                Vítejte, <br /> jmenuji se Tomáš Nováček. <br /> Věnuji se pomoci lidem překonávat životní výzvy a dosahovat osobního růstu. Společně s klienty se vydávám na cestu k hlubšímu porozumění sobě sama, svým vztahům a slepým uličkám, ve kterých se nacházejí. Snažím se, aby se na této cestě cítili bezpečně a našli v sobě schopnost zahlédnout světlo nadějě prosvítající i potemnělým lesem.
+                Vítejte, jmenuji se Tomáš Nováček. Věnuji se pomoci lidem překonávat životní výzvy a dosahovat osobního růstu. Společně s klienty se vydávám na cestu k hlubšímu porozumění sobě sama, svým vztahům a slepým uličkám, ve kterých se nacházejí. Snažím se, aby se na tomto putování cítili bezpečně a našli v sobě schopnost zahlédnout světlo nadějě prosvítající i potemnělým lesem.
               </Text>
 
               {/* button stack */}
@@ -283,98 +282,145 @@ export default function Home() {
             </Text>
           </Stack>
           <SimpleGrid columns={{ base: 1, md: 2 }} spacing={10} w="full">
-            <Stack spacing={6} align="center" textAlign="justify">
+            <Box
+              bg={useColorModeValue('white', 'gray.800')}
+              boxShadow={'xl'}
+              rounded={'2xl'}
+              position="relative"
+              transition="all 0.3s"
+              _hover={{
+                transform: 'translateY(-5px)',
+                boxShadow: '2xl',
+              }}
+              overflow="hidden"
+            >
               <Box
-                bg={serviceBg}
-                p={6}
-                pt={24}
-                rounded="xl"
-                boxShadow="lg"
-                width="100%"
                 position="relative"
-                overflow="visible"
+                height="200px"
+                overflow="hidden"
               >
-                <Center position="absolute" top="-100px" left="50%" transform="translateX(-50%)">
-                  <Box
-                    position="relative"
-                    width="200px"
-                    height="200px"
-                    borderRadius="full"
-                    overflow="hidden"
-                    boxShadow="xl"
-                    border="4px solid"
-                    borderColor={borderColor}
-                  >
-                    <OptimizedImage
-                      src="/src/assets/img/room.jpeg"
-                      alt="Terapeutická místnost"
-                      objectFit="cover"
-                      width="100%"
-                      height="100%"
-                    />
-                  </Box>
-                </Center>
-                <Heading fontSize={'2xl'} mb={4} mt={4} textAlign="center">Moje praxe</Heading>
-                <Text fontSize={'lg'} mb={4}>
+                <OptimizedImage
+                  src="room.webp"
+                  alt="Terapeutická místnost"
+                  objectFit="cover"
+                  width="100%"
+                  height="100%"
+                  style={{
+                    filter: 'brightness(0.8)',
+                  }}
+                />
+                <Box
+                  position="absolute"
+                  top={0}
+                  left={0}
+                  right={0}
+                  bottom={0}
+                  bg="blackAlpha.300"
+                />
+                <Box
+                  position="absolute"
+                  bottom={0}
+                  left={0}
+                  right={0}
+                  p={6}
+                  bg="linear-gradient(to top, rgba(0,0,0,0.8), transparent)"
+                >
+                  <Flex align="center" gap={3}>
+                    <Icon as={FaUserMd} w={8} h={8} color="white" />
+                    <Heading fontSize={'2xl'} color="white">Moje praxe</Heading>
+                  </Flex>
+                </Box>
+              </Box>
+              <Box p={8}>
+                <Text fontSize={'lg'} mb={6}>
                   Posledních sedm let se intenzivně věnuji psychologickému poradenství a čtyři roky praktikuji terapii. Moje odbornost je založena na důkladném vzdělání a kontinuálním profesním rozvoji. Absolvoval jsem dvouletý specializovaný výcvik v koučování a šestiletý certifikovaný výcvik v integrativní psychoterapii. Jsem také řádným členem České asociace pro psychoterapii - komunity, která klade důraz na etické standardy a vysokou kvalifikaci v oboru psychoterapie.
                 </Text>
+                <Button
+                  as={RouterLink}
+                  to="/about"
+                  w="full"
+                  colorScheme="green"
+                  rounded="full"
+                  size="lg"
+                  _hover={{
+                    transform: 'scale(1.02)',
+                    boxShadow: 'lg',
+                  }}
+                >
+                  Více o mně
+                </Button>
               </Box>
-            </Stack>
-            <Stack spacing={6} align="center" textAlign="justify">
+            </Box>
+            <Box
+              bg={useColorModeValue('white', 'gray.800')}
+              boxShadow={'xl'}
+              rounded={'2xl'}
+              position="relative"
+              transition="all 0.3s"
+              _hover={{
+                transform: 'translateY(-5px)',
+                boxShadow: '2xl',
+              }}
+              overflow="hidden"
+            >
               <Box
-                bg={serviceBg}
-                p={6}
-                pt={24}
-                mt={{ base: 40, md: 0 }}
-                rounded="xl"
-                boxShadow="lg"
-                width="100%"
                 position="relative"
-                overflow="visible"
+                height="200px"
+                overflow="hidden"
               >
-                <Center position="absolute" top="-100px" left="50%" transform="translateX(-50%)">
-                  <Box
-                    position="relative"
-                    width="200px"
-                    height="200px"
-                    borderRadius="full"
-                    overflow="hidden"
-                    boxShadow="xl"
-                    border="4px solid"
-                    borderColor={borderColor}
-                  >
-                    <OptimizedImage
-                      src="/src/assets/img/family.webp"
-                      alt="Rodinná terapie"
-                      objectFit="cover"
-                      width="100%"
-                      height="100%"
-                    />
-                  </Box>
-                </Center>
-                <Heading fontSize={'2xl'} mb={4} mt={4} textAlign="center">Můj přístup</Heading>
-                <Text fontSize={'lg'} mb={4}>
+                <OptimizedImage
+                  src="family.webp"
+                  alt="Rodinná terapie"
+                  objectFit="cover"
+                  width="100%"
+                  height="100%"
+                  style={{
+                    filter: 'brightness(0.8)',
+                  }}
+                />
+                <Box
+                  position="absolute"
+                  top={0}
+                  left={0}
+                  right={0}
+                  bottom={0}
+                  bg="blackAlpha.300"
+                />
+                <Box
+                  position="absolute"
+                  bottom={0}
+                  left={0}
+                  right={0}
+                  p={6}
+                  bg="linear-gradient(to top, rgba(0,0,0,0.8), transparent)"
+                >
+                  <Flex align="center" gap={3}>
+                    <Icon as={FaHandHoldingHeart} w={8} h={8} color="white" />
+                    <Heading fontSize={'2xl'} color="white">Můj přístup</Heading>
+                  </Flex>
+                </Box>
+              </Box>
+              <Box p={8}>
+                <Text fontSize={'lg'} mb={6}>
                   Věřím, že každý člověk má vnitřní zdroje, jak se vyrovnat s životními výzvami. Existují však chvíle, kdy se můžeme cítit uvězněni nebo bezmocní v řešení obtížných situací. V takových chvílích vás podporuji v pochopení vašich problémů a hledání efektivních způsobů, jak je překonat. Respektuji jedinečnost každého klienta, proto k každému přistupuji individuálně. Společně prozkoumáváme vaši osobní cestu sebepoznání a odhalujeme vnitřní síly, které vám mohou pomoci žít plnější a spokojenější život.
                 </Text>
+                <Button
+                  as={RouterLink}
+                  to="/services"
+                  w="full"
+                  colorScheme="green"
+                  rounded="full"
+                  size="lg"
+                  _hover={{
+                    transform: 'scale(1.02)',
+                    boxShadow: 'lg',
+                  }}
+                >
+                  Moje služby
+                </Button>
               </Box>
-            </Stack>
+            </Box>
           </SimpleGrid>
-          <Button
-            as={RouterLink}
-            to="/about"
-            marginTop={10}
-            colorScheme={'green'}
-            variant={'outline'}
-            size={'lg'}
-            rounded={'full'}
-            px={8}
-            _hover={{
-              bg: 'green.400',
-              color: 'white',
-            }}
-          >
-            Více o mně
-          </Button>
         </Container>
       </Box>
 

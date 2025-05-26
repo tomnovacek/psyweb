@@ -199,7 +199,7 @@ export default function About() {
                 </Text>
               </Heading>
               <Text color={'white'} fontSize={'xl'} mb={8}>
-                Posledních sedm let věnuji snaze pomáhat lidem překonávat životní výzvy a dosahovat osobního růstu. Psychoterapii nevnímám jako místo, kde se rychle vyřeší problémy. Spíš jako prostor, kde se dá postupně zastavit, začít víc vnímat sama sebe a porozumět sobě i světu, ve kterém žijeme.
+                Posledních sedm let věnuji snaze pomáhat lidem překonávat životní výzvy a dosahovat osobního růstu. Psychoterapii nevnímám jako místo, kde se rychle vyřeší problémy. Spíš jako prostor, kde se dá postupně zastavit, začít víc vnímat sama sebe, získat nadhled a porozumět sobě i světu, ve kterém žijeme.
               </Text>
 
               {/* button stack */}
@@ -274,7 +274,7 @@ export default function About() {
                   zIndex: -1,
                 }}
               >
-                Jak pracuji
+                Můj přístup
               </Text>
             </Heading>
             <Text color={textColor} fontSize={'xl'}>
@@ -286,18 +286,18 @@ export default function About() {
             {[
               {
                 icon: FaHeart,
-                title: 'Na klienta zaměřený',
+                title: 'Poporující',
                 text: 'Vytváření bezpečného, empatického prostředí, kde se cítíte slyšeni a pochopeni.',
               },
               {
                 icon: FaBrain,
-                title: 'Ověřený',
+                title: 'Výzkumem ověřený',
                 text: 'Využívání prokázaných terapeutických přístupů, které prokázaly pozitivní výsledky.',
               },
               {
                 icon: FaIcons,
                 title: 'Celostní',
-                text: 'Zaměření na celou osobu - mysl, imaginace, tělo a emoce - v procesu integrace.',
+                text: 'Zaměření na celou osobu - mysl, tělo a emoce - v procesu integrace.',
               },
             ].map((feature, index) => (
               <Box
