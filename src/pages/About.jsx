@@ -214,10 +214,13 @@ export default function About() {
                   rounded={'full'}
                   size={'lg'}
                   fontWeight={'normal'}
-                  px={6}
+                  px={8}
                   colorScheme={'green'}
-                  bg={'green.400'}
-                  _hover={{ bg: 'green.300' }}
+                  variant={'solid'}
+                  _hover={{
+                    bg: 'green.400',
+                    color: 'white',
+                  }}
                   leftIcon={<FaCalendarAlt />}
                 >
                   Objednat konzultaci
@@ -228,7 +231,16 @@ export default function About() {
                   rounded={'full'}
                   size={'lg'}
                   fontWeight={'normal'}
-                  px={6}
+                  px={8}
+                  variant="outline"
+                  colorScheme={'green'}
+                  borderColor={'white'}
+                  color={'white'}
+                  _hover={{
+                    bg: 'green.400',
+                    color: 'white',
+                    borderColor: 'green.400'
+                  }}
                   rightIcon={<FaArrowRight />}
                 >
                   Moje služby
@@ -550,8 +562,11 @@ export default function About() {
                 fontWeight={'normal'}
                 px={8}
                 colorScheme={'green'}
-                bg={'green.400'}
-                _hover={{ bg: 'green.300' }}
+                variant={'solid'}
+                _hover={{
+                  bg: 'green.400',
+                  color: 'white',
+                }}
                 leftIcon={<FaCalendarAlt />}
               >
                 Objednat konzultaci
@@ -565,7 +580,10 @@ export default function About() {
                 px={8}
                 variant="outline"
                 colorScheme={'green'}
-                _hover={{ bg: 'green.50' }}
+                _hover={{
+                  bg: 'green.400',
+                  color: 'white',
+                }}
                 rightIcon={<FaArrowRight />}
               >
                 Moje služby

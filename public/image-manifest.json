@@ -815,6 +815,34 @@
           "path": "/optimized-images/Tom&RonScootering03-2xl.webp"
         }
       ]
+    },
+    "src/assets/img/laptop2.jpg": {
+      "responsive": [
+        {
+          "width": 150,
+          "path": "/optimized-images/laptop2-xs.webp"
+        },
+        {
+          "width": 300,
+          "path": "/optimized-images/laptop2-sm.webp"
+        },
+        {
+          "width": 400,
+          "path": "/optimized-images/laptop2-md.webp"
+        },
+        {
+          "width": 800,
+          "path": "/optimized-images/laptop2-lg.webp"
+        },
+        {
+          "width": 1200,
+          "path": "/optimized-images/laptop2-xl.webp"
+        },
+        {
+          "width": 1600,
+          "path": "/optimized-images/laptop2-2xl.webp"
+        }
+      ]
     }
   },
   "website-icon-300x298": {},

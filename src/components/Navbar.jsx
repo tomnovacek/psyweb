@@ -14,6 +14,7 @@ import {
   useBreakpointValue,
 } from '@chakra-ui/react'
 import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons'
+import { FaCalendarAlt } from 'react-icons/fa'
 
 const DesktopNav = () => {
   return (
@@ -139,18 +140,20 @@ export default function Navbar() {
             <Button
               as={RouterLink}
               to="/calendar"
-              display={{ base: 'none', md: 'inline-flex' }}
-              fontSize={'sm'}
-              fontWeight={600}
-              color={'white'}
-              bg={'green.400'}
-              href={'#'}
+              rounded={'full'}
+              size={'lg'}
+              fontWeight={'normal'}
+              px={8}
+              colorScheme={'green'}
+              variant={'solid'}
               _hover={{
-                bg: 'green.300',
+                bg: 'green.400',
+                color: 'white',
               }}
+              leftIcon={<FaCalendarAlt />}
             >
               Domluvit konzultaci
-            </Button>
+              </Button>
           </Stack>
         </Flex>
 

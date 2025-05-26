@@ -25,6 +25,7 @@ import {
 } from '@chakra-ui/react'
 import { CheckCircleIcon } from '@chakra-ui/icons'
 import { 
+  FaArrowRight,
   FaUserFriends, 
   FaVideo, 
   FaCalendarAlt, 
@@ -41,7 +42,8 @@ import {
   FaUsers,
   FaIdCard,
   FaMoneyBill,
-  FaMoneyBillAlt
+  FaMoneyBillAlt,
+  FaHandHoldingHeart
 } from 'react-icons/fa'
 import { Link as RouterLink } from 'react-router-dom'
 import OptimizedImage from '../components/OptimizedImage'
@@ -181,21 +183,33 @@ export default function Services() {
                   rounded={'full'}
                   size={'lg'}
                   fontWeight={'normal'}
-                  px={6}
+                  px={8}
                   colorScheme={'green'}
-                  bg={'green.400'}
-                  _hover={{ bg: 'green.300' }}
+                  variant={'solid'}
+                  _hover={{
+                    bg: 'green.400',
+                    color: 'white',
+                  }}
                   leftIcon={<FaCalendarAlt />}
                 >
                   Objednat konzultaci
                 </Button>
                 <Button
-                  as={RouterLink}
-                  to="#pricing"
+                  as="a"
+                  href="#pricing"
                   rounded={'full'}
                   size={'lg'}
                   fontWeight={'normal'}
-                  px={6}
+                  px={8}
+                  variant="outline"
+                  colorScheme={'green'}
+                  borderColor={'white'}
+                  color={'white'}
+                  _hover={{
+                    bg: 'green.400',
+                    color: 'white',
+                    borderColor: 'green.400'
+                  }}
                 >
                   Ceník služeb
                 </Button>
@@ -273,7 +287,7 @@ export default function Services() {
                   zIndex: -1,
                 }}
               >
-                Oblasti specializace
+                Na čem s kienty nejčastěji pracujeme
               </Text>
             </Heading>
             <Text color={textColor} fontSize={'xl'}>
@@ -284,22 +298,28 @@ export default function Services() {
           <SimpleGrid columns={{ base: 1, md: 2 }} spacing={10}>
             {[
               {
-                title: 'Individuální terapie',
-                description: 'Osobní sezení zaměřená na vaše specifické potřeby a cíle.',
-                icon: FaUserShield,
-                image: 'therapy-session.webp'
+                title: 'Osobní rozvoj',
+                description: 'Bezpečný prostor pro zpracování traumatických zkušeností.',
+                icon: FaSeedling,
+                image: 'safe-space.webp'
+              },
+              {
+                title: 'Sebevědomí a vztah k sobě',
+                description: 'Bezpečný prostor pro zpracování traumatických zkušeností.',
+                icon: FaHandHoldingHeart,
+                image: 'healing-space.webp'
               },
               {
                 title: 'Úzkost a deprese',
+                description: 'Osobní sezení zaměřená na vaše specifické potřeby a cíle.',
+                icon: FaUserShield,
+                image: 'stress.webp'
+              },
+              {
+                title: 'Stres a jeho zvládání',
                 description: 'Podpora při zvládání úzkosti a deprese, rozvoj strategií zvládání.',
                 icon: FaHeartbeat,
                 image: 'mindfulness.webp'
-              },
-              {
-                title: 'Podpora při traumatu',
-                description: 'Bezpečný prostor pro zpracování traumatických zkušeností.',
-                icon: FaExchangeAlt,
-                image: 'healing-space.webp'
               },
               {
                 title: 'Vztahové poradenství',
@@ -308,15 +328,9 @@ export default function Services() {
                 image: 'relationships.webp'
               },
               {
-                title: 'Online terapie',
-                description: 'Flexibilní a dostupná terapie prostřednictvím video sezení.',
-                icon: FaVideo,
-                image: 'video-therapy.webp'
-              },
-              {
-                title: 'Rodinná terapie',
-                description: 'Podpora rodin v budování zdravých vztahů a komunikace.',
-                icon: FaUserFriends,
+                title: 'Zpracování složitých životních situací',
+                description: 'Bezpečný prostor pro zpracování traumatických zkušeností.',
+                icon: FaExchangeAlt,
                 image: 'family.webp'
               },
             ].map((service, index) => (
@@ -456,8 +470,8 @@ export default function Services() {
       </Box>
 
       {/* Pricing Section */}
-      <Box py={20} bg={bgColor} >
-        <Container maxW={'7xl'} id="pricing">
+      <Box py={20} bg={bgColor} id="pricing" >
+        <Container maxW={'7xl'}>
           <Stack spacing={4} maxW={'3xl'} textAlign={'center'} mb={20} mx="auto">
             <Heading
               lineHeight={1.1}
@@ -490,31 +504,29 @@ export default function Services() {
             {[
               {
                 title: 'Individuální terapie',
-                price: '1 200 Kč',
+                price: '1 100 Kč',
                 duration: '50 minut',
                 description: 'Standardní terapeutické sezení zaměřené na vaše specifické potřeby.',
                 features: [
                   'Osobní setkání v terapeutické místnosti',
                   'Individuální přístup',
-                  'Flexibilní termíny',
-                  'Možnost online sezení'
+                  'Flexibilní termíny'
                 ],
-                icon: FaUserShield,
-                image: 'therapy-session.webp'
+                icon: FaUserFriends,
+                image: 'tom-home.webp'
               },
               {
                 title: 'Online terapie',
-                price: '1 000 Kč',
+                price: '1 200 Kč',
                 duration: '50 minut',
                 description: 'Terapeutické sezení přes video hovor pro vaše pohodlí.',
                 features: [
                   'Bezpečné video hovory',
                   'Flexibilní termíny',
-                  'Komfort vašeho domova',
-                  'Stejná kvalita péče'
+                  'Komfort vašeho domova'
                 ],
                 icon: FaVideo,
-                image: 'video-therapy.webp'
+                image: 'laptop2.jpg'
               }
             ].map((service, index) => (
               <Box
@@ -553,12 +565,12 @@ export default function Services() {
                   />
                 </Box>
                 <Stack spacing={6} align="center">
-                  <Heading fontSize={'2xl'} textAlign="center">{service.title}</Heading>
+                  <Flex align="center" gap={3} mb={4}>
+                    <Icon as={service.icon} w={8} h={8} color="green.400" />
+                    <Heading fontSize={'2xl'} textAlign="center">{service.title}</Heading>
+                  </Flex>
                   <Text fontSize={'3xl'} fontWeight="bold" color="green.400" textAlign="center">
-                    {service.price}
-                  </Text>
-                  <Text color={textColor} fontSize={'lg'} textAlign="center">
-                    {service.duration}
+                    {service.price} <span style={{ fontSize: '1rem'}}>/{service.duration}</span>
                   </Text>
                   <Text color={textColor} mb={4} textAlign="center">
                     {service.description}
@@ -676,14 +688,17 @@ export default function Services() {
             >
               <Button
                 as="a"
-                href="mailto:terapie@tomnovacek.com"
+                href="/calendar"
                 rounded={'full'}
                 size={'lg'}
                 fontWeight={'normal'}
                 px={8}
                 colorScheme={'green'}
-                bg={'green.400'}
-                _hover={{ bg: 'green.300' }}
+                variant={'solid'}
+                _hover={{
+                  bg: 'green.400',
+                  color: 'white',
+                }}
                 leftIcon={<FaCalendarAlt />}
               >
                 Objednat konzultaci
@@ -697,7 +712,11 @@ export default function Services() {
                 px={8}
                 variant="outline"
                 colorScheme={'green'}
-                _hover={{ bg: 'green.50' }}
+                _hover={{
+                  bg: 'green.400',
+                  color: 'white',
+                }}
+                rightIcon={<FaArrowRight />}
               >
                 Více o mně
               </Button>

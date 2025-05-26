@@ -21,7 +21,7 @@ import {
 } from '@chakra-ui/react'
 import { Link as RouterLink } from 'react-router-dom'
 import { CheckCircleIcon } from '@chakra-ui/icons'
-import { FaUserFriends, FaHeart, FaBrain, FaBalanceScale, FaComments, FaLightbulb, FaHandHoldingHeart, FaUserMd, FaVideo, FaCalendarAlt, FaCreditCard, FaShieldAlt, FaClock, FaInfoCircle } from 'react-icons/fa'
+import { FaUserFriends, FaHeart, FaBrain, FaBalanceScale, FaComments, FaLightbulb, FaHandHoldingHeart, FaUserMd, FaVideo, FaCalendarAlt, FaCreditCard, FaShieldAlt, FaClock, FaInfoCircle, FaHeartbeat, FaArrowRight } from 'react-icons/fa'
 import { useEffect, useState } from 'react'
 import { getAllPosts } from '../utils/mdx'
 import OptimizedImage from '../components/OptimizedImage'
@@ -181,10 +181,13 @@ export default function Home() {
                   rounded={'full'}
                   size={'lg'}
                   fontWeight={'normal'}
-                  px={6}
+                  px={8}
                   colorScheme={'green'}
-                  bg={'green.400'}
-                  _hover={{ bg: 'green.300' }}
+                  variant={'solid'}
+                  _hover={{
+                    bg: 'green.400',
+                    color: 'white',
+                  }}
                   leftIcon={<FaCalendarAlt />}
                 >
                   Objednat konzultaci
@@ -195,7 +198,16 @@ export default function Home() {
                   rounded={'full'}
                   size={'lg'}
                   fontWeight={'normal'}
-                  px={6}
+                  px={8}
+                  variant="outline"
+                  colorScheme={'green'}
+                  borderColor={'white'}
+                  color={'white'}
+                  _hover={{
+                    bg: 'green.400',
+                    color: 'white',
+                    borderColor: 'green.400'
+                  }}
                 >
                   Zjistit více
                 </Button>
@@ -354,6 +366,12 @@ export default function Home() {
             colorScheme={'green'}
             variant={'outline'}
             size={'lg'}
+            rounded={'full'}
+            px={8}
+            _hover={{
+              bg: 'green.400',
+              color: 'white',
+            }}
           >
             Více o mně
           </Button>
@@ -386,36 +404,39 @@ export default function Home() {
           <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={10} w="full">
             {[
               {
+                icon: FaBrain,
+                title: 'Osobní potíže',
+                description: 'Individuální terapie',
+                features: [
+                  'Úzkost a deprese',
+                  'Výkyvy nálady',
+                  'Trauma a PTSD',
+                  'Sebevědomí',
+                  'Vztah k sobě'
+                ]
+              },
+              {
                 icon: FaUserFriends,
                 title: 'Vztahy a vztahové problémy',
-                description: 'Osobní terapeutická sezení zaměřená na váš osobní růst a uzdravení.',
+                description: 'Porozumění a řešení vztahových potíží.',
                 features: [
-                  'Individuální léčebné plány',
-                  'Bezpečné, důvěrné prostředí',
-                  'Ověřené přístupy',
-                  'Flexibilní možnosti plánování'
+                  'Potřeby ve vztazích',
+                  'Komunikační problémy',
+                  'Upřednostňování druhých',
+                  'Mezigenerační vztahy',
+                  'Intimita a vztahové potíže'
                 ]
               },
               {
-                icon: FaBrain,
-                title: 'Deprese a úzkost',
-                description: 'Specializovaná léčba pomocí ověřených přístupů.',
+                icon: FaHeartbeat,
+                title: 'Zvládání stresového prostředí',
+                description: 'Strategie zvládání stresu.',
                 features: [
+                  'Zdravotní potíže',
+                  'Životní změny',
+                  'Nároky na sebe',
                   'Strategie zvládání',
-                  'Zvládání stresu',
-                  'Regulace nálady',
-                  'Životní změny'
-                ]
-              },
-              {
-                icon: FaBalanceScale,
-                title: 'Zvládání stresu',
-                description: 'Specializovaná péče o zpracování a uzdravení z traumatu.',
-                features: [
-                  'Trauma-informed péče',
-                  'Bezpečné zpracování',
-                  'Techniky uzdravení',
-                  'Podpůrné prostředí'
+                  'Balancování práce a osobního života'
                 ]
               }
             ].map((service, index) => (
@@ -470,6 +491,8 @@ export default function Home() {
               colorScheme={'green'}
               variant={'outline'}
               size={'lg'}
+              rounded={'full'}
+              px={8}
               _hover={{
                 bg: 'green.400',
                 color: 'white',
@@ -485,9 +508,9 @@ export default function Home() {
       <Box py={20} bg={cardBg}>
         <Container maxW={'7xl'} centerContent>
           <Stack spacing={4} maxW={'6xl'} textAlign={'center'} mb={10}>
-            <Heading fontSize={'3xl'}>Nejnovější z blogu</Heading>
+            <Heading fontSize={'3xl'}>Z mého blogu</Heading>
             <Text color={textColor} fontSize={'xl'}>
-              Postřehy a zdroje na podporu vaší cesty k duševnímu zdraví
+              Postřehy a zdroje na podporu vaší cesty
             </Text>
           </Stack>
           <SimpleGrid columns={{ base: 1, md: 2 }} spacing={10} w="full">
@@ -564,6 +587,8 @@ export default function Home() {
               colorScheme={'green'}
               variant={'outline'}
               size={'lg'}
+              rounded={'full'}
+              px={8}
               _hover={{
                 bg: 'green.400',
                 color: 'white',
@@ -573,21 +598,86 @@ export default function Home() {
             </Button>
           </Stack>
         </Container>
-        <Stack align={'center'} mt={10}>
-            <Button
-              as={RouterLink}
-              to="/calendar"
-              colorScheme={'green'}
-              variant={'solid'}
-              size={'lg'}
-              _hover={{
-                bg: 'green.400',
-                color: 'white',
-              }}
+
+      </Box>
+
+      {/* Call to Action Section */}
+      <Box py={20} bg={bgColor}>
+        <Container maxW={'7xl'}>
+          <Stack
+            spacing={8}
+            align="center"
+            textAlign="center"
+            maxW={'3xl'}
+            mx="auto"
+          >
+            <Heading
+              lineHeight={1.1}
+              fontWeight={600}
+              fontSize={{ base: '3xl', sm: '4xl', lg: '5xl' }}
             >
-              Objednat konzultaci
-            </Button>
+              <Text
+                as={'span'}
+                position={'relative'}
+                _after={{
+                  content: "''",
+                  width: 'full',
+                  height: '30%',
+                  position: 'absolute',
+                  bottom: 1,
+                  left: 0,
+                  bg: 'green.400',
+                  zIndex: -1,
+                }}
+              >
+                Vydejme se spolu na cestu
+              </Text>
+            </Heading>
+            <Text color={textColor} fontSize={'xl'} maxW={'2xl'}>
+              První krok je často ten nejtěžší. Domluvte si úvodní konzultaci a společně prozkoumáme, jak vám mohu pomoci.
+            </Text>
+            <Stack
+              spacing={{ base: 4, sm: 6 }}
+              direction={{ base: 'column', sm: 'row' }}
+              pt={4}
+            >
+              <Button
+                as="a"
+                href="mailto:terapie@tomnovacek.com"
+                rounded={'full'}
+                size={'lg'}
+                fontWeight={'normal'}
+                px={8}
+                colorScheme={'green'}
+                variant={'solid'}
+                _hover={{
+                  bg: 'green.400',
+                  color: 'white',
+                }}
+                leftIcon={<FaCalendarAlt />}
+              >
+                Objednat konzultaci
+              </Button>
+              <Button
+                as={RouterLink}
+                to="/services"
+                rounded={'full'}
+                size={'lg'}
+                fontWeight={'normal'}
+                px={8}
+                variant="outline"
+                colorScheme={'green'}
+                _hover={{
+                  bg: 'green.400',
+                  color: 'white',
+                }}
+                rightIcon={<FaArrowRight />}
+              >
+                Moje služby
+              </Button>
+            </Stack>
           </Stack>
+        </Container>
       </Box>
     </>
   )

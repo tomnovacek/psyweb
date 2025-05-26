@@ -157,6 +157,12 @@ export default function Blog() {
               colorScheme={'green'}
               variant={'outline'}
               size={'lg'}
+              rounded={'full'}
+              px={8}
+              _hover={{
+                bg: 'green.400',
+                color: 'white',
+              }}
             >
               Více článků
             </Button>

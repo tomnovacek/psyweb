@@ -152,6 +152,12 @@ export default function Calendar() {
               colorScheme="green"
               variant="outline"
               size="lg"
+              rounded={'full'}
+              px={8}
+              _hover={{
+                bg: 'green.400',
+                color: 'white',
+              }}
             >
               Kontaktujte mě emailem
             </Button>
@@ -162,6 +168,12 @@ export default function Calendar() {
               colorScheme="green"
               variant="outline"
               size="lg"
+              rounded={'full'}
+              px={8}
+              _hover={{
+                bg: 'green.400',
+                color: 'white',
+              }}
             >
               Moje služby
             </Button>
