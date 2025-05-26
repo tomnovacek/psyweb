@@ -14,7 +14,7 @@ import {
   useBreakpointValue,
 } from '@chakra-ui/react'
 import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons'
-import { FaCalendarAlt } from 'react-icons/fa'
+import { FaCalendarAlt, FaSms } from 'react-icons/fa'
 import OptimizedImage from './OptimizedImage'
 
 const DesktopNav = () => {
@@ -138,6 +138,11 @@ export default function Navbar() {
             direction={'row'}
             spacing={6}
           >
+            <Box display="flex" alignItems="center">
+              <Text fontSize={'sm'} color={useColorModeValue('gray.500', 'white')} fontWeight={400} variant={'link'} display="flex" alignItems="center" gap={2} textAlign="center" whiteSpace="nowrap">
+                <Box as={FaSms} boxSize={8}/> Tomáš Nováček <br /> +420 602 773 440
+              </Text>
+            </Box>
             <Button
               as={RouterLink}
               to="/calendar"
@@ -146,14 +151,14 @@ export default function Navbar() {
               fontWeight={'normal'}
               px={8}
               colorScheme={'green'}
-              variant={'solid'}
+              variant={'outline'}
               _hover={{
                 bg: 'green.400',
                 color: 'white',
               }}
               leftIcon={<FaCalendarAlt />}
             >
-              Domluvit konzultaci
+              Objednat se
               </Button>
           </Stack>
         </Flex>
