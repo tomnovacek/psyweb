@@ -25,14 +25,24 @@ export const getOptimizedImagePath = async (src, size = 'md') => {
 
     // Extract filename from path, handling both formats
     const filename = resolvedSrc.includes('/') 
-      ? resolvedSrc.split('/').pop().split('.')[0]
-      : resolvedSrc.split('.')[0]
+      ? resolvedSrc.split('/').pop()
+      : resolvedSrc
+    
+    // If the filename already includes a size suffix, return it as is
+    if (filename.includes('-md.webp') || 
+        filename.includes('-sm.webp') || 
+        filename.includes('-lg.webp') || 
+        filename.includes('-xl.webp') || 
+        filename.includes('-2xl.webp') || 
+        filename.includes('-xs.webp')) {
+      return `/optimized-images/${filename}`
+    }
     
     // Get the size suffix
     const suffix = sizeSuffixMap[size] || 'md'
     
     // Return the optimized image path
-    const optimizedPath = `/optimized-images/${filename}-${suffix}.webp`
+    const optimizedPath = `/optimized-images/${filename.split('.')[0]}-${suffix}.webp`
     console.log('Using optimized path:', { optimizedPath, size, suffix })
     return optimizedPath
   } catch (error) {

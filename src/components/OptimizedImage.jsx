@@ -6,7 +6,7 @@ const OptimizedImage = ({
   src,
   alt,
   size = 'md',
-  fallbackSrc = '/assets/optimized-images/CAP-md.webp',
+  fallbackSrc = '/optimized-images/website-icon-300x298-md.webp',
   priority = false,
   ...props
 }) => {
