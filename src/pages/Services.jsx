@@ -55,24 +55,20 @@ export default function Services() {
   const bgColor = useColorModeValue('gray.50', 'gray.900')
   const cardBg = useColorModeValue('white', 'gray.800')
   const heroCardBg = useColorModeValue('whiteAlpha.200', 'blackAlpha.200')
-  const textColor = useColorModeValue('gray.600', 'gray.400')
-  const headingColor = useColorModeValue('gray.700', 'white')
+  const textColor = useColorModeValue('gray.700', 'gray.300')
+  const headingColor = useColorModeValue('gray.800', 'gray.200')
   const borderColor = useColorModeValue('gray.200', 'gray.700')
 
   return (
     <Box bg={bgColor}>
       <SEO
-        title="Tomáš Nováček - Psychoterapeut | Brno"
-        description="Psychoterapie a poradenství v centru Brna. Nabízím individuální terapii, léčbu úzkosti, podporu při depresi a poradenství při traumatu."
-        keywords="psychoterapeutické služby, individuální terapie, léčba úzkosti, podpora při depresi, poradenství při traumatu, Brno, Česká republika"
-        url="https://tomnovacek.com/services"
-        image="/src/assets/img/room.jpeg"
+        title="Služby | Tomáš Nováček - Psychoterapie"
+        description="Profesionální psychoterapeutické služby v centru Brna. Individuální terapie, párová terapie a online konzultace."
+        keywords="psychoterapie, poradenství, Brno, individuální terapie, párová terapie, online konzultace"
+        image="room.jped"
         preloadImages={[
-          '/src/assets/img/room.webp',  // Hero background
-          'tom-home.webp',  // Portrait
-          'therapy-session.webp',  // Individual therapy
-          'healing-space.webp',  // Trauma support
-          'video-therapy.webp'  // Online therapy
+          'room.jpeg',  // Hero background
+          'tom1.png'  // Hero portrait
         ]}
       />
       <StructuredData type="MedicalBusiness" />
@@ -89,7 +85,7 @@ export default function Services() {
           zIndex={0}
         >
           <OptimizedImage
-            src="/src/assets/img/room.webp"
+            src="/src/assets/img/room.jpeg"
             alt="Terapeutická místnost"
             objectFit="cover"
             width="1920"
@@ -246,7 +242,7 @@ export default function Services() {
                 }}
               >
                 <OptimizedImage
-                  src="tom-home.webp"
+                  src="tom1.png"
                   alt="Tom Nováček"
                   objectFit="cover"
                   width="100%"
@@ -271,6 +267,7 @@ export default function Services() {
             <Heading
               lineHeight={1.1}
               fontWeight={600}
+              color={headingColor}
               fontSize={{ base: '3xl', sm: '4xl', lg: '5xl' }}
             >
               <Text
@@ -301,13 +298,13 @@ export default function Services() {
                 title: 'Osobní rozvoj',
                 description: 'Bezpečný prostor pro zpracování traumatických zkušeností.',
                 icon: FaSeedling,
-                image: 'safe-space.webp'
+                image: 'healing-space.webp'
               },
               {
                 title: 'Sebevědomí a vztah k sobě',
                 description: 'Bezpečný prostor pro zpracování traumatických zkušeností.',
                 icon: FaHandHoldingHeart,
-                image: 'healing-space.webp'
+                image: 'safe-space.webp'
               },
               {
                 title: 'Úzkost a deprese',
@@ -372,7 +369,7 @@ export default function Services() {
                       color="green.400"
                       mb={4}
                     />
-                    <Heading fontSize={'xl'} mb={4}>
+                    <Heading fontSize={'xl'} mb={4} color={headingColor}>
                       {service.title}
                     </Heading>
                     <Text color={textColor}>
@@ -394,6 +391,7 @@ export default function Services() {
               <Heading
                 lineHeight={1.1}
                 fontWeight={600}
+                color={headingColor}
                 fontSize={{ base: '3xl', sm: '4xl', lg: '5xl' }}
               >
                 <Text
@@ -429,7 +427,7 @@ export default function Services() {
                   <Box>
                     <Flex align="center" gap={3} mb={4}>
                       <Icon as={FaInfoCircle} w={8} h={8} color="green.400" />
-                      <Heading fontSize={'xl'}>Úvodní konzultace</Heading>
+                      <Heading color={headingColor} fontSize={'xl'}>Úvodní konzultace</Heading>
                     </Flex>
                     <Text color={textColor} fontSize={'lg'}>
                       Vaše první sezení je příležitostí, abychom se navzájem poznali a prodiskutovali vaše cíle pro terapii. Probereme vaši historii, současné trápění a zformuluje základ plánu terapie.
@@ -438,7 +436,7 @@ export default function Services() {
                   <Box>
                     <Flex align="center" gap={3} mb={4}>
                       <Icon as={FaClock} w={8} h={8} color="green.400" />
-                      <Heading fontSize={'xl'}>Délka a frekvence</Heading>
+                      <Heading color={headingColor} fontSize={'xl'}>Délka a frekvence</Heading>
                     </Flex>
                     <Text color={textColor} fontSize={'lg'}>
                       Standardní sezení trvá 50 minut. Frekvence sezení je obvykle týdenní nebo čtrnáctidenní, v závislosti na vašich potřebách a cílech.
@@ -456,7 +454,7 @@ export default function Services() {
                 justifyContent="center"
               >
                 <OptimizedImage
-                  src="tom-home.webp"
+                  src="tom1.png"
                   alt="Tom Nováček"
                   objectFit="cover"
                   width="50%"
@@ -476,6 +474,7 @@ export default function Services() {
             <Heading
               lineHeight={1.1}
               fontWeight={600}
+              color={headingColor}
               fontSize={{ base: '3xl', sm: '4xl', lg: '5xl' }}
             >
               <Text
@@ -513,7 +512,7 @@ export default function Services() {
                   'Bezpečný a důvěrný prostor',
                 ],
                 icon: FaUserFriends,
-                image: 'room.webp',
+                image: 'room.jpeg',
                 popular: true
               },
               {
@@ -612,13 +611,13 @@ export default function Services() {
                     {service.features.map((feature, idx) => (
                       <ListItem key={idx} display="flex" alignItems="center" gap={3}>
                         <Icon as={CheckCircleIcon} color="green.400" boxSize={5} />
-                        <Text>{feature}</Text>
+                        <Text color={textColor}>{feature}</Text>
                       </ListItem>
                     ))}
                   </List>
                   <Button
                     as="a"
-                    href="mailto:terapie@tomnovacek.com"
+                    href="/calendar"
                     w="full"
                     colorScheme="green"
                     rounded="full"
@@ -645,6 +644,7 @@ export default function Services() {
               <Heading
                 lineHeight={1.1}
                 fontWeight={600}
+                color={headingColor}
                 fontSize={{ base: '3xl', sm: '4xl', lg: '5xl' }}
               >
                 <Text
@@ -673,7 +673,7 @@ export default function Services() {
               <Box>
                 <Flex align="center" gap={3} mb={4}>
                   <Icon as={FaIdCard} w={8} h={8} color="green.400" />
-                  <Heading fontSize={'xl'}>Zdravotní pojištění</Heading>
+                  <Heading color={headingColor} fontSize={'xl'}>Zdravotní pojištění</Heading>
                 </Flex>
                 <Text color={textColor} fontSize={'lg'}>
                   Služby si klienti hradí z vlastních prostředků. Nicméně, některé pojišťovny částečně přispívají na psychoterapii v rámci svych nadstandardních preventivních programů. Jsem registrován v rámci České Asociace pro Psychoterapii tak, aby klienti mohli tyto výhody čerpat. Doporučuji kontaktovat vaši pojišťovnu pro více informací.
@@ -682,7 +682,7 @@ export default function Services() {
               <Box>
                 <Flex align="center" gap={3} mb={4}>
                   <Icon as={FaMoneyBillAlt} w={8} h={8} color="green.400" />
-                  <Heading fontSize={'xl'}>Způsoby platby</Heading>
+                  <Heading color={headingColor} fontSize={'xl'}>Způsoby platby</Heading>
                 </Flex>
                 <Text color={textColor} fontSize={'lg'}>
                   Platba je možná v hotovosti nebo převodem na účet. Obvykle vystavuji fakturu po sezení a zasílám jí emailem. Pro více informací o platbách mě neváhejte kontaktovat.
@@ -711,6 +711,7 @@ export default function Services() {
               <Text
                 as={'span'}
                 position={'relative'}
+                color={headingColor}
                 _after={{
                   content: "''",
                   width: 'full',

@@ -13,11 +13,11 @@ const posts = {
       readTime: "12 min čtení",
       excerpt: "Komplexní průvodce porozuměním úzkosti, jejím příznakům a efektivním strategiím zvládání pro lepší duševní zdraví.",
       tags: ["Úzkost", "Duševní zdraví", "Sebepéče", "Pohoda"],
-      image: "/src/assets/img/stress.webp",
+      image: "stress.webp",
       author: {
         name: "Tom Nováček",
         role: "Licencovaný psychoterapeut",
-        image: "/src/assets/img/tom-home.webp"
+        image: "tom-home.webp"
       }
     },
     Component: anxietyGuide
@@ -30,11 +30,11 @@ const posts = {
       readTime: "8 min čtení",
       excerpt: "Objevte, jak mohou praktiky všímavosti posílit vaši terapeutickou cestu a zlepšit celkovou pohodu.",
       tags: ["Všímavost", "Terapie", "Pohoda"],
-      image: "/src/assets/img/mindfulness.webp",
+      image: "mindfulness.webp",
       author: {
         name: "Tom Nováček",
         role: "Licencovaný psychoterapeut",
-        image: "/src/assets/img/tom-home.webp"
+        image: "tom-home.webp"
       }
     },
     Component: mindfulnessTherapy
@@ -47,11 +47,11 @@ const posts = {
       readTime: "12 min čtení",
       excerpt: "Naučte se základní strategie pro budování a udržování zdravých vztahů ve všech oblastech vašeho života.",
       tags: ["Vztahy", "Komunikace", "Osobní růst"],
-      image: "/src/assets/img/relationships.webp",
+      image: "relationships.webp",
       author: {
         name: "Tom Nováček",
         role: "Licencovaný psychoterapeut",
-        image: "/src/assets/img/tom-home.webp"
+        image: "tom-home.webp"
       }
     },
     Component: healthyRelationships

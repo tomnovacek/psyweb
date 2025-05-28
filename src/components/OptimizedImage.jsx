@@ -1,92 +1,93 @@
+import { Box, Image, Skeleton } from '@chakra-ui/react'
 import { useState, useEffect } from 'react'
-import { Image, Skeleton } from '@chakra-ui/react'
-import { getOptimizedImagePath } from '../utils/getOptimizedImage'
+import { getOptimizedImage } from '../utils/getOptimizedImage'
 
-const OptimizedImage = ({
-  src,
-  alt,
-  size = 'md',
-  fallbackSrc = '/optimized-images/website-icon-300x298-md.webp',
-  priority = false,
-  ...props
-}) => {
+export default function OptimizedImage({ src, alt, priority, ...props }) {
   const [imageSrc, setImageSrc] = useState(null)
   const [isLoading, setIsLoading] = useState(true)
-  const [error, setError] = useState(null)
-
-  // Ensure priority is a boolean
-  const isPriority = typeof priority === 'string' ? priority === 'true' : Boolean(priority)
+  const [error, setError] = useState(false)
 
   useEffect(() => {
-    let isMounted = true
-
     const loadImage = async () => {
       try {
         setIsLoading(true)
-        setError(null)
+        setError(false)
         
-        const optimizedPath = await getOptimizedImagePath(src, size)
-        if (!optimizedPath) {
-          throw new Error('Failed to generate optimized image path')
-        }
-
-        // In development, we don't need to check if the image exists
+        // In development, use the original image path
         if (import.meta.env.DEV) {
-          if (isMounted) {
-            setImageSrc(optimizedPath)
-            setIsLoading(false)
-          }
+          const originalSrc = src.startsWith('/') ? src : `/src/assets/img/${src}`
+          setImageSrc(originalSrc)
+          setIsLoading(false)
           return
         }
 
-        // In production, check if the image exists
-        const response = await fetch(optimizedPath)
-        if (!response.ok) {
-          console.warn(`Image not found at ${optimizedPath}, trying fallback`)
-          throw new Error('Failed to load image')
+        // In production, use optimized images
+        const optimizedSrc = await getOptimizedImage(src)
+        
+        if (!optimizedSrc) {
+          throw new Error('Failed to get optimized image path')
         }
 
-        if (isMounted) {
-          setImageSrc(optimizedPath)
-          setIsLoading(false)
-        }
+        setImageSrc(optimizedSrc)
+        setIsLoading(false)
       } catch (err) {
-        if (isMounted) {
-          console.error('Error loading optimized image:', { error: err, src, size, fallbackSrc })
-          setError(err)
-          setImageSrc(fallbackSrc)
-          setIsLoading(false)
-        }
+        console.error('Error loading image:', err)
+        setError(true)
+        setIsLoading(false)
       }
     }
 
     loadImage()
+  }, [src])
 
-    return () => {
-      isMounted = false
-    }
-  }, [src, size, fallbackSrc])
-
-  if (isLoading) {
-    return <Skeleton {...props} />
+  if (error) {
+    return (
+      <Box
+        bg="gray.100"
+        display="flex"
+        alignItems="center"
+        justifyContent="center"
+        {...props}
+      >
+        <Box textAlign="center" p={4}>
+          <Box color="gray.500">Image not found</Box>
+          <Box fontSize="sm" color="gray.400">{alt}</Box>
+        </Box>
+      </Box>
+    )
   }
 
   return (
-    <Image
-      src={imageSrc || fallbackSrc}
-      alt={alt}
-      loading={isPriority ? "eager" : "lazy"}
-      decoding={isPriority ? "sync" : "async"}
-      fetchpriority={isPriority ? "high" : "auto"}
-      onError={(e) => {
-        console.warn(`Failed to load image ${imageSrc}, using fallback`)
-        if (imageSrc !== fallbackSrc) {
-          setImageSrc(fallbackSrc)
-        }
-      }}
-      {...props}
-    />
+    <Box position="relative" {...props}>
+      {isLoading && (
+        <Skeleton
+          position="absolute"
+          top={0}
+          left={0}
+          right={0}
+          bottom={0}
+          zIndex={1}
+        />
+      )}
+      <Image
+        src={imageSrc}
+        alt={alt}
+        loading={priority ? "eager" : "lazy"}
+        onError={() => {
+          console.error('Failed to load image:', imageSrc)
+          setError(true)
+          setIsLoading(false)
+        }}
+        onLoad={() => {
+          setIsLoading(false)
+        }}
+        {...props}
+        style={{
+          ...props.style,
+          opacity: isLoading ? 0 : 1,
+          transition: 'opacity 0.3s ease-in-out'
+        }}
+      />
+    </Box>
   )
-}
-
-export default OptimizedImage 
+} 

@@ -39,8 +39,8 @@ export default function Home() {
   const bgColor = useColorModeValue('gray.50', 'gray.900')
   const cardBg = useColorModeValue('white', 'gray.800')
   const heroCardBg = useColorModeValue('whiteAlpha.200', 'blackAlpha.200')
-  const headingColor = useColorModeValue('gray.700', 'white')
-  const textColor = useColorModeValue('gray.600', 'gray.400')
+  const textColor = useColorModeValue('gray.700', 'gray.300')
+  const headingColor = useColorModeValue('gray.800', 'gray.200')
   const serviceBg = useColorModeValue('green.100', 'gray.800')
   const borderColor = useColorModeValue('gray.200', 'gray.700')
 
@@ -67,10 +67,10 @@ export default function Home() {
         title="Tomáš Nováček - Psychoterapie | Centrum Brna"
         description="Psychoterapie v centru Brna. Specializace na individuální terapii pro dospělé. Objednejte si svou konzultaci ještě dnes."
         keywords="psychoterapie, poradenství, Brno, individuální terapie"
-        image="tom-home.webp"
+        image="tom1.png"
         preloadImages={[
           'forrest.webp',  // Hero background
-          'tom-home.webp'  // Hero portrait
+          'tom1.png'  // Hero portrait
         ]}
       />
       <StructuredData type="MedicalBusiness" />
@@ -130,7 +130,7 @@ export default function Home() {
               borderRadius="lg"
               maxW="2xl"
               flex="1"
-              backdropFilter="blur(10px)"
+              backdropFilter="blur(2px)"
               minH={{ base: "auto", md: "500px" }}
               display="flex"
               flexDirection="column"
@@ -244,7 +244,7 @@ export default function Home() {
                 }}
               >
                 <OptimizedImage
-                  src="tom-home.webp"
+                  src="tom1.png"
                   alt="Tom Nováček"
                   objectFit="cover"
                   width="100%"
@@ -270,6 +270,7 @@ export default function Home() {
               lineHeight={1.1}
               fontWeight={600}
               fontSize={{ base: '3xl', sm: '4xl', lg: '5xl' }}
+              color={headingColor}
             >
               <Text
                 as={'span'}
@@ -301,7 +302,7 @@ export default function Home() {
                 overflow="hidden"
               >
                 <OptimizedImage
-                  src="room.webp"
+                  src="room.jpeg"
                   alt="Terapeutická místnost"
                   objectFit="cover"
                   width="100%"
@@ -333,7 +334,7 @@ export default function Home() {
                 </Box>
               </Box>
               <Box p={8}>
-                <Text fontSize={'lg'} mb={6}>
+                <Text fontSize={'lg'} mb={6} color={textColor}>
                   Posledních sedm let se intenzivně věnuji psychologickému poradenství a čtyři roky praktikuji terapii. Moje odbornost je založena na důkladném vzdělání a kontinuálním profesním rozvoji. Absolvoval jsem dvouletý specializovaný výcvik v koučování a šestiletý certifikovaný výcvik v integrativní psychoterapii. Jsem také řádným členem České asociace pro psychoterapii - komunity, která klade důraz na etické standardy a vysokou kvalifikaci v oboru psychoterapie.
                 </Text>
                 <Button
@@ -371,7 +372,7 @@ export default function Home() {
                 overflow="hidden"
               >
                 <OptimizedImage
-                  src="mountinHikeGroup.webp"
+                  src="mountinHikeGroup.jpg"
                   alt="Skupina lidí na horách"
                   objectFit="cover"
                   width="100%"
@@ -403,7 +404,7 @@ export default function Home() {
                 </Box>
               </Box>
               <Box p={8}>
-                <Text fontSize={'lg'} mb={6}>
+                <Text fontSize={'lg'} mb={6} color={textColor}>
                   Věřím, že každý člověk má vnitřní zdroje, jak se vyrovnat s životními výzvami. Existují však chvíle, kdy se můžeme cítit uvězněni nebo bezmocní v řešení obtížných situací. V takových chvílích vás podporuji v pochopení vašich problémů a hledání efektivních způsobů, jak je překonat. Respektuji jedinečnost každého klienta, proto k každému přistupuji individuálně. Společně prozkoumáváme vaši osobní cestu sebepoznání a odhalujeme vnitřní síly, které vám mohou pomoci žít plnější a spokojenější život.
                 </Text>
                 <Button
@@ -435,6 +436,7 @@ export default function Home() {
               lineHeight={1.1}
               fontWeight={600}
               fontSize={{ base: '3xl', sm: '4xl', lg: '5xl' }}
+              color={headingColor}
               position="relative"
               display="inline-block"
             >
@@ -522,7 +524,7 @@ export default function Home() {
                     </Text>
                     <List spacing={2}>
                       {service.features.map((feature, idx) => (
-                        <ListItem key={idx}>
+                        <ListItem key={idx} color={textColor}>
                           <ListIcon as={CheckCircleIcon} color="green.400" />
                           {feature}
                         </ListItem>
@@ -557,7 +559,7 @@ export default function Home() {
         <Container maxW="container.xl">
           <VStack spacing={12} align="stretch">
             <Box textAlign="center">
-              <Heading as="h2" size="2xl" mb={4}>
+              <Heading as="h2" size="2xl" mb={4} color={headingColor}>
                 Z mého bloku
               </Heading>
               <Text fontSize="xl" color="gray.600">
@@ -607,6 +609,7 @@ export default function Home() {
               lineHeight={1.1}
               fontWeight={600}
               fontSize={{ base: '3xl', sm: '4xl', lg: '5xl' }}
+              color={headingColor}
             >
               <Text
                 as={'span'}

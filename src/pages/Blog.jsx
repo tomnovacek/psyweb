@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
 import {
   Box,
   Container,
@@ -20,77 +19,7 @@ import {
 import { FiClock, FiTag } from 'react-icons/fi'
 import { getAllPosts, getAllTags } from '../utils/blogUtils'
 import SEO from '../components/SEO'
-
-// BlogCard component
-const BlogCard = ({ post }) => {
-  const { slug } = post
-  const cardBg = useColorModeValue('white', 'gray.800')
-  const cardHoverBg = useColorModeValue('gray.50', 'gray.700')
-
-  return (
-    <Box
-      as={Link}
-      to={`/blog/${slug}`}
-      bg={cardBg}
-      borderRadius="lg"
-      overflow="hidden"
-      boxShadow="sm"
-      transition="all 0.2s"
-      _hover={{
-        transform: 'translateY(-4px)',
-        boxShadow: 'md',
-        bg: cardHoverBg,
-        textDecoration: 'none'
-      }}
-    >
-      <Box position="relative" height="200px">
-        <Box
-          as="img"
-          src={post.image}
-          alt={post.title}
-          objectFit="cover"
-          width="100%"
-          height="100%"
-        />
-      </Box>
-      <Box p={6}>
-        <VStack align="start" spacing={4}>
-          <Heading as="h3" size="md" noOfLines={2}>
-            {post.title}
-          </Heading>
-          <Text color="gray.500" noOfLines={2}>
-            {post.excerpt}
-          </Text>
-          <HStack spacing={4}>
-            <HStack>
-              <Icon as={FiClock} color="gray.500" />
-              <Text color="gray.500">
-                {post.readTime}
-              </Text>
-            </HStack>
-            <Text color="gray.500">•</Text>
-            <Text color="gray.500">
-              {post.date}
-            </Text>
-          </HStack>
-          <HStack spacing={2} wrap="wrap">
-            {post.tags.map(tag => (
-              <Tag
-                key={tag}
-                size="sm"
-                colorScheme="green"
-                variant="subtle"
-              >
-                <TagLeftIcon as={FiTag} />
-                <TagLabel>{tag}</TagLabel>
-              </Tag>
-            ))}
-          </HStack>
-        </VStack>
-      </Box>
-    </Box>
-  )
-}
+import { BlogCard } from '../components/BlogCard'
 
 // Main Blog component
 const Blog = () => {
@@ -99,6 +28,7 @@ const Blog = () => {
   const [selectedTags, setSelectedTags] = useState([])
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState(null)
+  const headingColor = useColorModeValue('gray.800', 'gray.200')
 
   useEffect(() => {
     const loadPosts = async () => {
@@ -165,7 +95,7 @@ const Blog = () => {
       <Container maxW="container.xl">
         <VStack spacing={12} align="stretch">
           <Box>
-            <Heading as="h1" size="2xl" mb={4}>
+            <Heading color={headingColor} as="h1" size="2xl" mb={4}>
               Blog
             </Heading>
             <Text fontSize="xl" color="gray.600">

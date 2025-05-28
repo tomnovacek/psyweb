@@ -109,8 +109,15 @@ async function processImages() {
       manifest = JSON.parse(manifestContent);
       console.log('Loaded existing manifest');
     } catch (error) {
-      console.error('Error loading manifest:', error);
-      process.exit(1);
+      if (error.code === 'ENOENT') {
+        // Create empty manifest if it doesn't exist
+        manifest = { images: {} };
+        await fs.writeFile(manifestPath, JSON.stringify(manifest, null, 2));
+        console.log('Created new empty manifest');
+      } else {
+        console.error('Error loading manifest:', error);
+        process.exit(1);
+      }
     }
 
     // Find all images

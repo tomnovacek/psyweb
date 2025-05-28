@@ -11,7 +11,7 @@ export const blogPosts = [
     readTime: '5 min',
     author: {
       name: 'Tom Nováček',
-      image: '/src/assets/img/tom-home.webp',
+      image: '/src/assets/img/tom1.png',
       role: 'Licencovaný psychoterapeut'
     },
     tags: ['Úzkost', 'Duševní zdraví', 'Strategie zvládání'],
@@ -25,14 +25,28 @@ export const blogPosts = [
     readTime: '4 min',
     author: {
       name: 'Tom Nováček',
-      image: '/src/assets/img/tom-home.webp',
+      image: '/src/assets/img/tom1.png',
       role: 'Licencovaný psychoterapeut'
     },
     tags: ['Všímavost', 'Terapie', 'Pohoda'],
-    image: '/src/assets/img/mindfulness.webp',
+    image: '/src/assets/img/tom1.png',
     slug: 'sila-vsimavosti-v-terapii'
   }
 ]
+
+const defaultPost = {
+  title: 'Článek nenalezen',
+  date: new Date().toISOString(),
+  readTime: '0 min čtení',
+  excerpt: 'Požadovaný článek nebyl nalezen.',
+  tags: [],
+  image: 'tom1.png',
+  author: {
+    name: 'Tom Nováček',
+    role: 'Licencovaný psychoterapeut',
+    image: 'tom1.png'
+  }
+}
 
 export default function BlogPost() {
   const { slug } = useParams()

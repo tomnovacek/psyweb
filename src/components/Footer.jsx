@@ -105,11 +105,11 @@ export default function Footer() {
             {/* Logo */}
             <Box mt="auto">
               <OptimizedImage
-                src="/src/assets/img/CAP.png"
-                alt="Logo CAP"
-                size="xs"
-                width="180px"
+                src="CAP.png"
+                alt="ČAP Logo"
+                width="100%"
                 height="auto"
+                maxW="200px"
               />
             </Box>
           </Stack>

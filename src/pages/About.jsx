@@ -45,8 +45,8 @@ export default function About() {
   const bgColor = useColorModeValue('gray.50', 'gray.900')
   const cardBg = useColorModeValue('white', 'gray.800')
   const heroCardBg = useColorModeValue('whiteAlpha.200', 'blackAlpha.200')
-  const textColor = useColorModeValue('gray.600', 'gray.400')
-  const headingColor = useColorModeValue('gray.700', 'white')
+  const textColor = useColorModeValue('gray.700', 'gray.300')
+  const headingColor = useColorModeValue('gray.800', 'gray.200')
   const borderColor = useColorModeValue('gray.200', 'gray.700')
 
   return (
@@ -56,10 +56,10 @@ export default function About() {
         description="Seznamte se s Tomášem Nováčkem, profesionálním psychoterapeutem v Brně, Česká republika. Specializace na individuální terapii, úzkost, depresi a podporu při traumatu."
         keywords="psychoterapeut, Tomáš Nováček, terapie, poradenství, Brno, Česká republika, profesionální zkušenosti, kvalifikace"
         url="https://tomnovacek.com/about"
-        image="tom-home.webp"
+        image="tom1.png"
         preloadImages={[
           'mountainHike.jpg',  // Hero background
-          'tom-home.webp'  // Portrait
+          'tom1.png'  // Portrait
         ]}
       />
       <StructuredData type="Person" />
@@ -142,7 +142,7 @@ export default function About() {
                 }}
               >
                 <OptimizedImage
-                  src="tom-home.webp"
+                  src="tom1.png"
                   alt="Tom Nováček"
                   objectFit="cover"
                   width="100%"
@@ -176,11 +176,12 @@ export default function About() {
                 fontWeight={600}
                 fontSize={{ base: '3xl', sm: '4xl', lg: '6xl' }}
                 mb={6}
+                color={headingColor}
               >
                 <Text
                   as={'span'}
                   position={'relative'}
-                  color={'whiteAlpha.900'}
+                  color={headingColor}
                   _after={{
                     content: "''",
                     width: 'full',
@@ -211,7 +212,7 @@ export default function About() {
               >
                 <Button
                   as="a"
-                  href="mailto:terapie@tomnovacek.com"
+                  href="/calendar"
                   rounded={'full'}
                   size={'lg'}
                   fontWeight={'normal'}
@@ -260,6 +261,7 @@ export default function About() {
               lineHeight={1.1}
               fontWeight={600}
               fontSize={{ base: '3xl', sm: '4xl', lg: '5xl' }}
+              color={headingColor}
             >
               <Text
                 as={'span'}
@@ -339,6 +341,7 @@ export default function About() {
               lineHeight={1.1}
               fontWeight={600}
               fontSize={{ base: '3xl', sm: '4xl', lg: '5xl' }}
+              color={headingColor}
             >
               <Text
                 as={'span'}
@@ -372,26 +375,26 @@ export default function About() {
                 <Box>
                   <Flex align="center" gap={3} mb={4}>
                     <Icon as={FaGraduationCap} w={8} h={8} color="green.400" />
-                    <Heading fontSize={'xl'}>Vzdělání</Heading>
+                    <Heading fontSize={'xl'} color={headingColor}>Vzdělání</Heading>
                   </Flex>
                   <List spacing={3}>
-                    <ListItem>
+                    <ListItem color={textColor}>
                       <ListIcon as={CheckCircleIcon} color="green.400" />
                       Magisterský titul v jednooborové psychologii
                     </ListItem>
-                    <ListItem>
+                    <ListItem color={textColor}>
                       <ListIcon as={CheckCircleIcon} color="green.400" />
                       Magisterský titul v managementu
                     </ListItem>
-                    <ListItem>
+                    <ListItem color={textColor}>
                       <ListIcon as={CheckCircleIcon} color="green.400" />
                       Specializovaný výcvik v integrativní psychoterapii
                     </ListItem>
-                    <ListItem>
+                    <ListItem color={textColor}>
                       <ListIcon as={CheckCircleIcon} color="green.400" />
                       Certifikovaný výcvik v koučování (Eklektická modalita - CBC, Gestalt, Existenciální)
                     </ListItem>
-                    <ListItem>
+                    <ListItem color={textColor}>
                       <ListIcon as={CheckCircleIcon} color="green.400" />
                       Absolvované kurzy: Základy psychofarmak, Neurodiverzita (vs. ADHD, ADD, Autismus), Práce s tělem při traumatu
                     </ListItem>
@@ -403,15 +406,15 @@ export default function About() {
                     <Heading fontSize={'xl'}>Profesionální členství</Heading>
                   </Flex>
                   <List spacing={3}>
-                    <ListItem>
+                    <ListItem color={textColor}>
                       <ListIcon as={CheckCircleIcon} color="green.400" />
                       Certifikovaný psychoterapeut (x hodin výcviku)<a href='exterala/diplom.pdf' target='_blank' rel='noopener noreferrer'>(Diplom)</a>
                     </ListItem>
-                    <ListItem>
+                    <ListItem color={textColor}>
                       <ListIcon as={CheckCircleIcon} color="green.400" />
                       Certifikovaný kouč
                     </ListItem>
-                    <ListItem>
+                    <ListItem color={textColor}>
                       <ListIcon as={CheckCircleIcon} color="green.400" />
                       Člen profesionální psychoterapeutické asociace <Link href="https://czap.cz/" isExternal color="green.400">(ČAP)</Link>
                     </ListItem>
@@ -451,6 +454,7 @@ export default function About() {
               lineHeight={1.1}
               fontWeight={600}
               fontSize={{ base: '3xl', sm: '4xl', lg: '5xl' }}
+              color={headingColor}
             >
               <Text
                 as={'span'}
@@ -533,6 +537,7 @@ export default function About() {
               lineHeight={1.1}
               fontWeight={600}
               fontSize={{ base: '3xl', sm: '4xl', lg: '5xl' }}
+              color={headingColor}
             >
               <Text
                 as={'span'}

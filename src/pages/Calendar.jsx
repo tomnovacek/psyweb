@@ -24,6 +24,7 @@ export default function Calendar() {
   const bgColor = useColorModeValue('gray.50', 'gray.900')
   const cardBg = useColorModeValue('white', 'gray.800')
   const textColor = useColorModeValue('gray.600', 'gray.400')
+  const headingColor = useColorModeValue('gray.800', 'gray.200')
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -63,6 +64,7 @@ export default function Calendar() {
             <Heading
               lineHeight={1.1}
               fontWeight={600}
+              color={headingColor}
               fontSize={{ base: '3xl', sm: '4xl', lg: '5xl' }}
             >
               <Text

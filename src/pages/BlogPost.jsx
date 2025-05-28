@@ -6,7 +6,6 @@ import {
   Heading,
   Text,
   Flex,
-  Image,
   Tag,
   TagLabel,
   Link,
@@ -22,6 +21,7 @@ import { getPostBySlug, getRelatedPosts } from '../utils/blogUtils'
 import { Loading } from '../components/Loading'
 import SEO from '../components/SEO'
 import { compileMDX } from 'next-mdx-remote/rsc'
+import OptimizedImage from '../components/OptimizedImage'
 
 // MDX components mapping
 const components = {
@@ -57,7 +57,7 @@ const components = {
     />
   ),
   img: (props) => (
-    <Image
+    <OptimizedImage
       borderRadius="lg"
       my={6}
       maxW="100%"
@@ -80,6 +80,9 @@ export default function BlogPost() {
   const bgColor = useColorModeValue('white', 'gray.800')
   const borderColor = useColorModeValue('gray.200', 'gray.700')
   const hoverBgColor = useColorModeValue('gray.50', 'gray.700')
+  const textColor = useColorModeValue('gray.700', 'gray.300')
+  const headingColor = useColorModeValue('gray.800', 'gray.200')
+  const metaTextColor = useColorModeValue('gray.500', 'gray.400')
 
   useEffect(() => {
     const loadPost = async () => {
@@ -173,7 +176,7 @@ export default function BlogPost() {
         borderColor={borderColor}
       >
         {post.image && (
-          <Image
+          <OptimizedImage
             src={post.image}
             alt={post.title}
             w="100%"
@@ -185,10 +188,10 @@ export default function BlogPost() {
         <Box p={{ base: 6, md: 12 }}>
           <VStack spacing={8} align="stretch">
             <Box>
-              <Heading as="h1" size="2xl" mb={6} lineHeight="1.2">
+              <Heading as="h1" size="2xl" mb={6} lineHeight="1.2" color={headingColor}>
                 {post.title}
               </Heading>
-              <HStack spacing={6} color="gray.500">
+              <HStack spacing={6} color={metaTextColor}>
                 <HStack>
                   <Text>{post.date}</Text>
                 </HStack>
@@ -200,7 +203,7 @@ export default function BlogPost() {
 
             <Divider />
 
-            <Box className="prose prose-lg max-w-none">
+            <Box className="prose prose-lg max-w-none" color={textColor}>
               <MDXProvider components={components}>
                 {mdxContent}
               </MDXProvider>
@@ -208,7 +211,7 @@ export default function BlogPost() {
 
             {post.tags && post.tags.length > 0 && (
               <Box>
-                <Heading as="h3" size="md" mb={4}>
+                <Heading as="h3" size="md" mb={4} color={headingColor}>
                   Tags
                 </Heading>
                 <HStack spacing={2} wrap="wrap">
@@ -229,7 +232,7 @@ export default function BlogPost() {
 
             {relatedPosts.length > 0 && (
               <Box>
-                <Heading as="h3" size="md" mb={6}>
+                <Heading as="h3" size="md" mb={6} color={headingColor}>
                   Related Posts
                 </Heading>
                 <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={6}>
@@ -251,10 +254,10 @@ export default function BlogPost() {
                       transition="all 0.2s"
                     >
                       <VStack align="stretch" spacing={3}>
-                        <Heading as="h4" size="md" noOfLines={2}>
+                        <Heading as="h4" size="md" noOfLines={2} color={headingColor}>
                           {relatedPost.title}
                         </Heading>
-                        <Text color="gray.500" fontSize="sm">
+                        <Text color={metaTextColor} fontSize="sm">
                           {relatedPost.date} · {relatedPost.readTime}
                         </Text>
                       </VStack>
