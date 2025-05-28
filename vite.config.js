@@ -58,7 +58,7 @@ export default defineConfig({
           'react-vendor': ['react', 'react-dom', 'react-router-dom'],
           'chakra': ['@chakra-ui/react', '@emotion/react', '@emotion/styled'],
           'animations': ['framer-motion'],
-          'mdx': ['@mdx-js/react', '@mdx-js/rollup', 'gray-matter', 'remark-frontmatter'],
+          'mdx': ['@mdx-js/react', '@mdx-js/rollup', 'remark-frontmatter'],
           'utils': ['gray-matter', 'react-helmet-async', 'buffer']
         },
         assetFileNames: (assetInfo) => {
