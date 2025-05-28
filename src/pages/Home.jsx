@@ -265,7 +265,7 @@ export default function Home() {
       {/* About Section */}
       <Box py={20} bg={cardBg} position="relative" zIndex={2}>
         <Container maxW={'7xl'} centerContent>
-          <Stack spacing={4} maxW={'6xl'} textAlign={'center'} mb={40}>
+          <Stack spacing={4} maxW={'6xl'} textAlign={'center'} mb={10}>
             <Heading
               lineHeight={1.1}
               fontWeight={600}

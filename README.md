@@ -65,7 +65,6 @@ The build files will be created in the `dist` directory.
 - Modify the theme colors in the Chakra UI provider
 - Add or remove services in the Services component
 - Update blog posts in the Blog component
-- Customize the contact form handling
 
 ## Contributing
 

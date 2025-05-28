@@ -457,8 +457,8 @@ export default function Services() {
                   src="tom1.png"
                   alt="Tom Nováček"
                   objectFit="cover"
-                  width="50%"
-                  height="50%"
+                  width="70%"
+                  height="70%"
                   borderRadius="lg"
                 />
               </Box>
