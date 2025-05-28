@@ -323,7 +323,7 @@ export default function About() {
                   color="green.400"
                   mb={4}
                 />
-                <Heading fontSize={'xl'} mb={4}>
+                <Heading color={headingColor} fontSize={'xl'} mb={4}>
                   {feature.title}
                 </Heading>
                 <Text color={textColor}>{feature.text}</Text>
@@ -392,18 +392,18 @@ export default function About() {
                     </ListItem>
                     <ListItem color={textColor}>
                       <ListIcon as={CheckCircleIcon} color="green.400" />
-                      Certifikovaný výcvik v koučování (Eklektická modalita - CBC, Gestalt, Existenciální)
+                      Certifikovaný výcvik v koučování
                     </ListItem>
                     <ListItem color={textColor}>
                       <ListIcon as={CheckCircleIcon} color="green.400" />
-                      Absolvované kurzy: Základy psychofarmak, Neurodiverzita (vs. ADHD, ADD, Autismus), Práce s tělem při traumatu
+                      Absolvované další kurzy: Základy psychofarmak, Neurodiverzita (vs. ADHD, ADD, Autismus), Práce s tělem při traumatu
                     </ListItem>
                   </List>
                 </Box>
                 <Box>
                   <Flex align="center" gap={3} mb={4}>
                     <Icon as={FaCertificate} w={8} h={8} color="green.400" />
-                    <Heading fontSize={'xl'}>Profesionální členství</Heading>
+                    <Heading color={headingColor} fontSize={'xl'}>Profesionální členství</Heading>
                   </Flex>
                   <List spacing={3}>
                     <ListItem color={textColor}>
