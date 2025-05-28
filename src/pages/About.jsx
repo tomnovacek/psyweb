@@ -16,6 +16,7 @@ import {
   Badge,
   Link,
   Button,
+  UnorderedList,
 } from '@chakra-ui/react'
 import { CheckCircleIcon } from '@chakra-ui/icons'
 import { 
@@ -396,7 +397,12 @@ export default function About() {
                     </ListItem>
                     <ListItem color={textColor}>
                       <ListIcon as={CheckCircleIcon} color="green.400" />
-                      Absolvované další kurzy: Základy psychofarmak, Neurodiverzita (vs. ADHD, ADD, Autismus), Práce s tělem při traumatu
+                      Další absolvované kurzy: 
+                      <UnorderedList spacing={0} pl={5} color="green.500">
+                        <ListItem>Psychofamaka v terapeutické praxi</ListItem>
+                        <ListItem>Neurodiverzita (ADHD, ADD, Autismus)</ListItem>
+                        <ListItem>Bezpečí v práci s tělem s traumatizovaným klientem</ListItem>
+                      </UnorderedList>
                     </ListItem>
                   </List>
                 </Box>
