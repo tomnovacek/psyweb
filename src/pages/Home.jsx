@@ -23,12 +23,13 @@ import { Link as RouterLink } from 'react-router-dom'
 import { CheckCircleIcon } from '@chakra-ui/icons'
 import { FaUserFriends, FaHeart, FaBrain, FaBalanceScale, FaComments, FaLightbulb, FaHandHoldingHeart, FaUserMd, FaVideo, FaCalendarAlt, FaCreditCard, FaShieldAlt, FaClock, FaInfoCircle, FaHeartbeat, FaArrowRight, FaUser } from 'react-icons/fa'
 import { useEffect, useState } from 'react'
-import { getAllPosts } from '../utils/mdx'
+import { getAllPosts, getLatestPosts } from '../utils/blogUtils'
 import OptimizedImage from '../components/OptimizedImage'
 import OptimizedAvatar from '../components/OptimizedAvatar'
 import SEO from '../components/SEO'
 import StructuredData from '../components/StructuredData'
 import { getOptimizedImagePath } from '../utils/getOptimizedImage'
+import { BlogCard } from '../components/BlogCard'
 
 export default function Home() {
   const [newestPosts, setNewestPosts] = useState([])
@@ -47,9 +48,9 @@ export default function Home() {
     const loadPosts = async () => {
       try {
         console.log('Načítání příspěvků...')
-        const allPosts = await getAllPosts()
-        console.log('Načtené příspěvky:', allPosts)
-        setNewestPosts(allPosts.slice(0, 2))
+        const latestPosts = await getLatestPosts(3)
+        console.log('Načtené příspěvky:', latestPosts)
+        setNewestPosts(latestPosts)
       } catch (error) {
         console.error('Chyba při načítání příspěvků:', error)
       } finally {
@@ -549,103 +550,46 @@ export default function Home() {
           </Stack>
         </Container>
       </Box>
+      {/* Latest Posts Section */}
+      <Box py={20}>
+        <Container maxW="container.xl">
+          <VStack spacing={12} align="stretch">
+            <Box textAlign="center">
+              <Heading as="h2" size="2xl" mb={4}>
+                Z mého bloku
+              </Heading>
+              <Text fontSize="xl" color="gray.600">
+                Pár mých poznámek v mém zápisníku, které by mohly být užitečné i pro vás.
+              </Text>
+            </Box>
 
-      {/* Blog Section */}
-      <Box py={20} bg={cardBg}>
-        <Container maxW={'7xl'} centerContent>
-          <Stack spacing={4} maxW={'6xl'} textAlign={'center'} mb={10}>
-            <Heading fontSize={'3xl'}>Z mého blogu</Heading>
-            <Text color={textColor} fontSize={'xl'}>
-              Postřehy a zdroje na podporu vaší cesty
-            </Text>
-          </Stack>
-          <SimpleGrid columns={{ base: 1, md: 2 }} spacing={10} w="full">
-            {newestPosts.map((post, index) => (
-              <Box
-                key={index}
+            <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={8}>
+              {newestPosts.map(post => (
+                <BlogCard key={post.slug} post={post} />
+              ))}
+            </SimpleGrid>
+
+            <Box textAlign="center">
+              <Button
                 as={RouterLink}
-                to={`/blog/${post.slug}`}
-                bg={cardBg}
-                boxShadow={'2xl'}
-                rounded={'md'}
-                overflow={'hidden'}
-                transition="all 0.3s"
+                to="/blog"
+                colorScheme="green"
+                size="lg"
+                rounded="full"
+                variant="outline"
+                px={8}
                 _hover={{
-                  transform: 'translateY(-5px)',
-                  boxShadow: '2xl',
-                  textDecoration: 'none',
+                  bg: 'green.400',
+                  color: 'white',
                 }}
               >
-                <Flex direction={{ base: 'column', md: 'row' }}>
-                  <Box
-                    width={{ base: '100%', md: '40%' }}
-                    height={{ base: '200px', md: 'auto' }}
-                    minHeight={{ md: '300px' }}
-                  >
-                    <OptimizedImage
-                      src={post.frontmatter.image}
-                      alt={post.frontmatter.title}
-                      objectFit="cover"
-                      width="100%"
-                      height="100%"
-                    />
-                  </Box>
-                  <Box p={6} flex="1">
-                    <Stack spacing={4}>
-                      <Stack direction={'row'} spacing={4}>
-                        {post.frontmatter.tags.map((tag, idx) => (
-                          <Badge key={idx} colorScheme="green">
-                            {tag}
-                          </Badge>
-                        ))}
-                      </Stack>
-                      <Heading
-                        color={headingColor}
-                        fontSize={'2xl'}
-                        fontFamily={'body'}
-                      >
-                        {post.frontmatter.title}
-                      </Heading>
-                      <Text color={textColor}>{post.frontmatter.excerpt}</Text>
-                      <Stack direction={'row'} spacing={4} align={'center'}>
-                        <OptimizedAvatar
-                          src={post.frontmatter.author.image}
-                          alt={post.frontmatter.author.name}
-                          size="md"
-                        />
-                        <Stack direction={'column'} spacing={0} fontSize={'sm'}>
-                          <Text fontWeight={600}>{post.frontmatter.author.name}</Text>
-                          <Text color={textColor}>
-                            {post.frontmatter.date} · {post.frontmatter.readTime}
-                          </Text>
-                        </Stack>
-                      </Stack>
-                    </Stack>
-                  </Box>
-                </Flex>
-              </Box>
-            ))}
-          </SimpleGrid>
-          <Stack align={'center'} mt={10}>
-            <Button
-              as={RouterLink}
-              to="/blog"
-              colorScheme={'green'}
-              variant={'outline'}
-              size={'lg'}
-              rounded={'full'}
-              px={8}
-              _hover={{
-                bg: 'green.400',
-                color: 'white',
-              }}
-            >
-              Číst více článků
-            </Button>
-          </Stack>
+                Všechny články
+              </Button>
+            </Box>
+          </VStack>
         </Container>
-
       </Box>
+
 
       {/* Call to Action Section */}
       <Box py={20} bg={bgColor}>
@@ -725,6 +669,8 @@ export default function Home() {
           </Stack>
         </Container>
       </Box>
+
+
     </>
   )
 } 

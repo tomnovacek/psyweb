@@ -1,174 +1,215 @@
+import React, { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import {
   Box,
   Container,
   Heading,
   Text,
-  Stack,
   SimpleGrid,
+  Tag,
+  TagLabel,
+  TagLeftIcon,
+  Icon,
   useColorModeValue,
-  Button,
-  Badge,
-  Flex,
+  HStack,
+  VStack,
+  Center,
+  Spinner,
+  Button
 } from '@chakra-ui/react'
-import { Link as RouterLink } from 'react-router-dom'
-import { useEffect, useState } from 'react'
-import { getAllPosts } from '../utils/mdx'
-import { MDXProvider } from '@mdx-js/react'
-import OptimizedImage from '../components/OptimizedImage'
-import OptimizedAvatar from '../components/OptimizedAvatar'
+import { FiClock, FiTag } from 'react-icons/fi'
+import { getAllPosts, getAllTags } from '../utils/blogUtils'
 import SEO from '../components/SEO'
 
-// MDX components configuration
-const components = {
-  h1: (props) => <Heading as="h1" size="xl" mb={4} {...props} />,
-  h2: (props) => <Heading as="h2" size="lg" mb={3} {...props} />,
-  h3: (props) => <Heading as="h3" size="md" mb={2} {...props} />,
-  p: (props) => <Text mb={4} {...props} />,
-  a: (props) => <Text as="a" color="blue.500" {...props} />,
-  ul: (props) => <Box as="ul" mb={4} {...props} />,
-  ol: (props) => <Box as="ol" mb={4} {...props} />,
-  li: (props) => <Box as="li" mb={2} {...props} />,
+// BlogCard component
+const BlogCard = ({ post }) => {
+  const { slug } = post
+  const cardBg = useColorModeValue('white', 'gray.800')
+  const cardHoverBg = useColorModeValue('gray.50', 'gray.700')
+
+  return (
+    <Box
+      as={Link}
+      to={`/blog/${slug}`}
+      bg={cardBg}
+      borderRadius="lg"
+      overflow="hidden"
+      boxShadow="sm"
+      transition="all 0.2s"
+      _hover={{
+        transform: 'translateY(-4px)',
+        boxShadow: 'md',
+        bg: cardHoverBg,
+        textDecoration: 'none'
+      }}
+    >
+      <Box position="relative" height="200px">
+        <Box
+          as="img"
+          src={post.image}
+          alt={post.title}
+          objectFit="cover"
+          width="100%"
+          height="100%"
+        />
+      </Box>
+      <Box p={6}>
+        <VStack align="start" spacing={4}>
+          <Heading as="h3" size="md" noOfLines={2}>
+            {post.title}
+          </Heading>
+          <Text color="gray.500" noOfLines={2}>
+            {post.excerpt}
+          </Text>
+          <HStack spacing={4}>
+            <HStack>
+              <Icon as={FiClock} color="gray.500" />
+              <Text color="gray.500">
+                {post.readTime}
+              </Text>
+            </HStack>
+            <Text color="gray.500">•</Text>
+            <Text color="gray.500">
+              {post.date}
+            </Text>
+          </HStack>
+          <HStack spacing={2} wrap="wrap">
+            {post.tags.map(tag => (
+              <Tag
+                key={tag}
+                size="sm"
+                colorScheme="green"
+                variant="subtle"
+              >
+                <TagLeftIcon as={FiTag} />
+                <TagLabel>{tag}</TagLabel>
+              </Tag>
+            ))}
+          </HStack>
+        </VStack>
+      </Box>
+    </Box>
+  )
 }
 
-export default function Blog() {
+// Main Blog component
+const Blog = () => {
   const [posts, setPosts] = useState([])
-  const [loading, setLoading] = useState(true)
-  
-  // Move hooks to the top level
-  const bgColor = useColorModeValue('gray.50', 'gray.900')
-  const cardBg = useColorModeValue('white', 'gray.800')
-  const headingColor = useColorModeValue('gray.700', 'white')
-  const textColor = useColorModeValue('gray.600', 'gray.400')
+  const [tags, setTags] = useState([])
+  const [selectedTags, setSelectedTags] = useState([])
+  const [isLoading, setIsLoading] = useState(true)
+  const [error, setError] = useState(null)
 
   useEffect(() => {
     const loadPosts = async () => {
       try {
-        console.log('Loading posts...') // Debug log
+        setIsLoading(true)
+        setError(null)
+        
         const allPosts = await getAllPosts()
         console.log('Loaded posts:', allPosts) // Debug log
+        
+        if (!allPosts || allPosts.length === 0) {
+          throw new Error('No posts found')
+        }
+
         setPosts(allPosts)
-      } catch (error) {
-        console.error('Error loading posts:', error)
+        const allTags = await getAllTags()
+        setTags(allTags)
+      } catch (err) {
+        console.error('Error loading posts:', err)
+        setError(err.message)
       } finally {
-        setLoading(false)
+        setIsLoading(false)
       }
     }
 
     loadPosts()
   }, [])
 
-  // Debug log to see posts state
-  console.log('Current posts state:', posts)
+  const filteredPosts = selectedTags.length > 0
+    ? posts.filter(post => 
+        post.frontmatter.tags.some(tag => selectedTags.includes(tag))
+      )
+    : posts
 
-  if (loading) {
+  if (isLoading) {
     return (
-      <Box py={20}>
-        <Container maxW={'7xl'}>
-          <Text>Načítání...</Text>
-        </Container>
-      </Box>
+      <Center minH="60vh">
+        <Spinner size="xl" color="green.500" />
+      </Center>
+    )
+  }
+
+  if (error) {
+    return (
+      <Center minH="60vh">
+        <VStack spacing={4}>
+          <Text color="red.500">{error}</Text>
+          <Button onClick={() => window.location.reload()}>
+            Zkusit znovu
+          </Button>
+        </VStack>
+      </Center>
     )
   }
 
   return (
-    <MDXProvider components={components}>
-      <Box bg={bgColor} py={20}>
-        <SEO
-          title="Blog - Duševní zdraví"
-          description="Prozkoumejte články o duševním zdraví, terapii a osobním růstu. Profesionální pohledy od Tomáše Nováčka, licencovaného psychoterapeuta v Brně."
-          keywords="blog o duševním zdraví, terapeutické poznatky, osobní růst, úzkost, deprese, trauma, psychoterapeutické články, Brno"
-          url="https://tomnovacek.com/blog"
-          image="/src/assets/img/mindfulness.webp"
-        />
-        <Container maxW={'7xl'}>
-          <Stack spacing={4} maxW={'7xl'} textAlign={'center'} mb={10}>
-            <Heading fontSize={'3xl'}>Blog</Heading>
-            <Text color={textColor} fontSize={'xl'}>
-              Něco z toho o čem přemýšlím, na co se mě klienti ptali a co by mohl být užitečné i vám.
+    <Box bg="gray.50" minH="100vh" py={12}>
+      <SEO
+        title="Blog - Tom Nováček"
+        description="Články o psychologii, osobním rozvoji a duševním zdraví"
+        keywords="blog, psychologie, osobní rozvoj, duševní zdraví"
+        url="https://tomnovacek.com/blog"
+      />
+      <Container maxW="container.xl">
+        <VStack spacing={12} align="stretch">
+          <Box>
+            <Heading as="h1" size="2xl" mb={4}>
+              Blog
+            </Heading>
+            <Text fontSize="xl" color="gray.600">
+              Články o psychologii, osobním rozvoji a duševním zdraví
             </Text>
-          </Stack>
-          <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={10}>
-            {posts.map((post, index) => {
-              console.log('Rendering post:', post) // Debug log
-              const { frontmatter } = post
-              return (
-                <Box
-                  key={index}
-                  as={RouterLink}
-                  to={`/blog/${post.slug}`}
-                  bg={cardBg}
-                  boxShadow={'2xl'}
-                  rounded={'md'}
-                  overflow={'hidden'}
-                  transition="all 0.3s"
-                  _hover={{
-                    transform: 'translateY(-5px)',
-                    boxShadow: '2xl',
-                    textDecoration: 'none',
-                  }}
-                >
-                  {frontmatter.image && (
-                    <OptimizedImage
-                      src={frontmatter.image}
-                      alt={frontmatter.title}
-                      objectFit="cover"
-                      height="200px"
-                      width="100%"
-                    />
-                  )}
-                  <Box p={6}>
-                    <Stack spacing={4}>
-                      {frontmatter.tags && (
-                        <Stack direction={'row'} spacing={2}>
-                          {frontmatter.tags.map((tag, i) => (
-                            <Badge key={i} colorScheme="green" px={2} py={1} rounded="md">
-                              {tag}
-                            </Badge>
-                          ))}
-                        </Stack>
-                      )}
-                      <Heading
-                        color={headingColor}
-                        fontSize={'2xl'}
-                        fontFamily={'body'}
-                      >
-                        {frontmatter.title}
-                      </Heading>
-                      <Text color={textColor}>{frontmatter.excerpt}</Text>
-                      {frontmatter.author && (
-                        <Stack mt={6} direction={'row'} spacing={4} align={'center'}>
-                          <OptimizedAvatar src={frontmatter.author.image} alt={frontmatter.author.name} />
-                          <Stack direction={'column'} spacing={0} fontSize={'sm'}>
-                            <Text fontWeight={600}>{frontmatter.author.name}</Text>
-                            <Text color={textColor}>{frontmatter.date} · {frontmatter.readTime}</Text>
-                          </Stack>
-                        </Stack>
-                      )}
-                    </Stack>
-                  </Box>
-                </Box>
-              )
-            })}
+          </Box>
+
+          {tags.length > 0 && (
+            <Box>
+              <Heading as="h2" size="md" mb={4}>
+                Filtrovat podle témat
+              </Heading>
+              <HStack spacing={2} wrap="wrap">
+                {tags.map(tag => (
+                  <Tag
+                    key={tag}
+                    size="md"
+                    colorScheme={selectedTags.includes(tag) ? 'green' : 'gray'}
+                    cursor="pointer"
+                    onClick={() => {
+                      setSelectedTags(prev =>
+                        prev.includes(tag)
+                          ? prev.filter(t => t !== tag)
+                          : [...prev, tag]
+                      )
+                    }}
+                  >
+                    <TagLeftIcon as={FiTag} />
+                    <TagLabel>{tag}</TagLabel>
+                  </Tag>
+                ))}
+              </HStack>
+            </Box>
+          )}
+
+          <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={8}>
+            {filteredPosts.map(post => (
+              <BlogCard key={post.slug} post={post} />
+            ))}
           </SimpleGrid>
-          <Stack align={'center'} mt={10}>
-            <Button
-              as={RouterLink}
-              to="/blog"
-              colorScheme={'green'}
-              variant={'outline'}
-              size={'lg'}
-              rounded={'full'}
-              px={8}
-              _hover={{
-                bg: 'green.400',
-                color: 'white',
-              }}
-            >
-              Více článků
-            </Button>
-          </Stack>
-        </Container>
-      </Box>
-    </MDXProvider>
+        </VStack>
+      </Container>
+    </Box>
   )
-} 
+}
+
+export default Blog 
