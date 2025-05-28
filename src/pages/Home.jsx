@@ -341,6 +341,7 @@ export default function Home() {
                   to="/about"
                   w="full"
                   colorScheme="green"
+                  variant="outline"
                   rounded="full"
                   size="lg"
                   _hover={{
@@ -411,6 +412,7 @@ export default function Home() {
                   w="full"
                   colorScheme="green"
                   rounded="full"
+                  variant="outline"
                   size="lg"
                   _hover={{
                     bg: 'green.400',
