@@ -1,97 +1,129 @@
-import React, { Suspense } from 'react'
+import { useState, useEffect } from 'react'
+import { useParams, Link as RouterLink } from 'react-router-dom'
 import {
   Box,
   Container,
   Heading,
   Text,
-  Stack,
-  useColorModeValue,
-  Badge,
-  Divider,
-  Button,
-  Spinner,
-  Center,
+  Flex,
+  Image,
+  Tag,
+  TagLabel,
   Link,
-  List,
-  ListItem,
+  VStack,
+  HStack,
+  Divider,
+  useColorModeValue,
+  SimpleGrid,
 } from '@chakra-ui/react'
-import { useParams, Link as RouterLink } from 'react-router-dom'
-import { useEffect, useState } from 'react'
-import { getPostBySlug } from '../utils/mdx'
 import { MDXProvider } from '@mdx-js/react'
+import { ChevronLeftIcon } from '@chakra-ui/icons'
+import { getPostBySlug, getRelatedPosts } from '../utils/blogUtils'
+import { Loading } from '../components/Loading'
 import SEO from '../components/SEO'
-import StructuredData from '../components/StructuredData'
-import OptimizedAvatar from '../components/OptimizedAvatar'
-import OptimizedImage from '../components/OptimizedImage'
+import { compileMDX } from 'next-mdx-remote/rsc'
 
-const LoadingFallback = () => (
-  <Center h="200px">
-    <Spinner size="xl" color="blue.500" />
-  </Center>
-)
-
-// MDX components configuration
+// MDX components mapping
 const components = {
-  h1: (props) => <Heading as="h1" fontSize="3xl" fontWeight="bold" mb={4} {...props} />,
-  h2: (props) => <Heading as="h2" fontSize="2xl" fontWeight="bold" mb={3} {...props} />,
-  h3: (props) => <Heading as="h3" fontSize="xl" fontWeight="bold" mb={2} {...props} />,
-  p: (props) => <Text mb={4} {...props} />,
-  a: (props) => <Link color="green.500" {...props} />,
-  ul: (props) => <List styleType="disc" ml={6} mb={4} {...props} />,
-  ol: (props) => <List styleType="decimal" ml={6} mb={4} {...props} />,
-  li: (props) => <ListItem mb={1} {...props} />,
-  img: (props) => (
-    <Box my={6}>
-      <OptimizedImage
-        src={props.src}
-        alt={props.alt}
-        borderRadius="md"
-        maxW="100%"
-        mx="auto"
-      />
+  h1: (props) => <Heading as="h1" size="2xl" mb={6} {...props} />,
+  h2: (props) => <Heading as="h2" size="xl" mb={4} mt={8} {...props} />,
+  h3: (props) => <Heading as="h3" size="lg" mb={3} mt={6} {...props} />,
+  p: (props) => <Text mb={4} lineHeight="tall" {...props} />,
+  a: (props) => <Link color="green.500" isExternal {...props} />,
+  ul: (props) => (
+    <Box as="ul" pl={0} mb={4} listStyleType="disc" listStylePosition="outside">
+      {props.children}
     </Box>
+  ),
+  ol: (props) => (
+    <Box as="ol" pl={0} mb={4} listStyleType="decimal" listStylePosition="outside">
+      {props.children}
+    </Box>
+  ),
+  li: (props) => (
+    <Text as="li" pl={2} mb={2} ml={4}>
+      {props.children}
+    </Text>
+  ),
+  blockquote: (props) => (
+    <Box
+      as="blockquote"
+      pl={4}
+      borderLeft="4px solid"
+      borderColor="green.500"
+      fontStyle="italic"
+      mb={4}
+      {...props}
+    />
+  ),
+  img: (props) => (
+    <Image
+      borderRadius="lg"
+      my={6}
+      maxW="100%"
+      h="auto"
+      alt={props.alt || ''}
+      {...props}
+    />
   ),
 }
 
 export default function BlogPost() {
   const { slug } = useParams()
-  const [post, setPost] = useState(null)
-  const [isLoading, setIsLoading] = useState(true)
+  const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
+  const [post, setPost] = useState(null)
+  const [relatedPosts, setRelatedPosts] = useState([])
+  const [mdxContent, setMdxContent] = useState(null)
+
+  // Move all useColorModeValue hooks to the top
+  const bgColor = useColorModeValue('white', 'gray.800')
+  const borderColor = useColorModeValue('gray.200', 'gray.700')
+  const hoverBgColor = useColorModeValue('gray.50', 'gray.700')
 
   useEffect(() => {
     const loadPost = async () => {
       try {
-        setIsLoading(true)
+        setLoading(true)
         const postData = await getPostBySlug(slug)
         if (!postData) {
           throw new Error('Post not found')
         }
         setPost(postData)
-        setError(null)
+        
+        // Compile MDX content
+        const { content } = await compileMDX({
+          source: postData.content,
+          components,
+        })
+        setMdxContent(content)
+        
+        const related = await getRelatedPosts(postData)
+        setRelatedPosts(related)
       } catch (err) {
-        console.error('Error loading post:', err)
-        setError(err)
-        setPost(null)
+        setError(err.message)
       } finally {
-        setIsLoading(false)
+        setLoading(false)
       }
     }
 
     loadPost()
   }, [slug])
 
-  if (isLoading) {
-    return <LoadingFallback />
+  if (loading) {
+    return <Loading />
   }
 
   if (error) {
     return (
       <Container maxW="container.xl" py={8}>
-        <Text color="red.500">Error loading blog post: {error.message}</Text>
-        <Button as={RouterLink} to="/blog" mt={4}>
-          Back to Blog
-        </Button>
+        <Box textAlign="center">
+          <Heading mb={4}>Error</Heading>
+          <Text>{error}</Text>
+          <Link as={RouterLink} to="/blog" color="green.500" mt={4} display="inline-block">
+            Return to Blog
+          </Link>
+        </Box>
       </Container>
     )
   }
@@ -99,97 +131,140 @@ export default function BlogPost() {
   if (!post) {
     return (
       <Container maxW="container.xl" py={8}>
-        <Text>Blog post not found</Text>
-        <Button as={RouterLink} to="/blog" mt={4}>
-          Back to Blog
-        </Button>
+        <Box textAlign="center">
+          <Heading mb={4}>Post Not Found</Heading>
+          <Text>The requested blog post could not be found.</Text>
+          <Link as={RouterLink} to="/blog" color="green.500" mt={4} display="inline-block">
+            Return to Blog
+          </Link>
+        </Box>
       </Container>
     )
   }
 
-  const { frontmatter, Component } = post
-
   return (
     <Container maxW="container.xl" py={8}>
       <SEO
-        title={frontmatter.title}
-        description={frontmatter.excerpt}
-        image={frontmatter.image}
+        title={`${post.title} - Blog`}
+        description={post.excerpt}
+        keywords={post.tags.join(', ')}
+        url={`https://tomnovacek.com/blog/${slug}`}
+        image={post.image}
       />
-      <StructuredData
-        type="BlogPosting"
-        data={{
-          title: frontmatter.title,
-          excerpt: frontmatter.excerpt,
-          date: frontmatter.date,
-          image: frontmatter.image,
-          url: window.location.href,
-          author: {
-            name: frontmatter.author.name
-          }
-        }}
-      />
+      <Link
+        as={RouterLink}
+        to="/blog"
+        display="inline-flex"
+        alignItems="center"
+        mb={8}
+        color="green.500"
+        _hover={{ textDecoration: 'none', color: 'green.600' }}
+      >
+        <ChevronLeftIcon />
+        <Text ml={1}>Back to Blog</Text>
+      </Link>
 
-      {/* Hero Section */}
-      <Box mb={8}>
-        {frontmatter.image && (
-          <Box mb={6} borderRadius="lg" overflow="hidden">
-            <OptimizedImage
-              src={frontmatter.image}
-              alt={frontmatter.title}
-              width="100%"
-              height="400px"
-              objectFit="cover"
-            />
-          </Box>
-        )}
-        <Heading as="h1" size="2xl" mb={4}>
-          {frontmatter.title}
-        </Heading>
-        <Stack direction="row" spacing={4} mb={4}>
-          {frontmatter.tags.map((tag, index) => (
-            <Badge key={index} colorScheme="green">
-              {tag}
-            </Badge>
-          ))}
-        </Stack>
-        <Stack direction="row" spacing={4} align="center" mb={6}>
-          <OptimizedAvatar
-            src={frontmatter.author.image}
-            alt={frontmatter.author.name}
-            size="md"
+      <Box
+        bg={bgColor}
+        borderRadius="lg"
+        boxShadow="lg"
+        overflow="hidden"
+        border="1px solid"
+        borderColor={borderColor}
+      >
+        {post.image && (
+          <Image
+            src={post.image}
+            alt={post.title}
+            w="100%"
+            h="500px"
+            objectFit="cover"
           />
-          <Stack spacing={0}>
-            <Text fontWeight="bold">{frontmatter.author.name}</Text>
-            <Text color="gray.500">
-              {new Date(frontmatter.date).toLocaleDateString()} · {frontmatter.readTime}
-            </Text>
-          </Stack>
-        </Stack>
-      </Box>
+        )}
 
-      <Divider mb={8} />
+        <Box p={{ base: 6, md: 12 }}>
+          <VStack spacing={8} align="stretch">
+            <Box>
+              <Heading as="h1" size="2xl" mb={6} lineHeight="1.2">
+                {post.title}
+              </Heading>
+              <HStack spacing={6} color="gray.500">
+                <HStack>
+                  <Text>{post.date}</Text>
+                </HStack>
+                <HStack>
+                  <Text>{post.readTime}</Text>
+                </HStack>
+              </HStack>
+            </Box>
 
-      {/* Content */}
-      <Box className="prose max-w-none">
-        <MDXProvider components={components}>
-          <Suspense fallback={<LoadingFallback />}>
-            <Component />
-          </Suspense>
-        </MDXProvider>
-      </Box>
+            <Divider />
 
-      {/* Back to Blog Button */}
-      <Box mt={8} textAlign="center">
-        <Button
-          as={RouterLink}
-          to="/blog"
-          colorScheme="green"
-          variant="outline"
-          size="lg"
-        >
-          Back to Blog
-        </Button>
+            <Box className="prose prose-lg max-w-none">
+              <MDXProvider components={components}>
+                {mdxContent}
+              </MDXProvider>
+            </Box>
+
+            {post.tags && post.tags.length > 0 && (
+              <Box>
+                <Heading as="h3" size="md" mb={4}>
+                  Tags
+                </Heading>
+                <HStack spacing={2} wrap="wrap">
+                  {post.tags.map((tag) => (
+                    <Tag
+                      key={tag}
+                      size="md"
+                      borderRadius="full"
+                      variant="subtle"
+                      colorScheme="green"
+                    >
+                      <TagLabel>{tag}</TagLabel>
+                    </Tag>
+                  ))}
+                </HStack>
+              </Box>
+            )}
+
+            {relatedPosts.length > 0 && (
+              <Box>
+                <Heading as="h3" size="md" mb={6}>
+                  Related Posts
+                </Heading>
+                <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={6}>
+                  {relatedPosts.map((relatedPost) => (
+                    <Link
+                      key={relatedPost.slug}
+                      as={RouterLink}
+                      to={`/blog/${relatedPost.slug}`}
+                      p={6}
+                      borderRadius="lg"
+                      border="1px solid"
+                      borderColor={borderColor}
+                      _hover={{
+                        textDecoration: 'none',
+                        bg: hoverBgColor,
+                        transform: 'translateY(-2px)',
+                        boxShadow: 'md',
+                      }}
+                      transition="all 0.2s"
+                    >
+                      <VStack align="stretch" spacing={3}>
+                        <Heading as="h4" size="md" noOfLines={2}>
+                          {relatedPost.title}
+                        </Heading>
+                        <Text color="gray.500" fontSize="sm">
+                          {relatedPost.date} · {relatedPost.readTime}
+                        </Text>
+                      </VStack>
+                    </Link>
+                  ))}
+                </SimpleGrid>
+              </Box>
+            )}
+          </VStack>
+        </Box>
       </Box>
     </Container>
   )

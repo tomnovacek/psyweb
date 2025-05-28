@@ -1,43 +1,47 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import mdx from '@mdx-js/rollup'
-import remarkFrontmatter from 'remark-frontmatter'
-import remarkParse from 'remark-parse'
 import remarkGfm from 'remark-gfm'
 import rehypeSlug from 'rehype-slug'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
+import remarkFrontmatter from 'remark-frontmatter'
 import { resolve } from 'path'
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
-    react(),
     mdx({
       providerImportSource: '@mdx-js/react',
       remarkPlugins: [
-        remarkParse,
-        [remarkFrontmatter, ['yaml', 'toml']],
-        remarkGfm
+        remarkGfm,
+        remarkFrontmatter
       ],
       rehypePlugins: [
         rehypeSlug,
         [rehypeAutolinkHeadings, { behavior: 'wrap' }]
       ]
-    })
+    }),
+    react()
   ],
+  define: {
+    'process.env': {},
+    global: 'globalThis'
+  },
   optimizeDeps: {
     include: [
       'react/jsx-runtime',
       '@mdx-js/react',
-      'remark-parse',
+      '@mdx-js/rollup',
+      'gray-matter',
       'remark-gfm',
       'rehype-slug',
-      'rehype-autolink-headings'
+      'rehype-autolink-headings',
+      'remark-frontmatter'
     ]
   },
   resolve: {
     alias: {
-      '@': '/src'
+      '@': resolve(__dirname, './src')
     }
   },
   publicDir: 'public',
@@ -54,8 +58,8 @@ export default defineConfig({
           'react-vendor': ['react', 'react-dom', 'react-router-dom'],
           'chakra': ['@chakra-ui/react', '@emotion/react', '@emotion/styled'],
           'animations': ['framer-motion'],
-          'mdx': ['@mdx-js/react', '@mdx-js/rollup'],
-          'utils': ['gray-matter', 'react-helmet-async']
+          'mdx': ['@mdx-js/react', '@mdx-js/rollup', 'gray-matter', 'remark-frontmatter'],
+          'utils': ['gray-matter', 'react-helmet-async', 'buffer']
         },
         assetFileNames: (assetInfo) => {
           if (assetInfo.name.endsWith('.webp')) {
@@ -77,6 +81,11 @@ export default defineConfig({
   server: {
     port: 3000,
     host: true,
-    open: true
-  }
+    open: true,
+    fs: {
+      strict: false,
+      allow: ['..']
+    }
+  },
+  assetsInclude: ['**/*.mdx']
 })
