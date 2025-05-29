@@ -56,7 +56,7 @@ export default function Services() {
   const cardBg = useColorModeValue('white', 'gray.800')
   const heroCardBg = useColorModeValue('whiteAlpha.200', 'blackAlpha.200')
   const textColor = useColorModeValue('gray.700', 'gray.300')
-  const headingColor = useColorModeValue('gray.800', 'gray.200')
+  const headingColor = useColorModeValue('green.500', 'gray.200')
   const borderColor = useColorModeValue('gray.200', 'gray.700')
 
   return (
