@@ -6,6 +6,16 @@ import rehypeSlug from 'rehype-slug'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import remarkFrontmatter from 'remark-frontmatter'
 import { resolve } from 'path'
+import { sitemap } from 'vite-plugin-sitemap'
+
+// Function to get all blog post paths
+const getBlogPostPaths = () => {
+  const blogDir = path.resolve(__dirname, 'src/blogPosts')
+  const files = fs.readdirSync(blogDir)
+  return files
+    .filter(file => file.endsWith('.mdx'))
+    .map(file => `/blog/${file.replace('.mdx', '')}`)
+}
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -21,7 +31,25 @@ export default defineConfig({
         [rehypeAutolinkHeadings, { behavior: 'wrap' }]
       ]
     }),
-    react()
+    react(),
+    sitemap({
+      hostname: 'https://tomnovacek.com', // replace with your actual domain
+      dynamicRoutes: [
+        '/',
+        '/about',
+        '/services',
+        '/calendar',
+        '/blog',
+        ...getBlogPostPaths()
+      ],
+      exclude: [
+        '/404',
+        '/admin'
+      ],
+      changefreq: 'weekly',
+      priority: 0.7,
+      lastmod: new Date().toISOString()
+    })
   ],
   define: {
     'process.env': {},

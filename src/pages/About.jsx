@@ -53,8 +53,8 @@ export default function About() {
   return (
     <Box bg={bgColor}>
       <SEO
-        title="O Tomáši Nováčkovi"
-        description="Seznamte se s Tomášem Nováčkem, profesionálním psychoterapeutem v Brně, Česká republika. Specializace na individuální terapii, úzkost, depresi a podporu při traumatu."
+        title="Tomáš Nováček - psycholog a terapeut | Brno"
+        description="Nabízím individuální terapii pro dospělé, pro podporu osobního růstu, při úzkosti, depresi a vztahových problémech."
         keywords="psychoterapeut, Tomáš Nováček, terapie, poradenství, Brno, Česká republika, profesionální zkušenosti, kvalifikace"
         url="https://tomnovacek.com/about"
         image="tom1.png"

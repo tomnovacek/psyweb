@@ -63,7 +63,7 @@ export default function Services() {
     <Box bg={bgColor}>
       <SEO
         title="Služby | Tomáš Nováček - Psychoterapie"
-        description="Profesionální psychoterapeutické služby v centru Brna. Individuální terapie, párová terapie a online konzultace."
+        description="Profesionální psychoterapeutické služby v centru Brna. Individuální terapie pro dospělé, pro podporu osobního růstu, při úzkosti, depresi a vztahových problémech."
         keywords="psychoterapie, poradenství, Brno, individuální terapie, párová terapie, online konzultace"
         image="room.jped"
         preloadImages={[
