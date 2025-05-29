@@ -28,7 +28,7 @@ const Blog = () => {
   const [selectedTags, setSelectedTags] = useState([])
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState(null)
-  const headingColor = useColorModeValue('gray.800', 'gray.200')
+  const headingColor = useColorModeValue('grey.800', 'gray.200')
 
   useEffect(() => {
     const loadPosts = async () => {
@@ -94,7 +94,7 @@ const Blog = () => {
       />
       <Container maxW="container.xl">
         <VStack spacing={12} align="stretch">
-          <Box>
+          <Box textAlign={'center'}>
             <Heading color={headingColor} as="h1" size="2xl" mb={4}>
               Blog
             </Heading>

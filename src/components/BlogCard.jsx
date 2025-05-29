@@ -19,7 +19,7 @@ export const BlogCard = ({ post }) => {
   const cardBg = useColorModeValue('white', 'gray.800')
   const cardHoverBg = useColorModeValue('gray.50', 'gray.700')
   const textColor = useColorModeValue('gray.700', 'gray.300')
-  const headingColor = useColorModeValue('gray.800', 'white')
+  const headingColor = useColorModeValue('green.600', 'white')
   const metaTextColor = useColorModeValue('gray.500', 'gray.400')
 
   return (

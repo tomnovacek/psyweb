@@ -2,18 +2,17 @@ import { MDXProvider } from '@mdx-js/react'
 import { Box, Heading, Text, Link, List, ListItem, useColorModeValue } from '@chakra-ui/react'
 import OptimizedImage from './OptimizedImage'
 
+const headingColor = useColorModeValue('green.600', 'gray.200')
+
 const components = {
   h1: (props) => {
-    const headingColor = useColorModeValue('gray.800', 'gray.200')
-    return <Heading as="h1" fontSize="3xl" fontWeight="bold" mb={4} color={headingColor} {...props} />
+    return <Heading as="h1" fontSize="2xl" fontWeight="bold" mb={4} color="green.600" {...props} />
   },
   h2: (props) => {
-    const headingColor = useColorModeValue('gray.800', 'gray.200')
-    return <Heading as="h2" fontSize="2xl" fontWeight="bold" mb={3} color={headingColor} {...props} />
+    return <Heading as="h2" fontSize="xl" fontWeight="bold" mb={3} color="green.600" {...props} />
   },
   h3: (props) => {
-    const headingColor = useColorModeValue('gray.800', 'gray.200')
-    return <Heading as="h3" fontSize="xl" fontWeight="bold" mb={2} color={headingColor} {...props} />
+    return <Heading as="h3" fontSize="xl" fontWeight="bold" mb={2} color="green.600" {...props} />
   },
   p: (props) => {
     const textColor = useColorModeValue('gray.700', 'gray.300')

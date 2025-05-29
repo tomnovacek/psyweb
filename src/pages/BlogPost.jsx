@@ -25,9 +25,9 @@ import OptimizedImage from '../components/OptimizedImage'
 
 // MDX components mapping
 const components = {
-  h1: (props) => <Heading as="h1" size="2xl" mb={6} {...props} />,
-  h2: (props) => <Heading as="h2" size="xl" mb={4} mt={8} {...props} />,
-  h3: (props) => <Heading as="h3" size="lg" mb={3} mt={6} {...props} />,
+  h1: (props) => <Heading color="green.600" as="h1" size="xl" mb={6} {...props} />,
+  h2: (props) => <Heading color="green.600" as="h2" size="lg" mb={4} mt={8} {...props} />,
+  h3: (props) => <Heading color="green.600" as="h3" size="md" mb={3} mt={6} {...props} />,
   p: (props) => <Text mb={4} lineHeight="tall" {...props} />,
   a: (props) => <Link color="green.500" isExternal {...props} />,
   ul: (props) => (
@@ -81,7 +81,7 @@ export default function BlogPost() {
   const borderColor = useColorModeValue('gray.200', 'gray.700')
   const hoverBgColor = useColorModeValue('gray.50', 'gray.700')
   const textColor = useColorModeValue('gray.700', 'gray.300')
-  const headingColor = useColorModeValue('gray.800', 'gray.200')
+  const headingColor = useColorModeValue('green.600', 'gray.200')
   const metaTextColor = useColorModeValue('gray.500', 'gray.400')
 
   useEffect(() => {
@@ -203,7 +203,7 @@ export default function BlogPost() {
 
             <Divider />
 
-            <Box className="prose prose-lg max-w-none" color={textColor}>
+            <Box className="prose prose-lg max-w-none">
               <MDXProvider components={components}>
                 {mdxContent}
               </MDXProvider>
