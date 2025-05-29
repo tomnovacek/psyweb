@@ -308,7 +308,7 @@ export default function Home() {
                   width="100%"
                   height="100%"
                   style={{
-                    filter: 'brightness(1.3)',
+                    filter: 'brightness(1.2)',
                   }}
                 />
                 <Box
@@ -378,7 +378,7 @@ export default function Home() {
                   width="100%"
                   height="100%"
                   style={{
-                    filter: 'brightness(1.3)',
+                    filter: 'brightness(1.2)',
                   }}
                 />
                 <Box
