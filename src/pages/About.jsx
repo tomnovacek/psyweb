@@ -99,6 +99,7 @@ export default function About() {
             width="100%"
             height="100%"
             bg="blackAlpha.100"
+            backdropFilter="blur(2px)"
           />
         </Box>
 

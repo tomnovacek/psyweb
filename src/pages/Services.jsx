@@ -106,7 +106,8 @@ export default function Services() {
             left={0}
             width="100%"
             height="100%"
-            bg="blackAlpha.100"
+            bg="blackAlpha.200"
+            backdropFilter="blur(3px)"
           />
         </Box>
 

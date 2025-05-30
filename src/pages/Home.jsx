@@ -75,7 +75,7 @@ export default function Home() {
       />
       <StructuredData type="MedicalBusiness" />
       <StructuredData type="Person" />
-      
+
       {/* Hero Section */}
       <Box position="relative" width="100%" height={{ base: "auto", md: "calc(100vh - 224px)" }} overflow="hidden">
         {/* Background Image */}
@@ -109,6 +109,7 @@ export default function Home() {
             left={0}
             width="100%"
             height="100%"
+            backdropFilter="blur(2px)"
           />
         </Box>
 
@@ -218,42 +219,25 @@ export default function Home() {
             <Box
               flex="1"
               maxW="2xl"
-              position="relative"
-              bg="transparent"
-              minH={{ base: "400px", md: "500px" }}
+              height="100%"
+              minHeight="60vh"
               display="flex"
-              alignItems="center"
-              justifyContent="center"
             >
               <Box
-                position="relative"
                 width="100%"
-                height="auto"
-                borderRadius="lg"
-                overflow="hidden"
-                bg="transparent"
-                _before={{
-                  content: '""',
-                  position: 'absolute',
-                  top: 0,
-                  left: 0,
-                  right: 0,
-                  bottom: 0,
-                  bg: 'transparent',
-                  zIndex: 1
-                }}
+                mt="auto"
               >
                 <OptimizedImage
                   src="tom1.png"
                   alt="Tom Nováček"
-                  objectFit="cover"
+                  objectFit="contain"
                   width="100%"
                   height="auto"
                   priority="true"
                   style={{
                     mixBlendMode: 'normal',
                     backgroundColor: 'transparent',
-                    filter: 'brightness(1.1) contrast(1.1)'
+                    filter: 'brightness(1.1)',
                   }}
                 />
               </Box>
