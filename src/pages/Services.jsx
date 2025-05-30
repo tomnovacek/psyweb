@@ -219,28 +219,14 @@ export default function Services() {
               maxW="2xl"
               position="relative"
               bg="transparent"
+              height="100%"
               minH={{ base: "400px", md: "500px" }}
               display="flex"
-              alignItems="center"
-              justifyContent="center"
+
             >
               <Box
-                position="relative"
                 width="100%"
-                height="auto"
-                borderRadius="lg"
-                overflow="hidden"
-                bg="transparent"
-                _before={{
-                  content: '""',
-                  position: 'absolute',
-                  top: 0,
-                  left: 0,
-                  right: 0,
-                  bottom: 0,
-                  bg: 'transparent',
-                  zIndex: 1
-                }}
+                mt="auto"
               >
                 <OptimizedImage
                   src="tom1.png"
@@ -252,7 +238,7 @@ export default function Services() {
                   style={{
                     mixBlendMode: 'normal',
                     backgroundColor: 'transparent',
-                    filter: 'brightness(1.1) contrast(1.1)'
+                    filter: 'brightness(1.1)'
                   }}
                 />
               </Box>
