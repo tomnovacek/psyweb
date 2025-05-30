@@ -896,6 +896,62 @@
           "path": "/optimized-images/safe-embrace-2xl.webp"
         }
       ]
+    },
+    "src/assets/img/emotion-faces.jpg": {
+      "responsive": [
+        {
+          "width": 150,
+          "path": "/optimized-images/emotion-faces-xs.webp"
+        },
+        {
+          "width": 300,
+          "path": "/optimized-images/emotion-faces-sm.webp"
+        },
+        {
+          "width": 400,
+          "path": "/optimized-images/emotion-faces-md.webp"
+        },
+        {
+          "width": 800,
+          "path": "/optimized-images/emotion-faces-lg.webp"
+        },
+        {
+          "width": 1200,
+          "path": "/optimized-images/emotion-faces-xl.webp"
+        },
+        {
+          "width": 1600,
+          "path": "/optimized-images/emotion-faces-2xl.webp"
+        }
+      ]
+    },
+    "src/assets/img/woman-sleeping.jpg": {
+      "responsive": [
+        {
+          "width": 150,
+          "path": "/optimized-images/woman-sleeping-xs.webp"
+        },
+        {
+          "width": 300,
+          "path": "/optimized-images/woman-sleeping-sm.webp"
+        },
+        {
+          "width": 400,
+          "path": "/optimized-images/woman-sleeping-md.webp"
+        },
+        {
+          "width": 800,
+          "path": "/optimized-images/woman-sleeping-lg.webp"
+        },
+        {
+          "width": 1200,
+          "path": "/optimized-images/woman-sleeping-xl.webp"
+        },
+        {
+          "width": 1600,
+          "path": "/optimized-images/woman-sleeping-2xl.webp"
+        }
+      ]
     }
   },
   "website-icon-300x298": {},
