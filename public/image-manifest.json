@@ -952,6 +952,90 @@
           "path": "/optimized-images/woman-sleeping-2xl.webp"
         }
       ]
+    },
+    "src/assets/img/wet-glass.jpg": {
+      "responsive": [
+        {
+          "width": 150,
+          "path": "/optimized-images/wet-glass-xs.webp"
+        },
+        {
+          "width": 300,
+          "path": "/optimized-images/wet-glass-sm.webp"
+        },
+        {
+          "width": 400,
+          "path": "/optimized-images/wet-glass-md.webp"
+        },
+        {
+          "width": 800,
+          "path": "/optimized-images/wet-glass-lg.webp"
+        },
+        {
+          "width": 1200,
+          "path": "/optimized-images/wet-glass-xl.webp"
+        },
+        {
+          "width": 1600,
+          "path": "/optimized-images/wet-glass-2xl.webp"
+        }
+      ]
+    },
+    "src/assets/img/under-blanket.jpg": {
+      "responsive": [
+        {
+          "width": 150,
+          "path": "/optimized-images/under-blanket-xs.webp"
+        },
+        {
+          "width": 300,
+          "path": "/optimized-images/under-blanket-sm.webp"
+        },
+        {
+          "width": 400,
+          "path": "/optimized-images/under-blanket-md.webp"
+        },
+        {
+          "width": 800,
+          "path": "/optimized-images/under-blanket-lg.webp"
+        },
+        {
+          "width": 1200,
+          "path": "/optimized-images/under-blanket-xl.webp"
+        },
+        {
+          "width": 1600,
+          "path": "/optimized-images/under-blanket-2xl.webp"
+        }
+      ]
+    },
+    "src/assets/img/holding-hands.png": {
+      "responsive": [
+        {
+          "width": 150,
+          "path": "/optimized-images/holding-hands-xs.webp"
+        },
+        {
+          "width": 300,
+          "path": "/optimized-images/holding-hands-sm.webp"
+        },
+        {
+          "width": 400,
+          "path": "/optimized-images/holding-hands-md.webp"
+        },
+        {
+          "width": 800,
+          "path": "/optimized-images/holding-hands-lg.webp"
+        },
+        {
+          "width": 1200,
+          "path": "/optimized-images/holding-hands-xl.webp"
+        },
+        {
+          "width": 1600,
+          "path": "/optimized-images/holding-hands-2xl.webp"
+        }
+      ]
     }
   },
   "website-icon-300x298": {},

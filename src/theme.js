@@ -32,6 +32,23 @@ const theme = extendTheme({
     },
   },
   components: {
+    Heading: {
+      baseStyle: {
+        color: 'gray.800', // default light mode color
+      },
+      variants: {
+        // You can add different variants if needed
+        'blog-heading': {
+          color: 'green.600', // your blog heading color
+        },
+        'section-heading': {
+          color: 'green.500',
+        }
+      },
+      defaultProps: {
+        variant: 'section-heading', // default variant
+      },
+    },
     Button: {
       baseStyle: {
         fontWeight: 'semibold',
