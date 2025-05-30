@@ -305,3 +305,18 @@ function MyComponent() {
 
 safe-embrace
 https://www.freepik.com/free-photo/father-daughter-together-fathers-day_4106136.htm#fromView=search&page=1&position=44&uuid=762c607b-cb24-4b3e-a032-b43069900183&query=warm+embrace+father
+
+emotions
+https://www.freepik.com/free-photo/smiling-psychologist-showing-happy-sad-emotion-faces-cards-girl-child_3717005.htm
+
+sleep
+https://www.freepik.com/free-photo/woman-sleeping_15181005.htm
+
+depression
+https://www.freepik.com/free-photo/close-up-woman-experiencing-anxiety_17637776.htm
+
+inner critic
+https://www.freepik.com/free-photo/front-view-woman-looking-camera-wet-glass_5090890.htm
+
+attachment - trust - holding handsho
+https://www.freepik.com/free-photo/back-view-couple-holding-hands_5126303.htm
