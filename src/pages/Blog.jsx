@@ -59,7 +59,7 @@ const Blog = () => {
 
   const filteredPosts = selectedTags.length > 0
     ? posts.filter(post => 
-        post.frontmatter.tags.some(tag => selectedTags.includes(tag))
+        post.tags && post.tags.some(tag => selectedTags.includes(tag))
       )
     : posts
 
