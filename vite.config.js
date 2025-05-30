@@ -6,7 +6,9 @@ import rehypeSlug from 'rehype-slug'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import remarkFrontmatter from 'remark-frontmatter'
 import { resolve } from 'path'
-import { sitemap } from 'vite-plugin-sitemap'
+import { fileURLToPath } from 'url'
+import fs from 'fs'
+import path from 'path'
 
 // Function to get all blog post paths
 const getBlogPostPaths = () => {
@@ -32,24 +34,46 @@ export default defineConfig({
       ]
     }),
     react(),
-    sitemap({
-      hostname: 'https://tomnovacek.com', // replace with your actual domain
-      dynamicRoutes: [
-        '/',
-        '/about',
-        '/services',
-        '/calendar',
-        '/blog',
-        ...getBlogPostPaths()
-      ],
-      exclude: [
-        '/404',
-        '/admin'
-      ],
-      changefreq: 'weekly',
-      priority: 0.7,
-      lastmod: new Date().toISOString()
-    })
+    {
+      name: 'sitemap',
+      buildEnd() {
+        const sitemap = {
+          hostname: 'https://tomnovacek.com',
+          dynamicRoutes: [
+            '/',
+            '/about',
+            '/services',
+            '/calendar',
+            '/blog',
+            ...getBlogPostPaths()
+          ],
+          exclude: [
+            '/404',
+            '/admin'
+          ],
+          changefreq: 'weekly',
+          priority: 0.7,
+          lastmod: new Date().toISOString()
+        }
+        
+        // Generate sitemap.xml
+        const sitemapContent = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  ${sitemap.dynamicRoutes
+    .filter(route => !sitemap.exclude.includes(route))
+    .map(route => `
+  <url>
+    <loc>${sitemap.hostname}${route}</loc>
+    <lastmod>${sitemap.lastmod}</lastmod>
+    <changefreq>${sitemap.changefreq}</changefreq>
+    <priority>${sitemap.priority}</priority>
+  </url>`)
+    .join('')}
+</urlset>`
+
+        fs.writeFileSync('dist/sitemap.xml', sitemapContent)
+      }
+    }
   ],
   define: {
     'process.env': {},
