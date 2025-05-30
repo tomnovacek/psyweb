@@ -28,7 +28,7 @@ const Blog = () => {
   const [selectedTags, setSelectedTags] = useState([])
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState(null)
-  const headingColor = useColorModeValue('grey.800', 'gray.200')
+  const headingColor = useColorModeValue('green.600', 'gray.200')
 
   useEffect(() => {
     const loadPosts = async () => {

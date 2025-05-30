@@ -24,7 +24,7 @@ export default function Calendar() {
   const bgColor = useColorModeValue('gray.50', 'gray.900')
   const cardBg = useColorModeValue('white', 'gray.800')
   const textColor = useColorModeValue('gray.600', 'gray.400')
-  const headingColor = useColorModeValue('gray.800', 'gray.200')
+  const headingColor = useColorModeValue('green.600', 'gray.200')
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -125,19 +125,28 @@ export default function Calendar() {
             )}
 
             {/* Calendar iframe */}
-            <iframe
-              src="https://calendar.google.com/calendar/appointments/schedules/AcZssZ00ICmDJd6LyX3TG07oRvH7ni-wewoDDs0x0UXJMlWhkKUk1OBWw9wqj-TyqJgYdLOscITBiFtF?gv=true"
-              style={{
-                border: 0,
-                width: '100%',
-                height: '600px',
-                visibility: isLoading ? 'hidden' : 'visible',
+            <Box
+              className="calendar-container"
+              sx={{
+                '& iframe': {
+                  filter: 'hue-rotate(240deg) saturate(1.2)',
+                }
               }}
-              allowFullScreen
-              onLoad={handleIframeLoad}
-              title="Rezervační kalendář"
-              loading="lazy"
-            />
+            >
+              <iframe
+                src="https://calendar.google.com/calendar/appointments/schedules/AcZssZ00ICmDJd6LyX3TG07oRvH7ni-wewoDDs0x0UXJMlWhkKUk1OBWw9wqj-TyqJgYdLOscITBiFtF?gv=true&color=%234CAF50"
+                style={{
+                  border: 0,
+                  width: '100%',
+                  height: '700px',
+                  visibility: isLoading ? 'hidden' : 'visible',
+                }}
+                allowFullScreen
+                onLoad={handleIframeLoad}
+                title="Rezervační kalendář"
+                loading="lazy"
+              />
+            </Box>
           </Box>
 
           {/* Alternative Contact Options */}
