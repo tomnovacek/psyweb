@@ -29,7 +29,7 @@ import OptimizedAvatar from '../components/OptimizedAvatar'
 import SEO from '../components/SEO'
 import StructuredData from '../components/StructuredData'
 import { getOptimizedImagePath } from '../utils/getOptimizedImage'
-import { BlogCard } from '../components/BlogCard'
+import BlogCard from '../components/BlogCard'
 
 export default function Home() {
   const [newestPosts, setNewestPosts] = useState([])

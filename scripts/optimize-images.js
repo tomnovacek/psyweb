@@ -10,7 +10,9 @@ const __dirname = path.dirname(__filename);
 
 // Configuration
 const projectRoot = process.cwd();
-const sourceDir = path.join(projectRoot, 'src/assets/img');
+const sourceDirs = [
+  path.join(projectRoot, 'src/assets/img'),
+];
 const outputDir = path.join(projectRoot, 'public/optimized-images');
 const manifestPath = path.join(projectRoot, 'public/image-manifest.json');
 
@@ -120,12 +122,16 @@ async function processImages() {
       }
     }
 
-    // Find all images
-    const files = await glob(path.join(sourceDir, '*.{jpg,jpeg,png,webp}'));
-    console.log(`Found ${files.length} images to optimize`);
+    // Find all images in all source directories
+    let allFiles = [];
+    for (const sourceDir of sourceDirs) {
+      const files = await glob(path.join(sourceDir, '*.{jpg,jpeg,png,webp}'));
+      allFiles = allFiles.concat(files);
+    }
+    console.log(`Found ${allFiles.length} images to optimize`);
 
     // Process each image
-    for (const file of files) {
+    for (const file of allFiles) {
       await optimizeImage(file, manifest);
     }
 

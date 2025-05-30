@@ -19,7 +19,7 @@ import {
 import { FiClock, FiTag } from 'react-icons/fi'
 import { getAllPosts, getAllTags } from '../utils/blogUtils'
 import SEO from '../components/SEO'
-import { BlogCard } from '../components/BlogCard'
+import BlogCard from '../components/BlogCard'
 
 // Main Blog component
 const Blog = () => {

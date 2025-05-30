@@ -167,7 +167,7 @@ export default function About() {
                 <Text
                   as={'span'}
                   position={'relative'}
-                  color={headingColor}
+                  color={"white"}
                   _after={{
                     content: "''",
                     width: 'full',

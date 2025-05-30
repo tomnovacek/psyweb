@@ -38,7 +38,7 @@ export const getAllPosts = async () => {
         readTime: frontmatter.readTime,
         excerpt: frontmatter.excerpt,
         tags: frontmatter.tags || [],
-        image: frontmatter.image,
+        image: frontmatter.image ? `/assets/img/${frontmatter.image}` : null,
         author: frontmatter.author,
         content: mdxContent,
       }
@@ -76,7 +76,7 @@ export const getPostBySlug = async (slug) => {
     readTime: frontmatter.readTime,
     excerpt: frontmatter.excerpt,
     tags: frontmatter.tags || [],
-    image: frontmatter.image,
+    image: frontmatter.image ? `/assets/img/${frontmatter.image}` : null,
     author: frontmatter.author,
     content: mdxContent,
   }

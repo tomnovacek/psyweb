@@ -57,6 +57,35 @@ function sitemapPlugin() {
         // Write sitemap to dist directory
         fs.writeFileSync(path.join(distDir, 'sitemap.xml'), sitemap)
         console.log('Sitemap generated successfully')
+
+        // Copy and update image manifest
+        const manifestPath = path.join(__dirname, 'public/image-manifest.json')
+        if (fs.existsSync(manifestPath)) {
+          const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'))
+          // Update image paths to be relative to dist
+          Object.keys(manifest.images).forEach(key => {
+            manifest.images[key].responsive.forEach(size => {
+              size.path = size.path.replace('/optimized-images/', '/assets/optimized-images/')
+            })
+          })
+          fs.writeFileSync(path.join(distDir, 'image-manifest.json'), JSON.stringify(manifest, null, 2))
+          console.log('Image manifest updated and copied to dist')
+        }
+
+        // Copy images from src/assets/img to dist/assets/img
+        const srcImgDir = path.join(__dirname, 'src/assets/img')
+        const distImgDir = path.join(distDir, 'assets/img')
+        if (!fs.existsSync(distImgDir)) {
+          fs.mkdirSync(distImgDir, { recursive: true })
+        }
+        const files = fs.readdirSync(srcImgDir)
+        files.forEach(file => {
+          fs.copyFileSync(
+            path.join(srcImgDir, file),
+            path.join(distImgDir, file)
+          )
+        })
+        console.log('Images copied to dist directory')
       } catch (error) {
         console.error('Error generating sitemap:', error)
       }
@@ -120,7 +149,7 @@ export default defineConfig({
         },
         assetFileNames: (assetInfo) => {
           if (assetInfo.name.endsWith('.webp')) {
-            return 'assets/optimized-images/[name][extname]'
+            return 'assets/img/[name][extname]'
           }
           return 'assets/[name]-[hash][extname]'
         }
@@ -144,5 +173,5 @@ export default defineConfig({
       allow: ['..']
     }
   },
-  assetsInclude: ['**/*.mdx']
+  assetsInclude: ['**/*.mdx', '**/*.webp', '**/*.jpg', '**/*.jpeg', '**/*.png']
 })
