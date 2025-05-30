@@ -9,14 +9,59 @@ import { resolve } from 'path'
 import { fileURLToPath } from 'url'
 import fs from 'fs'
 import path from 'path'
+import { glob } from 'glob'
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
 
 // Function to get all blog post paths
-const getBlogPostPaths = () => {
-  const blogDir = path.resolve(__dirname, 'src/blogPosts')
-  const files = fs.readdirSync(blogDir)
-  return files
-    .filter(file => file.endsWith('.mdx'))
-    .map(file => `/blog/${file.replace('.mdx', '')}`)
+async function getBlogPostPaths() {
+  const blogDir = path.join(__dirname, 'src/content/blog')
+  const files = await glob('**/*.md', { cwd: blogDir })
+  return files.map(file => `/blog/${file.replace(/\.md$/, '')}`)
+}
+
+// Custom sitemap plugin
+function sitemapPlugin() {
+  return {
+    name: 'sitemap',
+    closeBundle: async () => {
+      try {
+        const blogPaths = await getBlogPostPaths()
+        const routes = [
+          '/',
+          '/blog',
+          '/services',
+          '/about',
+          '/contact',
+          ...blogPaths
+        ]
+
+        const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  ${routes.map(route => `
+  <url>
+    <loc>https://psyweb.cz${route}</loc>
+    <changefreq>weekly</changefreq>
+    <priority>${route === '/' ? '1.0' : '0.8'}</priority>
+    <lastmod>${new Date().toISOString()}</lastmod>
+  </url>`).join('')}
+</urlset>`
+
+        // Ensure the dist directory exists
+        const distDir = path.join(__dirname, 'dist')
+        if (!fs.existsSync(distDir)) {
+          fs.mkdirSync(distDir, { recursive: true })
+        }
+
+        // Write sitemap to dist directory
+        fs.writeFileSync(path.join(distDir, 'sitemap.xml'), sitemap)
+        console.log('Sitemap generated successfully')
+      } catch (error) {
+        console.error('Error generating sitemap:', error)
+      }
+    }
+  }
 }
 
 // https://vitejs.dev/config/
@@ -34,46 +79,7 @@ export default defineConfig({
       ]
     }),
     react(),
-    {
-      name: 'sitemap',
-      buildEnd() {
-        const sitemap = {
-          hostname: 'https://tomnovacek.com',
-          dynamicRoutes: [
-            '/',
-            '/about',
-            '/services',
-            '/calendar',
-            '/blog',
-            ...getBlogPostPaths()
-          ],
-          exclude: [
-            '/404',
-            '/admin'
-          ],
-          changefreq: 'weekly',
-          priority: 0.7,
-          lastmod: new Date().toISOString()
-        }
-        
-        // Generate sitemap.xml
-        const sitemapContent = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  ${sitemap.dynamicRoutes
-    .filter(route => !sitemap.exclude.includes(route))
-    .map(route => `
-  <url>
-    <loc>${sitemap.hostname}${route}</loc>
-    <lastmod>${sitemap.lastmod}</lastmod>
-    <changefreq>${sitemap.changefreq}</changefreq>
-    <priority>${sitemap.priority}</priority>
-  </url>`)
-    .join('')}
-</urlset>`
-
-        fs.writeFileSync('dist/sitemap.xml', sitemapContent)
-      }
-    }
+    sitemapPlugin()
   ],
   define: {
     'process.env': {},
@@ -107,11 +113,10 @@ export default defineConfig({
       },
       output: {
         manualChunks: {
-          'react-vendor': ['react', 'react-dom', 'react-router-dom'],
-          'chakra': ['@chakra-ui/react', '@emotion/react', '@emotion/styled'],
-          'animations': ['framer-motion'],
-          'mdx': ['@mdx-js/react', '@mdx-js/rollup', 'remark-frontmatter'],
-          'utils': ['gray-matter', 'react-helmet-async', 'buffer']
+          vendor: ['react', 'react-dom', 'react-router-dom'],
+          chakra: ['@chakra-ui/react', '@emotion/react', '@emotion/styled', 'framer-motion'],
+          mdx: ['@mdx-js/react', '@mdx-js/rollup', 'remark-frontmatter'],
+          utils: ['gray-matter', 'react-helmet-async', 'buffer']
         },
         assetFileNames: (assetInfo) => {
           if (assetInfo.name.endsWith('.webp')) {
