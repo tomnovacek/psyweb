@@ -60,8 +60,7 @@ import OptimizedImage from '../components/OptimizedImage'
 import SEO from '../components/SEO'
 import StructuredData from '../components/StructuredData'
 import HeroTextBox from '../components/HeroTextBox'
-import PricingCard from '../components/PricingCard'
-import ServicesGrid from '../components/ServicesGrid'
+
 
 export default function About() {
   const bgColor = useColorModeValue('gray.50', 'gray.900')
