@@ -31,6 +31,19 @@ export const getAllPosts = async () => {
       const date = new Date(frontmatter.date)
       const formattedDate = format(date, 'd. MMMM yyyy', { locale: cs })
 
+      // Handle image path
+      let imagePath = null
+      if (frontmatter.image) {
+        // In development, use the original path
+        if (import.meta.env.DEV) {
+          imagePath = `/src/assets/img/${frontmatter.image}`
+        } else {
+          // In production, use the optimized path with appropriate size
+          // For blog list/cards, use medium size
+          imagePath = `/optimized-images/${frontmatter.image.replace(/\.[^/.]+$/, '')}-md.webp`
+        }
+      }
+
       return {
         slug,
         title: frontmatter.title,
@@ -38,7 +51,7 @@ export const getAllPosts = async () => {
         readTime: frontmatter.readTime,
         excerpt: frontmatter.excerpt,
         tags: frontmatter.tags || [],
-        image: frontmatter.image ? `/assets/img/${frontmatter.image}` : null,
+        image: imagePath,
         author: frontmatter.author,
         content: mdxContent,
       }
@@ -69,6 +82,18 @@ export const getPostBySlug = async (slug) => {
   const date = new Date(frontmatter.date)
   const formattedDate = format(date, 'd. MMMM yyyy', { locale: cs })
 
+  // Handle image path
+  let imagePath = null
+  if (frontmatter.image) {
+    // In development, use the original path
+    if (import.meta.env.DEV) {
+      imagePath = `/src/assets/img/${frontmatter.image}`
+    } else {
+      // In production, use the optimized path with large size for full blog post
+      imagePath = `/optimized-images/${frontmatter.image.replace(/\.[^/.]+$/, '')}-lg.webp`
+    }
+  }
+
   return {
     slug,
     title: frontmatter.title,
@@ -76,7 +101,7 @@ export const getPostBySlug = async (slug) => {
     readTime: frontmatter.readTime,
     excerpt: frontmatter.excerpt,
     tags: frontmatter.tags || [],
-    image: frontmatter.image ? `/assets/img/${frontmatter.image}` : null,
+    image: imagePath,
     author: frontmatter.author,
     content: mdxContent,
   }

@@ -14,6 +14,7 @@ import {
   Divider,
   useColorModeValue,
   SimpleGrid,
+  useStyleConfig,
 } from '@chakra-ui/react'
 import { MDXProvider } from '@mdx-js/react'
 import { ChevronLeftIcon } from '@chakra-ui/icons'
@@ -22,51 +23,6 @@ import { Loading } from '../components/Loading'
 import SEO from '../components/SEO'
 import { compileMDX } from 'next-mdx-remote/rsc'
 import OptimizedImage from '../components/OptimizedImage'
-
-// MDX components mapping
-const components = {
-  h1: (props) => <Heading color="green.600" as="h1" size="xl" mb={6} {...props} />,
-  h2: (props) => <Heading color="green.600" as="h2" size="lg" mb={4} mt={8} {...props} />,
-  h3: (props) => <Heading color="green.600" as="h3" size="md" mb={3} mt={6} {...props} />,
-  p: (props) => <Text mb={4} lineHeight="tall" {...props} />,
-  a: (props) => <Link color="green.500" isExternal {...props} />,
-  ul: (props) => (
-    <Box as="ul" pl={0} mb={4} listStyleType="disc" listStylePosition="outside">
-      {props.children}
-    </Box>
-  ),
-  ol: (props) => (
-    <Box as="ol" pl={0} mb={4} listStyleType="decimal" listStylePosition="outside">
-      {props.children}
-    </Box>
-  ),
-  li: (props) => (
-    <Text as="li" pl={2} mb={2} ml={4}>
-      {props.children}
-    </Text>
-  ),
-  blockquote: (props) => (
-    <Box
-      as="blockquote"
-      pl={4}
-      borderLeft="4px solid"
-      borderColor="green.500"
-      fontStyle="italic"
-      mb={4}
-      {...props}
-    />
-  ),
-  img: (props) => (
-    <OptimizedImage
-      borderRadius="lg"
-      my={6}
-      maxW="100%"
-      h="auto"
-      alt={props.alt || ''}
-      {...props}
-    />
-  ),
-}
 
 export default function BlogPost() {
   const { slug } = useParams()
@@ -84,6 +40,46 @@ export default function BlogPost() {
   const headingColor = useColorModeValue('green.600', 'gray.200')
   const metaTextColor = useColorModeValue('gray.500', 'gray.400')
 
+  // Get MDX styles from theme
+  const styles = useStyleConfig('MDX')
+
+  // Create MDX components inside the component
+  const mdxComponents = {
+    h1: (props) => <Heading as="h1" {...styles.h1} {...props} />,
+    h2: (props) => <Heading as="h2" {...styles.h2} {...props} />,
+    h3: (props) => <Heading as="h3" {...styles.h3} {...props} />,
+    p: (props) => <Text {...styles.p} {...props} />,
+    a: (props) => <Link {...styles.a} isExternal {...props} />,
+    ul: (props) => (
+      <Box as="ul" pl={0} mb={4} listStyleType="disc" listStylePosition="outside">
+        {props.children}
+      </Box>
+    ),
+    ol: (props) => (
+      <Box as="ol" pl={0} mb={4} listStyleType="decimal" listStylePosition="outside">
+        {props.children}
+      </Box>
+    ),
+    li: (props) => (
+      <Text as="li" {...styles.li} {...props}>
+        {props.children}
+      </Text>
+    ),
+    blockquote: (props) => (
+      <Box as="blockquote" {...styles.blockquote} {...props} />
+    ),
+    img: (props) => (
+      <OptimizedImage
+        borderRadius="lg"
+        my={6}
+        maxW="100%"
+        h="auto"
+        alt={props.alt || ''}
+        {...props}
+      />
+    ),
+  }
+
   useEffect(() => {
     const loadPost = async () => {
       try {
@@ -97,7 +93,7 @@ export default function BlogPost() {
         // Compile MDX content
         const { content } = await compileMDX({
           source: postData.content,
-          components,
+          components: mdxComponents,
         })
         setMdxContent(content)
         
@@ -204,7 +200,7 @@ export default function BlogPost() {
             <Divider />
 
             <Box className="prose prose-lg max-w-none">
-              <MDXProvider components={components}>
+              <MDXProvider components={mdxComponents}>
                 {mdxContent}
               </MDXProvider>
             </Box>
