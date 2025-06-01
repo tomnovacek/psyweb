@@ -34,19 +34,56 @@ const theme = extendTheme({
   components: {
     Heading: {
       baseStyle: {
-        color: 'gray.800', // default light mode color
+        fontFamily: 'heading',
+        fontWeight: 'bold',
+        color: 'gray.900',
+        _dark: {
+          color: 'white',
+        },
       },
       variants: {
-        // You can add different variants if needed
-        'blog-heading': {
-          color: 'green.600', // your blog heading color
+        hero: {
+          fontSize: { base: '36px', sm: '48px', lg: '60px' },
+          lineHeight: '1.1',
+          fontWeight: 600,
+          mb: 6,
+          '& .hero-underline': {
+            position: 'relative',
+            color: 'whiteAlpha.900',
+            _after: {
+              content: "''",
+              width: 'full',
+              height: '30%',
+              position: 'absolute',
+              bottom: 1,
+              left: 0,
+              bg: 'green.400',
+              zIndex: -1,
+            },
+          },
+          '& .hero-accent': {
+            color: 'green.400',
+          },
         },
-        'section-heading': {
+        section: {
+          fontSize: { base: '3xl', md: '4xl' },
+          lineHeight: '1.2',
           color: 'green.500',
-        }
-      },
-      defaultProps: {
-        variant: 'section-heading', // default variant
+          letterSpacing: '-0.01em',
+          fontWeight: 'bold',
+          mb: 8,
+        },
+        blogPost: {
+          fontSize: { base: '2xl', md: '3xl', lg: '4xl' },
+          lineHeight: '1.3',
+          letterSpacing: '-0.01em',
+          fontWeight: 'bold',
+          mb: 6,
+          color: 'gray.900',
+          _dark: {
+            color: 'white',
+          },
+        },
       },
     },
     Button: {
@@ -56,10 +93,72 @@ const theme = extendTheme({
       },
       variants: {
         solid: {
-          bg: 'green.500',
+          bg: 'green.400',
           color: 'white',
+          rounded: 'full',
+          px: 8,
+          colorScheme: 'green',
+          _hover: {
+            bg: 'green.500',
+            color: 'white',
+          },
+        },
+        outline: {
+          border: '2px solid',
+          borderColor: 'green.400',
+          color: 'green.400',
+          rounded: 'full',
+          px: 8,
+          colorScheme: 'green',
+          _hover: {
+            bg: 'green.400',
+            color: 'white',
+          },
+        },
+        cta: {
+          bg: 'green.400',
+          color: 'white',
+          rounded: 'full',
+          px: 8,
+          size: 'lg',
+          fontWeight: 'normal',
+          colorScheme: 'green',
           _hover: {
             bg: 'green.600',
+            color: 'white',
+          },
+        },
+        ctaOutline: {
+          border: '2px solid',
+          borderColor: 'green.400',
+          color: 'green.400',
+          rounded: 'full',
+          px: 8,
+          size: 'lg',
+          fontWeight: 'normal',
+          colorScheme: 'green',
+          _hover: {
+            bg: 'green.500',
+            color: 'white',
+          },
+        },
+        link: {
+          color: 'green.400',
+          _hover: {
+            textDecoration: 'none',
+            color: 'green.500',
+          },
+        },
+        card: {
+          w: 'full',
+          bg: 'green.400',
+          color: 'white',
+          rounded: 'full',
+          px: 8,
+          colorScheme: 'green',
+          _hover: {
+            bg: 'green.600',
+            color: 'white', 
           },
         },
       },

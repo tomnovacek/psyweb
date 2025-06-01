@@ -17,6 +17,14 @@ import {
   Link,
   Button,
   UnorderedList,
+  Divider,
+  useDisclosure,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalBody,
+  ModalCloseButton,
 } from '@chakra-ui/react'
 import { CheckCircleIcon } from '@chakra-ui/icons'
 import { 
@@ -35,12 +43,25 @@ import {
   FaSeedling,
   FaCalendarAlt,
   FaArrowRight,
-  FaCertificate
+  FaCertificate,
+  FaUserFriends, 
+  FaVideo, 
+  FaCashRegister,
+  FaCreditCard, 
+  FaShieldAlt,
+  FaClock,
+  FaInfoCircle,
+  FaIdCard,
+  FaMoneyBill,
+  FaMoneyBillAlt,
 } from 'react-icons/fa'
 import { Link as RouterLink } from 'react-router-dom'
 import OptimizedImage from '../components/OptimizedImage'
 import SEO from '../components/SEO'
 import StructuredData from '../components/StructuredData'
+import HeroTextBox from '../components/HeroTextBox'
+import PricingCard from '../components/PricingCard'
+import ServicesGrid from '../components/ServicesGrid'
 
 export default function About() {
   const bgColor = useColorModeValue('gray.50', 'gray.900')
@@ -114,11 +135,23 @@ export default function About() {
             pt={{ base: 10, md: 28 }}
             mt={{ base: 0, md: 0 }}
           >
-            {/* Portrait Image - Now on the left */}
+            {/* Text Box */}
+            <HeroTextBox
+              title="Moje cesta"
+              titleAccent="Můj přístup"
+              description="Jako psychoterapeut se zaměřuji na vytvoření bezpečného a podpůrného prostředí, kde můžete prozkoumat své myšlenky, pocity a zkušenosti. Můj přístup je založen na vzájemném respektu, empatii a autenticitě."
+              primaryText="Objednat konzultaci"
+              primaryHref="/calendar"
+              secondaryText="Moje služby"
+              secondaryHref="/services"
+            />
+
+            {/* Portrait Image */}
             <Box
               flex="1"
               maxW="2xl"
               position="relative"
+              bg="transparent"
               height="100%"
               minH={{ base: "400px", md: "500px" }}
               display="flex"
@@ -133,7 +166,7 @@ export default function About() {
                   objectFit="cover"
                   width="100%"
                   height="auto"
-                  priority={true}
+                  priority="true"
                   style={{
                     mixBlendMode: 'normal',
                     backgroundColor: 'transparent',
@@ -141,99 +174,6 @@ export default function About() {
                   }}
                 />
               </Box>
-            </Box>
-
-            {/* Text Box - Now on the right */}
-            <Box
-              bg={heroCardBg}
-              p={{ base: 6, md: 8 }}
-              borderRadius="lg"
-              maxW="2xl"
-              flex="1"
-              backdropFilter="blur(10px)"
-              minH={{ base: "auto", md: "500px" }}
-              display="flex"
-              flexDirection="column"
-              justifyContent="flex-start"
-              pt={{ base: 8, md: 10 }}
-            >
-              <Heading
-                lineHeight={1.1}
-                fontWeight={600}
-                fontSize={{ base: '3xl', sm: '4xl', lg: '6xl' }}
-                mb={6}
-                color={headingColor}
-              >
-                <Text
-                  as={'span'}
-                  position={'relative'}
-                  color={"white"}
-                  _after={{
-                    content: "''",
-                    width: 'full',
-                    height: '30%',
-                    position: 'absolute',
-                    bottom: 1,
-                    left: 0,
-                    bg: 'green.400',
-                    zIndex: -1,
-                  }}
-                >
-                  Moje cesta
-                </Text>
-                <br />
-                <Text as={'span'} color={'green.400'}>
-                  & Můj přístup
-                </Text>
-              </Heading>
-              <Text color={'white'} fontSize={'xl'} mb={8}>
-                Posledních sedm let věnuji snaze pomáhat lidem překonávat životní výzvy a dosahovat osobního růstu. Psychoterapii nevnímám jako místo, kde se rychle vyřeší problémy. Spíš jako prostor, kde se dá postupně zastavit, začít víc vnímat sama sebe, získat nadhled a porozumět sobě i světu, ve kterém žijeme.
-              </Text>
-
-              {/* button stack */}
-              <Stack
-                spacing={{ base: 4, sm: 6 }}
-                direction={{ base: 'column', sm: 'row' }}
-                mt="auto"
-              >
-                <Button
-                  as="a"
-                  href="/calendar"
-                  rounded={'full'}
-                  size={'lg'}
-                  fontWeight={'normal'}
-                  px={8}
-                  colorScheme={'green'}
-                  variant={'solid'}
-                  _hover={{
-                    bg: 'green.400',
-                    color: 'white',
-                  }}
-                  leftIcon={<FaCalendarAlt />}
-                >
-                  Objednat konzultaci
-                </Button>
-                <Button
-                  as={RouterLink}
-                  to="/services"
-                  rounded={'full'}
-                  size={'lg'}
-                  fontWeight={'normal'}
-                  px={8}
-                  variant="outline"
-                  colorScheme={'green'}
-                  borderColor={'white'}
-                  color={'white'}
-                  _hover={{
-                    bg: 'green.400',
-                    color: 'white',
-                    borderColor: 'green.400'
-                  }}
-                  rightIcon={<FaArrowRight />}
-                >
-                  Moje služby
-                </Button>
-              </Stack>
             </Box>
           </Flex>
         </Container>
@@ -243,26 +183,8 @@ export default function About() {
       <Box py={20} bg={bgColor}>
         <Container maxW={'7xl'}>
           <Stack spacing={4} maxW={'3xl'} textAlign={'center'} mb={10} mx="auto">
-            <Heading
-              lineHeight={1.1}
-              fontWeight={600}
-              fontSize={{ base: '3xl', sm: '4xl', lg: '5xl' }}
-              color={headingColor}
-            >
-              <Text
-                as={'span'}
-                position={'relative'}
-                _after={{
-                  content: "''",
-                  width: 'full',
-                  height: '30%',
-                  position: 'absolute',
-                  bottom: 1,
-                  left: 0,
-                  bg: 'green.400',
-                  zIndex: -1,
-                }}
-              >
+            <Heading variant="section">
+              <Text as="span">
                 Můj přístup
               </Text>
             </Heading>
@@ -323,26 +245,8 @@ export default function About() {
       <Box py={20} bg={cardBg}>
         <Container maxW={'7xl'}>
           <Stack spacing={4} maxW={'3xl'} textAlign={'center'} mb={10} mx="auto">
-            <Heading
-              lineHeight={1.1}
-              fontWeight={600}
-              fontSize={{ base: '3xl', sm: '4xl', lg: '5xl' }}
-              color={headingColor}
-            >
-              <Text
-                as={'span'}
-                position={'relative'}
-                _after={{
-                  content: "''",
-                  width: 'full',
-                  height: '30%',
-                  position: 'absolute',
-                  bottom: 1,
-                  left: 0,
-                  bg: 'green.400',
-                  zIndex: -1,
-                }}
-              >
+            <Heading variant="section">
+              <Text as="span">
                 Vzdělání & Kvalifikace
               </Text>
             </Heading>
@@ -441,26 +345,8 @@ export default function About() {
       <Box py={20} bg={bgColor}>
         <Container maxW={'7xl'}>
           <Stack spacing={4} maxW={'3xl'} textAlign={'center'} mb={10} mx="auto">
-            <Heading
-              lineHeight={1.1}
-              fontWeight={600}
-              fontSize={{ base: '3xl', sm: '4xl', lg: '5xl' }}
-              color={headingColor}
-            >
-              <Text
-                as={'span'}
-                position={'relative'}
-                _after={{
-                  content: "''",
-                  width: 'full',
-                  height: '30%',
-                  position: 'absolute',
-                  bottom: 1,
-                  left: 0,
-                  bg: 'green.400',
-                  zIndex: -1,
-                }}
-              >
+            <Heading variant="section">
+              <Text as="span">
                 O mé cestě
               </Text>
             </Heading>
@@ -524,26 +410,8 @@ export default function About() {
             maxW={'3xl'}
             mx="auto"
           >
-            <Heading
-              lineHeight={1.1}
-              fontWeight={600}
-              fontSize={{ base: '3xl', sm: '4xl', lg: '5xl' }}
-              color={headingColor}
-            >
-              <Text
-                as={'span'}
-                position={'relative'}
-                _after={{
-                  content: "''",
-                  width: 'full',
-                  height: '30%',
-                  position: 'absolute',
-                  bottom: 1,
-                  left: 0,
-                  bg: 'green.400',
-                  zIndex: -1,
-                }}
-              >
+            <Heading variant="section">
+              <Text as="span" className="section-underline">
                 Vydejme se spolu na cestu
               </Text>
             </Heading>
@@ -556,18 +424,9 @@ export default function About() {
               pt={4}
             >
               <Button
-                as="a"
-                href="/calendar"
-                rounded={'full'}
-                size={'lg'}
-                fontWeight={'normal'}
-                px={8}
-                colorScheme={'green'}
-                variant={'solid'}
-                _hover={{
-                  bg: 'green.400',
-                  color: 'white',
-                }}
+                as={RouterLink}
+                to="/calendar"
+                variant="cta"
                 leftIcon={<FaCalendarAlt />}
               >
                 Objednat konzultaci
@@ -575,16 +434,7 @@ export default function About() {
               <Button
                 as={RouterLink}
                 to="/services"
-                rounded={'full'}
-                size={'lg'}
-                fontWeight={'normal'}
-                px={8}
-                variant="outline"
-                colorScheme={'green'}
-                _hover={{
-                  bg: 'green.400',
-                  color: 'white',
-                }}
+                variant="ctaOutline"
                 rightIcon={<FaArrowRight />}
               >
                 Moje služby

@@ -49,6 +49,9 @@ import { Link as RouterLink } from 'react-router-dom'
 import OptimizedImage from '../components/OptimizedImage'
 import SEO from '../components/SEO'
 import StructuredData from '../components/StructuredData'
+import HeroTextBox from '../components/HeroTextBox'
+import PricingCard from '../components/PricingCard'
+import ServicesGrid from '../components/ServicesGrid'
 
 export default function Services() {
   const { isOpen, onOpen, onClose } = useDisclosure()
@@ -123,95 +126,11 @@ export default function Services() {
             mt={{ base: 0, md: 0 }}
           >
             {/* Text Box */}
-            <Box
-              bg={heroCardBg}
-              p={{ base: 6, md: 8 }}
-              borderRadius="lg"
-              maxW="2xl"
-              flex="1"
-              backdropFilter="blur(10px)"
-              minH={{ base: "auto", md: "500px" }}
-              display="flex"
-              flexDirection="column"
-              justifyContent="flex-start"
-              pt={{ base: 8, md: 10 }}
-            >
-              <Heading
-                lineHeight={1.1}
-                fontWeight={600}
-                fontSize={{ base: '3xl', sm: '4xl', lg: '6xl' }}
-                mb={6}
-              >
-                <Text
-                  as={'span'}
-                  position={'relative'}
-                  color={'whiteAlpha.900'}
-                  _after={{
-                    content: "''",
-                    width: 'full',
-                    height: '30%',
-                    position: 'absolute',
-                    bottom: 1,
-                    left: 0,
-                    bg: 'green.400',
-                    zIndex: -1,
-                  }}
-                >
-                  Moje služby
-                </Text>
-                <br />
-                <Text as={'span'} color={'green.400'}>
-                  & Podmínky
-                </Text>
-              </Heading>
-              <Text color={'white'} fontSize={'xl'} mb={8}>
-                Nabízím terapeutická sezení na podporu vašeho duševního zdraví a osobního růstu. Společně prozkoumáme vaše potřeby a vytvoříme plán, který Vám pomůže, aby jste žili plnější a spokojenější život.
-              </Text>
-
-              {/* button stack */}
-              <Stack
-                spacing={{ base: 4, sm: 6 }}
-                direction={{ base: 'column', sm: 'row' }}
-                mt="auto"
-              >
-                <Button
-                  as="a"
-                  href="mailto:terapie@tomnovacek.com"
-                  rounded={'full'}
-                  size={'lg'}
-                  fontWeight={'normal'}
-                  px={8}
-                  colorScheme={'green'}
-                  variant={'solid'}
-                  _hover={{
-                    bg: 'green.400',
-                    color: 'white',
-                  }}
-                  leftIcon={<FaCalendarAlt />}
-                >
-                  Objednat konzultaci
-                </Button>
-                <Button
-                  as="a"
-                  href="#pricing"
-                  rounded={'full'}
-                  size={'lg'}
-                  fontWeight={'normal'}
-                  px={8}
-                  variant="outline"
-                  colorScheme={'green'}
-                  borderColor={'white'}
-                  color={'white'}
-                  _hover={{
-                    bg: 'green.400',
-                    color: 'white',
-                    borderColor: 'green.400'
-                  }}
-                >
-                  Ceník služeb
-                </Button>
-              </Stack>
-            </Box>
+            <HeroTextBox
+              title="Moje služby"
+              titleAccent="Podmínky"
+              description="Nabízím terapeutická sezení na podporu vašeho duševního zdraví a osobního růstu. Společně prozkoumáme vaše potřeby a vytvoříme plán, který Vám pomůže, aby jste žili plnější a spokojenější život."
+            />
 
             {/* Portrait Image */}
             <Box
@@ -222,7 +141,6 @@ export default function Services() {
               height="100%"
               minH={{ base: "400px", md: "500px" }}
               display="flex"
-
             >
               <Box
                 width="100%"
@@ -248,139 +166,55 @@ export default function Services() {
       </Box>
 
       {/* Areas of Expertise */}
-      <Box py={20} bg={bgColor}>
-        <Container maxW={'7xl'}>
-          <Stack spacing={4} maxW={'3xl'} textAlign={'center'} mb={8} mx="auto">
-            <Heading
-              lineHeight={1.1}
-              fontWeight={600}
-              color={headingColor}
-              fontSize={{ base: '3xl', sm: '4xl', lg: '5xl' }}
-            >
-              <Text
-                as={'span'}
-                position={'relative'}
-                _after={{
-                  content: "''",
-                  width: 'full',
-                  height: '30%',
-                  position: 'absolute',
-                  bottom: 1,
-                  left: 0,
-                  bg: 'green.400',
-                  zIndex: -1,
-                }}
-              >
-                Nejčastější témata
-              </Text>
-            </Heading>
-            <Text color={textColor} fontSize={'xl'}>
-             S klienty se nejčastějí věnujeme následujícím otázkám.
-            </Text>
-          </Stack>
-
-          <SimpleGrid columns={{ base: 1, md: 2 }} spacing={8}>
-            {[
-              {
-                title: 'Osobní rozvoj',
-                description: 'Bezpečný prostor pro zpracování traumatických zkušeností.',
-                icon: FaSeedling,
-                image: 'healing-space.webp'
-              },
-              {
-                title: 'Sebevědomí a vztah k sobě',
-                description: 'Bezpečný prostor pro zpracování traumatických zkušeností.',
-                icon: FaHandHoldingHeart,
-                image: 'safe-space.webp'
-              },
-              {
-                title: 'Úzkost a deprese',
-                description: 'Osobní sezení zaměřená na vaše specifické potřeby a cíle.',
-                icon: FaUserShield,
-                image: 'stress.webp'
-              },
-              {
-                title: 'Stres a jeho zvládání',
-                description: 'Podpora při zvládání úzkosti a deprese, rozvoj strategií zvládání.',
-                icon: FaHeartbeat,
-                image: 'mindfulness.webp'
-              },
-              {
-                title: 'Vztahové poradenství',
-                description: 'Podpora párů v budování zdravých a naplňujících vztahů.',
-                icon: FaUsers,
-                image: 'relationships.webp'
-              },
-              {
-                title: 'Zpracování složitých životních situací',
-                description: 'Bezpečný prostor pro zpracování traumatických zkušeností.',
-                icon: FaExchangeAlt,
-                image: 'family.webp'
-              },
-            ].map((service, index) => (
-              <Box
-                key={index}
-                bg={cardBg}
-                boxShadow={'xl'}
-                rounded={'xl'}
-                p={6}
-                position="relative"
-                transition="all 0.3s"
-                _hover={{
-                  transform: 'translateY(-5px)',
-                  boxShadow: '2xl',
-                }}
-              >
-                <Flex direction={{ base: 'column', md: 'row' }} gap={6}>
-                  <Box
-                    position="relative"
-                    width={{ base: '100%', md: '140px' }}
-                    height={{ base: '140px', md: '140px' }}
-                    borderRadius="lg"
-                    overflow="hidden"
-                    flexShrink={0}
-                  >
-                    <OptimizedImage
-                      src={service.image}
-                      alt={service.title}
-                      objectFit="cover"
-                      width="100%"
-                      height="100%"
-                    />
-                  </Box>
-                  <Box flex="1">
-                    <Icon
-                      as={service.icon}
-                      w={8}
-                      h={8}
-                      color="green.400"
-                      mb={4}
-                    />
-                    <Heading fontSize={'xl'} mb={4} color={headingColor}>
-                      {service.title}
-                    </Heading>
-                    <Text color={textColor}>
-                      {service.description}
-                    </Text>
-                  </Box>
-                </Flex>
-              </Box>
-            ))}
-          </SimpleGrid>
-        </Container>
-      </Box>
+      <ServicesGrid
+        title="Nejčastější témata"
+        description="S klienty se nejčastějí věnujeme následujícím otázkám."
+        services={[
+          {
+            title: 'Osobní rozvoj',
+            description: 'Bezpečný prostor pro zpracování traumatických zkušeností.',
+            icon: FaSeedling,
+            image: 'healing-space.webp'
+          },
+          {
+            title: 'Sebevědomí a vztah k sobě',
+            description: 'Bezpečný prostor pro zpracování traumatických zkušeností.',
+            icon: FaHandHoldingHeart,
+            image: 'safe-space.webp'
+          },
+          {
+            title: 'Úzkost a deprese',
+            description: 'Osobní sezení zaměřená na vaše specifické potřeby a cíle.',
+            icon: FaUserShield,
+            image: 'stress.webp'
+          },
+          {
+            title: 'Stres a jeho zvládání',
+            description: 'Podpora při zvládání úzkosti a deprese, rozvoj strategií zvládání.',
+            icon: FaHeartbeat,
+            image: 'mindfulness.webp'
+          },
+          {
+            title: 'Vztahové poradenství',
+            description: 'Podpora párů v budování zdravých a naplňujících vztahů.',
+            icon: FaUsers,
+            image: 'relationships.webp'
+          },
+          {
+            title: 'Zpracování složitých životních situací',
+            description: 'Bezpečný prostor pro zpracování traumatických zkušeností.',
+            icon: FaExchangeAlt,
+            image: 'family.webp'
+          },
+        ]}
+      />
 
       {/* What to Expect Section */}
       <Box py={20} bg={cardBg}>
         <Container maxW={'7xl'}>
           <Stack spacing={8}>
             <Stack spacing={4} textAlign={'center'} maxW={'3xl'} mx="auto">
-              <Heading
-                lineHeight={1.1}
-                fontWeight={600}
-                color={headingColor}
-                fontSize={{ base: '3xl', sm: '4xl', lg: '5xl' }}
-              >
+              <Heading variant="section" color={headingColor}>
                 <Text
                   as={'span'}
                   position={'relative'}
@@ -458,12 +292,7 @@ export default function Services() {
       <Box py={20} bg={bgColor} id="pricing" >
         <Container maxW={'7xl'}>
           <Stack spacing={4} maxW={'3xl'} textAlign={'center'} mb={20} mx="auto">
-            <Heading
-              lineHeight={1.1}
-              fontWeight={600}
-              color={headingColor}
-              fontSize={{ base: '3xl', sm: '4xl', lg: '5xl' }}
-            >
+            <Heading variant="section" color={headingColor}>
               <Text
                 as={'span'}
                 position={'relative'}
@@ -492,7 +321,7 @@ export default function Services() {
                 title: 'Individuální terapie',
                 price: '1 100 Kč',
                 duration: '50 minut',
-                description: 'Standardní terapeutické sezení zaměřené na vaše specifické potřeby.',
+                description: 'Standardní terapeutické sezení.',
                 features: [
                   'Osobní setkání v terapeutické místnosti',
                   'Individuální přístup',
@@ -516,108 +345,7 @@ export default function Services() {
                 image: 'laptop2.jpg'
               }
             ].map((service, index) => (
-              <Box
-                key={index}
-                bg={useColorModeValue('white', 'gray.800')}
-                boxShadow={'xl'}
-                rounded={'2xl'}
-                position="relative"
-                transition="all 0.3s"
-                _hover={{
-                  transform: 'translateY(-5px)',
-                  boxShadow: '2xl',
-                }}
-                overflow="hidden"
-              >
-                {service.popular && (
-                  <Box
-                    position="absolute"
-                    top={0}
-                    right={0}
-                    bg="green.400"
-                    color="white"
-                    px={4}
-                    py={1}
-                    fontSize="sm"
-                    fontWeight="bold"
-                    borderBottomLeftRadius="lg"
-                  >
-                    Nejpopulárnější
-                  </Box>
-                )}
-                <Box
-                  position="relative"
-                  height="260px"
-                  overflow="hidden"
-                >
-                  <OptimizedImage
-                    src={service.image}
-                    alt={service.title}
-                    objectFit="cover"
-                    width="100%"
-                    height="100%"
-                    style={{
-                      filter: 'brightness(1.3)',
-                    }}
-                  />
-                  <Box
-                    position="absolute"
-                    top={0}
-                    left={0}
-                    right={0}
-                    bottom={0}
-                    bg="blackAlpha.100"
-                  />
-                  <Box
-                    position="absolute"
-                    bottom={0}
-                    left={0}
-                    right={0}
-                    p={6}
-                    bg="linear-gradient(to top, rgba(0,0,0,0.8), transparent)"
-                  >
-                    <Flex align="center" gap={3}>
-                      <Icon as={service.icon} w={8} h={8} color="white" />
-                      <Heading fontSize={'2xl'} color="white">{service.title}</Heading>
-                    </Flex>
-                  </Box>
-                </Box>
-                <Box p={8}>
-                  <Box textAlign="center" mb={6}>
-                    <Text fontSize={'4xl'} fontWeight="bold" color="green.400">
-                      {service.price}
-                    </Text>
-                    <Text fontSize={'sm'} color={textColor}>
-                      /{service.duration}
-                    </Text>
-                  </Box>
-                  <Text color={textColor} mb={6} textAlign="center">
-                    {service.description}
-                  </Text>
-                  <List spacing={4} mb={8}>
-                    {service.features.map((feature, idx) => (
-                      <ListItem key={idx} display="flex" alignItems="center" gap={3}>
-                        <Icon as={CheckCircleIcon} color="green.400" boxSize={5} />
-                        <Text color={textColor}>{feature}</Text>
-                      </ListItem>
-                    ))}
-                  </List>
-                  <Button
-                    as="a"
-                    href="/calendar"
-                    w="full"
-                    colorScheme="green"
-                    rounded="full"
-                    size="lg"
-                    _hover={{
-                      bg: 'green.400',
-                      color: 'white',
-                    }}
-                  >
-                    Objednat sezení
-                  </Button>
-                </Box>
-              </Box>
+              <PricingCard key={index} {...service} />
             ))}
           </SimpleGrid>
         </Container>
@@ -628,12 +356,7 @@ export default function Services() {
         <Container maxW={'7xl'}>
           <Stack spacing={8}>
             <Stack spacing={4} textAlign={'center'} maxW={'3xl'} mx="auto">
-              <Heading
-                lineHeight={1.1}
-                fontWeight={600}
-                color={headingColor}
-                fontSize={{ base: '3xl', sm: '4xl', lg: '5xl' }}
-              >
+              <Heading variant="section" color={headingColor}>
                 <Text
                   as={'span'}
                   position={'relative'}
@@ -690,15 +413,10 @@ export default function Services() {
             maxW={'3xl'}
             mx="auto"
           >
-            <Heading
-              lineHeight={1.1}
-              fontWeight={600}
-              fontSize={{ base: '3xl', sm: '4xl', lg: '5xl' }}
-            >
+            <Heading variant="section" color={headingColor}>
               <Text
                 as={'span'}
                 position={'relative'}
-                color={headingColor}
                 _after={{
                   content: "''",
                   width: 'full',
@@ -722,18 +440,9 @@ export default function Services() {
               pt={4}
             >
               <Button
-                as="a"
-                href="/calendar"
-                rounded={'full'}
-                size={'lg'}
-                fontWeight={'normal'}
-                px={8}
-                colorScheme={'green'}
-                variant={'solid'}
-                _hover={{
-                  bg: 'green.400',
-                  color: 'white',
-                }}
+                as={RouterLink}
+                to="/calendar"
+                variant="cta"
                 leftIcon={<FaCalendarAlt />}
               >
                 Objednat konzultaci
@@ -741,16 +450,7 @@ export default function Services() {
               <Button
                 as={RouterLink}
                 to="/about"
-                rounded={'full'}
-                size={'lg'}
-                fontWeight={'normal'}
-                px={8}
-                variant="outline"
-                colorScheme={'green'}
-                _hover={{
-                  bg: 'green.400',
-                  color: 'white',
-                }}
+                variant="ctaOutline"
                 rightIcon={<FaArrowRight />}
               >
                 Více o mně

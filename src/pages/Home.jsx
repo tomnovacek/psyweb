@@ -18,10 +18,18 @@ import {
   Link,
   VStack,
   HStack,
+  Divider,
+  useDisclosure,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalBody,
+  ModalCloseButton,
 } from '@chakra-ui/react'
 import { Link as RouterLink } from 'react-router-dom'
 import { CheckCircleIcon } from '@chakra-ui/icons'
-import { FaUserFriends, FaHeart, FaBrain, FaBalanceScale, FaComments, FaLightbulb, FaHandHoldingHeart, FaUserMd, FaVideo, FaCalendarAlt, FaCreditCard, FaShieldAlt, FaClock, FaInfoCircle, FaHeartbeat, FaArrowRight, FaUser } from 'react-icons/fa'
+import { FaUserFriends, FaHeart, FaBrain, FaBalanceScale, FaComments, FaLightbulb, FaHandHoldingHeart, FaUserMd, FaVideo, FaCalendarAlt, FaCreditCard, FaShieldAlt, FaClock, FaInfoCircle, FaHeartbeat, FaArrowRight, FaUser, FaUserShield, FaExchangeAlt, FaSeedling, FaUsers, FaIdCard, FaMoneyBill, FaMoneyBillAlt } from 'react-icons/fa'
 import { useEffect, useState } from 'react'
 import { getAllPosts, getLatestPosts } from '../utils/blogUtils'
 import OptimizedImage from '../components/OptimizedImage'
@@ -30,6 +38,10 @@ import SEO from '../components/SEO'
 import StructuredData from '../components/StructuredData'
 import { getOptimizedImagePath } from '../utils/getOptimizedImage'
 import BlogCard from '../components/BlogCard'
+import HeroButtonStack from '../components/HeroButtonStack'
+import HeroTextBox from '../components/HeroTextBox'
+import PricingCard from '../components/PricingCard'
+import ServicesGrid from '../components/ServicesGrid'
 
 export default function Home() {
   const [newestPosts, setNewestPosts] = useState([])
@@ -125,102 +137,24 @@ export default function Home() {
             mt={{ base: 0, md: 0 }}
           >
             {/* Text Box */}
-            <Box
-              bg={heroCardBg}
-              p={{ base: 6, md: 8 }}
-              borderRadius="lg"
-              maxW="2xl"
-              flex="1"
-              backdropFilter="blur(2px)"
-              minH={{ base: "auto", md: "500px" }}
-              display="flex"
-              flexDirection="column"
-              justifyContent="flex-start"
-              pt={{ base: 8, md: 10 }}
-            >
-              <Heading
-                lineHeight={1.1}
-                fontWeight={600}
-                fontSize={{ base: '3xl', sm: '4xl', lg: '6xl' }}
-                mb={6}
-              >
-                <Text
-                  as={'span'}
-                  position={'relative'}
-                  color={'whiteAlpha.900'}
-                  _after={{
-                    content: "''",
-                    width: 'full',
-                    height: '30%',
-                    position: 'absolute',
-                    bottom: 1,
-                    left: 0,
-                    bg: 'green.400',
-                    zIndex: -1,
-                  }}
-                >
-                  Psychoterapie
-                </Text>
-                <br />
-                <Text as={'span'} color={'green.400'}>
-                  & Osobní růst
-                </Text>
-              </Heading>
-              <Text color={'white'} fontSize={'xl'} mb={8}>
-                Vítejte, jmenuji se Tomáš Nováček. Věnuji se pomoci lidem překonávat životní výzvy a dosahovat osobního růstu. Společně s klienty se vydávám na cestu k hlubšímu porozumění sobě sama, svým vztahům a slepým uličkám, ve kterých se nacházejí. Snažím se, aby se na tomto putování cítili bezpečně a našli v sobě schopnost zahlédnout světlo nadějě prosvítající i potemnělým lesem.
-              </Text>
-
-              {/* button stack */}
-              <Stack
-                spacing={{ base: 4, sm: 6 }}
-                direction={{ base: 'column', sm: 'row' }}
-                mt="auto"
-              >
-                <Button
-                  as="a"
-                  href="mailto:terapie@tomnovacek.com"
-                  rounded={'full'}
-                  size={'lg'}
-                  fontWeight={'normal'}
-                  px={8}
-                  colorScheme={'green'}
-                  variant={'solid'}
-                  _hover={{
-                    bg: 'green.400',
-                    color: 'white',
-                  }}
-                  leftIcon={<FaCalendarAlt />}
-                >
-                  Objednat konzultaci
-                </Button>
-                <Button
-                  as={RouterLink}
-                  to="/services"
-                  rounded={'full'}
-                  size={'lg'}
-                  fontWeight={'normal'}
-                  px={8}
-                  variant="outline"
-                  colorScheme={'green'}
-                  borderColor={'white'}
-                  color={'white'}
-                  _hover={{
-                    bg: 'green.400',
-                    color: 'white',
-                    borderColor: 'green.400'
-                  }}
-                >
-                  Zjistit více
-                </Button>
-              </Stack>
-            </Box>
+            <HeroTextBox
+              title="Psychoterapie"
+              titleAccent="Osobní růst"
+              description="Vítejte, jmenuji se Tomáš Nováček. Věnuji se pomoci lidem překonávat životní výzvy a dosahovat osobního růstu. Společně s klienty se vydávám na cestu k hlubšímu porozumění sobě sama, svým vztahům a slepým uličkám, ve kterých se nacházejí. Snažím se, aby se na tomto putování cítili bezpečně a našli v sobě schopnost zahlédnout světlo nadějě prosvítající i potemnělým lesem."
+              primaryText="Objednat konzultaci"
+              primaryHref="/calendar"
+              secondaryText="Moje služby"
+              secondaryHref="/services"
+            />
 
             {/* Portrait Image */}
             <Box
               flex="1"
               maxW="2xl"
+              position="relative"
+              bg="transparent"
               height="100%"
-              minHeight="60vh"
+              minH={{ base: "400px", md: "500px" }}
               display="flex"
             >
               <Box
@@ -230,14 +164,14 @@ export default function Home() {
                 <OptimizedImage
                   src="tom1.png"
                   alt="Tom Nováček"
-                  objectFit="contain"
+                  objectFit="cover"
                   width="100%"
                   height="auto"
                   priority="true"
                   style={{
                     mixBlendMode: 'normal',
                     backgroundColor: 'transparent',
-                    filter: 'brightness(1.1)',
+                    filter: 'brightness(1.1)'
                   }}
                 />
               </Box>
@@ -250,16 +184,8 @@ export default function Home() {
       <Box py={20} bg={cardBg} position="relative" zIndex={2}>
         <Container maxW={'7xl'} centerContent>
           <Stack spacing={4} maxW={'6xl'} textAlign={'center'} mb={10}>
-            <Heading
-              lineHeight={1.1}
-              fontWeight={600}
-              fontSize={{ base: '3xl', sm: '4xl', lg: '5xl' }}
-              color={headingColor}
-            >
-              <Text
-                as={'span'}
-                position={'relative'}
-              >
+            <Heading variant="section" color={headingColor}>
+              <Text as={'span'} position={'relative'}>
                 O mně
               </Text>
             </Heading>
@@ -324,15 +250,7 @@ export default function Home() {
                 <Button
                   as={RouterLink}
                   to="/about"
-                  w="full"
-                  colorScheme="green"
-                  variant="outline"
-                  rounded="full"
-                  size="lg"
-                  _hover={{
-                    bg: 'green.400',
-                    color: 'white',
-                  }}
+                  variant="card"
                 >
                   Více o mně
                 </Button>
@@ -394,15 +312,7 @@ export default function Home() {
                 <Button
                   as={RouterLink}
                   to="/services"
-                  w="full"
-                  colorScheme="green"
-                  rounded="full"
-                  variant="outline"
-                  size="lg"
-                  _hover={{
-                    bg: 'green.400',
-                    color: 'white',
-                  }}
+                  variant="card"
                 >
                   Moje služby
                 </Button>
@@ -416,19 +326,8 @@ export default function Home() {
       <Box py={20} bg={bgColor}>
         <Container maxW={'7xl'} centerContent>
           <Stack spacing={4} maxW={'6xl'} textAlign={'center'} mb={10}>
-            <Heading
-              lineHeight={1.1}
-              fontWeight={600}
-              fontSize={{ base: '3xl', sm: '4xl', lg: '5xl' }}
-              color={headingColor}
-              position="relative"
-              display="inline-block"
-            >
-              <Text
-                as={'span'}
-                position={'relative'}
-                zIndex={1}
-              >
+            <Heading variant="section" color={headingColor}>
+              <Text as={'span'} position={'relative'} zIndex={1}>
                 S čím vám mohu pomoci
               </Text>
             </Heading>
@@ -523,27 +422,21 @@ export default function Home() {
             <Button
               as={RouterLink}
               to="/services"
-              colorScheme={'green'}
-              variant={'outline'}
-              size={'lg'}
-              rounded={'full'}
-              px={8}
-              _hover={{
-                bg: 'green.400',
-                color: 'white',
-              }}
+              variant="outline"
+              size="lg"
             >
               Více o službách a podmínkách
             </Button>
           </Stack>
         </Container>
       </Box>
+
       {/* Latest Posts Section */}
       <Box py={20}>
         <Container maxW="container.xl">
           <VStack spacing={12} align="stretch">
             <Box textAlign="center">
-              <Heading as="h2" size="2xl" mb={4} color={headingColor}>
+              <Heading as="h2" variant="section" size="2xl" mb={4} color={headingColor}>
                 Z mého bloku
               </Heading>
               <Text fontSize="xl" color="gray.600">
@@ -561,15 +454,7 @@ export default function Home() {
               <Button
                 as={RouterLink}
                 to="/blog"
-                colorScheme="green"
-                size="lg"
-                rounded="full"
                 variant="outline"
-                px={8}
-                _hover={{
-                  bg: 'green.400',
-                  color: 'white',
-                }}
               >
                 Všechny články
               </Button>
@@ -589,12 +474,7 @@ export default function Home() {
             maxW={'3xl'}
             mx="auto"
           >
-            <Heading
-              lineHeight={1.1}
-              fontWeight={600}
-              fontSize={{ base: '3xl', sm: '4xl', lg: '5xl' }}
-              color={headingColor}
-            >
+            <Heading variant="section" color={headingColor}>
               <Text
                 as={'span'}
                 position={'relative'}
@@ -621,18 +501,9 @@ export default function Home() {
               pt={4}
             >
               <Button
-                as="a"
-                href="mailto:terapie@tomnovacek.com"
-                rounded={'full'}
-                size={'lg'}
-                fontWeight={'normal'}
-                px={8}
-                colorScheme={'green'}
-                variant={'solid'}
-                _hover={{
-                  bg: 'green.400',
-                  color: 'white',
-                }}
+                as={RouterLink}
+                to="/calendar"
+                variant="cta"
                 leftIcon={<FaCalendarAlt />}
               >
                 Objednat konzultaci
@@ -640,16 +511,7 @@ export default function Home() {
               <Button
                 as={RouterLink}
                 to="/services"
-                rounded={'full'}
-                size={'lg'}
-                fontWeight={'normal'}
-                px={8}
-                variant="outline"
-                colorScheme={'green'}
-                _hover={{
-                  bg: 'green.400',
-                  color: 'white',
-                }}
+                variant="ctaOutline"
                 rightIcon={<FaArrowRight />}
               >
                 Moje služby
