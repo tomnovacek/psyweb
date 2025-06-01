@@ -19,7 +19,7 @@ import OptimizedImage from './OptimizedImage'
 
 const DesktopNav = () => {
   return (
-    <Stack direction={'row'} spacing={4}>
+    <Stack direction={'row'} spacing={4}> 
       <Button as={RouterLink} to="/" fontSize={'sm'} fontWeight={400} variant={'link'}>
         Domů
       </Button>

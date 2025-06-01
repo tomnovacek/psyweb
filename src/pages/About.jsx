@@ -135,16 +135,6 @@ export default function About() {
             pt={{ base: 10, md: 28 }}
             mt={{ base: 0, md: 0 }}
           >
-            {/* Text Box */}
-            <HeroTextBox
-              title="Moje cesta"
-              titleAccent="Můj přístup"
-              description="Jako psychoterapeut se zaměřuji na vytvoření bezpečného a podpůrného prostředí, kde můžete prozkoumat své myšlenky, pocity a zkušenosti. Můj přístup je založen na vzájemném respektu, empatii a autenticitě."
-              primaryText="Objednat konzultaci"
-              primaryHref="/calendar"
-              secondaryText="Moje služby"
-              secondaryHref="/services"
-            />
 
             {/* Portrait Image */}
             <Box
@@ -175,6 +165,18 @@ export default function About() {
                 />
               </Box>
             </Box>
+            {/* Text Box  on the right */}
+              <HeroTextBox
+              title="Moje cesta"
+              titleAccent="Můj přístup"
+              description="Jako psychoterapeut se zaměřuji na vytvoření bezpečného a podpůrného prostředí, kde můžete prozkoumat své myšlenky, pocity a zkušenosti. Můj přístup je založen na vzájemném respektu, empatii a autenticitě. osledních sedm let věnuji snaze pomáhat lidem překonávat životní výzvy a dosahovat osobního růstu. Psychoterapii nevnímám jako místo, kde se rychle vyřeší problémy. Spíš jako prostor, kde se dá postupně 
+                zastavit, začít víc vnímat sama sebe, získat nadhled a porozumět sobě i světu, ve kterém žijeme."
+              primaryText="Objednat konzultaci"
+              primaryHref="/calendar"
+              secondaryText="Moje služby"
+              secondaryHref="/services"
+            />
+
           </Flex>
         </Container>
       </Box>
@@ -411,7 +413,7 @@ export default function About() {
             mx="auto"
           >
             <Heading variant="section">
-              <Text as="span" className="section-underline">
+              <Text as="span">
                 Vydejme se spolu na cestu
               </Text>
             </Heading>

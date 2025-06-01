@@ -143,7 +143,7 @@ const theme = extendTheme({
           },
         },
         link: {
-          color: 'green.400',
+          color: 'gray.800',
           _hover: {
             textDecoration: 'none',
             color: 'green.500',

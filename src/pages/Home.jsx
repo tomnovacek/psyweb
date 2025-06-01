@@ -42,6 +42,7 @@ import HeroButtonStack from '../components/HeroButtonStack'
 import HeroTextBox from '../components/HeroTextBox'
 import PricingCard from '../components/PricingCard'
 import ServicesGrid from '../components/ServicesGrid'
+import AboutCard from '../components/AboutCard'
 
 export default function Home() {
   const [newestPosts, setNewestPosts] = useState([])
@@ -194,130 +195,26 @@ export default function Home() {
             </Text>
           </Stack>
           <SimpleGrid columns={{ base: 1, md: 2 }} spacing={16} w="full">
-            <Box
-              bg={useColorModeValue('white', 'gray.800')}
-              boxShadow={'xl'}
-              rounded={'2xl'}
-              position="relative"
-              transition="all 0.3s"
-              _hover={{
-                transform: 'translateY(-5px)',
-                boxShadow: '2xl',
-              }}
-              overflow="hidden"
-            >
-              <Box
-                position="relative"
-                height="260px"
-                overflow="hidden"
-              >
-                <OptimizedImage
-                  src="room.jpeg"
-                  alt="Terapeutická místnost"
-                  objectFit="cover"
-                  width="100%"
-                  height="100%"
-                  style={{
-                    filter: 'brightness(1.2)',
-                  }}
-                />
-                <Box
-                  position="absolute"
-                  top={0}
-                  left={0}
-                  right={0}
-                  bottom={0}
-                  bg="blackAlpha.300"
-                />
-                <Box
-                  position="absolute"
-                  bottom={0}
-                  left={0}
-                  right={0}
-                  p={6}
-                  bg="linear-gradient(to top, rgba(0,0,0,0.8), transparent)"
-                >
-                  <Flex align="center" gap={3}>
-                    <Icon as={FaUser} w={8} h={8} color="white" />
-                    <Heading fontSize={'2xl'} color="white">Moje praxe</Heading>
-                  </Flex>
-                </Box>
-              </Box>
-              <Box p={8}>
-                <Text fontSize={'lg'} mb={6} color={textColor}>
-                  Posledních sedm let se intenzivně věnuji psychologickému poradenství a čtyři roky praktikuji terapii. Moje odbornost je založena na důkladném vzdělání a kontinuálním profesním rozvoji. Absolvoval jsem dvouletý specializovaný výcvik v koučování a šestiletý certifikovaný výcvik v integrativní psychoterapii. Jsem také řádným členem České asociace pro psychoterapii - komunity, která klade důraz na etické standardy a vysokou kvalifikaci v oboru psychoterapie.
-                </Text>
-                <Button
-                  as={RouterLink}
-                  to="/about"
-                  variant="card"
-                >
-                  Více o mně
-                </Button>
-              </Box>
-            </Box>
-            <Box
-              bg={useColorModeValue('white', 'gray.800')}
-              boxShadow={'xl'}
-              rounded={'2xl'}
-              position="relative"
-              transition="all 0.3s"
-              _hover={{
-                transform: 'translateY(-5px)',
-                boxShadow: '2xl',
-              }}
-              overflow="hidden"
-            >
-              <Box
-                position="relative"
-                height="260px"
-                overflow="hidden"
-              >
-                <OptimizedImage
-                  src="mountinHikeGroup.jpg"
-                  alt="Skupina lidí na horách"
-                  objectFit="cover"
-                  width="100%"
-                  height="100%"
-                  style={{
-                    filter: 'brightness(1.2)',
-                  }}
-                />
-                <Box
-                  position="absolute"
-                  top={0}
-                  left={0}
-                  right={0}
-                  bottom={0}
-                  bg="blackAlpha.300"
-                />
-                <Box
-                  position="absolute"
-                  bottom={0}
-                  left={0}
-                  right={0}
-                  p={6}
-                  bg="linear-gradient(to top, rgba(0,0,0,0.8), transparent)"
-                >
-                  <Flex align="center" gap={3}>
-                    <Icon as={FaHandHoldingHeart} w={8} h={8} color="white" />
-                    <Heading fontSize={'2xl'} color="white">Můj přístup</Heading>
-                  </Flex>
-                </Box>
-              </Box>
-              <Box p={8}>
-                <Text fontSize={'lg'} mb={6} color={textColor}>
-                  Věřím, že každý člověk má vnitřní zdroje, jak se vyrovnat s životními výzvami. Existují však chvíle, kdy se můžeme cítit uvězněni nebo bezmocní v řešení obtížných situací. V takových chvílích vás podporuji v pochopení vašich problémů a hledání efektivních způsobů, jak je překonat. Respektuji jedinečnost každého klienta, proto k každému přistupuji individuálně. Společně prozkoumáváme vaši osobní cestu sebepoznání a odhalujeme vnitřní síly, které vám mohou pomoci žít plnější a spokojenější život.
-                </Text>
-                <Button
-                  as={RouterLink}
-                  to="/services"
-                  variant="card"
-                >
-                  Moje služby
-                </Button>
-              </Box>
-            </Box>
+            <AboutCard
+              title="Moje praxe"
+              description="Posledních sedm let se intenzivně věnuji psychologickému poradenství a čtyři roky praktikuji terapii. Moje odbornost je založena na důkladném vzdělání a kontinuálním profesním rozvoji. Absolvoval jsem dvouletý specializovaný výcvik v koučování a šestiletý certifikovaný výcvik v integrativní psychoterapii. Jsem také řádným členem České asociace pro psychoterapii - komunity, která klade důraz na etické standardy a vysokou kvalifikaci v oboru psychoterapie."
+              image="room.jpeg"
+              imageAlt="Terapeutická místnost"
+              icon={FaUser}
+              buttonText="Více o mně"
+              buttonHref="/about"
+              textColor={textColor}
+            />
+            <AboutCard
+              title="Můj přístup"
+              description="Věřím, že každý člověk má vnitřní zdroje, jak se vyrovnat s životními výzvami. Existují však chvíle, kdy se můžeme cítit uvězněni nebo bezmocní v řešení obtížných situací. V takových chvílích  podporuji klienty v pochopení jejich problémů a hledání efektivních způsobů, jak je překonat. Společně prozkoumáváme jejich osobní cestu k sebepoznání a odhalujeme vnitřní síly, které jim mohou pomoci žít plnější a spokojenější život."
+              image="mountinHikeGroup.jpg"
+              imageAlt="Skupina lidí na horách"
+              icon={FaHandHoldingHeart}
+              buttonText="Moje služby"
+              buttonHref="/services"
+              textColor={textColor}
+            />
           </SimpleGrid>
         </Container>
       </Box>
@@ -332,7 +229,7 @@ export default function Home() {
               </Text>
             </Heading>
             <Text color={textColor} fontSize={'xl'}>
-              Nejčastější témata, které mi lidé přinášejí jsou komplikované vztahy, propady nálady, úzkosti, stres a nízké sebevědomí.
+              Nejčastější témata, které mi lidé přinášejí jsou problémy s blízkými vztahy, propady nálady, úzkosti, stres a nízké sebevědomí.
             </Text>
           </Stack>
           <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={10} w="full">
@@ -363,7 +260,7 @@ export default function Home() {
               },
               {
                 icon: FaHeartbeat,
-                title: 'Zvládání stresového prostředí',
+                title: 'Zvládání stresu',
                 description: 'Strategie zvládání stresu.',
                 features: [
                   'Zdravotní potíže',
@@ -436,11 +333,11 @@ export default function Home() {
         <Container maxW="container.xl">
           <VStack spacing={12} align="stretch">
             <Box textAlign="center">
-              <Heading as="h2" variant="section" size="2xl" mb={4} color={headingColor}>
+              <Heading as="h2" variant="section">
                 Z mého bloku
               </Heading>
               <Text fontSize="xl" color="gray.600">
-                Pár mých poznámek v mém zápisníku, které by mohly být užitečné i pro vás.
+                Pár mých poznámek v mém zápisníku, které by mohly být užitečné i pro vás. Jedná se o potenciálně užitečné odkazy na články, svépomocné skupiny a literaturu k dalšímu čtení. Slouží primárně mě. Ale po opakovaných diskuzích s klienty jsem se rozhodl tyto moje náčrty sdílet zde. Není cílem obsáhnout celé téma, ale nastínit základní východiska a otázky k další práci.
               </Text>
             </Box>
 
@@ -475,22 +372,7 @@ export default function Home() {
             mx="auto"
           >
             <Heading variant="section" color={headingColor}>
-              <Text
-                as={'span'}
-                position={'relative'}
-                _after={{
-                  content: "''",
-                  width: 'full',
-                  height: '30%',
-                  position: 'absolute',
-                  bottom: 1,
-                  left: 0,
-                  bg: 'green.400',
-                  zIndex: -1,
-                }}
-              >
                 Vydejme se spolu na cestu
-              </Text>
             </Heading>
             <Text color={textColor} fontSize={'xl'} maxW={'2xl'}>
               První krok je často ten nejtěžší. Domluvte si úvodní konzultaci a společně prozkoumáme, jak vám mohu pomoci.

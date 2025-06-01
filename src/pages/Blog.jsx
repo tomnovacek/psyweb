@@ -95,7 +95,7 @@ const Blog = () => {
       <Container maxW="container.xl">
         <VStack spacing={12} align="stretch">
           <Box textAlign={'center'}>
-            <Heading color={headingColor} as="h1" size="2xl" mb={4}>
+            <Heading as="h1" variant="section">
               Blog
             </Heading>
             <Text fontSize="xl" color="gray.600">

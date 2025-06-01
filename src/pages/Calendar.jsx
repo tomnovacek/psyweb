@@ -61,28 +61,8 @@ export default function Calendar() {
       <Box py={20}>
         <Container maxW={'7xl'}>
           <Stack spacing={4} maxW={'3xl'} textAlign={'center'} mb={10} mx="auto">
-            <Heading
-              lineHeight={1.1}
-              fontWeight={600}
-              color={headingColor}
-              fontSize={{ base: '3xl', sm: '4xl', lg: '5xl' }}
-            >
-              <Text
-                as={'span'}
-                position={'relative'}
-                _after={{
-                  content: "''",
-                  width: 'full',
-                  height: '30%',
-                  position: 'absolute',
-                  bottom: 1,
-                  left: 0,
-                  bg: 'green.400',
-                  zIndex: -1,
-                }}
-              >
+            <Heading as="h1" variant="section">
                 Domluvte si sezení
-              </Text>
             </Heading>
             <Text color={textColor} fontSize={'xl'}>
               Rezervujte si termín, který vám vyhovuje přímo v kalendáři. <br /> 
