@@ -27,6 +27,12 @@ export const getAllPosts = async () => {
         return null
       }
 
+      // Check if post should be included based on status
+      const status = frontmatter.status || 'published'
+      if (status === 'draft' && !import.meta.env.DEV) {
+        return null
+      }
+
       // Format date
       const date = new Date(frontmatter.date)
       const formattedDate = format(date, 'd. MMMM yyyy', { locale: cs })
@@ -54,6 +60,7 @@ export const getAllPosts = async () => {
         image: imagePath,
         author: frontmatter.author,
         content: mdxContent,
+        status: status
       }
     })
   )
@@ -75,6 +82,12 @@ export const getPostBySlug = async (slug) => {
   // Validate required fields
   if (!frontmatter.title || !frontmatter.date) {
     console.warn(`Post ${slug} is missing required fields`)
+    return null
+  }
+
+  // Check if post should be accessible based on status
+  const status = frontmatter.status || 'published'
+  if (status === 'draft' && !import.meta.env.DEV) {
     return null
   }
 
@@ -104,6 +117,7 @@ export const getPostBySlug = async (slug) => {
     image: imagePath,
     author: frontmatter.author,
     content: mdxContent,
+    status: status
   }
 }
 
