@@ -39,15 +39,13 @@ import StructuredData from '../components/StructuredData'
 import { getOptimizedImagePath } from '../utils/getOptimizedImage'
 import BlogCard from '../components/BlogCard'
 import HeroTextBox from '../components/HeroTextBox'
-import PricingCard from '../components/PricingCard'
-import ServicesGrid from '../components/ServicesGrid'
 import AboutCard from '../components/AboutCard'
 
 export default function Home() {
   const [newestPosts, setNewestPosts] = useState([])
   const [loading, setLoading] = useState(true)
 
-  // Move hooks to the top level
+  // Hookd
   const bgColor = useColorModeValue('gray.50', 'gray.900')
   const cardBg = useColorModeValue('white', 'gray.800')
   const heroCardBg = useColorModeValue('whiteAlpha.200', 'blackAlpha.200')
@@ -190,13 +188,13 @@ export default function Home() {
               </Text>
             </Heading>
             <Text color={textColor} fontSize={'xl'}>
-              Jsem psycholog a terapeut s multioborovým vzděláním a bohatými zkušenostmi v doprovázení lidí překonávajících své životní výzvy. Znalosti a perspektivy z různých profesních oblastí mi pomáhají nejprve pochopit klientovu situaci a následně společněpostupně rozšiřovat obzory o nové úhly pohledu, které mohou přinášet větší svobodu při hledání cesty vpřed.
+              Jsem psycholog a terapeut s multioborovým vzděláním a zkušenostmi v doprovázení lidí překonávajících své životní výzvy. Znalosti a perspektivy z různých profesních oblastí mi pomáhají pochopit klientovu situaci a následně společně rozšiřovat obzory o perspektivy, které mohou přinášet větší svobodu při hledání cesty vpřed.
             </Text>
           </Stack>
           <SimpleGrid columns={{ base: 1, md: 2 }} spacing={16} w="full">
             <AboutCard
               title="Moje praxe"
-              description="Posledních sedm let se intenzivně věnuji psychologickému poradenství a čtyři roky praktikuji terapii. Moje odbornost je založena na důkladném vzdělání a kontinuálním profesním rozvoji. Absolvoval jsem dvouletý specializovaný výcvik v koučování a šestiletý certifikovaný výcvik v integrativní psychoterapii. Jsem také řádným členem České asociace pro psychoterapii - komunity, která klade důraz na etické standardy a vysokou kvalifikaci v oboru psychoterapie."
+              description="Posledních sedm let se intenzivně věnuji psychologickému poradenství a čtyři roky praktikuji terapii v soukromé praxi v centru Brna.  Vystudoval jsem jednooborovou psychologii a absolvoval  dvouletý výcvik v koučování, následně šestiletý výcvik v integrativní psychoterapii. Jsem řádným členem České asociace pro psychoterapii - komunity, která klade důraz na etické standardy a vysokou kvalifikaci v oboru psychoterapie."
               image="room.jpeg"
               imageAlt="Terapeutická místnost"
               icon={FaUser}
@@ -206,7 +204,7 @@ export default function Home() {
             />
             <AboutCard
               title="Můj přístup"
-              description="Věřím, že každý člověk má vnitřní zdroje, jak se vyrovnat s životními výzvami. Existují však chvíle, kdy se můžeme cítit uvězněni nebo bezmocní v řešení obtížných situací. V takových chvílích  podporuji klienty v pochopení jejich problémů a hledání efektivních způsobů, jak je překonat. Společně prozkoumáváme jejich osobní cestu k sebepoznání a odhalujeme vnitřní síly, které jim mohou pomoci žít plnější a spokojenější život."
+              description="Věřím, že všichni máme vnitřní zdroje k zvládání životních výzev, které se před námi objevují. Mohou se však objevit situace, ve kterých se můžeme cítit uvězněni nebo bezmocní. V takových chvílích  podporuji klienty v pochopení jejich problémů a hledání efektivních způsobů, jak je překonat. Společně prozkoumáváme jejich osobní cestu k sebepoznání a odhalujeme vnitřní síly, které jim mohou pomoci žít plnější a spokojenější život."
               image="mountinHikeGroup.jpg"
               imageAlt="Skupina lidí na horách"
               icon={FaHandHoldingHeart}
@@ -234,13 +232,13 @@ export default function Home() {
           <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={10} w="full">
             {[
               {
-                icon: FaBrain,
+                icon: FaUser,
                 title: 'Osobní potíže',
                 description: 'Individuální terapie',
                 features: [
                   'Úzkost a deprese',
                   'Výkyvy nálady',
-                  'Trauma a PTSD',
+                  'Nároky na sebe',
                   'Sebevědomí',
                   'Vztah k sobě'
                 ]
@@ -264,7 +262,7 @@ export default function Home() {
                 features: [
                   'Zdravotní potíže',
                   'Životní změny',
-                  'Nároky na sebe',
+                  'Traumatické zkušenosti',
                   'Strategie zvládání',
                   'Balancování práce a osobního života'
                 ]
@@ -352,7 +350,7 @@ export default function Home() {
                 to="/blog"
                 variant="outline"
               >
-                Všechny články
+                Více článků
               </Button>
             </Box>
           </VStack>

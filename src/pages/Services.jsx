@@ -11,6 +11,7 @@ import {
   ListItem,
   ListIcon,
   Icon,
+  Link,
   Flex,
   Badge,
   Divider,
@@ -168,41 +169,41 @@ export default function Services() {
       {/* Areas of Expertise */}
       <ServicesGrid
         title="Nejčastější témata"
-        description="S klienty se nejčastějí věnujeme následujícím otázkám."
+        description="S klienty se nejčastějí věnujeme následujícím otázkám:"
         services={[
           {
             title: 'Osobní rozvoj',
-            description: 'Bezpečný prostor pro zpracování traumatických zkušeností.',
+            description: 'Když se chcete posunout dál a je složité překonat překážky, které vám stojí v cestě.',
             icon: FaSeedling,
             image: 'healing-space.webp'
           },
           {
             title: 'Sebevědomí a vztah k sobě',
-            description: 'Bezpečný prostor pro zpracování traumatických zkušeností.',
+            description: 'Co stojí za nedostatkem sebevědomí. Jak zlepšit vztah k sobě a svému životu.',
             icon: FaHandHoldingHeart,
             image: 'safe-space.webp'
           },
           {
             title: 'Úzkost a deprese',
-            description: 'Osobní sezení zaměřená na vaše specifické potřeby a cíle.',
+            description: 'Podpora při zvládání úzkosti a deprese. Rozšiřování reportoáru, jak si s tím poradit.',
             icon: FaUserShield,
             image: 'stress.webp'
           },
           {
             title: 'Stres a jeho zvládání',
-            description: 'Podpora při zvládání úzkosti a deprese, rozvoj strategií zvládání.',
+            description: 'Chápání role stresu ve vašem životě, jak ho ovlivnit a zvládat.',
             icon: FaHeartbeat,
             image: 'mindfulness.webp'
           },
           {
-            title: 'Vztahové poradenství',
-            description: 'Podpora párů v budování zdravých a naplňujících vztahů.',
+            title: 'Vztahy',
+            description: 'Podpora v budování zdravých a naplňujících vztahů. Vztahy s dětmi, partnery, přáteli, kolegy.',
             icon: FaUsers,
             image: 'relationships.webp'
           },
           {
             title: 'Zpracování složitých životních situací',
-            description: 'Bezpečný prostor pro zpracování traumatických zkušeností.',
+            description: 'Bezpečný prostor pro zpracování těžkých životních zkušeností.',
             icon: FaExchangeAlt,
             image: 'family.webp'
           },
@@ -213,7 +214,7 @@ export default function Services() {
       <Box py={20} bg={cardBg}>
         <Container maxW={'7xl'}>
           <Stack spacing={8}>
-            <Stack spacing={4} textAlign={'center'} maxW={'3xl'} mx="auto">
+            <Stack spacing={4} textAlign={'center'} maxW={'6xl'} mx="auto">
               <Heading variant="section" color={headingColor}>
                 <Text
                   as={'span'}
@@ -233,7 +234,7 @@ export default function Services() {
                 </Text>
               </Heading>
               <Text color={textColor} fontSize={'xl'}>
-                Společně vytvoříme bezpečný prostor pro váš osobní růst a uzdravení.
+              Naše setkání probíhají v příjemném a bezpečném prostředí mé pracovny v centru Brna na Sukově 4. První sezení věnujeme tomu, abychom se poznali a společně porozuměli vašim potřebám. Bavíme se o tom, kam byste chtěli na naší společné cestě dojít. Následně se můžeme potkávat jednou týdně nebo jednou za dva týdny, podle vašich preferencí. Délka naší spolupráce je pak zcela ve vašich rukou - můžeme jít spolu tak dlouho, až se budete cítit připraveni pokračovat dál již bez mé podpory.
               </Text>
             </Stack>
 
@@ -375,7 +376,7 @@ export default function Services() {
                 </Text>
               </Heading>
               <Text color={textColor} fontSize={'xl'}>
-                Informace o možnostech placení.
+                Informace o možnostech placení a preventivních programech zdravotních pojišťoven.
               </Text>
             </Stack>
 
@@ -383,10 +384,10 @@ export default function Services() {
               <Box>
                 <Flex align="center" gap={3} mb={4}>
                   <Icon as={FaIdCard} w={8} h={8} color="green.400" />
-                  <Heading color={headingColor} fontSize={'xl'}>Zdravotní pojištění</Heading>
+                  <Heading color={headingColor} fontSize={'xl'}>Přímá platba</Heading><Text color={textColor} fontSize={'sm'}>(s podporou Zdravotnich pojištoven)</Text>
                 </Flex>
                 <Text color={textColor} fontSize={'lg'}>
-                  Služby si klienti hradí z vlastních prostředků. Nicméně, některé pojišťovny částečně přispívají na psychoterapii v rámci svych nadstandardních preventivních programů. Jsem registrován v rámci České Asociace pro Psychoterapii tak, aby klienti mohli tyto výhody čerpat. Doporučuji kontaktovat vaši pojišťovnu pro více informací.
+                  Služby si klienti hradí z vlastních prostředků. Nicméně, některé pojišťovny částečně přispívají na psychoterapii v rámci svych nadstandardních preventivních programů. Jsem zapojen do těchto programů, aby klienti mohli tyto výhody čerpat. Více informací naleznete na stránce <Link href="https://czap.cz/spoluprace-zp" target="_blank">České asociace pro psychoterapii</Link> nebo u vaší pojišťovny.
                 </Text>
               </Box>
               <Box>
@@ -395,7 +396,7 @@ export default function Services() {
                   <Heading color={headingColor} fontSize={'xl'}>Způsoby platby</Heading>
                 </Flex>
                 <Text color={textColor} fontSize={'lg'}>
-                  Platba je možná v hotovosti nebo převodem na účet. Obvykle vystavuji fakturu po sezení a zasílám jí emailem. Pro více informací o platbách mě neváhejte kontaktovat.
+                  Platba je možná v hotovosti nebo převodem na účet. Obvykle po sezení vystavuji fakturu s QR kódem a zasílám jí emailem. Pro více informací o platbách mě neváhejte kontaktovat.
                 </Text>
               </Box>
             </SimpleGrid>

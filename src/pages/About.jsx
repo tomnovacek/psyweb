@@ -27,33 +27,35 @@ import {
   ModalCloseButton,
 } from '@chakra-ui/react'
 import { CheckCircleIcon } from '@chakra-ui/icons'
-import { 
-  FaGraduationCap, 
-  FaUserMd, 
-  FaHeart, 
-  FaBrain, 
+import {
+  FaGraduationCap,
+  FaUserMd,
+  FaHeart,
+  FaBrain,
+  FaBook,
   FaIcons,
-  FaHandHoldingHeart, 
-  FaLightbulb, 
-  FaHeartbeat, 
-  FaUserShield, 
-  FaUsers, 
-  FaExchangeAlt, 
-  FaBalanceScale, 
+  FaHandHoldingHeart,
+  FaLightbulb,
+  FaHeartbeat,
+  FaUserShield,
+  FaUsers,
+  FaExchangeAlt,
+  FaBalanceScale,
   FaSeedling,
   FaCalendarAlt,
   FaArrowRight,
   FaCertificate,
-  FaUserFriends, 
-  FaVideo, 
+  FaUserFriends,
+  FaVideo,
   FaCashRegister,
-  FaCreditCard, 
+  FaCreditCard,
   FaShieldAlt,
   FaClock,
   FaInfoCircle,
   FaIdCard,
   FaMoneyBill,
   FaMoneyBillAlt,
+  FaUserCircle,
 } from 'react-icons/fa'
 import { Link as RouterLink } from 'react-router-dom'
 import OptimizedImage from '../components/OptimizedImage'
@@ -165,11 +167,10 @@ export default function About() {
               </Box>
             </Box>
             {/* Text Box  on the right */}
-              <HeroTextBox
+            <HeroTextBox
               title="Moje cesta"
               titleAccent="Můj přístup"
-              description="Jako psychoterapeut se zaměřuji na vytvoření bezpečného a podpůrného prostředí, kde můžete prozkoumat své myšlenky, pocity a zkušenosti. Můj přístup je založen na vzájemném respektu, empatii a autenticitě. osledních sedm let věnuji snaze pomáhat lidem překonávat životní výzvy a dosahovat osobního růstu. Psychoterapii nevnímám jako místo, kde se rychle vyřeší problémy. Spíš jako prostor, kde se dá postupně 
-                zastavit, začít víc vnímat sama sebe, získat nadhled a porozumět sobě i světu, ve kterém žijeme."
+              description="Jako psychoterapeut se zaměřuji na vytvoření bezpečného a podpůrného prostředí, kde můžete prozkoumat své myšlenky, pocity a zkušenosti. Můj přístup je založen na vzájemném respektu, empatii a autenticitě. Posledních sedm let věnuji snaze pomáhat lidem překonávat životní výzvy a dosahovat osobního růstu. Psychoterapii nevnímám jako místo, kde se rychle vyřeší problémy. Spíš jako prostor, kde se dá  na chvíli zastavit, začít víc vnímat sama sebe, získat nadhled, porozumět sobě i světu, ve kterém žijeme, a přidat nové možnosti."
               primaryText="Objednat konzultaci"
               primaryHref="/calendar"
               secondaryText="Moje služby"
@@ -199,17 +200,17 @@ export default function About() {
               {
                 icon: FaHeart,
                 title: 'Poporující',
-                text: 'Vytváření bezpečného, empatického prostředí, kde se cítíte slyšeni a pochopeni.',
+                text: 'Snažím se vytvářet bezpečné prostředí, kde se můžete cítít slyšeni a pochopeni.',
               },
               {
                 icon: FaBrain,
                 title: 'Výzkumem ověřený',
-                text: 'Využívání prokázaných terapeutických přístupů, které prokázaly pozitivní výsledky.',
+                text: 'Využívám terapeutické přístupy, které prokázaly pozitivní výsledky.',
               },
               {
-                icon: FaIcons,
-                title: 'Celostní',
-                text: 'Zaměření na celou osobu - mysl, tělo a emoce - v procesu integrace.',
+                icon: FaUserCircle,
+                title: 'Na míru',
+                text: 'Respektuji individuálitu a specifické potřeby každého klienta.',
               },
             ].map((feature, index) => (
               <Box
@@ -252,7 +253,7 @@ export default function About() {
               </Text>
             </Heading>
             <Text color={textColor} fontSize={'xl'}>
-              Moje profesionální cesta byla je postavena na jednooborovém studiu psychologie, dlouhodobém psychoterapeutickém výcviku a kontinuálnímu vzělávání v oboru psychoterapie.
+              Vystudoval jsem jednooborovou psychologii, dlouhodobý systematický psychoterapeutický výcvik a kontinuálně se vzdělávám v oboru psychoterapie.
             </Text>
           </Stack>
 
@@ -262,7 +263,7 @@ export default function About() {
             align="center"
           >
             <Box flex="1">
-              <SimpleGrid columns={{ base: 1, md: 2 }} spacing={8}>
+              <SimpleGrid columns={{ base: 1, md: 3 }} spacing={8}>
                 <Box>
                   <Flex align="center" gap={3} mb={4}>
                     <Icon as={FaGraduationCap} w={8} h={8} color="green.400" />
@@ -279,20 +280,11 @@ export default function About() {
                     </ListItem>
                     <ListItem color={textColor}>
                       <ListIcon as={CheckCircleIcon} color="green.400" />
-                      Specializovaný výcvik v integrativní psychoterapii
-                    </ListItem>
-                    <ListItem color={textColor}>
-                      <ListIcon as={CheckCircleIcon} color="green.400" />
                       Certifikovaný výcvik v koučování
                     </ListItem>
                     <ListItem color={textColor}>
                       <ListIcon as={CheckCircleIcon} color="green.400" />
-                      Další absolvované kurzy: 
-                      <UnorderedList spacing={0} pl={5} color="green.500">
-                        <ListItem>Psychofamaka v terapeutické praxi</ListItem>
-                        <ListItem>Neurodiverzita (ADHD, ADD, Autismus)</ListItem>
-                        <ListItem>Bezpečí v práci s tělem s traumatizovaným klientem</ListItem>
-                      </UnorderedList>
+                      Výcvik v <Link href='https://www.psychoterapie-integrace.cz/vycvik/popis-vycviku-VIP4' isExternal target='_blank' rel='noopener noreferrer'>integrativní psychoterapii</Link>
                     </ListItem>
                   </List>
                 </Box>
@@ -304,7 +296,7 @@ export default function About() {
                   <List spacing={3}>
                     <ListItem color={textColor}>
                       <ListIcon as={CheckCircleIcon} color="green.400" />
-                      Certifikovaný psychoterapeut (x hodin výcviku)<a href='exterala/diplom.pdf' target='_blank' rel='noopener noreferrer'>(Diplom)</a>
+                      Certifikovaný psychoterapeut – 1010 hodin výcviku <Link href='src/ext/Certifikat.pdf' target='_blank' rel='noopener noreferrer' color="green.400">(Certifikát)</Link>
                     </ListItem>
                     <ListItem color={textColor}>
                       <ListIcon as={CheckCircleIcon} color="green.400" />
@@ -316,8 +308,30 @@ export default function About() {
                     </ListItem>
                   </List>
                 </Box>
+                <Box>
+                  <Flex align="center" gap={3} mb={4}>
+                    <Icon as={FaBook} w={8} h={8} color="green.400" />
+                    <Heading color={headingColor} fontSize={'xl'}>Další absolvované kurzy</Heading>
+                  </Flex>
+                  <List spacing={3}>
+                    <ListItem color={textColor}>
+                      <ListIcon as={CheckCircleIcon} color="green.400" />
+                      Psychofamaka v terapeutické praxi
+                    </ListItem>
+                    <ListItem color={textColor}>
+                      <ListIcon as={CheckCircleIcon} color="green.400" />
+                      Neurodiverzita (ADHD, ADD, Autismus)
+                    </ListItem>
+                    <ListItem color={textColor}>
+                      <ListIcon as={CheckCircleIcon} color="green.400" />
+                      Bezpečí v práci s tělem s traumatizovaným klientem
+                    </ListItem>
+                  </List>
+                </Box>
               </SimpleGrid>
             </Box>
+          </Flex>
+          <Flex justify="center" mt={5}>
             <Box
               position="relative"
               width="160px"
@@ -342,7 +356,7 @@ export default function About() {
         </Container>
       </Box>
 
-      {/* Personal Section */}
+      {/* My Journey Section */}
       <Box py={20} bg={bgColor}>
         <Container maxW={'7xl'}>
           <Stack spacing={4} maxW={'3xl'} textAlign={'center'} mb={10} mx="auto">

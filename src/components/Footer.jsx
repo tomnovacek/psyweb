@@ -32,7 +32,6 @@ export default function Footer() {
             <Link as={RouterLink} to="/services">Služby</Link>
             <Link as={RouterLink} to="/calendar">Kalendář</Link>
             <Link as={RouterLink} to="/blog">Blog</Link>
-            <Link as="a" href="mailto:terapie@tomnovacek.com">Kontakt</Link>
           </Stack>
 
           {/* Google Maps */}

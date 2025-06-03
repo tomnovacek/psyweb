@@ -65,7 +65,7 @@ export default function PricingCard({
           width="100%"
           height="100%"
           style={{
-            filter: 'brightness(1.3)',
+            filter: 'brightness(1.1)',
           }}
         />
         <Box
