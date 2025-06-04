@@ -1036,6 +1036,34 @@
           "path": "/optimized-images/holding-hands-2xl.webp"
         }
       ]
+    },
+    "src/assets/img/self-hug.jpg": {
+      "responsive": [
+        {
+          "width": 150,
+          "path": "/optimized-images/self-hug-xs.webp"
+        },
+        {
+          "width": 300,
+          "path": "/optimized-images/self-hug-sm.webp"
+        },
+        {
+          "width": 400,
+          "path": "/optimized-images/self-hug-md.webp"
+        },
+        {
+          "width": 800,
+          "path": "/optimized-images/self-hug-lg.webp"
+        },
+        {
+          "width": 1200,
+          "path": "/optimized-images/self-hug-xl.webp"
+        },
+        {
+          "width": 1600,
+          "path": "/optimized-images/self-hug-2xl.webp"
+        }
+      ]
     }
   },
   "website-icon-300x298": {},
