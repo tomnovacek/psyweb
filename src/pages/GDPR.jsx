@@ -23,7 +23,7 @@ export default function GDPR() {
             Tomáš Nováček<br />
             Sukova 4<br />
             602 00 Brno-střed<br />
-            IČ: [vaše IČ]<br />
+            IČ: 70453217<br />
             Email: terapie@tomnovacek.com
           </Text>
         </Box>
