@@ -3,6 +3,7 @@ import { lazy, Suspense } from 'react'
 import { Box, useColorModeValue } from '@chakra-ui/react'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
+import CookieConsent from './components/CookieConsent'
 import { useScrollRestoration } from './hooks/useScrollRestoration'
 import { LoadingFallback } from './components/Loading'
 
@@ -13,6 +14,9 @@ const Services = lazy(() => import('./pages/Services'))
 const Blog = lazy(() => import('./pages/Blog'))
 const BlogPost = lazy(() => import('./pages/BlogPost'))
 const Calendar = lazy(() => import('./pages/Calendar'))
+const CookiePolicy = lazy(() => import('./pages/CookiePolicy'))
+const GDPR = lazy(() => import('./pages/GDPR'))
+const LegalInfo = lazy(() => import('./pages/LegalInfo'))
 
 // Layout component that includes Navbar and Footer
 const Layout = ({ children }) => {
@@ -42,6 +46,7 @@ const Layout = ({ children }) => {
           {children}
         </Box>
         <Footer />
+        <CookieConsent />
       </Box>
     </Box>
   )
@@ -81,6 +86,18 @@ export const router = createBrowserRouter(
     {
       path: '/blog/:slug',
       element: <Layout>{wrapWithSuspense(BlogPost)}</Layout>,
+    },
+    {
+      path: '/cookies',
+      element: <Layout>{wrapWithSuspense(CookiePolicy)}</Layout>,
+    },
+    {
+      path: '/gdpr',
+      element: <Layout>{wrapWithSuspense(GDPR)}</Layout>,
+    },
+    {
+      path: '/legal',
+      element: <Layout>{wrapWithSuspense(LegalInfo)}</Layout>,
     },
   ],
   {
