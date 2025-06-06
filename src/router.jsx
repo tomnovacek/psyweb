@@ -26,28 +26,18 @@ const Layout = ({ children }) => {
     <Box
       minH="100vh"
       minW="100vw"
+      width="100vw"
       display="flex"
-      justifyContent="center"
-      alignItems="center"
+      flexDirection="column"
+      alignItems="stretch"
       bg={useColorModeValue('gray.50', 'gray.900')}
     >
-      <Box
-        width="100%"
-        maxW="1680px"
-        minH="100vh"
-        display="flex"
-        flexDirection="column"
-        alignItems="center"
-        boxShadow="lg"
-        bg={useColorModeValue('white', 'gray.800')}
-      >
-        <Navbar />
-        <Box flex="1" width="100%">
-          {children}
-        </Box>
-        <Footer />
-        <CookieConsent />
+      <Navbar />
+      <Box flex="1" width="100%">
+        {children}
       </Box>
+      <Footer />
+      <CookieConsent />
     </Box>
   )
 }

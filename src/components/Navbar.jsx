@@ -91,7 +91,7 @@ export default function Navbar() {
       borderBottom={1}
       borderStyle={'solid'}
       borderColor={useColorModeValue('gray.200', 'gray.900')}
-      width="100%"
+      width="100vw"
     >
       <Container maxW="1680px">
         <Flex
