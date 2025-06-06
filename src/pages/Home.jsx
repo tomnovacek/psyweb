@@ -46,7 +46,7 @@ export default function Home() {
   const [loading, setLoading] = useState(true)
 
   // Hookd
-  const bgColor = useColorModeValue('gray.50', 'gray.900')
+  const bgColor = useColorModeValue('gray.100', 'gray.900')
   const cardBg = useColorModeValue('white', 'gray.800')
   const heroCardBg = useColorModeValue('whiteAlpha.200', 'blackAlpha.200')
   const textColor = useColorModeValue('gray.700', 'gray.300')
@@ -87,7 +87,7 @@ export default function Home() {
       <StructuredData type="Person" />
 
       {/* Hero Section */}
-      <Box position="relative" width="100%" height={{ base: "auto", md: "calc(100vh - 224px)" }} overflow="hidden">
+      <Box position="relative" width="100%" height={{ base: "auto", md: "75vh" }} overflow="hidden">
         {/* Background Image */}
         <Box
           position="absolute"
@@ -137,7 +137,7 @@ export default function Home() {
             {/* Text Box */}
             <HeroTextBox
               title="Psychoterapie"
-              titleAccent="Osobní růst"
+              titleAccent="v centru Brna"
               description="Vítejte, jmenuji se Tomáš Nováček. Věnuji se pomoci lidem překonávat životní výzvy a dosahovat osobního růstu. Společně s klienty se vydávám na cestu k hlubšímu porozumění sobě sama, svým vztahům a slepým uličkám, ve kterých se nacházejí. Snažím se, aby se na tomto putování cítili bezpečně a našli v sobě schopnost zahlédnout světlo nadějě prosvítající i potemnělým lesem."
               primaryText="Objednat konzultaci"
               primaryHref="/calendar"
@@ -194,7 +194,7 @@ export default function Home() {
           <SimpleGrid columns={{ base: 1, md: 2 }} spacing={16} w="full">
             <AboutCard
               title="Moje praxe"
-              description="Posledních sedm let se intenzivně věnuji psychologickému poradenství a čtyři roky praktikuji terapii v soukromé praxi v centru Brna.  Vystudoval jsem jednooborovou psychologii a absolvoval  dvouletý výcvik v koučování, následně šestiletý výcvik v integrativní psychoterapii. Jsem řádným členem České asociace pro psychoterapii - komunity, která klade důraz na etické standardy a vysokou kvalifikaci v oboru psychoterapie."
+              description="Posledních sedm let se intenzivně věnuji psychologickému poradenství a čtyři roky praktikuji terapii v soukromé praxi v centru Brna.  Vystudoval jsem jednooborovou psychologii a absolvoval  dvouletý výcvik v koučování, následně šestiletý výcvik v integrativní psychoterapii. Jsem řádným členem České asociace pro psychoterapii - komunity, která klade důraz na etické standardy a vysokou kvalifikaci v oboru psychoterapie. Jinými slovy, snažím pracovat poctivě a stále se učit."
               image="room.jpeg"
               imageAlt="Terapeutická místnost"
               icon={FaUser}
@@ -204,7 +204,7 @@ export default function Home() {
             />
             <AboutCard
               title="Můj přístup"
-              description="Věřím, že všichni máme vnitřní zdroje k zvládání životních výzev, které se před námi objevují. Mohou se však objevit situace, ve kterých se můžeme cítit uvězněni nebo bezmocní. V takových chvílích  podporuji klienty v pochopení jejich problémů a hledání efektivních způsobů, jak je překonat. Společně prozkoumáváme jejich osobní cestu k sebepoznání a odhalujeme vnitřní síly, které jim mohou pomoci žít plnější a spokojenější život."
+              description="Věřím, že všichni máme vnitřní zdroje k zvládání životních výzev, které se před námi objevují. Mohou se však objevit situace, ve kterých se můžeme cítit uvězněni nebo bezmocní. V takových chvílích  podporuji klienty v pochopení jejich problémů a hledání efektivních způsobů, jak je překonat. Společně prozkoumáváme jejich osobní cestu k sebepoznání a odhalujeme vnitřní síly, které jim mohou pomoci žít plnější a spokojenější život. Nemám všechny odpovědi, pomůžu vám najít ty vaše."
               image="mountinHikeGroup.jpg"
               imageAlt="Skupina lidí na horách"
               icon={FaHandHoldingHeart}
@@ -226,7 +226,7 @@ export default function Home() {
               </Text>
             </Heading>
             <Text color={textColor} fontSize={'xl'}>
-              Nejčastější témata, které mi lidé přinášejí jsou problémy s blízkými vztahy, propady nálady, úzkosti, stres a nízké sebevědomí.
+              Lidé za mnou přicházejí s nejrůznějšími tématy, ale nejčastěji se bavíme o vztazích (k sobě i k druhým), úzkosti, pokleslé náladě a&nbsp;o&nbsp;tom, jak najít klid ve shonu každodenního života.
             </Text>
           </Stack>
           <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={10} w="full">
@@ -317,7 +317,7 @@ export default function Home() {
               as={RouterLink}
               to="/services"
               variant="outline"
-              size="lg"
+
             >
               Více o službách a podmínkách
             </Button>
@@ -326,7 +326,7 @@ export default function Home() {
       </Box>
 
       {/* Latest Posts Section */}
-      <Box py={20}>
+      <Box py={20} bg={cardBg}>
         <Container maxW="container.xl">
           <VStack spacing={12} align="stretch">
             <Box textAlign="center">
@@ -334,7 +334,7 @@ export default function Home() {
                 Z mého bloku
               </Heading>
               <Text fontSize="xl" color="gray.600">
-                Pár mých poznámek v mém zápisníku, které by mohly být užitečné i pro vás. Jedná se o potenciálně užitečné odkazy na články, svépomocné skupiny a literaturu k dalšímu čtení. Slouží primárně mě. Ale po opakovaných diskuzích s klienty jsem se rozhodl tyto moje náčrty sdílet zde. Není cílem obsáhnout celé téma, ale nastínit základní východiska a otázky k další práci.
+                Píšu si poznámky – pro sebe, pro práci, pro život. Po čase jsem zjistil, že některé z nich mohou být užitečné i pro ostatní. Nejsou to vědecké články ani návody na štěstí, spíš takové mapy terénu, který znám z vlastní zkušenosti i z práce s klienty.
               </Text>
             </Box>
 
@@ -356,7 +356,6 @@ export default function Home() {
           </VStack>
         </Container>
       </Box>
-
 
       {/* Call to Action Section */}
       <Box py={20} bg={bgColor}>

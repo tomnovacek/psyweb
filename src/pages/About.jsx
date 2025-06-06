@@ -65,7 +65,7 @@ import HeroTextBox from '../components/HeroTextBox'
 
 
 export default function About() {
-  const bgColor = useColorModeValue('gray.50', 'gray.900')
+  const bgColor = useColorModeValue('gray.100', 'gray.900')
   const cardBg = useColorModeValue('white', 'gray.800')
   const heroCardBg = useColorModeValue('whiteAlpha.200', 'blackAlpha.200')
   const textColor = useColorModeValue('gray.700', 'gray.300')
@@ -88,7 +88,7 @@ export default function About() {
       <StructuredData type="Person" />
 
       {/* Hero Section */}
-      <Box position="relative" width="100%" height={{ base: "auto", md: "calc(100vh - 224px)" }} overflow="hidden">
+      <Box position="relative" width="100%" height={{ base: "auto", md: "75vh" }} overflow="hidden">
         {/* Background Image */}
         <Box
           position="absolute"
@@ -169,8 +169,8 @@ export default function About() {
             {/* Text Box  on the right */}
             <HeroTextBox
               title="Moje cesta"
-              titleAccent="Můj přístup"
-              description="Jako psychoterapeut se zaměřuji na vytvoření bezpečného a podpůrného prostředí, kde můžete prozkoumat své myšlenky, pocity a zkušenosti. Můj přístup je založen na vzájemném respektu, empatii a autenticitě. Posledních sedm let věnuji snaze pomáhat lidem překonávat životní výzvy a dosahovat osobního růstu. Psychoterapii nevnímám jako místo, kde se rychle vyřeší problémy. Spíš jako prostor, kde se dá  na chvíli zastavit, začít víc vnímat sama sebe, získat nadhled, porozumět sobě i světu, ve kterém žijeme, a přidat nové možnosti."
+              titleAccent="& Můj přístup"
+              description="Posledních sedm let věnuji snaze pomáhat lidem překonávat životní výzvy a dosahovat osobního růstu. Psychoterapii nevnímám jako místo, kde se rychle vyřeší problémy. Spíš jako prostor, kde se dá  na chvíli zastavit, začít víc vnímat sama sebe, lépe porozumět sobě i světu, ve kterém žijeme, a rozšířit repertoár chování o nové možnosti, které dříve nebyly možné."
               primaryText="Objednat konzultaci"
               primaryHref="/calendar"
               secondaryText="Moje služby"
@@ -182,7 +182,7 @@ export default function About() {
       </Box>
 
       {/* About Section */}
-      <Box py={20} bg={bgColor}>
+      <Box py={20} bg={cardBg}>
         <Container maxW={'7xl'}>
           <Stack spacing={4} maxW={'3xl'} textAlign={'center'} mb={10} mx="auto">
             <Heading variant="section">
@@ -200,17 +200,17 @@ export default function About() {
               {
                 icon: FaHeart,
                 title: 'Poporující',
-                text: 'Snažím se vytvářet bezpečné prostředí, kde se můžete cítít slyšeni a pochopeni.',
+                text: 'Snažím se vytvářet bezpečné prostředí, kde se můžete cítit slyšeni a pochopeni; kde není nutné hrát roli, kterou očekávají ostatní.',
               },
               {
                 icon: FaBrain,
                 title: 'Výzkumem ověřený',
-                text: 'Využívám terapeutické přístupy, které prokázaly pozitivní výsledky.',
+                text: 'Využívám terapeutické přístupy podložené výzkumy, které však neztrácejí kontakt s unikátním okamžikem, lidskostí a tvořivostí.',
               },
               {
                 icon: FaUserCircle,
-                title: 'Na míru',
-                text: 'Respektuji individuálitu a specifické potřeby každého klienta.',
+                title: 'Na míru klientům',
+                text: 'Respektuji individuálnost a specifické potřeby každého klienta. Každý příběh je jiný a zaslouží si jiný přístup – terapii na míru.',
               },
             ].map((feature, index) => (
               <Box
@@ -244,7 +244,7 @@ export default function About() {
       </Box>
 
       {/* Education & Credentials - Updated layout */}
-      <Box py={20} bg={cardBg}>
+      <Box py={20} bg={bgColor}>
         <Container maxW={'7xl'}>
           <Stack spacing={4} maxW={'3xl'} textAlign={'center'} mb={10} mx="auto">
             <Heading variant="section">
@@ -253,7 +253,7 @@ export default function About() {
               </Text>
             </Heading>
             <Text color={textColor} fontSize={'xl'}>
-              Vystudoval jsem jednooborovou psychologii, dlouhodobý systematický psychoterapeutický výcvik a kontinuálně se vzdělávám v oboru psychoterapie.
+              Mám za sebou studium psychologie a dlouhodobý psychoterapeutický výcvik. A učím se dál, od kolegů i klientů.
             </Text>
           </Stack>
 
@@ -357,7 +357,7 @@ export default function About() {
       </Box>
 
       {/* My Journey Section */}
-      <Box py={20} bg={bgColor}>
+      <Box py={20} bg={cardBg}>
         <Container maxW={'7xl'}>
           <Stack spacing={4} maxW={'3xl'} textAlign={'center'} mb={10} mx="auto">
             <Heading variant="section">
@@ -379,10 +379,10 @@ export default function About() {
             <Box flex="1">
               <Stack spacing={6}>
                 <Text color={textColor} fontSize={'xl'}>
-                  V mém osobním životě jsem obklopen velkou podporou mé rodiny - mé ženy a našich dvou dcer. Všichni se od sebe každý den učíme.
+                  V osobním životě mám neocenitelnou podporu své rodiny – ženy a dvou dcer. Doma se všichni od sebe učíme, i když někdy mám pocit, že už se od dcer učím spíše já. Mají totiž zvláštní talent ukázat mi věci z úplně jiného úhlu pohledu, což se mi v práci docela hodí.
                 </Text>
                 <Text color={textColor} fontSize={'xl'}>
-                  Poslední dva roky mě na mé cestě doprovází také můj věrný přítel, pes Ron. Společně objevujeme krásy přírody, zejména lesy v okolí Brna. Naše společné dobrodružství nám přináší nejen radost z pohybu, ale i jedinečný pohled na město z výšin Hádecké planiny.
+                  Posledních pár let mě na cestách doprovází také můj věrný přítel, pes Ron. Učí mě o bezpodmínečné lásce, trpělivosti a schopnosti radovat se z maličkostí. Často mě zavede na místa, kde jsem nebyl, nebo mi je ukáže způsobem, jakým jsem je dříve neviděl – stává se s ním totiž každá procházka dobrodružstvím.
                 </Text>
                 <Text color={textColor} fontSize={'xl'}>
                   Tato kombinace profesionálního růstu, rodinného zázemí a spojení s přírodou mi pomáhá udržovat zdravý nadhled a rovnováhu v životě. Věřím, že právě toto všechno mi dává kapacitu pomáhat druhým na jejich vlastní cestě.
@@ -416,7 +416,7 @@ export default function About() {
       </Box>
 
       {/* Call to Action Section */}
-      <Box py={20} bg={cardBg}>
+      <Box py={20} bg={bgColor}>
         <Container maxW={'7xl'}>
           <Stack
             spacing={8}

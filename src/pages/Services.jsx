@@ -56,7 +56,7 @@ import ServicesGrid from '../components/ServicesGrid'
 
 export default function Services() {
   const { isOpen, onOpen, onClose } = useDisclosure()
-  const bgColor = useColorModeValue('gray.50', 'gray.900')
+  const bgColor = useColorModeValue('gray.100', 'gray.900')
   const cardBg = useColorModeValue('white', 'gray.800')
   const heroCardBg = useColorModeValue('whiteAlpha.200', 'blackAlpha.200')
   const textColor = useColorModeValue('gray.700', 'gray.300')
@@ -78,7 +78,7 @@ export default function Services() {
       <StructuredData type="MedicalBusiness" />
 
       {/* Hero Section */}
-      <Box position="relative" width="100%" height={{ base: "auto", md: "calc(100vh - 224px)" }} overflow="hidden">
+      <Box position="relative" width="100%" height={{ base: "auto", md: "75vh" }} overflow="hidden">
         {/* Background Image */}
         <Box
           position="absolute"
@@ -129,7 +129,7 @@ export default function Services() {
             {/* Text Box */}
             <HeroTextBox
               title="Moje služby"
-              titleAccent="Podmínky"
+              titleAccent="& Podmínky"
               description="Nabízím terapeutická sezení na podporu vašeho duševního zdraví a osobního růstu. Společně prozkoumáme vaše potřeby a vytvoříme plán, který Vám pomůže, aby jste žili plnější a spokojenější život."
             />
 
@@ -211,7 +211,7 @@ export default function Services() {
       />
 
       {/* What to Expect Section */}
-      <Box py={20} bg={cardBg}>
+      <Box py={20} bg={bgColor}>
         <Container maxW={'7xl'}>
           <Stack spacing={8}>
             <Stack spacing={4} textAlign={'center'} maxW={'6xl'} mx="auto">
@@ -290,7 +290,7 @@ export default function Services() {
       </Box>
 
       {/* Pricing Section */}
-      <Box py={20} bg={bgColor} id="pricing" >
+      <Box py={20} bg={cardBg} id="pricing" >
         <Container maxW={'7xl'}>
           <Stack spacing={4} maxW={'3xl'} textAlign={'center'} mb={20} mx="auto">
             <Heading variant="section" color={headingColor}>
@@ -353,7 +353,7 @@ export default function Services() {
       </Box>
 
       {/* Insurance & Payment Section */}
-      <Box py={20} bg={cardBg}>
+      <Box py={20} bg={bgColor}>
         <Container maxW={'7xl'}>
           <Stack spacing={8}>
             <Stack spacing={4} textAlign={'center'} maxW={'3xl'} mx="auto">
@@ -405,7 +405,7 @@ export default function Services() {
       </Box>
 
       {/* Call to Action Section */}
-      <Box py={20} bg={bgColor}>
+      <Box py={20} bg={cardBg}>
         <Container maxW={'7xl'}>
           <Stack
             spacing={8}

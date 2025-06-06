@@ -16,7 +16,7 @@ import OptimizedImage from './OptimizedImage'
 export default function Footer() {
   return (
     <Box
-      bg={useColorModeValue('gray.100', 'gray.800')}
+      bg={useColorModeValue('gray.200', 'gray.800')}
       color={useColorModeValue('gray.700', 'gray.200')}
       borderTop={1}
       borderStyle={'solid'}

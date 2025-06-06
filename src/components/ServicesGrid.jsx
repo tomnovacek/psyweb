@@ -17,7 +17,7 @@ export default function ServicesGrid({ title, description, services }) {
   const cardBg = useColorModeValue('white', 'gray.800')
 
   return (
-    <Box py={20} bg={useColorModeValue('gray.50', 'gray.900')}>
+    <Box py={20} bg={useColorModeValue('white', 'gray.900')}>
       <Container maxW={'7xl'}>
         <Stack spacing={4} maxW={'3xl'} textAlign={'center'} mb={8} mx="auto">
           <Heading variant="section" color={headingColor}>

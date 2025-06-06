@@ -43,7 +43,7 @@ export default function HeroTextBox({
         </Text>
         <br />
         <Text as="span" className="hero-accent">
-          & {titleAccent}
+          {titleAccent}
         </Text>
       </Heading>
       <Text color={'white'} fontSize={'xl'} mb={8}>
