@@ -7,18 +7,39 @@ import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import remarkFrontmatter from 'remark-frontmatter'
 import { resolve } from 'path'
 import { fileURLToPath } from 'url'
-import fs from 'fs'
+import fs from 'fs/promises'
 import path from 'path'
 import { glob } from 'glob'
+import matter from 'gray-matter'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
 // Function to get all blog post paths
 async function getBlogPostPaths() {
-  const blogDir = path.join(__dirname, 'src/content/blog')
-  const files = await glob('**/*.md', { cwd: blogDir })
-  return files.map(file => `/blog/${file.replace(/\.md$/, '')}`)
+  try {
+    const blogDir = path.join(__dirname, 'src/blogPosts')
+    const files = await glob('**/*.mdx', { cwd: blogDir })
+    
+    // Read and filter published posts
+    const publishedPaths = await Promise.all(
+      files.map(async (file) => {
+        try {
+          const content = await fs.readFile(path.join(blogDir, file), 'utf8')
+          const { data: frontmatter } = matter(content)
+          return frontmatter.status === 'published' ? `/blog/${file.replace(/\.mdx$/, '')}` : null
+        } catch (error) {
+          console.error(`Error reading file ${file}:`, error)
+          return null
+        }
+      })
+    )
+    
+    return publishedPaths.filter(Boolean)
+  } catch (error) {
+    console.error('Error getting blog post paths:', error)
+    return []
+  }
 }
 
 // Custom sitemap plugin
@@ -33,7 +54,7 @@ function sitemapPlugin() {
           '/blog',
           '/services',
           '/about',
-          '/contact',
+          '/calendar',
           ...blogPaths
         ]
 
@@ -41,7 +62,7 @@ function sitemapPlugin() {
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   ${routes.map(route => `
   <url>
-    <loc>https://psyweb.cz${route}</loc>
+    <loc>https://tomnovacek.com${route}</loc>
     <changefreq>weekly</changefreq>
     <priority>${route === '/' ? '1.0' : '0.8'}</priority>
     <lastmod>${new Date().toISOString()}</lastmod>
@@ -50,42 +71,51 @@ function sitemapPlugin() {
 
         // Ensure the dist directory exists
         const distDir = path.join(__dirname, 'dist')
-        if (!fs.existsSync(distDir)) {
-          fs.mkdirSync(distDir, { recursive: true })
+        try {
+          await fs.mkdir(distDir, { recursive: true })
+        } catch (error) {
+          if (error.code !== 'EEXIST') {
+            throw error
+          }
         }
 
         // Write sitemap to dist directory
-        fs.writeFileSync(path.join(distDir, 'sitemap.xml'), sitemap)
+        await fs.writeFile(path.join(distDir, 'sitemap.xml'), sitemap)
         console.log('Sitemap generated successfully')
 
         // Copy and update image manifest
         const manifestPath = path.join(__dirname, 'public/image-manifest.json')
-        if (fs.existsSync(manifestPath)) {
-          const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'))
+        try {
+          const manifestContent = await fs.readFile(manifestPath, 'utf8')
+          const manifest = JSON.parse(manifestContent)
           // Update image paths to be relative to dist
           Object.keys(manifest.images).forEach(key => {
             manifest.images[key].responsive.forEach(size => {
               size.path = size.path.replace('/optimized-images/', '/assets/optimized-images/')
             })
           })
-          fs.writeFileSync(path.join(distDir, 'image-manifest.json'), JSON.stringify(manifest, null, 2))
+          await fs.writeFile(path.join(distDir, 'image-manifest.json'), JSON.stringify(manifest, null, 2))
           console.log('Image manifest updated and copied to dist')
+        } catch (error) {
+          console.error('Error handling image manifest:', error)
         }
 
         // Copy images from src/assets/img to dist/assets/img
         const srcImgDir = path.join(__dirname, 'src/assets/img')
         const distImgDir = path.join(distDir, 'assets/img')
-        if (!fs.existsSync(distImgDir)) {
-          fs.mkdirSync(distImgDir, { recursive: true })
+        try {
+          await fs.mkdir(distImgDir, { recursive: true })
+          const files = await fs.readdir(srcImgDir)
+          await Promise.all(files.map(async file => {
+            await fs.copyFile(
+              path.join(srcImgDir, file),
+              path.join(distImgDir, file)
+            )
+          }))
+          console.log('Images copied to dist directory')
+        } catch (error) {
+          console.error('Error copying images:', error)
         }
-        const files = fs.readdirSync(srcImgDir)
-        files.forEach(file => {
-          fs.copyFileSync(
-            path.join(srcImgDir, file),
-            path.join(distImgDir, file)
-          )
-        })
-        console.log('Images copied to dist directory')
       } catch (error) {
         console.error('Error generating sitemap:', error)
       }
