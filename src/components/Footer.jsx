@@ -12,6 +12,7 @@ import {
 import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaInbox, FaUser } from 'react-icons/fa'
 import { Link as RouterLink } from 'react-router-dom'
 import OptimizedImage from './OptimizedImage'
+import Map from './Map'
 
 export default function Footer() {
   return (
@@ -39,46 +40,7 @@ export default function Footer() {
             {/* Google Maps */}
             <Stack align={'center'}>
               <Heading fontSize={'lg'} mb={4}>Mapa</Heading>
-              <Box
-                width="100%"
-                height="250px"
-                borderRadius="lg"
-                overflow="hidden"
-                boxShadow="md"
-                position="relative"
-                bg="gray.100"
-              >
-                {/* Placeholder while iframe loads */}
-                <Box
-                  position="absolute"
-                  top={0}
-                  left={0}
-                  width="100%"
-                  height="100%"
-                  display="flex"
-                  alignItems="center"
-                  justifyContent="center"
-                  bg="gray.100"
-                  zIndex={1}
-                >
-                  <Text color="gray.500">Načítání mapy...</Text>
-                </Box>
-                <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2606.123456789012!2d16.6075!3d49.1917!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4712944c1c1c1c1c%3A0x1234567890abcdef!2sSukova%204%2C%20602%2000%20Brno-st%C5%99ed!5e0!3m2!1scs!2scz!4v1234567890!5m2!1scs!2scz"
-                  width="100%"
-                  height="100%"
-                  style={{ border: 0 }}
-                  allowFullScreen=""
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                  title="Umístění ordinace"
-                  aria-label="Google Maps zobrazující umístění ordinace"
-                  onLoad={(e) => {
-                    // Hide placeholder when iframe loads
-                    e.target.previousSibling.style.display = 'none';
-                  }}
-                />
-              </Box>
+              <Map />
               <Text fontSize="sm" color="gray.500" mt={2}>
                 Sukova 4, 602 00 Brno-střed
               </Text>
