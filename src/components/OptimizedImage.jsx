@@ -13,9 +13,21 @@ export default function OptimizedImage({ src, alt, priority, ...props }) {
         setIsLoading(true)
         setError(false)
         
+        // If the path is already optimized, use it directly
+        if (src.startsWith('/optimized-images/')) {
+          setImageSrc(src)
+          setIsLoading(false)
+          return
+        }
+        
         // In development, use the original image path
         if (import.meta.env.DEV) {
-          const originalSrc = src.startsWith('/') ? src : `/src/assets/img/${src}`
+          // Clean up the path - handle both /assets/img/ and /src/assets/img/ prefixes
+          const cleanSrc = src
+            .replace(/^\/src\/assets\/img\//, '')
+            .replace(/^\/assets\/img\//, '')
+            .replace(/^\/+/, '')
+          const originalSrc = `/src/assets/img/${cleanSrc}`
           setImageSrc(originalSrc)
           setIsLoading(false)
           return

@@ -1064,6 +1064,34 @@
           "path": "/optimized-images/self-hug-2xl.webp"
         }
       ]
+    },
+    "src/assets/img/navbar-icon-96x96.webp": {
+      "responsive": [
+        {
+          "width": 150,
+          "path": "/optimized-images/navbar-icon-96x96-xs.webp"
+        },
+        {
+          "width": 300,
+          "path": "/optimized-images/navbar-icon-96x96-sm.webp"
+        },
+        {
+          "width": 400,
+          "path": "/optimized-images/navbar-icon-96x96-md.webp"
+        },
+        {
+          "width": 800,
+          "path": "/optimized-images/navbar-icon-96x96-lg.webp"
+        },
+        {
+          "width": 1200,
+          "path": "/optimized-images/navbar-icon-96x96-xl.webp"
+        },
+        {
+          "width": 1600,
+          "path": "/optimized-images/navbar-icon-96x96-2xl.webp"
+        }
+      ]
     }
   },
   "website-icon-300x298": {},

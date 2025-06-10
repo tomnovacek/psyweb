@@ -19,8 +19,15 @@ const files = fs.readdirSync(srcImgDir)
 files.forEach(file => {
   const srcPath = path.join(srcImgDir, file)
   const destPath = path.join(publicImgDir, file)
-  fs.copyFileSync(srcPath, destPath)
-  console.log(`Copied ${file} to public/assets/img`)
+  
+  // Check if source is a directory
+  if (fs.statSync(srcPath).isDirectory()) {
+    fs.cpSync(srcPath, destPath, { recursive: true })
+    console.log(`Copied directory ${file} to public/assets/img`)
+  } else {
+    fs.copyFileSync(srcPath, destPath)
+    console.log(`Copied file ${file} to public/assets/img`)
+  }
 })
 
 console.log('All images copied successfully!') 

@@ -28,7 +28,10 @@ export async function getOptimizedImage(source, size = 'md') {
     }
 
     // Clean the source path
-    const cleanPath = resolvedSource.replace(/^\/?(src\/assets\/img\/)?/, '')
+    const cleanPath = resolvedSource
+      .replace(/^\/assets\/img\//, '') // Remove /assets/img/ prefix
+      .replace(/^\/src\/assets\/img\//, '') // Remove /src/assets/img/ prefix
+      .replace(/^\/+/, '') // Remove leading slashes
     
     // Extract the base filename without extension and any existing size suffix
     const baseFilename = cleanPath.replace(/\.(webp|jpg|jpeg|png)$/, '')
@@ -54,7 +57,10 @@ export function getOptimizedImagePath(source, size = 'md') {
   }
 
   // Clean the source path
-  const cleanPath = source.replace(/^\/?(src\/assets\/img\/)?/, '')
+  const cleanPath = source
+    .replace(/^\/assets\/img\//, '') // Remove /assets/img/ prefix
+    .replace(/^\/src\/assets\/img\//, '') // Remove /src/assets/img/ prefix
+    .replace(/^\/+/, '') // Remove leading slashes
   
   // Extract the base filename without extension and any existing size suffix
   const baseFilename = cleanPath.replace(/\.(webp|jpg|jpeg|png)$/, '')
