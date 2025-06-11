@@ -175,26 +175,7 @@ const MobileNav = () => {
         >
           Blog
         </Button>
-        <Button
-          as={RouterLink}
-          to="/calendar"
-          w="full"
-          h={BUTTON_HEIGHT}
-          minH={BUTTON_HEIGHT}
-          fontSize={'sm'}
-          fontWeight={600}
-          color={'white'}
-          bg={'green.400'}
-          _hover={{ bg: 'green.500' }}
-          style={fontStyles}
-          px={4}
-          display="flex"
-          alignItems="center"
-          justifyContent="center"
-          gap={2}
-        >
-          <FaCalendarAlt /> Objednat se
-        </Button>
+
       </Stack>
     </Stack>
   )
@@ -276,11 +257,11 @@ export default function Navbar() {
               willChange: 'transform',
             }}
           >
-            <Box 
-              as={RouterLink} 
-              to="/" 
-              display="flex" 
-              alignItems="center" 
+            <Box
+              as={RouterLink}
+              to="/"
+              display={{ base: 'none', md: 'flex' }}
+              alignItems="center"
               h="100%"
               w={LOGO_SIZE}
               minW={LOGO_SIZE}
@@ -330,7 +311,7 @@ export default function Navbar() {
               alignItems="center" 
               h={BUTTON_HEIGHT}
               minH={BUTTON_HEIGHT}
-              minW="200px"
+              minW="160px"
               style={{
                 contain: 'layout size',
                 willChange: 'transform',
@@ -374,6 +355,7 @@ export default function Navbar() {
                 contain: 'layout size',
                 willChange: 'transform',
               }}
+              display={{ base: 'none', md: 'inline-flex' }}
             >
               Objednat se
             </Button>
