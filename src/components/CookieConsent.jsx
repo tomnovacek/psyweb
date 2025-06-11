@@ -30,10 +30,17 @@ const CookieConsent = () => {
     window['ga-disable-UA-XXXXX-Y'] = !preferences.analytics;
   };
 
-  if (!showBanner) return null;
+  // Lišta je vždy v DOM, ale může být skrytá
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 bg-white shadow-lg border-t border-gray-200 p-4 z-50">
+    <div
+      className="fixed bottom-0 left-0 right-0 bg-white shadow-lg border-t border-gray-200 p-4 z-50"
+      style={{
+        visibility: showBanner ? 'visible' : 'hidden',
+        pointerEvents: showBanner ? 'auto' : 'none',
+        minHeight: 64,
+      }}
+    >
       {!showSettings ? (
         <div className="max-w-7xl mx-auto flex items-center gap-4 whitespace-nowrap">
           <span className="text-sm text-gray-600">
