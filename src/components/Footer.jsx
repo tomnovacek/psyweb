@@ -12,7 +12,8 @@ import {
 import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaInbox, FaUser } from 'react-icons/fa'
 import { Link as RouterLink } from 'react-router-dom'
 import OptimizedImage from './OptimizedImage'
-import Map from './Map'
+import { lazy, Suspense } from 'react'
+const Map = lazy(() => import('./Map'))
 import navbarIcon from '../assets/img/navbar-icon-96x96.webp'
 
 export default function Footer() {
@@ -41,9 +42,11 @@ export default function Footer() {
             {/* Google Maps */}
             <Stack align={'center'}>
               <Heading fontSize={'lg'} mb={4}>Mapa</Heading>
-              <Box w="100%" minH="300px" maxW="350px">
-                <Map />
-              </Box>
+              <Suspense fallback={<Box w="100%" minH="300px" maxW="350px" display="flex" alignItems="center" justifyContent="center"><Text color="gray.500">Načítání mapy...</Text></Box>}>
+                <Box w="100%" minH="300px" maxW="350px">
+                  <Map />
+                </Box>
+              </Suspense>
               <Text fontSize="sm" color="gray.500" mt={2}>
                 Sukova 4, 602 00 Brno-střed
               </Text>
