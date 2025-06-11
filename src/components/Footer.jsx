@@ -40,7 +40,9 @@ export default function Footer() {
             {/* Google Maps */}
             <Stack align={'center'}>
               <Heading fontSize={'lg'} mb={4}>Mapa</Heading>
-              <Map />
+              <Box w="100%" minH="300px" maxW="350px">
+                <Map />
+              </Box>
               <Text fontSize="sm" color="gray.500" mt={2}>
                 Sukova 4, 602 00 Brno-střed
               </Text>
@@ -70,9 +72,9 @@ export default function Footer() {
                 <OptimizedImage
                   src="CAP.png"
                   alt="ČAP Logo"
-                  width="100%"
-                  height="auto"
-                  maxW="200px"
+                  width={200}
+                  height={80}
+                  style={{ maxWidth: '200px', height: 'auto', display: 'block' }}
                 />
               </Box>
             </Stack>
