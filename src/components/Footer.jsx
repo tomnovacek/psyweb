@@ -72,7 +72,7 @@ export default function Footer() {
                 <Text>Sukova 4, Brno, Česká republika</Text>
               </Stack>
               {/* Logo */}
-              <Box mt="auto" minH="80px" minW="200px" maxH="80px" maxW="200px">
+              <Box minH="80px" minW="200px" maxH="80px" maxW="200px">
                 <OptimizedImage
                   src="CAP.png"
                   alt="ČAP Logo"
