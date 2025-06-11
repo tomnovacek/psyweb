@@ -88,21 +88,15 @@ function sitemapPlugin() {
         try {
           const manifestContent = await fs.readFile(manifestPath, 'utf8')
           const manifest = JSON.parse(manifestContent)
-          // Update image paths to be relative to dist
-          Object.keys(manifest.images).forEach(key => {
-            manifest.images[key].responsive.forEach(size => {
-              size.path = size.path.replace('/optimized-images/', '/assets/optimized-images/')
-            })
-          })
-          await fs.writeFile(path.join(distDir, 'image-manifest.json'), JSON.stringify(manifest, null, 2))
-          console.log('Image manifest updated and copied to dist')
+          await fs.writeFile(path.join(distDir, 'image-manifest.json'), manifestContent)
+          console.log('Image manifest copied to dist')
         } catch (error) {
           console.error('Error handling image manifest:', error)
         }
 
-        // Copy images from src/assets/img to dist/assets/img
-        const srcImgDir = path.join(__dirname, 'src/assets/img')
-        const distImgDir = path.join(distDir, 'assets/img')
+        // Copy optimized images from public/optimized-images to dist/optimized-images
+        const srcImgDir = path.join(__dirname, 'public/optimized-images')
+        const distImgDir = path.join(distDir, 'optimized-images')
         try {
           await fs.mkdir(distImgDir, { recursive: true })
           const files = await fs.readdir(srcImgDir)
@@ -112,9 +106,9 @@ function sitemapPlugin() {
               path.join(distImgDir, file)
             )
           }))
-          console.log('Images copied to dist directory')
+          console.log('Optimized images copied to dist directory')
         } catch (error) {
-          console.error('Error copying images:', error)
+          console.error('Error copying optimized images:', error)
         }
       } catch (error) {
         console.error('Error generating sitemap:', error)

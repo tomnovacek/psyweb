@@ -8,8 +8,25 @@ const sizeSuffixMap = {
   '2xl': '-2xl'
 }
 
-// Import the image manifest
-import imageManifest from '../image-manifest.json'
+// Import the image manifest from public directory using ?url suffix
+import imageManifestUrl from '/image-manifest.json?url'
+
+// Cache for the manifest
+let manifestCache = null
+
+// Function to load the manifest
+async function loadManifest() {
+  if (manifestCache) return manifestCache
+  
+  try {
+    const response = await fetch(imageManifestUrl)
+    manifestCache = await response.json()
+    return manifestCache
+  } catch (error) {
+    console.error('Error loading image manifest:', error)
+    return null
+  }
+}
 
 export async function getOptimizedImage(source, size = 'md') {
   if (!source) {
@@ -35,7 +52,7 @@ export async function getOptimizedImage(source, size = 'md') {
     
     // Extract the base filename without extension and any existing size suffix
     const baseFilename = cleanPath.replace(/\.(webp|jpg|jpeg|png)$/, '')
-      .replace(/-[a-z]+$/, '') // Remove any existing size suffix
+      .replace(/-(xs|sm|md|lg|xl|2xl)$/, '') // Remove only size suffixes
 
     // Get the size suffix
     const sizeSuffix = sizeSuffixMap[size] || '-md'
@@ -64,7 +81,7 @@ export function getOptimizedImagePath(source, size = 'md') {
   
   // Extract the base filename without extension and any existing size suffix
   const baseFilename = cleanPath.replace(/\.(webp|jpg|jpeg|png)$/, '')
-    .replace(/-[a-z]+$/, '') // Remove any existing size suffix
+    .replace(/-(xs|sm|md|lg|xl|2xl)$/, '') // Remove only size suffixes
 
   // Get the size suffix
   const sizeSuffix = sizeSuffixMap[size] || '-md'
