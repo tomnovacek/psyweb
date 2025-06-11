@@ -1,9 +1,13 @@
 import { useState, useEffect, useRef } from 'react'
-import { Box, Text } from '@chakra-ui/react'
+import { Box, Text, Link } from '@chakra-ui/react'
+
+const STATIC_MAP_URL =
+  'https://maps.googleapis.com/maps/api/staticmap?center=Sukova+4,Brno,Czech+Republic&zoom=16&size=600x250&maptype=roadmap&markers=color:red%7Clabel:S%7C49.1917,16.6075&key=AIzaSyAyROAkqASp8ZcxlYmY3PaCRgobpgvl7Hs';
+const GOOGLE_MAPS_LINK =
+  'https://www.google.com/maps/place/Sukova+4,+602+00+Brno-st%C5%99ed';
 
 export default function Map() {
   const [isVisible, setIsVisible] = useState(false)
-  const [isLoaded, setIsLoaded] = useState(false)
   const mapRef = useRef(null)
 
   useEffect(() => {
@@ -15,7 +19,7 @@ export default function Map() {
         }
       },
       {
-        rootMargin: '200px', // Načíst mapu 200px před tím, než se dostane do viewportu
+        rootMargin: '200px',
         threshold: 0.1
       }
     )
@@ -38,8 +42,7 @@ export default function Map() {
       position="relative"
       bg="gray.100"
     >
-      {/* Placeholder while iframe loads */}
-      {!isLoaded && (
+      {!isVisible && (
         <Box
           position="absolute"
           top={0}
@@ -55,20 +58,17 @@ export default function Map() {
           <Text color="gray.500">Načítání mapy...</Text>
         </Box>
       )}
-      
       {isVisible && (
-        <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2606.123456789012!2d16.6075!3d49.1917!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4712944c1c1c1c1c%3A0x1234567890abcdef!2sSukova%204%2C%20602%2000%20Brno-st%C5%99ed!5e0!3m2!1scs!2scz!4v1234567890!5m2!1scs!2scz"
-          width="100%"
-          height="100%"
-          style={{ border: 0 }}
-          allowFullScreen=""
-          loading="lazy"
-          referrerPolicy="no-referrer-when-downgrade"
-          title="Umístění ordinace"
-          aria-label="Google Maps zobrazující umístění ordinace"
-          onLoad={() => setIsLoaded(true)}
-        />
+        <Link href={GOOGLE_MAPS_LINK} target="_blank" rel="noopener noreferrer" display="block" width="100%" height="100%">
+          <img
+            src={STATIC_MAP_URL}
+            alt="Mapa - Sukova 4, Brno"
+            width="600"
+            height="250"
+            style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+            loading="lazy"
+          />
+        </Link>
       )}
     </Box>
   )
