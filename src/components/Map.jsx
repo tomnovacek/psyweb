@@ -1,10 +1,20 @@
 import { useState, useEffect, useRef } from 'react'
 import { Box, Text, Link } from '@chakra-ui/react'
 
+// Přesné souřadnice pro Sukova 4, Brno
+const LAT = 49.195639166019745;
+const LNG = 16.61257329325352;
+// Vložte svůj Google Static Maps API klíč níže
+const API_KEY = 'AIzaSyAyROAkqASp8ZcxlYmY3PaCRgobpgvl7Hs';
+
 const STATIC_MAP_URL =
-  'https://maps.googleapis.com/maps/api/staticmap?center=Sukova+4,Brno,Czech+Republic&zoom=16&size=600x250&maptype=roadmap&markers=color:red%7Clabel:S%7C49.1917,16.6075&key=AIzaSyAyROAkqASp8ZcxlYmY3PaCRgobpgvl7Hs';
+  `https://maps.googleapis.com/maps/api/staticmap?center=${LAT},${LNG}` +
+  `&zoom=16&size=600x250&maptype=roadmap` +
+  `&markers=color:red|label:T|${LAT},${LNG}` +
+  `&key=${API_KEY}`;
+
 const GOOGLE_MAPS_LINK =
-  'https://www.google.com/maps/place/Sukova+4,+602+00+Brno-st%C5%99ed';
+  'https://maps.app.goo.gl/vAm4TABGDnFNtMTQ7';
 
 export default function Map() {
   const [isVisible, setIsVisible] = useState(false)
