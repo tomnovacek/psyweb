@@ -13,6 +13,7 @@ import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaInbox, FaUser } from 'react-icon
 import { Link as RouterLink } from 'react-router-dom'
 import OptimizedImage from './OptimizedImage'
 import Map from './Map'
+import navbarIcon from '../assets/img/navbar-icon-96x96.webp'
 
 export default function Footer() {
   return (
@@ -68,7 +69,7 @@ export default function Footer() {
                 <Text>Sukova 4, Brno, Česká republika</Text>
               </Stack>
               {/* Logo */}
-              <Box mt="auto">
+              <Box mt="auto" minH="80px" minW="200px">
                 <OptimizedImage
                   src="CAP.png"
                   alt="ČAP Logo"
