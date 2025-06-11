@@ -15,7 +15,7 @@ import {
 } from '@chakra-ui/react'
 import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons'
 import { FaCalendarAlt, FaSms } from 'react-icons/fa'
-import OptimizedImage from './OptimizedImage'
+import navbarIcon from '../assets/img/navbar-icon-96x96.webp'
 
 // Konstanty pro konzistentní rozměry
 const NAV_HEIGHT = '60px'
@@ -289,13 +289,13 @@ export default function Navbar() {
                 willChange: 'transform',
               }}
             >
-              <OptimizedImage
-                src="navbar-icon-96x96.webp"
+              <img
+                src={navbarIcon}
                 alt="Tom Nováček"
                 width={LOGO_SIZE}
                 height={LOGO_SIZE}
-                objectFit="contain"
-                priority
+                style={{ objectFit: 'contain', display: 'block' }}
+                loading="eager"
               />
             </Box>
 
