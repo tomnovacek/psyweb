@@ -6,26 +6,17 @@ import {
   Button,
   Stack,
   SimpleGrid,
-  Image,
+
   useColorModeValue,
-  Center,
+
   Flex,
   List,
   ListItem,
   ListIcon,
   Icon,
-  Badge,
-  Link,
+
   VStack,
-  HStack,
-  Divider,
-  useDisclosure,
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalBody,
-  ModalCloseButton,
+
 } from '@chakra-ui/react'
 import { Link as RouterLink } from 'react-router-dom'
 import { CheckCircleIcon } from '@chakra-ui/icons'
@@ -33,10 +24,10 @@ import { FaUserFriends, FaHeart, FaBrain, FaBalanceScale, FaComments, FaLightbul
 import { useEffect, useState } from 'react'
 import { getAllPosts, getLatestPosts } from '../utils/blogUtils'
 import OptimizedImage from '../components/OptimizedImage'
-import OptimizedAvatar from '../components/OptimizedAvatar'
+
 import SEO from '../components/SEO'
 import StructuredData from '../components/StructuredData'
-import { getOptimizedImagePath } from '../utils/getOptimizedImage'
+
 import BlogCard from '../components/BlogCard'
 import HeroTextBox from '../components/HeroTextBox'
 import AboutCard from '../components/AboutCard'
