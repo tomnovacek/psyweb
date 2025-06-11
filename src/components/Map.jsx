@@ -45,7 +45,11 @@ export default function Map() {
     <Box
       ref={mapRef}
       width="100%"
+      minWidth="350px"
+      maxWidth="600px"
       height="250px"
+      minHeight="250px"
+      maxHeight="250px"
       borderRadius="lg"
       overflow="hidden"
       boxShadow="md"

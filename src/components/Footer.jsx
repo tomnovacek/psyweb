@@ -24,7 +24,7 @@ export default function Footer() {
       borderTop={1}
       borderStyle={'solid'}
       borderColor={useColorModeValue('gray.200', 'gray.700')}
-      width="100vw"
+      width="100%"
     >
       <Box py={10} px={{ base: 4, md: 8 }}>
         <Container maxW="1680px">
@@ -72,7 +72,7 @@ export default function Footer() {
                 <Text>Sukova 4, Brno, Česká republika</Text>
               </Stack>
               {/* Logo */}
-              <Box mt="auto" minH="80px" minW="200px">
+              <Box mt="auto" minH="80px" minW="200px" maxH="80px" maxW="200px">
                 <OptimizedImage
                   src="CAP.png"
                   alt="ČAP Logo"
