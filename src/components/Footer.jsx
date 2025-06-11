@@ -29,7 +29,7 @@ export default function Footer() {
         <Container maxW="1680px">
           <SimpleGrid columns={{ base: 1, md: 3 }} spacing={8}>
             {/* Navigation Links */}
-            <Stack align={'flex-start'}>
+            <Stack align={{base: 'center', md: 'flex-start'}}>
               <Heading fontSize={'lg'} mb={4}>Navigace</Heading>
               <Link as={RouterLink} to="/">Domů</Link>
               <Link as={RouterLink} to="/about">O mně</Link>
@@ -50,7 +50,7 @@ export default function Footer() {
             </Stack>
 
             {/* Contact Information */}
-            <Stack align={'flex-end'}>
+            <Stack align={{base: 'center', md: 'flex-end'}}>
               <Heading fontSize={'lg'} mb={4}>Kontakt</Heading>
               <Stack direction={'row'} align={'center'} spacing={2}>
                 <Icon as={FaUser} />
