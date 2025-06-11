@@ -101,18 +101,21 @@ const DesktopNav = () => {
   )
 }
 
-const MobileNav = () => {
+const MobileNav = ({ onClose }) => {
   return (
     <Stack
       bg={useColorModeValue('white', 'gray.800')}
       p={4}
       display={{ md: 'none' }}
       style={fontStyles}
+      align="center"
+      justify="center"
     >
-      <Stack spacing={4} align="center">
+      <Stack spacing={4} align="center" justify="center">
         <Button 
           as={RouterLink} 
           to="/" 
+          onClick={onClose}
           fontSize={'sm'} 
           fontWeight={400} 
           variant={'link'} 
@@ -126,6 +129,7 @@ const MobileNav = () => {
         <Button 
           as={RouterLink} 
           to="/about" 
+          onClick={onClose}
           fontSize={'sm'} 
           fontWeight={400} 
           variant={'link'} 
@@ -139,6 +143,7 @@ const MobileNav = () => {
         <Button 
           as={RouterLink} 
           to="/services" 
+          onClick={onClose}
           fontSize={'sm'} 
           fontWeight={400} 
           variant={'link'} 
@@ -152,6 +157,7 @@ const MobileNav = () => {
         <Button 
           as={RouterLink} 
           to="/calendar" 
+          onClick={onClose}
           fontSize={'sm'} 
           fontWeight={400} 
           variant={'link'} 
@@ -165,6 +171,7 @@ const MobileNav = () => {
         <Button 
           as={RouterLink} 
           to="/blog" 
+          onClick={onClose}
           fontSize={'sm'} 
           fontWeight={400} 
           variant={'link'} 
@@ -175,7 +182,6 @@ const MobileNav = () => {
         >
           Blog
         </Button>
-
       </Stack>
     </Stack>
   )
@@ -362,16 +368,15 @@ export default function Navbar() {
           </Stack>
         </Flex>
 
-        <Collapse 
-          in={isOpen} 
-          animateOpacity
-          style={{
-            contain: 'layout size',
-            willChange: 'transform',
-          }}
-        >
-          <MobileNav />
-        </Collapse>
+        {isOpen && (
+          <Box
+            display={{ base: 'block', md: 'none' }}
+            w="100%"
+            style={{ contain: 'layout size', willChange: 'transform' }}
+          >
+            <MobileNav onClose={onToggle} />
+          </Box>
+        )}
       </Container>
     </Box>
   )
