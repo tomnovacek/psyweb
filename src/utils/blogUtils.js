@@ -27,28 +27,9 @@ export const getAllPosts = async () => {
         return null
       }
 
-      // Check if post should be included based on status
-      const status = frontmatter.status || 'published'
-      if (status === 'draft' && !import.meta.env.DEV) {
-        return null
-      }
-
       // Format date
       const date = new Date(frontmatter.date)
       const formattedDate = format(date, 'd. MMMM yyyy', { locale: cs })
-
-      // Handle image path
-      let imagePath = null
-      if (frontmatter.image) {
-        // In development, use the original path
-        if (import.meta.env.DEV) {
-          imagePath = `/src/assets/img/${frontmatter.image}`
-        } else {
-          // In production, use the optimized path with appropriate size
-          // For blog list/cards, use medium size
-          imagePath = `/optimized-images/${frontmatter.image.replace(/\.[^/.]+$/, '')}-md.webp`
-        }
-      }
 
       return {
         slug,
@@ -57,10 +38,9 @@ export const getAllPosts = async () => {
         readTime: frontmatter.readTime,
         excerpt: frontmatter.excerpt,
         tags: frontmatter.tags || [],
-        image: imagePath,
+        image: frontmatter.image ? `/assets/img/${frontmatter.image}` : null,
         author: frontmatter.author,
         content: mdxContent,
-        status: status
       }
     })
   )
@@ -85,27 +65,9 @@ export const getPostBySlug = async (slug) => {
     return null
   }
 
-  // Check if post should be accessible based on status
-  const status = frontmatter.status || 'published'
-  if (status === 'draft' && !import.meta.env.DEV) {
-    return null
-  }
-
   // Format date
   const date = new Date(frontmatter.date)
   const formattedDate = format(date, 'd. MMMM yyyy', { locale: cs })
-
-  // Handle image path
-  let imagePath = null
-  if (frontmatter.image) {
-    // In development, use the original path
-    if (import.meta.env.DEV) {
-      imagePath = `/src/assets/img/${frontmatter.image}`
-    } else {
-      // In production, use the optimized path with large size for full blog post
-      imagePath = `/optimized-images/${frontmatter.image.replace(/\.[^/.]+$/, '')}-lg.webp`
-    }
-  }
 
   return {
     slug,
@@ -114,10 +76,9 @@ export const getPostBySlug = async (slug) => {
     readTime: frontmatter.readTime,
     excerpt: frontmatter.excerpt,
     tags: frontmatter.tags || [],
-    image: imagePath,
+    image: frontmatter.image ? `/assets/img/${frontmatter.image}` : null,
     author: frontmatter.author,
     content: mdxContent,
-    status: status
   }
 }
 
