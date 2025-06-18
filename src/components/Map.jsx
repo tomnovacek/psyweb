@@ -4,7 +4,7 @@ import { Box, Text, Link } from '@chakra-ui/react'
 // Přesné souřadnice pro Sukova 4, Brno
 const LAT = 49.195639166019745;
 const LNG = 16.61257329325352;
-// Vložte svůj Google Static Maps API klíč níže
+// Google Static Maps API klíč níže
 const API_KEY = 'AIzaSyAyROAkqASp8ZcxlYmY3PaCRgobpgvl7Hs';
 
 const STATIC_MAP_URL =

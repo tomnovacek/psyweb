@@ -15,6 +15,9 @@ import {
   useColorModeValue,
   SimpleGrid,
   useStyleConfig,
+  Grid,
+  GridItem,
+  Tooltip,
 } from '@chakra-ui/react'
 import { MDXProvider } from '@mdx-js/react'
 import { ChevronLeftIcon } from '@chakra-ui/icons'
@@ -23,6 +26,20 @@ import { Loading } from '../components/Loading'
 import SEO from '../components/SEO'
 import { compileMDX } from 'next-mdx-remote/rsc'
 import OptimizedImage from '../components/OptimizedImage'
+import TableOfContents from '../components/TableOfContents'
+import ContentFrame from '../components/ContentFrame'
+
+// Function to normalize text for anchor IDs
+const normalizeText = (text) => {
+  return text
+    .toString()
+    .toLowerCase()
+    .normalize('NFD') // Decompose characters with diacritics
+    .replace(/[\u0300-\u036f]/g, '') // Remove diacritics
+    .replace(/^\d+\.\s*/, '') // Remove leading numbers and dots
+    .replace(/[^a-z0-9]+/g, '-') // Replace non-alphanumeric chars with hyphens
+    .replace(/^-+|-+$/g, '') // Remove leading/trailing hyphens
+}
 
 export default function BlogPost() {
   const { slug } = useParams()
@@ -45,11 +62,57 @@ export default function BlogPost() {
 
   // Create MDX components inside the component
   const mdxComponents = {
-    h1: (props) => <Heading as="h1" {...styles.h1} {...props} />,
-    h2: (props) => <Heading as="h2" {...styles.h2} {...props} />,
-    h3: (props) => <Heading as="h3" {...styles.h3} {...props} />,
+    h1: (props) => {
+      const id = normalizeText(props.children)
+      return (
+        <Heading
+          as="h1"
+          id={id}
+          scrollMarginTop="120px"
+          {...styles.h1}
+          {...props}
+        />
+      )
+    },
+    h2: (props) => {
+      const id = normalizeText(props.children)
+      return (
+        <Heading
+          as="h2"
+          id={id}
+          scrollMarginTop="120px"
+          {...styles.h2}
+          {...props}
+        />
+      )
+    },
+    h3: (props) => {
+      const id = normalizeText(props.children)
+      return (
+        <Heading
+          as="h3"
+          id={id}
+          scrollMarginTop="120px"
+          {...styles.h3}
+          {...props}
+        />
+      )
+    },
     p: (props) => <Text {...styles.p} {...props} />,
-    a: (props) => <Link {...styles.a} isExternal {...props} />,
+    a: (props) => {
+      // Check if the link is internal (starts with /blog/)
+      if (props.href?.startsWith('/blog/')) {
+        // If it's a link to a specific section, ensure the hash is normalized
+        const [path, hash] = props.href.split('#')
+        if (hash) {
+          const normalizedHash = normalizeText(hash)
+          return <Link as={RouterLink} to={`${path}#${normalizedHash}`} {...styles.a} {...props} />
+        }
+        return <Link as={RouterLink} to={props.href} {...styles.a} {...props} />
+      }
+      // External links
+      return <Link {...styles.a} isExternal {...props} />
+    },
     ul: (props) => (
       <Box as="ul" pl={0} mb={4} listStyleType="disc" listStylePosition="outside">
         {props.children}
@@ -78,6 +141,8 @@ export default function BlogPost() {
         {...props}
       />
     ),
+    ExerciseFrame: (props) => <ContentFrame type="exercise" {...props} />,
+    InfoFrame: (props) => <ContentFrame type="info" {...props} />,
   }
 
   useEffect(() => {
@@ -108,6 +173,25 @@ export default function BlogPost() {
 
     loadPost()
   }, [slug])
+
+  // Separate effect for handling scroll after content is rendered
+  useEffect(() => {
+    if (!loading && mdxContent) {
+      const hash = window.location.hash
+      if (hash) {
+        const id = normalizeText(hash.substring(1))
+        const element = document.getElementById(id)
+        if (element) {
+          const elementPosition = element.getBoundingClientRect().top
+          const offsetPosition = elementPosition + window.pageYOffset - 120 // 120px offset for header
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
+          })
+        }
+      }
+    }
+  }, [loading, mdxContent])
 
   if (loading) {
     return <Loading />
@@ -199,11 +283,18 @@ export default function BlogPost() {
 
             <Divider />
 
-            <Box className="prose prose-lg max-w-none">
-              <MDXProvider components={mdxComponents}>
-                {mdxContent}
-              </MDXProvider>
-            </Box>
+            <Grid templateColumns={{ base: '1fr', lg: '1fr 300px' }} gap={8}>
+              <GridItem>
+                <Box className="prose prose-lg max-w-none">
+                  <MDXProvider components={mdxComponents}>
+                    {mdxContent}
+                  </MDXProvider>
+                </Box>
+              </GridItem>
+              <GridItem display={{ base: 'none', lg: 'block' }}>
+                <TableOfContents />
+              </GridItem>
+            </Grid>
 
             {post.tags && post.tags.length > 0 && (
               <Box>
