@@ -41,14 +41,21 @@ export const getAllPosts = async () => {
         image: frontmatter.image ? `/assets/img/${frontmatter.image}` : null,
         author: frontmatter.author,
         content: mdxContent,
+        status: frontmatter.status || 'draft'
       }
     })
   )
 
-  // Filter out invalid posts and sort by date
-  return posts
-    .filter(Boolean)
-    .sort((a, b) => new Date(b.date) - new Date(a.date))
+  // Filter out invalid posts
+  const validPosts = posts.filter(Boolean)
+
+  // Filter by status based on environment
+  const filteredPosts = import.meta.env.PROD
+    ? validPosts.filter(post => post.status === 'published')
+    : validPosts
+
+  // Sort by date
+  return filteredPosts.sort((a, b) => new Date(b.date) - new Date(a.date))
 }
 
 // Get a single post by slug
@@ -62,6 +69,12 @@ export const getPostBySlug = async (slug) => {
   // Validate required fields
   if (!frontmatter.title || !frontmatter.date) {
     console.warn(`Post ${slug} is missing required fields`)
+    return null
+  }
+
+  // Check status in production
+  if (import.meta.env.PROD && frontmatter.status !== 'published') {
+    console.warn(`Post ${slug} is not published`)
     return null
   }
 
@@ -79,6 +92,7 @@ export const getPostBySlug = async (slug) => {
     image: frontmatter.image ? `/assets/img/${frontmatter.image}` : null,
     author: frontmatter.author,
     content: mdxContent,
+    status: frontmatter.status || 'draft'
   }
 }
 
