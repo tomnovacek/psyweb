@@ -1,6 +1,7 @@
 import { format } from 'date-fns'
 import { cs } from 'date-fns/locale'
 import matter from 'gray-matter'
+import { getOptimizedImagePath } from './imageUtils'
 
 // Import all MDX files
 const blogPosts = import.meta.glob('/src/blogPosts/*.mdx', { as: 'raw' })
@@ -31,6 +32,9 @@ export const getAllPosts = async () => {
       const date = new Date(frontmatter.date)
       const formattedDate = format(date, 'd. MMMM yyyy', { locale: cs })
 
+      // Use the original image path for the image property
+      const imagePath = frontmatter.image ? `/assets/img/${frontmatter.image}` : null
+
       return {
         slug,
         title: frontmatter.title,
@@ -38,7 +42,7 @@ export const getAllPosts = async () => {
         readTime: frontmatter.readTime,
         excerpt: frontmatter.excerpt,
         tags: frontmatter.tags || [],
-        image: frontmatter.image ? `/assets/img/${frontmatter.image}` : null,
+        image: imagePath,
         author: frontmatter.author,
         content: mdxContent,
         status: frontmatter.status || 'draft'

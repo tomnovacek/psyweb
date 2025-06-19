@@ -13,6 +13,7 @@ import {
   useColorModeValue,
 } from '@chakra-ui/react'
 import { FiClock, FiTag } from 'react-icons/fi'
+import { getResponsiveImageProps } from '../utils/imageUtils'
 
 const BlogCard = ({ post }) => {
   const { slug } = post
@@ -21,6 +22,9 @@ const BlogCard = ({ post }) => {
   const textColor = useColorModeValue('gray.700', 'gray.300')
   const headingColor = useColorModeValue('green.600', 'white')
   const metaTextColor = useColorModeValue('gray.500', 'gray.400')
+
+  // Get optimized image props if image exists
+  const imageProps = post.image ? getResponsiveImageProps(post.image.replace('/assets/img/', '')) : null;
 
   return (
     <Box
@@ -38,12 +42,13 @@ const BlogCard = ({ post }) => {
         textDecoration: 'none'
       }}
     >
-      {post.image && (
+      {imageProps && (
         <Box position="relative" height="200px">
           <Box
             as="img"
-            src={post.image}
+            {...imageProps}
             alt={post.title}
+            loading="lazy"
             objectFit="cover"
             width="100%"
             height="100%"
