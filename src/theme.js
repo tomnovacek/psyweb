@@ -20,77 +20,34 @@ const theme = extendTheme({
     },
   },
   fonts: {
-    heading: 'Inter, system-ui, sans-serif',
-    body: 'Inter, system-ui, sans-serif',
+    heading: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+    body: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
   },
   styles: {
     global: {
-      body: {
-        bg: 'gray.50',
+      'html, body': {
+        backgroundColor: 'gray.50',
         color: 'gray.800',
-        paddingBottom: '64px',
+        minHeight: '100vh',
+        overflowX: 'hidden',
+      },
+      '*': {
+        boxSizing: 'border-box',
+      },
+      // Prevent layout shifts from font loading
+      'h1, h2, h3, h4, h5, h6, p, span, a, button': {
+        textRendering: 'optimizeLegibility',
+        fontDisplay: 'swap',
       },
     },
   },
   components: {
-    Heading: {
-      baseStyle: {
-        fontFamily: 'heading',
-        fontWeight: 'bold',
-        color: 'gray.900',
-        _dark: {
-          color: 'white',
-        },
-      },
-      variants: {
-        hero: {
-          fontSize: { base: '36px', sm: '48px', lg: '60px' },
-          lineHeight: '1.1',
-          fontWeight: 600,
-          mb: 6,
-          '& .hero-underline': {
-            position: 'relative',
-            color: 'whiteAlpha.900',
-            _after: {
-              content: "''",
-              width: 'full',
-              height: '30%',
-              position: 'absolute',
-              bottom: 1,
-              left: 0,
-              bg: 'green.400',
-              zIndex: -1,
-            },
-          },
-          '& .hero-accent': {
-            color: 'green.400',
-          },
-        },
-        section: {
-          fontSize: { base: '3xl', md: '4xl' },
-          lineHeight: '1.2',
-          color: 'green.500',
-          letterSpacing: '-0.01em',
-          fontWeight: 'bold',
-          mb: 8,
-        },
-        blogPost: {
-          fontSize: { base: '2xl', md: '3xl', lg: '4xl' },
-          lineHeight: '1.3',
-          letterSpacing: '-0.01em',
-          fontWeight: 'bold',
-          mb: 6,
-          color: 'gray.900',
-          _dark: {
-            color: 'white',
-          },
-        },
-      },
-    },
     Button: {
       baseStyle: {
         fontWeight: 'semibold',
         borderRadius: 'md',
+        height: '40px', // Fixed height to prevent CLS
+        minHeight: '40px',
       },
       variants: {
         solid: {
@@ -160,6 +117,66 @@ const theme = extendTheme({
           _hover: {
             bg: 'green.600',
             color: 'white', 
+          },
+        },
+      },
+    },
+    Container: {
+      baseStyle: {
+        maxW: '1680px',
+        px: { base: 4, md: 8 },
+      },
+    },
+    Heading: {
+      baseStyle: {
+        fontFamily: 'heading',
+        fontWeight: 'bold',
+        color: 'gray.900',
+        _dark: {
+          color: 'white',
+        },
+      },
+      variants: {
+        hero: {
+          fontSize: { base: '36px', sm: '48px', lg: '60px' },
+          lineHeight: '1.1',
+          fontWeight: 600,
+          mb: 6,
+          '& .hero-underline': {
+            position: 'relative',
+            color: 'whiteAlpha.900',
+            _after: {
+              content: "''",
+              width: 'full',
+              height: '30%',
+              position: 'absolute',
+              bottom: 1,
+              left: 0,
+              bg: 'green.400',
+              zIndex: -1,
+            },
+          },
+          '& .hero-accent': {
+            color: 'green.400',
+          },
+        },
+        section: {
+          fontSize: { base: '3xl', md: '4xl' },
+          lineHeight: '1.2',
+          color: 'green.500',
+          letterSpacing: '-0.01em',
+          fontWeight: 'bold',
+          mb: 8,
+        },
+        blogPost: {
+          fontSize: { base: '2xl', md: '3xl', lg: '4xl' },
+          lineHeight: '1.3',
+          letterSpacing: '-0.01em',
+          fontWeight: 'bold',
+          mb: 6,
+          color: 'gray.900',
+          _dark: {
+            color: 'white',
           },
         },
       },

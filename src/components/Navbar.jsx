@@ -208,7 +208,6 @@ export default function Navbar() {
       height={NAV_HEIGHT}
       minH={NAV_HEIGHT}
       style={{
-        ...fontStyles,
         contain: 'layout size',
         willChange: 'transform',
       }}
@@ -281,7 +280,12 @@ export default function Navbar() {
                 alt="Tom Nováček"
                 width={LOGO_SIZE}
                 height={LOGO_SIZE}
-                style={{ objectFit: 'contain', display: 'block' }}
+                style={{ 
+                  objectFit: 'contain', 
+                  display: 'block',
+                  width: LOGO_SIZE,
+                  height: LOGO_SIZE,
+                }}
                 loading="eager"
               />
             </Box>
@@ -368,7 +372,7 @@ export default function Navbar() {
           </Stack>
         </Flex>
 
-        {isOpen && (
+        <Collapse in={isOpen} animateOpacity>
           <Box
             display={{ base: 'block', md: 'none' }}
             w="100%"
@@ -376,7 +380,7 @@ export default function Navbar() {
           >
             <MobileNav onClose={onToggle} />
           </Box>
-        )}
+        </Collapse>
       </Container>
     </Box>
   )
