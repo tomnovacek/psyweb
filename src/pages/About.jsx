@@ -75,8 +75,8 @@ export default function About() {
   return (
     <Box bg={bgColor}>
       <SEO
-        title="Tomáš Nováček - psycholog a terapeut | Brno"
-        description="Nabízím individuální terapii pro dospělé, pro podporu osobního růstu, při úzkosti, depresi a vztahových problémech."
+        title="Tomáš Nováček - psycholog a terapeut v Brně"
+        description="Posledních sedm let věnuji doprovazení lidí, kteří překonávají náročné životní výzvy a hledají cestu k sobě."
         keywords="psychoterapeut, Tomáš Nováček, terapie, poradenství, Brno, Česká republika, profesionální zkušenosti, kvalifikace"
         url="https://tomnovacek.com/about"
         image="tom1.png"
@@ -170,7 +170,7 @@ export default function About() {
             <HeroTextBox
               title="Moje cesta"
               titleAccent="& Můj přístup"
-              description="Posledních sedm let věnuji snaze pomáhat lidem překonávat životní výzvy a dosahovat osobního růstu. Psychoterapii nevnímám jako místo, kde se rychle vyřeší problémy. Spíš jako prostor, kde se dá  na chvíli zastavit, začít víc vnímat sama sebe, lépe porozumět sobě i světu, ve kterém žijeme, a rozšířit repertoár chování o nové možnosti, které dříve nebyly možné."
+              description="Posledních sedm let věnuji doprovazení lidí, kteří překonávají náročné životní výzvy a hledají cestu k sobě. Psychoterapii nevnímám jako místo, kde se rychle vyřeší problémy. Spíš jako prostor, kde se dá  na chvíli zastavit, začít víc vnímat sama sebe, lépe porozumět sobě i světu, ve kterém žijeme, a rozšířit repertoár chování o nové možnosti, které dříve nebyly možné."
               primaryText="Objednat konzultaci"
               primaryHref="/calendar"
               secondaryText="Moje služby"
@@ -191,7 +191,7 @@ export default function About() {
               </Text>
             </Heading>
             <Text color={textColor} fontSize={'xl'}>
-              Věřím, že každý člověk má vnitřní schopnosti zvládat životní výzvy. Přesto se někdy můžeme cítit zablokovaní nebo bezmocní řešit složité situace. V takových chvílích vám pomáhám porozumět vašim problémům a nacházet efektivní cesty jejich překonání.
+              Věřím, že každý člověk má vnitřní schopnosti zvládat životní výzvy. Přesto se někdy můžeme cítit zablokovaní nebo bezmocní řešit složité situace. V takových chvílích se snažím pomoci porozumět vašim problémům a nacházet efektivní cesty jejich překonání.
             </Text>
           </Stack>
 
@@ -272,7 +272,7 @@ export default function About() {
                   <List spacing={3}>
                     <ListItem color={textColor}>
                       <ListIcon as={CheckCircleIcon} color="green.400" />
-                      Magisterský titul v jednooborové psychologii
+                      Magisterský titul v psychologii
                     </ListItem>
                     <ListItem color={textColor}>
                       <ListIcon as={CheckCircleIcon} color="green.400" />
@@ -316,7 +316,7 @@ export default function About() {
                   <List spacing={3}>
                     <ListItem color={textColor}>
                       <ListIcon as={CheckCircleIcon} color="green.400" />
-                      Psychofamaka v terapeutické praxi
+                      Psychofarmaka v terapeutické praxi
                     </ListItem>
                     <ListItem color={textColor}>
                       <ListIcon as={CheckCircleIcon} color="green.400" />
@@ -366,7 +366,7 @@ export default function About() {
               </Text>
             </Heading>
             <Text color={textColor} fontSize={'xl'}>
-              K psychologii jsem se dostal cestou spíše klikatou. Mnoho let jsem pracoval v managementu, ale postupně jsem si začal uvědomovat, že mě více naplňuje práce s lidmi a jejich příběhy. Toto poznání mě přivedlo k psychologii a terapeutické práci.
+            Do světa psychologie jsem se dostal pořádnou oklikou. Roky jsem se pohyboval v marketingu a obchodu, až jsem postupně nabýval přesvědčení, že mě mnohem víc přitahují příběhy lidí než prodejní statistiky. A tak jsem se vydal na cestu k psychologii a terapii.
             </Text>
           </Stack>
 
@@ -379,13 +379,13 @@ export default function About() {
             <Box flex="1">
               <Stack spacing={6}>
                 <Text color={textColor} fontSize={'xl'}>
-                  V osobním životě mám neocenitelnou podporu své rodiny – ženy a dvou dcer. Doma se všichni od sebe učíme, i když někdy mám pocit, že už se od dcer učím spíše já. Mají totiž zvláštní talent ukázat mi věci z úplně jiného úhlu pohledu, což se mi v práci docela hodí.
+                Doma mám skvělou podporu – manželku a dvě dcery, které mě nejen podporují, ale taky učí, kladou přede mě výzvy a pomáhají vytvářet místo, kde je lidem dobře. Mluví otevřeně a učí mě vidět svět v různých perspektivách. Zatímco dřív jsem si myslel, že je učím já, dnes už vím, že to je mínimálně vzájemné.
                 </Text>
                 <Text color={textColor} fontSize={'xl'}>
-                  Posledních pár let mě na cestách doprovází také můj věrný přítel, pes Ron. Učí mě o bezpodmínečné lásce, trpělivosti a schopnosti radovat se z maličkostí. Často mě zavede na místa, kde jsem nebyl, nebo mi je ukáže způsobem, jakým jsem je dříve neviděl – stává se s ním totiž každá procházka dobrodružstvím.
+                Před pár lety se k naší partě přidal také Ron – můj psí společník. Díky němu znám každý strom a plot v okruhu deseti kilometrů a vím, že hodně radosti se často skrývá v těch nejobyčejnějších místech. Má dar mi ukázat, jak se radovat z maličkostí. Já se zkouším takhle dívat na svůj lidský život plný nároků a očekávání. Naučil mě také, jak důležité je vědět, kde jsou hranice, a opakovaně o nich ostatní informovat. My lidé to děláme rafinovaněji než označkováním každého sloupu, ale princip je v podstatě stejný.
                 </Text>
                 <Text color={textColor} fontSize={'xl'}>
-                  Tato kombinace profesionálního růstu, rodinného zázemí a spojení s přírodou mi pomáhá udržovat zdravý nadhled a rovnováhu v životě. Věřím, že právě toto všechno mi dává kapacitu pomáhat druhým na jejich vlastní cestě.
+                Tohle všechno dohromady, práce, rodina a čas v přírodě, mi dává energii a sílů, kterou pak můžu předat dál. Každý z nás má svou cestu, a já jsem tu, abych vám pomohl najít tu vaši.
                 </Text>
               </Stack>
             </Box>

@@ -65,9 +65,9 @@ export default function Home() {
   return (
     <>
       <SEO
-        title="Tomáš Nováček - Psychoterapie | Centrum Brna"
-        description="Psychoterapie v centru Brna. Specializace na individuální terapii pro dospělé. Objednejte si svou konzultaci ještě dnes."
-        keywords="psychoterapie, poradenství, Brno, individuální terapie"
+        title="Tomáš Nováček - Psychoterapie | Brno"
+        description="Psychoterapie a psychologické poradenství pro dospělé v centru Brna."
+        keywords="psychoterapie, pscyhologické poradenství, Brno, individuální terapie"
         image="tom1.png"
         preloadImages={[
           'forrest.webp',  // Hero background
