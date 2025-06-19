@@ -12,6 +12,7 @@ const __dirname = path.dirname(__filename);
 const projectRoot = process.cwd();
 const sourceDirs = [
   path.join(projectRoot, 'src/assets/img'),
+  path.join(projectRoot, 'public/images'),
 ];
 const outputDir = path.join(projectRoot, 'public/optimized-images');
 const manifestPath = path.join(projectRoot, 'public/image-manifest.json');
