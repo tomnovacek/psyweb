@@ -27,7 +27,9 @@ export function getResponsiveImageProps(originalPath) {
     return {
       src: `/assets/img/${originalPath}`,
       srcSet: '',
-      sizes: ''
+      sizes: '',
+      width: 380, // fallback width
+      height: 254 // fallback height
     };
   }
 
@@ -38,6 +40,8 @@ export function getResponsiveImageProps(originalPath) {
   return {
     src: manifestEntry.responsive[2].path, // md size as default
     srcSet,
-    sizes: '(max-width: 480px) 300px, (max-width: 768px) 400px, 800px'
+    sizes: '(max-width: 480px) 300px, (max-width: 768px) 400px, 800px',
+    width: manifestEntry.responsive[2].width,
+    height: manifestEntry.responsive[2].height
   };
 } 
