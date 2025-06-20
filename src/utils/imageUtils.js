@@ -21,15 +21,25 @@ export function getOptimizedImagePath(originalPath, size = 'md') {
 }
 
 export function getResponsiveImageProps(originalPath) {
-  const manifestEntry = imageManifest.images[`/src/assets/img/${originalPath}`];
+  // Clean the path - remove any leading slashes and assets/img prefix
+  const cleanPath = originalPath.replace(/^\/+/, '').replace(/^assets\/img\//, '');
+  
+  // Try both path formats in the manifest
+  const manifestEntry = 
+    imageManifest.images[`src/assets/img/${cleanPath}`] || 
+    imageManifest.images[`/src/assets/img/${cleanPath}`];
+
   if (!manifestEntry?.responsive) {
-    console.warn(`No optimized image found for ${originalPath}`);
+    console.warn(`No optimized image found for ${cleanPath}. Tried paths:`, {
+      path1: `src/assets/img/${cleanPath}`,
+      path2: `/src/assets/img/${cleanPath}`
+    });
     return {
-      src: `/assets/img/${originalPath}`,
+      src: `/assets/img/${cleanPath}`,
       srcSet: '',
       sizes: '',
-      width: 380, // fallback width
-      height: 254 // fallback height
+      width: 380,
+      height: 254
     };
   }
 
@@ -37,11 +47,13 @@ export function getResponsiveImageProps(originalPath) {
     .map(img => `${img.path} ${img.width}w`)
     .join(', ');
 
+  // Use the original image dimensions if available, otherwise use the md size
+  const defaultImage = manifestEntry.responsive[2]; // md size
   return {
-    src: manifestEntry.responsive[2].path, // md size as default
+    src: defaultImage.path,
     srcSet,
     sizes: '(max-width: 480px) 300px, (max-width: 768px) 400px, 800px',
-    width: manifestEntry.responsive[2].width,
-    height: manifestEntry.responsive[2].height
+    width: manifestEntry.width || defaultImage.width,
+    height: manifestEntry.height || (defaultImage.width * 254/380) // maintain aspect ratio
   };
 } 

@@ -19,7 +19,7 @@ import {
 import { FiClock, FiTag } from 'react-icons/fi'
 import { getAllPosts, getAllTags } from '../utils/blogUtils'
 import SEO from '../components/SEO'
-import BlogCard from '../components/BlogCard'
+import BlogCard, { BlogCardSkeleton } from '../components/BlogCard'
 
 // Main Blog component
 const Blog = () => {
@@ -62,14 +62,6 @@ const Blog = () => {
         post.tags && post.tags.some(tag => selectedTags.includes(tag))
       )
     : posts
-
-  if (isLoading) {
-    return (
-      <Center minH="60vh">
-        <Spinner size="xl" color="green.500" />
-      </Center>
-    )
-  }
 
   if (error) {
     return (
@@ -132,9 +124,16 @@ const Blog = () => {
           )}
 
           <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={8}>
-            {filteredPosts.map(post => (
-              <BlogCard key={post.slug} post={post} />
-            ))}
+            {isLoading ? (
+              // Show skeleton cards while loading
+              Array.from({ length: 6 }).map((_, index) => (
+                <BlogCardSkeleton key={index} />
+              ))
+            ) : (
+              filteredPosts.map(post => (
+                <BlogCard key={post.slug} post={post} />
+              ))
+            )}
           </SimpleGrid>
         </VStack>
       </Container>

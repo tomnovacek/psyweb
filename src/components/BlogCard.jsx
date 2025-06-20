@@ -11,9 +11,10 @@ import {
   TagLeftIcon,
   Icon,
   useColorModeValue,
+  Skeleton,
 } from '@chakra-ui/react'
 import { FiClock, FiTag } from 'react-icons/fi'
-import { getResponsiveImageProps } from '../utils/imageUtils'
+import OptimizedImage from './OptimizedImage'
 
 const BlogCard = ({ post }) => {
   const { slug } = post
@@ -22,9 +23,6 @@ const BlogCard = ({ post }) => {
   const textColor = useColorModeValue('gray.700', 'gray.300')
   const headingColor = useColorModeValue('green.600', 'white')
   const metaTextColor = useColorModeValue('gray.500', 'gray.400')
-
-  // Get optimized image props if image exists
-  const imageProps = post.image ? getResponsiveImageProps(post.image.replace('/assets/img/', '')) : null;
 
   return (
     <Box
@@ -35,6 +33,7 @@ const BlogCard = ({ post }) => {
       overflow="hidden"
       boxShadow="sm"
       transition="all 0.2s"
+      className="blog-card"
       _hover={{
         transform: 'translateY(-4px)',
         boxShadow: 'md',
@@ -42,20 +41,25 @@ const BlogCard = ({ post }) => {
         textDecoration: 'none'
       }}
     >
-      {imageProps && (
-        <Box position="relative" height="200px">
-          <Box
-            as="img"
-            {...imageProps}
+      {post.image && (
+        <Box 
+          className="blog-card-image-container"
+          position="relative" 
+          height="200px"
+          width="100%"
+          overflow="hidden"
+        >
+          <OptimizedImage
+            src={post.image}
             alt={post.title}
-            loading="lazy"
             objectFit="cover"
             width="100%"
             height="100%"
+            loading="lazy"
           />
         </Box>
       )}
-      <Box p={6}>
+      <Box p={6} className="blog-card-content">
         <VStack align="start" spacing={4}>
           <Heading as="h3" size="md" noOfLines={2} lineHeight="1.2" color={headingColor}>
             {post.title}
@@ -87,6 +91,44 @@ const BlogCard = ({ post }) => {
                 <TagLabel>{tag}</TagLabel>
               </Tag>
             ))}
+          </HStack>
+        </VStack>
+      </Box>
+    </Box>
+  )
+}
+
+// Skeleton component for blog cards during loading
+export const BlogCardSkeleton = () => {
+  const cardBg = useColorModeValue('white', 'gray.800')
+  
+  return (
+    <Box
+      bg={cardBg}
+      borderRadius="lg"
+      overflow="hidden"
+      boxShadow="sm"
+      className="blog-card"
+    >
+      <Skeleton 
+        className="blog-card-image-container"
+        height="200px"
+        width="100%"
+      />
+      <Box p={6} className="blog-card-content">
+        <VStack align="start" spacing={4}>
+          <Skeleton height="24px" width="80%" />
+          <Skeleton height="16px" width="100%" />
+          <Skeleton height="16px" width="90%" />
+          <Skeleton height="16px" width="70%" />
+          <HStack spacing={4}>
+            <Skeleton height="16px" width="60px" />
+            <Skeleton height="16px" width="8px" />
+            <Skeleton height="16px" width="80px" />
+          </HStack>
+          <HStack spacing={2}>
+            <Skeleton height="20px" width="60px" borderRadius="full" />
+            <Skeleton height="20px" width="80px" borderRadius="full" />
           </HStack>
         </VStack>
       </Box>

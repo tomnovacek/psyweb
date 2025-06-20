@@ -69,9 +69,32 @@ footer {
   justify-content: space-between;
 }
 
-/* Ensure images maintain aspect ratio */
+/* Ensure images maintain aspect ratio and prevent CLS */
 img {
-  aspect-ratio: attr(width) / attr(height);
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Blog card image containers - prevent CLS */
+.blog-card-image-container {
+  aspect-ratio: 16/9;
+  min-height: 200px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Ensure consistent card heights */
+.blog-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.blog-card-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 /* Add smooth transitions */
@@ -80,4 +103,71 @@ img {
 .chakra-stack,
 .chakra-flex {
   transition: all 0.3s ease-in-out;
+}
+
+/* Prevent layout shifts from dynamic content */
+.chakra-simple-grid {
+  contain: layout style paint;
+}
+
+/* Ensure consistent spacing */
+.chakra-vstack {
+  gap: 1rem;
+}
+
+/* Prevent text layout shifts */
+.chakra-text {
+  line-height: 1.6;
+  word-wrap: break-word;
+}
+
+/* Prevent layout shifts from dynamic content loading */
+.chakra-simple-grid > * {
+  min-height: 400px; /* Reserve space for blog cards */
+}
+
+/* Ensure consistent button heights */
+.chakra-button {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Prevent layout shifts from tag components */
+.chakra-tag {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+}
+
+/* Ensure consistent heading heights */
+.chakra-heading {
+  line-height: 1.2;
+  word-wrap: break-word;
+}
+
+/* Prevent layout shifts from icon components */
+.chakra-icon {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/* Ensure consistent spacing in grid layouts */
+.chakra-simple-grid {
+  gap: 2rem;
+}
+
+/* Prevent layout shifts from loading states */
+.chakra-skeleton {
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
 }

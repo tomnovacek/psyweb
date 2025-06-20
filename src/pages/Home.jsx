@@ -28,7 +28,7 @@ import OptimizedImage from '../components/OptimizedImage'
 import SEO from '../components/SEO'
 import StructuredData from '../components/StructuredData'
 
-import BlogCard from '../components/BlogCard'
+import BlogCard, { BlogCardSkeleton } from '../components/BlogCard'
 import HeroTextBox from '../components/HeroTextBox'
 import AboutCard from '../components/AboutCard'
 
@@ -330,9 +330,16 @@ export default function Home() {
             </Box>
 
             <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={8}>
-              {newestPosts.map(post => (
-                <BlogCard key={post.slug} post={post} />
-              ))}
+              {loading ? (
+                // Show skeleton cards while loading
+                Array.from({ length: 3 }).map((_, index) => (
+                  <BlogCardSkeleton key={index} />
+                ))
+              ) : (
+                newestPosts.map(post => (
+                  <BlogCard key={post.slug} post={post} />
+                ))
+              )}
             </SimpleGrid>
 
             <Box textAlign="center">

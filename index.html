@@ -7,11 +7,13 @@
     
     <!-- Preload critical assets -->
     <link rel="preload" href="/src/assets/img/navbar-icon-96x96.webp" as="image" />
+    <link rel="preload" href="/src/assets/img/forrest.webp" as="image" />
+    <link rel="preload" href="/src/assets/img/tom1.png" as="image" />
     
     <!-- Preconnect to external resources -->
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     
-    <!-- Prevent FOUT -->
+    <!-- Prevent FOUT and CLS -->
     <style>
       /* Ensure the page has a default system font to prevent FOUT */
       html {
@@ -22,13 +24,39 @@
       body {
         min-height: 100vh;
         margin: 0;
+        overflow-x: hidden; /* Prevent horizontal scrollbar layout shifts */
       }
       
       /* Prevent layout shifts from images */
       img {
         max-width: 100%;
         height: auto;
-        aspect-ratio: attr(width) / attr(height);
+        display: block;
+      }
+      
+      /* Reserve space for common elements to prevent CLS */
+      .blog-card {
+        min-height: 400px;
+      }
+      
+      .blog-card-image-container {
+        aspect-ratio: 16/9;
+        min-height: 200px;
+      }
+      
+      /* Ensure consistent spacing */
+      .chakra-simple-grid {
+        gap: 2rem;
+      }
+      
+      /* Prevent layout shifts from dynamic content */
+      .chakra-container {
+        contain: layout style paint;
+      }
+      
+      /* Smooth transitions to reduce perceived layout shifts */
+      * {
+        transition: opacity 0.2s ease-in-out;
       }
     </style>
     
