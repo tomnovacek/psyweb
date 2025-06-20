@@ -24,6 +24,7 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  overflow-x: hidden; /* Prevent horizontal scrollbar layout shifts */
 }
 
 h1 {
@@ -61,12 +62,13 @@ nav {
   min-height: 24px;
 }
 
-/* Prevent footer layout shifts */
+/* Prevent footer layout shifts - reserve space */
 footer {
   min-height: 200px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  margin-top: auto; /* Push footer to bottom */
 }
 
 /* Ensure images maintain aspect ratio and prevent CLS */
@@ -170,4 +172,30 @@ img {
   50% {
     opacity: 0.5;
   }
+}
+
+/* Layout stability improvements */
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Ensure content area takes available space */
+.chakra-box[flex="1"] {
+  flex: 1 1 auto;
+  min-height: calc(100vh - 64px); /* Account for navbar height */
+}
+
+/* Prevent footer from appearing before content is ready */
+.chakra-box:has(footer) {
+  margin-top: auto;
+}
+
+/* Loading state improvements */
+.chakra-box:has(.loading-spinner) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - 64px);
 }

@@ -5,7 +5,9 @@ export const LoadingFallback = () => (
     display="flex"
     justifyContent="center"
     alignItems="center"
-    minH="50vh"
+    minH="calc(100vh - 64px)"
+    width="100%"
+    className="loading-fallback"
   >
     <Box
       as="div"

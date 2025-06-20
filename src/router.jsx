@@ -33,7 +33,7 @@ const Layout = ({ children }) => {
       bg={useColorModeValue('gray.50', 'gray.900')}
     >
       <Navbar />
-      <Box flex="1" width="100%">
+      <Box flex="1" width="100%" minH="calc(100vh - 64px)">
         {children}
       </Box>
       <Footer />
@@ -42,52 +42,78 @@ const Layout = ({ children }) => {
   )
 }
 
+// Enhanced layout with content-aware footer rendering
+const ContentAwareLayout = ({ children }) => {
+  useScrollRestoration()
+  
+  return (
+    <Box
+      minH="100vh"
+      minW="100vw"
+      width="100vw"
+      display="flex"
+      flexDirection="column"
+      alignItems="stretch"
+      bg={useColorModeValue('gray.50', 'gray.900')}
+    >
+      <Navbar />
+      <Suspense fallback={
+        <Box flex="1" width="100%" minH="calc(100vh - 64px)">
+          <LoadingFallback />
+        </Box>
+      }>
+        <Box flex="1" width="100%" minH="calc(100vh - 64px)">
+          {children}
+        </Box>
+        <Footer />
+      </Suspense>
+      <CookieConsent />
+    </Box>
+  )
+}
+
 // Wrap each route component with Suspense
 const wrapWithSuspense = (Component) => {
-  return (
-    <Suspense fallback={<LoadingFallback />}>
-      <Component />
-    </Suspense>
-  )
+  return <Component />
 }
 
 export const router = createBrowserRouter(
   [
     {
       path: '/',
-      element: <Layout>{wrapWithSuspense(Home)}</Layout>,
+      element: <ContentAwareLayout>{wrapWithSuspense(Home)}</ContentAwareLayout>,
     },
     {
       path: '/about',
-      element: <Layout>{wrapWithSuspense(About)}</Layout>,
+      element: <ContentAwareLayout>{wrapWithSuspense(About)}</ContentAwareLayout>,
     },
     {
       path: '/services',
-      element: <Layout>{wrapWithSuspense(Services)}</Layout>,
+      element: <ContentAwareLayout>{wrapWithSuspense(Services)}</ContentAwareLayout>,
     },
     {
       path: '/calendar',
-      element: <Layout>{wrapWithSuspense(Calendar)}</Layout>,
+      element: <ContentAwareLayout>{wrapWithSuspense(Calendar)}</ContentAwareLayout>,
     },
     {
       path: '/blog',
-      element: <Layout>{wrapWithSuspense(Blog)}</Layout>,
+      element: <ContentAwareLayout>{wrapWithSuspense(Blog)}</ContentAwareLayout>,
     },
     {
       path: '/blog/:slug',
-      element: <Layout>{wrapWithSuspense(BlogPost)}</Layout>,
+      element: <ContentAwareLayout>{wrapWithSuspense(BlogPost)}</ContentAwareLayout>,
     },
     {
       path: '/cookies',
-      element: <Layout>{wrapWithSuspense(CookiePolicy)}</Layout>,
+      element: <ContentAwareLayout>{wrapWithSuspense(CookiePolicy)}</ContentAwareLayout>,
     },
     {
       path: '/gdpr',
-      element: <Layout>{wrapWithSuspense(GDPR)}</Layout>,
+      element: <ContentAwareLayout>{wrapWithSuspense(GDPR)}</ContentAwareLayout>,
     },
     {
       path: '/legal',
-      element: <Layout>{wrapWithSuspense(LegalInfo)}</Layout>,
+      element: <ContentAwareLayout>{wrapWithSuspense(LegalInfo)}</ContentAwareLayout>,
     },
   ],
   {
