@@ -25,6 +25,7 @@ import { useEffect, useState } from 'react'
 import { getLatestPosts } from '../utils/blogUtils'
 import OptimizedImage from '../components/OptimizedImage'
 import CriticalImage from '../components/CriticalImage'
+import AnalyticsButton from '../components/AnalyticsButton'
 
 import SEO from '../components/SEO'
 import StructuredData from '../components/StructuredData'
@@ -304,14 +305,15 @@ export default function Home() {
             ))}
           </SimpleGrid>
           <Stack align={'center'} mt={10}>
-            <Button
+            <AnalyticsButton
               as={RouterLink}
               to="/services"
               variant="outline"
-
+              buttonName="services_button"
+              location="home_services_section"
             >
               Více o službách a podmínkách
-            </Button>
+            </AnalyticsButton>
           </Stack>
         </Container>
       </Box>
@@ -343,13 +345,15 @@ export default function Home() {
             </SimpleGrid>
 
             <Box textAlign="center">
-              <Button
+              <AnalyticsButton
                 as={RouterLink}
                 to="/blog"
                 variant="outline"
+                buttonName="blog_button"
+                location="home_blog_section"
               >
                 Více článků
-              </Button>
+              </AnalyticsButton>
             </Box>
           </VStack>
         </Container>
@@ -376,22 +380,26 @@ export default function Home() {
               direction={{ base: 'column', sm: 'row' }}
               pt={4}
             >
-              <Button
+              <AnalyticsButton
                 as={RouterLink}
                 to="/calendar"
                 variant="cta"
                 leftIcon={<FaCalendarAlt />}
+                buttonName="cta_consultation_button"
+                location="home_cta_section"
               >
                 Objednat konzultaci
-              </Button>
-              <Button
+              </AnalyticsButton>
+              <AnalyticsButton
                 as={RouterLink}
                 to="/services"
                 variant="ctaOutline"
                 rightIcon={<FaArrowRight />}
+                buttonName="cta_services_button"
+                location="home_cta_section"
               >
                 Moje služby
-              </Button>
+              </AnalyticsButton>
             </Stack>
           </Stack>
         </Container>

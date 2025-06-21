@@ -2,6 +2,8 @@ import { createBrowserRouter } from 'react-router-dom'
 import { lazy, Suspense } from 'react'
 import { Box, useColorModeValue } from '@chakra-ui/react'
 import { LoadingFallback } from './components/Loading'
+import { useAnalytics } from './hooks/useAnalytics'
+import ScrollTracker from './components/ScrollTracker'
 
 // Import critical components directly to avoid Chakra UI loading issues
 import Navbar from './components/Navbar'
@@ -46,9 +48,12 @@ const Layout = ({ children }) => {
   )
 }
 
-// Enhanced layout with content-aware footer rendering
+// Enhanced layout with content-aware footer rendering and analytics
 const ContentAwareLayout = ({ children }) => {
   useScrollRestoration()
+  
+  // Initialize analytics inside Router context
+  useAnalytics()
   
   return (
     <Box
@@ -72,6 +77,7 @@ const ContentAwareLayout = ({ children }) => {
         <Footer />
       </Suspense>
       <CookieConsent />
+      <ScrollTracker />
     </Box>
   )
 }
