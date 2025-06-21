@@ -8,7 +8,7 @@ const sizeSuffixMap = {
   '2xl': '-2xl'
 }
 
-// Import the image manifest from public directory using ?url suffix
+// Import the image manifest URL and fetch it
 import imageManifestUrl from '/image-manifest.json?url'
 
 // Cache for the manifest
@@ -65,7 +65,7 @@ export async function getOptimizedImage(source, size = 'md') {
   }
 }
 
-export function getOptimizedImagePath(source, size = 'md') {
+export async function getOptimizedImagePath(source, size = 'md') {
   if (!source) return null
 
   // If the path is already optimized, return it as is
@@ -73,19 +73,42 @@ export function getOptimizedImagePath(source, size = 'md') {
     return source
   }
 
-  // Clean the source path
-  const cleanPath = source
-    .replace(/^\/assets\/img\//, '') // Remove /assets/img/ prefix
-    .replace(/^\/src\/assets\/img\//, '') // Remove /src/assets/img/ prefix
-    .replace(/^\/+/, '') // Remove leading slashes
+  const imageManifest = await loadManifest()
   
-  // Extract the base filename without extension and any existing size suffix
-  const baseFilename = cleanPath.replace(/\.(webp|jpg|jpeg|png)$/, '')
-    .replace(/-(xs|sm|md|lg|xl|2xl)$/, '') // Remove only size suffixes
+  if (!imageManifest?.images) {
+    console.warn('Image manifest not loaded')
+    return null
+  }
 
-  // Get the size suffix
-  const sizeSuffix = sizeSuffixMap[size] || '-md'
+  // Try multiple path formats in the manifest
+  const pathVariants = [
+    `/src/assets/img/${source}`,
+    `src/assets/img/${source}`,
+    source
+  ]
 
-  // Return the optimized image path
-  return `/optimized-images/${baseFilename}${sizeSuffix}.webp`
+  let manifestEntry = null
+  for (const path of pathVariants) {
+    manifestEntry = imageManifest.images[path]
+    if (manifestEntry?.responsive) {
+      break
+    }
+  }
+
+  if (!manifestEntry?.responsive) {
+    console.warn(`No optimized image found for ${source}`)
+    return null
+  }
+
+  const sizeMap = {
+    xs: 150,
+    sm: 300,
+    md: 400,
+    lg: 800,
+    xl: 1200,
+    '2xl': 1600
+  }
+
+  const responsiveImage = manifestEntry.responsive.find(img => img.width === sizeMap[size])
+  return responsiveImage ? responsiveImage.path : manifestEntry.responsive[0].path
 } 

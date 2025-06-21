@@ -24,6 +24,7 @@ import { FaUserFriends, FaHeart, FaBrain, FaBalanceScale, FaComments, FaLightbul
 import { useEffect, useState } from 'react'
 import { getAllPosts, getLatestPosts } from '../utils/blogUtils'
 import OptimizedImage from '../components/OptimizedImage'
+import CriticalImage from '../components/CriticalImage'
 
 import SEO from '../components/SEO'
 import StructuredData from '../components/StructuredData'
@@ -78,7 +79,7 @@ export default function Home() {
       <StructuredData type="Person" />
 
       {/* Hero Section */}
-      <Box position="relative" width="100%" height={{ base: "auto", md: "75vh" }} overflow="hidden">
+      <Box position="relative" width="100%" height={{ base: "auto", md: "75vh" }} overflow="hidden" className="hero-section">
         {/* Background Image */}
         <Box
           position="absolute"
@@ -87,17 +88,15 @@ export default function Home() {
           width="100%"
           height="100%"
           zIndex={0}
+          className="hero-background"
         >
-          <OptimizedImage
+          <CriticalImage
             src="forrest.webp"
             alt="Lesní cesta"
             objectFit="cover"
-            width="1920"
-            height="1080"
-            priority={true}
-            fetchpriority="high"
-            loading="eager"
-            decoding="sync"
+            width="100%"
+            height="100%"
+            fallbackSrc="/src/assets/img/forrest.webp"
             style={{
               height: '100%',
               width: '100%',
@@ -115,7 +114,7 @@ export default function Home() {
         </Box>
 
         {/* Content Container */}
-        <Container maxW="7xl" height="100%" position="relative" zIndex={1}>
+        <Container maxW="7xl" height="100%" position="relative" zIndex={1} className="hero-content">
           <Flex
             height="100%"
             justify="center"
@@ -150,13 +149,13 @@ export default function Home() {
                 width="100%"
                 mt="auto"
               >
-                <OptimizedImage
+                <CriticalImage
                   src="tom1.png"
                   alt="Tom Nováček"
                   objectFit="cover"
                   width="100%"
                   height="auto"
-                  priority="true"
+                  fallbackSrc="/src/assets/img/tom1.png"
                   style={{
                     mixBlendMode: 'normal',
                     backgroundColor: 'transparent',

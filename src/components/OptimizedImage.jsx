@@ -13,6 +13,30 @@ export default function OptimizedImage({ src, alt, priority, ...props }) {
         setIsLoading(true)
         setError(false)
         
+        // For priority images, try to use optimized path immediately
+        if (priority) {
+          // Try to construct optimized path directly for LCP images
+          const cleanPath = src
+            .replace(/^\/assets\/img\//, '')
+            .replace(/^\/src\/assets\/img\//, '')
+            .replace(/^\/+/, '')
+          
+          const baseFilename = cleanPath.replace(/\.(webp|jpg|jpeg|png)$/, '')
+          const optimizedPath = `/optimized-images/${baseFilename}-lg.webp`
+          
+          // Check if optimized image exists
+          try {
+            const response = await fetch(optimizedPath, { method: 'HEAD' })
+            if (response.ok) {
+              setImageSrc(optimizedPath)
+              setIsLoading(false)
+              return
+            }
+          } catch (e) {
+            // Fall back to async loading
+          }
+        }
+        
         // If the path is already optimized, use it directly
         if (src.startsWith('/assets/optimized-images/')) {
           setImageSrc(src)
@@ -37,7 +61,7 @@ export default function OptimizedImage({ src, alt, priority, ...props }) {
     }
 
     loadImage()
-  }, [src])
+  }, [src, priority])
 
   if (error) {
     return (
@@ -72,6 +96,8 @@ export default function OptimizedImage({ src, alt, priority, ...props }) {
         src={imageSrc}
         alt={alt}
         loading={priority ? "eager" : "lazy"}
+        fetchpriority={priority ? "high" : "auto"}
+        decoding={priority ? "sync" : "async"}
         onError={() => {
           console.error('Failed to load image:', imageSrc)
           setError(true)

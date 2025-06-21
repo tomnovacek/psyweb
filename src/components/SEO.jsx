@@ -1,5 +1,4 @@
 import { Helmet } from 'react-helmet-async'
-import { getOptimizedImagePath } from '../utils/getOptimizedImage'
 
 const SEO = ({
   title = '',
@@ -19,6 +18,23 @@ const SEO = ({
   const safeKeywords = keywords ? String(keywords) : ''
   const safeUrl = String(url)
   const safeImage = image ? String(image) : ''
+
+  // Simple function to construct optimized image paths without async
+  const getOptimizedImagePathSync = (imgSrc, size = 'lg') => {
+    if (!imgSrc) return null
+    
+    // Clean the source path
+    const cleanPath = imgSrc
+      .replace(/^\/assets\/img\//, '')
+      .replace(/^\/src\/assets\/img\//, '')
+      .replace(/^\/+/, '')
+    
+    // Extract the base filename without extension
+    const baseFilename = cleanPath.replace(/\.(webp|jpg|jpeg|png)$/, '')
+    
+    // Return the optimized image path
+    return `/optimized-images/${baseFilename}-${size}.webp`
+  }
 
   return (
     <Helmet>
@@ -41,10 +57,15 @@ const SEO = ({
       <meta name="twitter:description" content={safeDescription} />
       {safeImage && <meta name="twitter:image" content={safeImage} />}
 
-      {/* Preload critical images */}
+      {/* Resource hints for better performance */}
+      <link rel="dns-prefetch" href="//fonts.gstatic.com" />
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+      
+      {/* Preload critical images for LCP */}
       {preloadImages.map((imgSrc, index) => {
         try {
-          const optimizedPath = getOptimizedImagePath(imgSrc, 'md')
+          // Try to get optimized large version for LCP
+          const optimizedPath = getOptimizedImagePathSync(imgSrc, 'lg')
           if (typeof optimizedPath === 'string') {
             return (
               <link
@@ -62,7 +83,7 @@ const SEO = ({
         }
         return null
       })}
-
+      
       {/* Additional meta tags */}
       {children}
     </Helmet>
