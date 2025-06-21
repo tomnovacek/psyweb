@@ -19,7 +19,7 @@ export default function CriticalImage({ src, alt, fallbackSrc, ...props }) {
           .replace(/^\/+/, '')
         
         const baseFilename = cleanPath.replace(/\.(webp|jpg|jpeg|png)$/, '')
-        const optimizedPath = `/optimized-images/${baseFilename}-lg.webp`
+        const optimizedPath = `/optimized-images/${baseFilename}-md.webp`
         
         // Use the optimized path directly for critical images
         // The browser will use the preloaded version if available
