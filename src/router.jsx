@@ -20,6 +20,7 @@ const Calendar = lazy(() => import('./pages/Calendar'))
 const CookiePolicy = lazy(() => import('./pages/CookiePolicy'))
 const GDPR = lazy(() => import('./pages/GDPR'))
 const LegalInfo = lazy(() => import('./pages/LegalInfo'))
+const NotFound = lazy(() => import('./pages/NotFound'))
 
 // Import scroll restoration hook directly since it's small
 import { useScrollRestoration } from './hooks/useScrollRestoration'
@@ -125,11 +126,16 @@ export const router = createBrowserRouter(
       path: '/legal',
       element: <ContentAwareLayout>{wrapWithSuspense(LegalInfo)}</ContentAwareLayout>,
     },
+    {
+      path: '*',
+      element: <ContentAwareLayout>{wrapWithSuspense(NotFound)}</ContentAwareLayout>,
+    },
   ],
   {
     future: {
       v7_startTransition: true,
       v7_relativeSplatPath: true,
     },
+    basename: '/',
   }
 ) 

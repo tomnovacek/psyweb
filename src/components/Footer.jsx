@@ -66,7 +66,7 @@ export default function Footer() {
               </Stack>
               <Stack direction={'row'} align={'center'} spacing={2}>
                 <Icon as={FaEnvelope} />
-                <Text><SecureEmail email="terapie@tomnovacek.com" /></Text>
+                <Box><SecureEmail email="terapie@tomnovacek.com" /></Box>
               </Stack>
               <Stack direction={'row'} align={'center'} spacing={2}>
                 <Icon as={FaMapMarkerAlt} />

@@ -69,6 +69,7 @@ export default function Services() {
         title="Služby | Tomáš Nováček - Psychoterapie"
         description="Certifikované psychoterapeutické služby v centru Brna. Individuální terapie pro dospělé, pro podporu osobního růstu, při úzkosti, depresi a vztahových problémech."
         keywords="psychoterapie, poradenství, Brno, individuální terapie, online konzultace"
+        url="https://tomnovacek.com/services"
         image="room.jped"
         preloadImages={[
           'room.jpeg',  // Hero background
