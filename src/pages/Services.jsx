@@ -219,16 +219,6 @@ export default function Services() {
                 <Text
                   as={'span'}
                   position={'relative'}
-                  _after={{
-                    content: "''",
-                    width: 'full',
-                    height: '30%',
-                    position: 'absolute',
-                    bottom: 1,
-                    left: 0,
-                    bg: 'green.400',
-                    zIndex: -1,
-                  }}
                 >
                   Jak probíhají terapeutická sezení
                 </Text>
@@ -297,16 +287,6 @@ export default function Services() {
               <Text
                 as={'span'}
                 position={'relative'}
-                _after={{
-                  content: "''",
-                  width: 'full',
-                  height: '30%',
-                  position: 'absolute',
-                  bottom: 1,
-                  left: 0,
-                  bg: 'green.400',
-                  zIndex: -1,
-                }}
               >
                 Ceník služeb
               </Text>
@@ -361,16 +341,6 @@ export default function Services() {
                 <Text
                   as={'span'}
                   position={'relative'}
-                  _after={{
-                    content: "''",
-                    width: 'full',
-                    height: '30%',
-                    position: 'absolute',
-                    bottom: 1,
-                    left: 0,
-                    bg: 'green.400',
-                    zIndex: -1,
-                  }}
                 >
                   Platba
                 </Text>
@@ -418,16 +388,6 @@ export default function Services() {
               <Text
                 as={'span'}
                 position={'relative'}
-                _after={{
-                  content: "''",
-                  width: 'full',
-                  height: '30%',
-                  position: 'absolute',
-                  bottom: 1,
-                  left: 0,
-                  bg: 'green.400',
-                  zIndex: -1,
-                }}
               >
                 Vydejme se spolu na cestu
               </Text>
