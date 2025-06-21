@@ -1,11 +1,12 @@
 import { createBrowserRouter } from 'react-router-dom'
 import { lazy, Suspense } from 'react'
 import { Box, useColorModeValue } from '@chakra-ui/react'
+import { LoadingFallback } from './components/Loading'
+
+// Import critical components directly to avoid Chakra UI loading issues
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import CookieConsent from './components/CookieConsent'
-import { useScrollRestoration } from './hooks/useScrollRestoration'
-import { LoadingFallback } from './components/Loading'
 
 // Lazy load route components
 const Home = lazy(() => import('./pages/Home'))
@@ -17,6 +18,9 @@ const Calendar = lazy(() => import('./pages/Calendar'))
 const CookiePolicy = lazy(() => import('./pages/CookiePolicy'))
 const GDPR = lazy(() => import('./pages/GDPR'))
 const LegalInfo = lazy(() => import('./pages/LegalInfo'))
+
+// Import scroll restoration hook directly since it's small
+import { useScrollRestoration } from './hooks/useScrollRestoration'
 
 // Layout component that includes Navbar and Footer
 const Layout = ({ children }) => {

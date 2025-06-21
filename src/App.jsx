@@ -5,17 +5,20 @@ import { HelmetProvider } from 'react-helmet-async'
 import { CookiesProvider } from 'react-cookie'
 import theme from './theme'
 import { LoadingFallback } from './components/Loading'
+import ErrorBoundary from './components/ErrorBoundary'
 
 function App() {
   return (
-    <HelmetProvider>
-      <ChakraProvider theme={theme}>
-        <ColorModeScript initialColorMode={theme.config.initialColorMode} />
-        <CookiesProvider>
-          <RouterProvider router={router} fallbackElement={<LoadingFallback />} />
-        </CookiesProvider>
-      </ChakraProvider>
-    </HelmetProvider>
+    <ErrorBoundary>
+      <HelmetProvider>
+        <ChakraProvider theme={theme}>
+          <ColorModeScript initialColorMode={theme.config.initialColorMode} />
+          <CookiesProvider>
+            <RouterProvider router={router} fallbackElement={<LoadingFallback />} />
+          </CookiesProvider>
+        </ChakraProvider>
+      </HelmetProvider>
+    </ErrorBoundary>
   )
 }
 

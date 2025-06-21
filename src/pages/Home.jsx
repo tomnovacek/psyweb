@@ -20,9 +20,9 @@ import {
 } from '@chakra-ui/react'
 import { Link as RouterLink } from 'react-router-dom'
 import { CheckCircleIcon } from '@chakra-ui/icons'
-import { FaUserFriends, FaHeart, FaBrain, FaBalanceScale, FaComments, FaLightbulb, FaHandHoldingHeart, FaUserMd, FaVideo, FaCalendarAlt, FaCreditCard, FaShieldAlt, FaClock, FaInfoCircle, FaHeartbeat, FaArrowRight, FaUser, FaUserShield, FaExchangeAlt, FaSeedling, FaUsers, FaIdCard, FaMoneyBill, FaMoneyBillAlt } from 'react-icons/fa'
+import { FaUser, FaHandHoldingHeart, FaUserFriends, FaHeartbeat, FaCalendarAlt, FaArrowRight } from 'react-icons/fa'
 import { useEffect, useState } from 'react'
-import { getAllPosts, getLatestPosts } from '../utils/blogUtils'
+import { getLatestPosts } from '../utils/blogUtils'
 import OptimizedImage from '../components/OptimizedImage'
 import CriticalImage from '../components/CriticalImage'
 
@@ -47,6 +47,7 @@ export default function Home() {
   const borderColor = useColorModeValue('gray.200', 'gray.700')
 
   useEffect(() => {
+    // Defer blog post loading to improve initial page load
     const loadPosts = async () => {
       try {
         console.log('Načítání příspěvků...')
@@ -60,7 +61,9 @@ export default function Home() {
       }
     }
 
-    loadPosts()
+    // Load posts after a short delay to prioritize critical content
+    const timer = setTimeout(loadPosts, 100)
+    return () => clearTimeout(timer)
   }, [])
 
   return (
@@ -70,10 +73,6 @@ export default function Home() {
         description="Psychoterapie a psychologické poradenství pro dospělé v centru Brna."
         keywords="psychoterapie, pscyhologické poradenství, Brno, individuální terapie"
         image="tom1.png"
-        preloadImages={[
-          'forrest.webp',  // Hero background
-          'tom1.png'  // Hero portrait
-        ]}
       />
       <StructuredData type="MedicalBusiness" />
       <StructuredData type="Person" />
@@ -93,6 +92,7 @@ export default function Home() {
           <CriticalImage
             src="forrest.webp"
             alt="Lesní cesta"
+            size="lg"
             objectFit="cover"
             width="100%"
             height="100%"
@@ -152,6 +152,7 @@ export default function Home() {
                 <CriticalImage
                   src="tom1.png"
                   alt="Tom Nováček"
+                  size="md"
                   objectFit="cover"
                   width="100%"
                   height="auto"

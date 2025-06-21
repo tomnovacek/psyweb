@@ -1,37 +1,57 @@
 import { Box, Image } from '@chakra-ui/react'
 import { useState, useEffect } from 'react'
-import { getOptimizedImagePath } from '../utils/getOptimizedImage'
 
 // Critical image component optimized for LCP
-export default function CriticalImage({ src, alt, fallbackSrc, ...props }) {
+export default function CriticalImage({ src, alt, fallbackSrc, size = 'md', ...props }) {
   const [currentSrc, setCurrentSrc] = useState(null)
   const [error, setError] = useState(false)
 
   useEffect(() => {
-    // For critical images, try multiple sources in order of preference
-    const loadCriticalImage = async () => {
+    // For critical images, construct the optimized path immediately
+    const loadCriticalImage = () => {
       try {
-        // For critical images, construct the optimized path directly
-        // This avoids async manifest loading for preloaded images
+        // Clean the source path
         const cleanPath = src
           .replace(/^\/assets\/img\//, '')
           .replace(/^\/src\/assets\/img\//, '')
           .replace(/^\/+/, '')
         
+        // Extract the base filename without extension
         const baseFilename = cleanPath.replace(/\.(webp|jpg|jpeg|png)$/, '')
-        const optimizedPath = `/optimized-images/${baseFilename}-md.webp`
         
-        // Use the optimized path directly for critical images
-        // The browser will use the preloaded version if available
+        // Construct the optimized path immediately
+        const optimizedPath = `/optimized-images/${baseFilename}-${size}.webp`
+        
+        // Set the optimized path immediately for critical images
         setCurrentSrc(optimizedPath)
       } catch (err) {
-        console.error('Error loading critical image:', err)
-        setCurrentSrc(`/src/assets/img/${src}`)
+        console.error('Error constructing critical image path:', err)
+        // Fallback to original source
+        setCurrentSrc(src.startsWith('/') ? src : `/src/assets/img/${src}`)
       }
     }
 
+    // Load immediately for critical images
     loadCriticalImage()
-  }, [src, fallbackSrc])
+  }, [src, size])
+
+  // Handle image load error
+  const handleError = () => {
+    console.warn('Critical image failed to load:', currentSrc)
+    
+    // Try fallback if available and different from current
+    if (fallbackSrc && currentSrc !== fallbackSrc) {
+      setCurrentSrc(fallbackSrc)
+    } else {
+      // Try original source as last resort
+      const originalSrc = src.startsWith('/') ? src : `/src/assets/img/${src}`
+      if (currentSrc !== originalSrc) {
+        setCurrentSrc(originalSrc)
+      } else {
+        setError(true)
+      }
+    }
+  }
 
   if (error) {
     return (
@@ -57,15 +77,7 @@ export default function CriticalImage({ src, alt, fallbackSrc, ...props }) {
       loading="eager"
       fetchpriority="high"
       decoding="sync"
-      onError={() => {
-        console.error('Failed to load critical image:', currentSrc)
-        // Try fallback if available
-        if (fallbackSrc && currentSrc !== fallbackSrc) {
-          setCurrentSrc(fallbackSrc)
-        } else {
-          setError(true)
-        }
-      }}
+      onError={handleError}
       {...props}
     />
   )
