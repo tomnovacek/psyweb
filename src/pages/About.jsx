@@ -185,7 +185,7 @@ export default function About() {
       <Box py={20} bg={cardBg}>
         <Container maxW={'7xl'}>
           <Stack spacing={4} maxW={'3xl'} textAlign={'center'} mb={10} mx="auto">
-            <Heading variant="section">
+            <Heading as="h1" variant="section">
               <Text as="span">
                 Můj přístup
               </Text>
@@ -233,7 +233,7 @@ export default function About() {
                   color="green.400"
                   mb={4}
                 />
-                <Heading color={headingColor} fontSize={'xl'} mb={4}>
+                <Heading as="h3" color={headingColor} fontSize={'xl'} mb={4}>
                   {feature.title}
                 </Heading>
                 <Text color={textColor}>{feature.text}</Text>
@@ -247,7 +247,7 @@ export default function About() {
       <Box py={20} bg={bgColor}>
         <Container maxW={'7xl'}>
           <Stack spacing={4} maxW={'3xl'} textAlign={'center'} mb={10} mx="auto">
-            <Heading variant="section">
+            <Heading as="h2" variant="section">
               <Text as="span">
                 Vzdělání & Kvalifikace
               </Text>
@@ -267,7 +267,7 @@ export default function About() {
                 <Box>
                   <Flex align="center" gap={3} mb={4}>
                     <Icon as={FaGraduationCap} w={8} h={8} color="green.400" />
-                    <Heading fontSize={'xl'} color={headingColor}>Vzdělání</Heading>
+                    <Heading as="h3" fontSize={'xl'} color={headingColor}>Vzdělání</Heading>
                   </Flex>
                   <List spacing={3}>
                     <ListItem color={textColor}>
@@ -291,7 +291,7 @@ export default function About() {
                 <Box>
                   <Flex align="center" gap={3} mb={4}>
                     <Icon as={FaCertificate} w={8} h={8} color="green.400" />
-                    <Heading color={headingColor} fontSize={'xl'}>Profesionální členství</Heading>
+                    <Heading as="h3" color={headingColor} fontSize={'xl'}>Profesionální členství</Heading>
                   </Flex>
                   <List spacing={3}>
                     <ListItem color={textColor}>
@@ -311,7 +311,7 @@ export default function About() {
                 <Box>
                   <Flex align="center" gap={3} mb={4}>
                     <Icon as={FaBook} w={8} h={8} color="green.400" />
-                    <Heading color={headingColor} fontSize={'xl'}>Další absolvované kurzy</Heading>
+                    <Heading as="h3" color={headingColor} fontSize={'xl'}>Další absolvované kurzy</Heading>
                   </Flex>
                   <List spacing={3}>
                     <ListItem color={textColor}>
@@ -360,7 +360,7 @@ export default function About() {
       <Box py={20} bg={cardBg}>
         <Container maxW={'7xl'}>
           <Stack spacing={4} maxW={'3xl'} textAlign={'center'} mb={10} mx="auto">
-            <Heading variant="section">
+            <Heading as="h2" variant="section">
               <Text as="span">
                 O mé cestě
               </Text>
@@ -425,7 +425,7 @@ export default function About() {
             maxW={'3xl'}
             mx="auto"
           >
-            <Heading variant="section">
+            <Heading as="h2" variant="section">
               <Text as="span">
                 Vydejme se spolu na cestu
               </Text>

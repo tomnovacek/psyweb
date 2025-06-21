@@ -174,7 +174,7 @@ export default function Home() {
       <Box py={20} bg={cardBg} position="relative" zIndex={2}>
         <Container maxW={'7xl'} centerContent>
           <Stack spacing={4} maxW={'6xl'} textAlign={'center'} mb={10}>
-            <Heading variant="section" color={headingColor}>
+            <Heading as="h2" variant="section" color={headingColor}>
               <Text as={'span'} position={'relative'}>
                 O mně
               </Text>
@@ -212,7 +212,7 @@ export default function Home() {
       <Box py={20} bg={bgColor}>
         <Container maxW={'7xl'} centerContent>
           <Stack spacing={4} maxW={'6xl'} textAlign={'center'} mb={10}>
-            <Heading variant="section" color={headingColor}>
+            <Heading as="h2" variant="section" color={headingColor}>
               <Text as={'span'} position={'relative'} zIndex={1}>
                 S čím vám mohu pomoci
               </Text>
@@ -282,6 +282,7 @@ export default function Home() {
                       mb={2}
                     />
                     <Heading
+                      as="h3"
                       color={headingColor}
                       fontSize={'2xl'}
                       fontFamily={'body'}
@@ -369,7 +370,7 @@ export default function Home() {
             maxW={'3xl'}
             mx="auto"
           >
-            <Heading variant="section" color={headingColor}>
+            <Heading as="h2" variant="section" color={headingColor}>
                 Vydejme se spolu na cestu
             </Heading>
             <Text color={textColor} fontSize={'xl'} maxW={'2xl'}>

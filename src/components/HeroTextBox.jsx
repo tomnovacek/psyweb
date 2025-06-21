@@ -35,6 +35,7 @@ export default function HeroTextBox({
       pt={{ base: 8, md: 10 }}
     >
       <Heading
+        as="h1"
         variant="hero"
         fontSize={{ base: '36px', sm: '48px', lg: '60px' }}
       >
