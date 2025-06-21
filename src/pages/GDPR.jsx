@@ -10,6 +10,7 @@ import {
   Divider,
 } from '@chakra-ui/react';
 import { FaShieldAlt, FaUserShield, FaFileAlt, FaLock } from 'react-icons/fa';
+import SecureEmail from '../components/SecureEmail';
 
 export default function GDPR() {
   return (
@@ -24,7 +25,7 @@ export default function GDPR() {
             Sukova 4<br />
             602 00 Brno-střed<br />
             IČ: 70453217<br />
-            Email: terapie@tomnovacek.com
+            Email: <SecureEmail email="terapie@tomnovacek.com" />
           </Text>
         </Box>
 
@@ -152,7 +153,7 @@ export default function GDPR() {
           <Text>
             Pro uplatnění vašich práv nebo pro jakékoliv dotazy ohledně zpracování osobních údajů mě můžete kontaktovat na:
             <br /><br />
-            Email: terapie@tomnovacek.com<br />
+            Email: <SecureEmail email="terapie@tomnovacek.com" /><br />
             Telefon: +420 602 773 440<br />
             Adresa: Sukova 4, 602 00 Brno-střed
           </Text>

@@ -9,6 +9,7 @@ import {
   ListIcon,
 } from '@chakra-ui/react';
 import { FaCookieBite } from 'react-icons/fa';
+import SecureEmail from '../components/SecureEmail';
 
 export default function CookiePolicy() {
   return (
@@ -74,7 +75,7 @@ export default function CookiePolicy() {
           <Text>
             Pokud máte jakékoliv otázky ohledně používání cookies, neváhejte nás kontaktovat na:
             <br />
-            Email: terapie@tomnovacek.com
+            Email: <SecureEmail email="terapie@tomnovacek.com" />
           </Text>
         </Box>
       </VStack>

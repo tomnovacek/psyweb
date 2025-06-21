@@ -16,6 +16,8 @@ import { useState, useEffect } from 'react'
 import { FaCalendarAlt, FaEnvelope, FaArrowRight } from 'react-icons/fa'
 import { Link as RouterLink } from 'react-router-dom'
 import SEO from '../components/SEO'
+import SecureEmail from '../components/SecureEmail'
+import SecureEmailButton from '../components/SecureEmailButton'
 
 export default function Calendar() {
   const [isLoading, setIsLoading] = useState(true)
@@ -66,7 +68,7 @@ export default function Calendar() {
             </Heading>
             <Text color={textColor} fontSize={'xl'}>
               Rezervujte si termín, který vám vyhovuje přímo v kalendáři. <br /> 
-              Pokud nenajdete vyhovující termín, nebo preferujete osobní kontakt emailem, napiště na <Link href="mailto:terapie@tomnovacek.com" color="green.400">terapie@tomnovacek.com</Link>.
+              Pokud nenajdete vyhovující termín, nebo preferujete osobní kontakt emailem, napiště na <SecureEmail email="terapie@tomnovacek.com" color="green.400" />.
             </Text>
           </Stack>
 
@@ -136,9 +138,8 @@ export default function Calendar() {
             mt={8}
             justify="center"
           >
-            <Button
-              as="a"
-              href="mailto:terapie@tomnovacek.com"
+            <SecureEmailButton
+              email="terapie@tomnovacek.com"
               leftIcon={<FaEnvelope />}
               colorScheme="green"
               variant="outline"
@@ -151,7 +152,7 @@ export default function Calendar() {
               }}
             >
               Kontaktujte mě emailem
-            </Button>
+            </SecureEmailButton>
             <Button
               as={RouterLink}
               to="/services"

@@ -12,6 +12,7 @@ import {
 import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaInbox, FaUser } from 'react-icons/fa'
 import { Link as RouterLink } from 'react-router-dom'
 import OptimizedImage from './OptimizedImage'
+import SecureEmail from './SecureEmail'
 import { lazy, Suspense } from 'react'
 const Map = lazy(() => import('./Map'))
 import navbarIcon from '../assets/img/navbar-icon-96x96.webp'
@@ -65,7 +66,7 @@ export default function Footer() {
               </Stack>
               <Stack direction={'row'} align={'center'} spacing={2}>
                 <Icon as={FaEnvelope} />
-                <Text><a href="mailto:terapie@tomnovacek.com">terapie@tomnovacek.com</a></Text>
+                <Text><SecureEmail email="terapie@tomnovacek.com" /></Text>
               </Stack>
               <Stack direction={'row'} align={'center'} spacing={2}>
                 <Icon as={FaMapMarkerAlt} />

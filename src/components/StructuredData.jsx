@@ -11,7 +11,8 @@ export default function StructuredData({ type }) {
           description: 'Soukromá psychoterapeutická praxe v centru Brna se zaměřením na individuální terapii dospělých.',
           url: 'https://tomnovacek.cz',
           telephone: '+420 603 773 440',
-          email: 'info@tomnovacek.cz',
+          // Email constructed from parts to avoid simple harvesting
+          email: ['info', '@', 'tomnovacek', '.', 'cz'].join(''),
           address: {
             '@type': 'PostalAddress',
             streetAddress: 'Sukova 4',
