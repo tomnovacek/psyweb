@@ -70,9 +70,8 @@ export default function Home() {
   return (
     <>
       <SEO
-        title="Tomáš Nováček - Psychoterapie | Brno"
-        description="Psychoterapie a psychologické poradenství pro dospělé v centru Brna."
-        keywords="psychoterapie, pscyhologické poradenství, Brno, individuální terapie"
+        description="Nabízím psychoterapii a psychologické poradenství pro dospělé v centru Brna - podporu při zvládání těžkých životních výzev. Můžete čerpat podporu z preventivních programů zdravotních pojišťoven."
+        keywords="psychoterapie, psychologické poradenství, Brno, individuální terapie, osobní rozvoj, deprese, úzkost, vztahy, stres"
         image="tom1.png"
       />
       <StructuredData type="MedicalBusiness" />
