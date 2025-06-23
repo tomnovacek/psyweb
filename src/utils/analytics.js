@@ -3,12 +3,40 @@ class Analytics {
   constructor() {
     this.measurementId = import.meta.env.VITE_GA_MEASUREMENT_ID
     this.isLoaded = false
+    this.isInitializing = false
     this.queue = []
+    
+    // Global flag to prevent duplicate loading
+    if (window.__GA4_INITIALIZED__) {
+      this.isLoaded = true
+      return
+    }
   }
 
-  // Initialize GA4 asynchronously
+  // Initialize GA4 asynchronously with duplicate prevention
   init() {
-    if (!this.measurementId || this.isLoaded) return
+    if (!this.measurementId || this.isLoaded || this.isInitializing) return
+    
+    // Check if gtag is already loaded by another source
+    if (window.gtag && typeof window.gtag === 'function') {
+      console.log('GA4 already loaded by another source, using existing instance')
+      this.isLoaded = true
+      window.__GA4_INITIALIZED__ = true
+      this.processQueue()
+      return
+    }
+
+    this.isInitializing = true
+
+    // Check if script is already being loaded
+    const existingScript = document.querySelector(`script[src*="googletagmanager.com/gtag/js"]`)
+    if (existingScript) {
+      console.log('GA4 script already loading, waiting for completion')
+      existingScript.addEventListener('load', () => {
+        this.setupGA()
+      })
+      return
+    }
 
     // Load GA4 script asynchronously
     const script = document.createElement('script')
@@ -17,11 +45,16 @@ class Analytics {
     script.onload = () => {
       this.setupGA()
     }
+    script.onerror = () => {
+      console.error('Failed to load GA4 script')
+      this.isInitializing = false
+    }
     document.head.appendChild(script)
   }
 
   // Setup GA4 after script loads
   setupGA() {
+    // Double-check if gtag is already defined
     if (typeof window.gtag === 'undefined') {
       window.dataLayer = window.dataLayer || []
       window.gtag = function() {
@@ -29,15 +62,19 @@ class Analytics {
       }
     }
 
-    // Initialize GA4
-    window.gtag('js', new Date())
-    window.gtag('config', this.measurementId, {
-      page_title: document.title,
-      page_location: window.location.href,
-      send_page_view: false // We'll send page views manually for better control
-    })
+    // Initialize GA4 only if not already configured
+    if (!window.dataLayer.some(item => item[0] === 'config' && item[1] === this.measurementId)) {
+      window.gtag('js', new Date())
+      window.gtag('config', this.measurementId, {
+        page_title: document.title,
+        page_location: window.location.href,
+        send_page_view: false // We'll send page views manually for better control
+      })
+    }
 
     this.isLoaded = true
+    this.isInitializing = false
+    window.__GA4_INITIALIZED__ = true
 
     // Process queued events
     this.processQueue()
