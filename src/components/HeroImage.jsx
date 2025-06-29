@@ -32,8 +32,8 @@ export default function HeroImage({
     `/optimized-images/${baseFilename}-2xl.webp 1600w`
   ].join(', ')
 
-  // Use md size as default for faster loading (was lg)
-  const defaultSrc = `/optimized-images/${baseFilename}-md.webp`
+  // Use sm size as default for fastest loading (was md)
+  const defaultSrc = `/optimized-images/${baseFilename}-sm.webp`
 
   const handleError = (e) => {
     console.warn('Hero image failed to load:', defaultSrc)

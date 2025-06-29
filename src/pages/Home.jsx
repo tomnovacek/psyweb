@@ -26,7 +26,6 @@ import { useEffect, useState } from 'react'
 import { getLatestPosts } from '../utils/blogUtils'
 import OptimizedImage from '../components/OptimizedImage'
 import CriticalImage from '../components/CriticalImage'
-import HeroImage from '../components/HeroImage'
 import AnalyticsButton from '../components/AnalyticsButton'
 
 import SEO from '../components/SEO'
@@ -82,13 +81,13 @@ export default function Home() {
         <link 
           rel="preload" 
           as="image" 
-          href="/optimized-images/forrest-md.webp" 
+          href="/optimized-images/forrest-sm.webp" 
           fetchpriority="high"
         />
         <link 
           rel="preload" 
           as="image" 
-          href="/optimized-images/tom1-md.webp" 
+          href="/optimized-images/tom1-sm.webp" 
           fetchpriority="high"
         />
       </SEO>
@@ -107,12 +106,16 @@ export default function Home() {
           zIndex={0}
           className="hero-background"
         >
-          <HeroImage
-            src="forrest.webp"
-            alt="Lesní cesta"
-            priority={true}
+          {/* Static hero image for optimal LCP */}
+          <img
+            src="/optimized-images/forrest-sm.webp"
+            srcSet="/optimized-images/forrest-xs.webp 150w, /optimized-images/forrest-sm.webp 300w, /optimized-images/forrest-md.webp 400w, /optimized-images/forrest-lg.webp 800w, /optimized-images/forrest-xl.webp 1200w, /optimized-images/forrest-2xl.webp 1600w"
             sizes="100vw"
-            fallbackSrc="/src/assets/img/forrest.webp"
+            alt="Lesní cesta"
+            loading="eager"
+            fetchpriority="high"
+            decoding="sync"
+            className="hero-image"
             style={{
               height: '100%',
               width: '100%',
@@ -165,17 +168,22 @@ export default function Home() {
                 width="100%"
                 mt="auto"
               >
-                <HeroImage
-                  src="tom1.png"
-                  alt="Tom Nováček"
-                  priority={true}
+                {/* Static portrait image for optimal LCP */}
+                <img
+                  src="/optimized-images/tom1-sm.webp"
+                  srcSet="/optimized-images/tom1-xs.webp 150w, /optimized-images/tom1-sm.webp 300w, /optimized-images/tom1-md.webp 400w, /optimized-images/tom1-lg.webp 800w, /optimized-images/tom1-xl.webp 1200w, /optimized-images/tom1-2xl.webp 1600w"
                   sizes="(max-width: 768px) 100vw, 50vw"
-                  fallbackSrc="/src/assets/img/tom1.png"
+                  alt="Tom Nováček"
+                  loading="eager"
+                  fetchpriority="high"
+                  decoding="sync"
+                  className="hero-image"
                   style={{
                     mixBlendMode: 'normal',
                     backgroundColor: 'transparent',
                     filter: 'brightness(1.1)',
-                    height: 'auto'
+                    height: 'auto',
+                    width: '100%'
                   }}
                 />
               </Box>

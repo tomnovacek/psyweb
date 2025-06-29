@@ -22,8 +22,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
     <!-- Critical image preloading for LCP - only homepage images -->
-    <link rel="preload" href="/optimized-images/forrest-md.webp" as="image" type="image/webp" fetchpriority="high" />
+    <link rel="preload" href="/optimized-images/forrest-sm.webp" as="image" type="image/webp" fetchpriority="high" />
     <link rel="preload" href="/optimized-images/tom1-md.webp" as="image" type="image/webp" fetchpriority="high" />
+    
+    <!-- Critical: Static hero image for immediate LCP -->
+    <style>
+      .critical-hero-image {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 75vh;
+        z-index: -1;
+        background-image: url('/optimized-images/forrest-sm.webp');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        contain: layout style paint;
+      }
+      
+      /* Hide when React loads */
+      .react-loaded .critical-hero-image {
+        display: none;
+      }
+    </style>
     
     <!-- DNS prefetch for external resources -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com" />
@@ -163,7 +185,20 @@
     <title>Tom Nováček | Psychoterapie</title>
   </head>
   <body>
+    <!-- Critical: Static hero image for immediate LCP -->
+    <div class="critical-hero-image"></div>
+    
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
+    
+    <!-- Hide static hero image when React loads -->
+    <script>
+      // Hide static hero image when React loads
+      window.addEventListener('load', function() {
+        setTimeout(function() {
+          document.body.classList.add('react-loaded');
+        }, 100);
+      });
+    </script>
   </body>
 </html>
