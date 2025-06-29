@@ -81,13 +81,13 @@ export default function Home() {
         <link 
           rel="preload" 
           as="image" 
-          href="/optimized-images/forrest-sm.webp" 
+          href="/optimized-images/forrest-sm.webp?v=2" 
           fetchpriority="high"
         />
         <link 
           rel="preload" 
           as="image" 
-          href="/optimized-images/tom1-sm.webp" 
+          href="/optimized-images/tom1-sm.webp?v=2" 
           fetchpriority="high"
         />
       </SEO>
@@ -108,8 +108,8 @@ export default function Home() {
         >
           {/* Static hero image for optimal LCP */}
           <img
-            src="/optimized-images/forrest-sm.webp"
-            srcSet="/optimized-images/forrest-xs.webp 150w, /optimized-images/forrest-sm.webp 300w, /optimized-images/forrest-md.webp 400w, /optimized-images/forrest-lg.webp 800w, /optimized-images/forrest-xl.webp 1200w, /optimized-images/forrest-2xl.webp 1600w"
+            src="/optimized-images/forrest-sm.webp?v=2"
+            srcSet="/optimized-images/forrest-xs.webp?v=2 150w, /optimized-images/forrest-sm.webp?v=2 300w, /optimized-images/forrest-md.webp?v=2 400w, /optimized-images/forrest-lg.webp?v=2 800w, /optimized-images/forrest-xl.webp?v=2 1200w, /optimized-images/forrest-2xl.webp?v=2 1600w"
             sizes="100vw"
             alt="Lesní cesta"
             loading="eager"
@@ -170,8 +170,8 @@ export default function Home() {
               >
                 {/* Static portrait image for optimal LCP */}
                 <img
-                  src="/optimized-images/tom1-sm.webp"
-                  srcSet="/optimized-images/tom1-xs.webp 150w, /optimized-images/tom1-sm.webp 300w, /optimized-images/tom1-md.webp 400w, /optimized-images/tom1-lg.webp 800w, /optimized-images/tom1-xl.webp 1200w, /optimized-images/tom1-2xl.webp 1600w"
+                  src="/optimized-images/tom1-sm.webp?v=2"
+                  srcSet="/optimized-images/tom1-xs.webp?v=2 150w, /optimized-images/tom1-sm.webp?v=2 300w, /optimized-images/tom1-md.webp?v=2 400w, /optimized-images/tom1-lg.webp?v=2 800w, /optimized-images/tom1-xl.webp?v=2 1200w, /optimized-images/tom1-2xl.webp?v=2 1600w"
                   sizes="(max-width: 768px) 100vw, 50vw"
                   alt="Tom Nováček"
                   loading="eager"

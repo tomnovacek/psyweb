@@ -23,7 +23,7 @@
     
     <!-- Critical image preloading for LCP - only homepage images -->
     <link rel="preload" href="/optimized-images/forrest-sm.webp" as="image" type="image/webp" fetchpriority="high" />
-    <link rel="preload" href="/optimized-images/tom1-md.webp" as="image" type="image/webp" fetchpriority="high" />
+    <link rel="preload" href="/optimized-images/tom1-sm.webp" as="image" type="image/webp" fetchpriority="high" />
     
     <!-- Critical: Static hero image for immediate LCP -->
     <style>
@@ -44,6 +44,26 @@
       /* Hide when React loads */
       .react-loaded .critical-hero-image {
         display: none;
+      }
+      
+      /* Critical: Ensure hero image renders immediately */
+      .hero-section {
+        position: relative;
+        width: 100%;
+        height: 75vh;
+        overflow: hidden;
+        contain: layout style paint;
+        will-change: transform;
+      }
+      
+      /* Critical: Force immediate image display */
+      .hero-image {
+        contain: layout style paint;
+        will-change: transform;
+        backface-visibility: hidden;
+        transform: translateZ(0);
+        display: block !important;
+        max-width: none !important;
       }
     </style>
     
@@ -125,15 +145,6 @@
       }
       
       /* Critical hero section styles for LCP */
-      .hero-section {
-        position: relative;
-        width: 100%;
-        height: 75vh;
-        overflow: hidden;
-        contain: layout style paint;
-        will-change: transform;
-      }
-      
       .hero-background {
         position: absolute;
         top: 0;
@@ -153,27 +164,6 @@
         display: flex;
         align-items: center;
         justify-content: center;
-      }
-      
-      /* Critical: Optimize hero images for immediate display */
-      .hero-image {
-        contain: layout style paint;
-        will-change: transform;
-        backface-visibility: hidden;
-        transform: translateZ(0);
-        display: block;
-        max-width: none;
-      }
-      
-      /* Critical: Ensure hero background images render immediately */
-      .hero-background img {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        contain: layout style paint;
       }
       
       /* Smooth transitions to reduce perceived layout shifts */
@@ -199,6 +189,16 @@
           document.body.classList.add('react-loaded');
         }, 100);
       });
+      
+      // Critical: Force hero image to load immediately
+      (function() {
+        var img = new Image();
+        img.src = '/optimized-images/forrest-sm.webp';
+        img.onload = function() {
+          // Image loaded successfully
+          console.log('Critical hero image loaded');
+        };
+      })();
     </script>
   </body>
 </html>
