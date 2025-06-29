@@ -3,289 +3,48 @@
   <head>
     <meta charset="UTF-8" />
     
-    <!-- Comprehensive Favicon Setup -->
+    <!-- Favicon and manifest -->
     <link rel="icon" type="image/webp" href="/navbar-icon-96x96.webp" />
     <link rel="icon" type="image/png" href="/navbar-icon-96x96.webp" />
     <link rel="shortcut icon" href="/navbar-icon-96x96.webp" />
-    
-    <!-- Apple Touch Icon -->
     <link rel="apple-touch-icon" href="/navbar-icon-96x96.webp" />
-    
-    <!-- Microsoft Tiles -->
     <meta name="msapplication-TileImage" content="/navbar-icon-96x96.webp" />
     <meta name="msapplication-TileColor" content="#22c55e" />
     <meta name="theme-color" content="#22c55e" />
-    
-    <!-- Web App Manifest -->
     <link rel="manifest" href="/manifest.json" />
-    
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    
-    <!-- Critical image preloading for LCP - only homepage images -->
-    <link rel="preload" href="/optimized-images/forrest-sm.webp?v=2" as="image" type="image/webp" fetchpriority="high" />
-    <link rel="preload" href="/optimized-images/tom1-sm.webp?v=2" as="image" type="image/webp" fetchpriority="high" />
-    
-    <!-- Critical: Static hero image for immediate LCP -->
-    <style>
-      /* Critical: Hero image that renders immediately */
-      .critical-hero-bg {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 75vh;
-        z-index: 0;
-        background: linear-gradient(135deg, #2d3748 0%, #4a5568 100%);
-        background-image: url('/optimized-images/forrest-sm.webp?v=2');
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        contain: layout style paint;
-        will-change: transform;
-      }
-      
-      /* Fallback if image doesn't load */
-      .critical-hero-bg::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(135deg, #2d3748 0%, #4a5568 100%);
-        z-index: -1;
-      }
-      
-      /* Critical: Hero text that renders immediately */
-      .critical-hero-text {
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        z-index: 1;
-        color: white;
-        text-align: center;
-        max-width: 600px;
-        padding: 2rem;
-        background: rgba(0, 0, 0, 0.3);
-        border-radius: 1rem;
-        backdrop-filter: blur(10px);
-        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-        font-size: clamp(1.5rem, 4vw, 2.5rem);
-        font-weight: 700;
-        line-height: 1.2;
-        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-      }
-      
-      .critical-hero-text h1 {
-        margin: 0 0 1rem 0;
-        font-size: clamp(2rem, 6vw, 4rem);
-        font-weight: 900;
-      }
-      
-      .critical-hero-text p {
-        margin: 0;
-        font-size: clamp(1rem, 2.5vw, 1.25rem);
-        font-weight: 400;
-        line-height: 1.6;
-      }
-      
-      /* Hide when React loads */
-      .react-loaded .critical-hero-bg,
-      .react-loaded .critical-hero-text {
-        display: none;
-      }
-      
-      /* Critical: Ensure hero image renders immediately */
-      .hero-section {
-        position: relative;
-        width: 100%;
-        height: 75vh;
-        overflow: hidden;
-        contain: layout style paint;
-        will-change: transform;
-      }
-      
-      /* Critical: Force immediate image display */
-      .hero-image {
-        contain: layout style paint;
-        will-change: transform;
-        backface-visibility: hidden;
-        transform: translateZ(0);
-        display: block !important;
-        max-width: none !important;
-      }
-      
-      /* Critical: Prevent any blocking */
-      body {
-        font-display: swap;
-      }
-      
-      /* Critical: Ensure images load immediately */
-      img {
-        font-display: swap;
-      }
-    </style>
-    
-    <!-- DNS prefetch for external resources -->
+
+    <!-- LCP: Preload hero and portrait images -->
+    <link rel="preload" href="/optimized-images/forrest-sm.webp?v=3" as="image" type="image/webp" fetchpriority="high" />
+    <link rel="preload" href="/optimized-images/tom1-sm.webp?v=3" as="image" type="image/webp" fetchpriority="high" />
+
+    <!-- DNS prefetch and preconnect -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com" />
     <link rel="dns-prefetch" href="//www.googletagmanager.com" />
     <link rel="dns-prefetch" href="//www.google-analytics.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin />
     <link rel="preconnect" href="https://www.google-analytics.com" crossorigin />
-    
-    <!-- Prevent FOUT and CLS -->
+
+    <!-- Minimal CSS for layout shift prevention -->
     <style>
-      /* Ensure the page has a default system font to prevent FOUT */
-      html {
-        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-      }
-      
-      /* Reserve space for navigation to prevent layout shifts */
-      body {
-        min-height: 100vh;
+      html, body {
         margin: 0;
-        overflow-x: hidden; /* Prevent horizontal scrollbar layout shifts */
+        padding: 0;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        background: #fff;
       }
-      
-      /* Critical layout structure to prevent footer CLS */
       #root {
         min-height: 100vh;
         display: flex;
         flex-direction: column;
       }
-      
-      /* Prevent layout shifts from images */
-      img {
-        max-width: 100%;
-        height: auto;
-        display: block;
-      }
-      
-      /* Reserve space for common elements to prevent CLS */
-      .blog-card {
-        min-height: 400px;
-      }
-      
-      .blog-card-image-container {
-        aspect-ratio: 16/9;
-        min-height: 200px;
-      }
-      
-      /* Ensure consistent spacing */
-      .chakra-simple-grid {
-        gap: 2rem;
-      }
-      
-      /* Prevent layout shifts from dynamic content */
-      .chakra-container {
-        contain: layout style paint;
-      }
-      
-      /* Critical: Prevent footer from rendering before content */
-      .chakra-box[flex="1"] {
-        flex: 1 1 auto;
-        min-height: calc(100vh - 64px); /* Account for navbar */
-      }
-      
-      /* Ensure footer stays at bottom */
-      footer {
-        margin-top: auto;
-        min-height: 200px;
-      }
-      
-      /* Loading state to prevent layout shifts */
-      .loading-fallback {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        min-height: calc(100vh - 64px);
-        width: 100%;
-      }
-      
-      /* Critical hero section styles for LCP */
-      .hero-background {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: 0;
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-      }
-      
-      .hero-content {
-        position: relative;
-        z-index: 1;
-        height: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-      
-      /* Smooth transitions to reduce perceived layout shifts */
-      * {
-        transition: opacity 0.2s ease-in-out;
-      }
     </style>
-    
+
     <title>Tom Nováček | Psychoterapie</title>
   </head>
   <body>
-    <!-- Critical: Static hero image for immediate LCP -->
-    <div class="critical-hero-bg">
-      <img 
-        src="/optimized-images/forrest-sm.webp?v=2" 
-        alt="Lesní cesta"
-        style="
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          z-index: -1;
-        "
-        loading="eager"
-        fetchpriority="high"
-      />
-    </div>
-    
-    <!-- Critical: Static hero text for immediate LCP -->
-    <div class="critical-hero-text">
-      <h1>Psychoterapie v centru Brna</h1>
-      <p>Vítejte, jmenuji se Tomáš Nováček. Věnuji se pomoci lidem překonávat životní výzvy a dosahovat osobního růstu.</p>
-    </div>
-    
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
-    
-    <!-- Critical: Force hero image to load immediately -->
-    <script>
-      // Critical: Load hero image immediately, before anything else
-      (function() {
-        // Create and load image immediately
-        var criticalImg = new Image();
-        criticalImg.src = '/optimized-images/forrest-sm.webp?v=2';
-        criticalImg.fetchPriority = 'high';
-        
-        // Also preload the portrait
-        var portraitImg = new Image();
-        portraitImg.src = '/optimized-images/tom1-sm.webp?v=2';
-        portraitImg.fetchPriority = 'high';
-        
-        console.log('Critical images loading immediately');
-      })();
-      
-      // Hide static hero image when React loads
-      window.addEventListener('load', function() {
-        setTimeout(function() {
-          document.body.classList.add('react-loaded');
-        }, 100);
-      });
-    </script>
   </body>
 </html>
