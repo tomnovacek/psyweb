@@ -49,6 +49,97 @@ body {
   font-style: normal;
 }
 
+/* Container */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* Section styles */
+.section-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #48BB78;
+  margin-bottom: 1rem;
+}
+
+.section-description {
+  font-size: 1.25rem;
+  color: #4A5568;
+  max-width: 800px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.section-footer {
+  text-align: center;
+  margin-top: 3rem;
+}
+
+/* About section */
+.about-section {
+  padding: 5rem 0;
+  background-color: white;
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+  gap: 4rem;
+}
+
+/* Posts section */
+.posts-section {
+  padding: 5rem 0;
+  background-color: white;
+}
+
+.posts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+/* External links */
+.external-link {
+  color: #718096;
+  text-decoration: underline;
+}
+
+.external-link:hover {
+  color: #48BB78;
+}
+
+/* Button styles */
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 2rem;
+  border-radius: 9999px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  font-size: 1rem;
+  border: 2px solid #48BB78;
+  background-color: transparent;
+  color: #48BB78;
+}
+
+.btn-outline:hover {
+  background-color: #48BB78;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(72, 187, 120, 0.3);
+}
+
 /* Critical Hero Section - Server Rendered for LCP */
 .hero-section {
   position: relative;
@@ -185,6 +276,14 @@ body {
   justify-content: center;
 }
 
+.hero-portrait {
+  width: 100%;
+  height: auto;
+  mix-blend-mode: normal;
+  background-color: transparent;
+  filter: brightness(1.1);
+}
+
 /* Optimize images for LCP */
 img {
   max-width: 100%;
@@ -252,6 +351,15 @@ h1, h2, h3, h4, h5, h6, p, span, a, button {
   .btn {
     padding: 0.875rem 1.5rem;
     font-size: 0.9rem;
+  }
+  
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  .posts-grid {
+    grid-template-columns: 1fr;
   }
 }
 

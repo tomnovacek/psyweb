@@ -7,7 +7,7 @@ import {
   Icon,
   useColorModeValue,
 } from '@chakra-ui/react'
-import { Link as RouterLink } from 'react-router-dom'
+import NextLink from 'next/link'
 import OptimizedImage from './OptimizedImage'
 
 export default function AboutCard({
@@ -18,7 +18,7 @@ export default function AboutCard({
   icon,
   buttonText,
   buttonHref,
-  textColor,
+  textColor = 'gray.700',
 }) {
   return (
     <Box
@@ -65,7 +65,7 @@ export default function AboutCard({
           bg="linear-gradient(to top, rgba(0,0,0,0.8), transparent)"
         >
           <Flex align="center" gap={3}>
-            <Icon as={icon} w={8} h={8} color="white" />
+            {icon && <Icon as={icon} w={8} h={8} color="white" />}
             <Heading fontSize={'2xl'} color="white">{title}</Heading>
           </Flex>
         </Box>
@@ -74,13 +74,14 @@ export default function AboutCard({
         <Text fontSize={'lg'} mb={6} color={textColor}>
           {description}
         </Text>
-        <Button
-          as={RouterLink}
-          to={buttonHref}
-          variant="card"
-        >
-          {buttonText}
-        </Button>
+        <NextLink href={buttonHref} passHref legacyBehavior>
+          <Button
+            as="a"
+            variant="card"
+          >
+            {buttonText}
+          </Button>
+        </NextLink>
       </Box>
     </Box>
   )
