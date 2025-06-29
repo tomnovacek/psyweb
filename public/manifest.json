@@ -1,0 +1,21 @@
+{
+  "name": "Tomáš Nováček - Psychoterapie",
+  "short_name": "Tom Nováček",
+  "description": "Psychoterapie a psychologické poradenství pro dospělé v centru Brna",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f0fdf4",
+  "theme_color": "#22c55e",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/navbar-icon-96x96.webp",
+      "sizes": "96x95",
+      "type": "image/webp",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["health", "medical", "lifestyle"],
+  "lang": "cs",
+  "dir": "ltr"
+} 
