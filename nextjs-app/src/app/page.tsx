@@ -1,4 +1,3 @@
-"use client"
 import {
   Box,
   Heading,
@@ -13,22 +12,34 @@ import {
   Icon,
 } from '@chakra-ui/react'
 import NextLink from 'next/link'
+import Image from 'next/image'
 import { CheckCircleIcon } from '@chakra-ui/icons'
 import { FaUser, FaHandHoldingHeart, FaUserFriends, FaHeartbeat, FaCalendarAlt, FaArrowRight } from 'react-icons/fa'
-import { useEffect, useState } from 'react'
 import { getLatestPosts } from '@/utils/blogUtils'
-import OptimizedImage from '@/components/OptimizedImage'
-import AnalyticsButton from '@/components/AnalyticsButton'
-import dynamic from 'next/dynamic'
-const SEO = dynamic(() => import('@/components/SEO'), { ssr: false })
-import StructuredData from '@/components/StructuredData'
-import BlogCard, { BlogCardSkeleton } from '@/components/BlogCard'
+import BlogCard from '@/components/BlogCard'
 import HeroTextBox from '@/components/HeroTextBox'
 import AboutCard from '@/components/AboutCard'
 
-export default function Home() {
-  const [newestPosts, setNewestPosts] = useState<any[]>([])
-  const [loading, setLoading] = useState(true)
+// Metadata for better SEO and performance
+export const metadata = {
+  title: 'Tomáš Nováček - Psychoterapie v centru Brna',
+  description: 'Nabízím psychoterapii pro dospělé v centru Brna. Můžete čerpat podporou z preventivních programů zdravotních pojišťoven.',
+  keywords: 'psychoterapie, psychologické poradenství, Brno, individuální terapie, osobní rozvoj, deprese, úzkost, vztahy, stres',
+  openGraph: {
+    title: 'Tomáš Nováček - Psychoterapie v centru Brna',
+    description: 'Nabízím psychoterapii pro dospělé v centru Brna. Můžete čerpat podporou z preventivních programů zdravotních pojišťoven.',
+    images: ['/optimized-images/tom1-sm.webp'],
+  },
+}
+
+export default async function Home() {
+  // Fetch blog posts on the server
+  let newestPosts: any[] = []
+  try {
+    newestPosts = await getLatestPosts(3) || []
+  } catch (error) {
+    console.error('Chyba při načítání příspěvků:', error)
+  }
 
   // Static colors for Chakra UI v3 compatibility
   const bgColor = 'gray.100'
@@ -39,52 +50,8 @@ export default function Home() {
   const serviceBg = 'green.100'
   const borderColor = 'gray.200'
 
-  useEffect(() => {
-    // Defer blog post loading to improve initial page load
-    const loadPosts = async () => {
-      try {
-        console.log('Načítání příspěvků...')
-        const latestPosts = await getLatestPosts(3)
-        console.log('Načtené příspěvky:', latestPosts)
-        setNewestPosts(latestPosts || [])
-      } catch (error) {
-        console.error('Chyba při načítání příspěvků:', error)
-      } finally {
-        setLoading(false)
-      }
-    }
-
-    // Load posts after a short delay to prioritize critical content
-    const timer = setTimeout(loadPosts, 100)
-    return () => clearTimeout(timer)
-  }, [])
-
   return (
     <>
-      <SEO
-        title=""
-        description="Nabízím psychoterapii pro dospělé v centru Brna. Můžete čerpat podporou z preventivních programů zdravotních pojišťoven."
-        keywords="psychoterapie, psychologické poradenství, Brno, individuální terapie, osobní rozvoj, deprese, úzkost, vztahy, stres"
-        url="https://tomnovacek.com"
-        image="tom1.png"
-      >
-        {/* Preload critical images for LCP optimization */}
-        <link 
-          rel="preload" 
-          as="image" 
-          href="/optimized-images/forrest-sm.webp?v=2" 
-          fetchPriority="high"
-        />
-        <link 
-          rel="preload" 
-          as="image" 
-          href="/optimized-images/tom1-sm.webp?v=2" 
-          fetchPriority="high"
-        />
-      </SEO>
-      <StructuredData type="MedicalBusiness" />
-      <StructuredData type="Person" />
-
       {/* Hero Section */}
       <Box position="relative" width="100%" height={{ base: "auto", md: "75vh" }} overflow="hidden" className="hero-section">
         {/* Background Image */}
@@ -97,25 +64,19 @@ export default function Home() {
           zIndex={0}
           className="hero-background"
         >
-          {/* Static hero image for optimal LCP */}
-          <img
-            src="/optimized-images/forrest-sm.webp?v=3"
-            srcSet="/optimized-images/forrest-xs.webp?v=3 150w, /optimized-images/forrest-sm.webp?v=3 300w, /optimized-images/forrest-md.webp?v=3 400w, /optimized-images/forrest-lg.webp?v=3 800w, /optimized-images/forrest-xl.webp?v=3 1200w, /optimized-images/forrest-2xl.webp?v=3 1600w"
-            sizes="(max-width: 600px) 100vw, (max-width: 1200px) 50vw, 800px"
+          {/* Optimized hero image for optimal LCP */}
+          <Image
+            src="/optimized-images/forrest-sm.webp"
             alt="Lesní cesta"
-            loading="eager"
-            fetchPriority="high"
-            decoding="sync"
-            className="hero-image"
+            fill
+            priority
+            sizes="100vw"
             style={{
-              height: '100%',
-              width: '100%',
               objectFit: 'cover',
-              position: 'absolute',
-              top: 0,
-              left: 0,
               zIndex: 0
             }}
+            placeholder="blur"
+            blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
           />
           <Box
             position="absolute"
@@ -162,24 +123,24 @@ export default function Home() {
               <Box
                 width="100%"
                 mt="auto"
+                position="relative"
+                height="100%"
               >
-                {/* Static portrait image for optimal LCP */}
-                <img
-                  src="/optimized-images/tom1-sm.webp?v=2"
-                  srcSet="/optimized-images/tom1-xs.webp?v=2 150w, /optimized-images/tom1-sm.webp?v=2 300w, /optimized-images/tom1-md.webp?v=2 400w, /optimized-images/tom1-lg.webp?v=2 800w, /optimized-images/tom1-xl.webp?v=2 1200w, /optimized-images/tom1-2xl.webp?v=2 1600w"
-                  sizes="(max-width: 768px) 100vw, 50vw"
+                {/* Optimized portrait image for optimal LCP */}
+                <Image
+                  src="/optimized-images/tom1-sm.webp"
                   alt="Tom Nováček"
-                  loading="eager"
-                  fetchPriority="high"
-                  decoding="sync"
-                  className="hero-image"
+                  fill
+                  priority
+                  sizes="(max-width: 768px) 100vw, 50vw"
                   style={{
+                    objectFit: 'contain',
                     mixBlendMode: 'normal',
                     backgroundColor: 'transparent',
                     filter: 'brightness(1.1)',
-                    height: 'auto',
-                    width: '100%'
                   }}
+                  placeholder="blur"
+                  blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
                 />
               </Box>
             </Box>
@@ -323,9 +284,9 @@ export default function Home() {
                     </Text>
                     <VStack gap={2} align="start">
                       {service.features.map((feature, idx) => (
-                        <Box key={idx} display="flex" alignItems="center" gap={2}>
+                        <Box key={idx} color={textColor} display="flex" alignItems="center" gap={2}>
                           <Icon as={CheckCircleIcon} color="green.400" />
-                          <Text color={textColor}>{feature}</Text>
+                          {feature}
                         </Box>
                       ))}
                     </VStack>
@@ -335,16 +296,18 @@ export default function Home() {
             ))}
           </SimpleGrid>
           <Stack align={'center'} mt={10}>
-            <AnalyticsButton
-              as={NextLink}
-              href="/services"
-              variant="outline"
-              buttonName="services_button"
-              location="home_services_section"
-              onClick={() => {}}
-            >
-              Více o službách a podmínkách
-            </AnalyticsButton>
+            <NextLink href="/services" passHref legacyBehavior>
+              <Button
+                as="a"
+                colorScheme="green"
+                variant="outline"
+                size="lg"
+                rounded="full"
+                px={8}
+              >
+                Více o službách a podmínkách
+              </Button>
+            </NextLink>
           </Stack>
         </Container>
       </Box>
@@ -354,7 +317,7 @@ export default function Home() {
         <Container maxW="container.xl">
           <VStack gap={12} align="stretch">
             <Box textAlign="center">
-              <Heading as="h2">
+              <Heading as="h2" color={headingColor}>
                 Z mého bloku
               </Heading>
               <Text fontSize="xl" color="gray.600">
@@ -363,29 +326,24 @@ export default function Home() {
             </Box>
 
             <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} gap={8}>
-              {loading ? (
-                // Show skeleton cards while loading
-                Array.from({ length: 3 }).map((_, index) => (
-                  <BlogCardSkeleton key={index} />
-                ))
-              ) : (
-                newestPosts.map((post: any) => (
-                  <BlogCard key={post.slug} post={post} />
-                ))
-              )}
+              {newestPosts.map(post => (
+                <BlogCard key={post.slug} post={post} />
+              ))}
             </SimpleGrid>
 
             <Box textAlign="center">
-              <AnalyticsButton
-                as={NextLink}
-                href="/blog"
-                variant="outline"
-                buttonName="blog_button"
-                location="home_blog_section"
-                onClick={() => {}}
-              >
-                Více článků
-              </AnalyticsButton>
+              <NextLink href="/blog" passHref legacyBehavior>
+                <Button
+                  as="a"
+                  colorScheme="green"
+                  variant="outline"
+                  size="lg"
+                  rounded="full"
+                  px={8}
+                >
+                  Více článků
+                </Button>
+              </NextLink>
             </Box>
           </VStack>
         </Container>
@@ -412,28 +370,31 @@ export default function Home() {
               direction={{ base: 'column', sm: 'row' }}
               pt={4}
             >
-              <AnalyticsButton
-                as={NextLink}
-                href="/calendar"
-                variant="cta"
-                buttonName="cta_consultation_button"
-                location="home_cta_section"
-                onClick={() => {}}
-              >
-                <Icon as={FaCalendarAlt} mr={2} />
-                Objednat konzultaci
-              </AnalyticsButton>
-              <AnalyticsButton
-                as={NextLink}
-                href="/services"
-                variant="ctaOutline"
-                buttonName="cta_services_button"
-                location="home_cta_section"
-                onClick={() => {}}
-              >
-                Moje služby
-                <Icon as={FaArrowRight} ml={2} />
-              </AnalyticsButton>
+              <NextLink href="/calendar" passHref legacyBehavior>
+                <Button
+                  as="a"
+                  colorScheme="green"
+                  size="lg"
+                  rounded="full"
+                  px={8}
+                >
+                  <Icon as={FaCalendarAlt} mr={2} />
+                  Objednat konzultaci
+                </Button>
+              </NextLink>
+              <NextLink href="/services" passHref legacyBehavior>
+                <Button
+                  as="a"
+                  colorScheme="green"
+                  variant="outline"
+                  size="lg"
+                  rounded="full"
+                  px={8}
+                >
+                  Moje služby
+                  <Icon as={FaArrowRight} ml={2} />
+                </Button>
+              </NextLink>
             </Stack>
           </Stack>
         </Container>
