@@ -41,30 +41,11 @@ export default async function Home() {
     console.error('Chyba při načítání příspěvků:', error)
   }
 
-  // Static colors for Chakra UI v3 compatibility
-  const bgColor = 'gray.100'
-  const cardBg = 'white'
-  const heroCardBg = 'whiteAlpha.200'
-  const textColor = 'gray.700'
-  const headingColor = 'green.500'
-  const serviceBg = 'green.100'
-  const borderColor = 'gray.200'
-
   return (
     <>
-      {/* Hero Section */}
-      <Box position="relative" width="100%" height={{ base: "auto", md: "75vh" }} overflow="hidden" className="hero-section">
-        {/* Background Image */}
-        <Box
-          position="absolute"
-          top={0}
-          left={0}
-          width="100%"
-          height="100%"
-          zIndex={0}
-          className="hero-background"
-        >
-          {/* Optimized hero image for optimal LCP */}
+      {/* Critical Hero Section - Server Rendered for LCP */}
+      <section className="hero-section">
+        <div className="hero-background">
           <Image
             src="/optimized-images/forrest-sm.webp"
             alt="Lesní cesta"
@@ -78,86 +59,60 @@ export default async function Home() {
             placeholder="blur"
             blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
           />
-          <Box
-            position="absolute"
-            top={0}
-            left={0}
-            width="100%"
-            height="100%"
-            backdropFilter="blur(2px)"
-          />
-        </Box>
-
-        {/* Content Container */}
-        <Container maxW="7xl" height="100%" position="relative" zIndex={1} className="hero-content">
-          <Flex
-            height="100%"
-            justify="center"
-            align="center"
-            direction={{ base: 'column', md: 'row' }}
-            gap={8}
-            pt={{ base: 10, md: 28 }}
-            mt={{ base: 0, md: 0 }}
-          >
-            {/* Text Box */}
-            <HeroTextBox
-              title="Psychoterapie"
-              titleAccent="v centru Brna"
-              description="Vítejte, jmenuji se Tomáš Nováček. Věnuji se pomoci lidem překonávat životní výzvy a dosahovat osobního růstu. Společně s klienty se vydávám na cestu k hlubšímu porozumění sobě sama, svým vztahům a slepým uličkám, ve kterých se nacházejí. Snažím se, aby se na tomto putování cítili bezpečně a našli v sobě schopnost zahlédnout světlo nadějě prosvítající i potemnělým lesem."
-              primaryText="Objednat konzultaci"
-              primaryHref="/calendar"
-              secondaryText="Moje služby"
-              secondaryHref="/services"
-            />
-
-            {/* Portrait Image */}
-            <Box
-              flex="1"
-              maxW="2xl"
-              position="relative"
-              bg="transparent"
-              height="100%"
-              minH={{ base: "400px", md: "500px" }}
-              display="flex"
-            >
-              <Box
-                width="100%"
-                mt="auto"
-                position="relative"
-                height="100%"
-              >
-                {/* Optimized portrait image for optimal LCP */}
-                <Image
-                  src="/optimized-images/tom1-sm.webp"
-                  alt="Tom Nováček"
-                  fill
-                  priority
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                  style={{
-                    objectFit: 'contain',
-                    mixBlendMode: 'normal',
-                    backgroundColor: 'transparent',
-                    filter: 'brightness(1.1)',
-                  }}
-                  placeholder="blur"
-                  blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
-                />
-              </Box>
-            </Box>
-          </Flex>
-        </Container>
-      </Box>
+          <div className="hero-overlay"></div>
+        </div>
+        
+        <div className="hero-content">
+          <div className="hero-container">
+            <div className="hero-text">
+              <h1 className="hero-title">
+                Psychoterapie
+                <span className="hero-accent"> v centru Brna</span>
+              </h1>
+              <p className="hero-description">
+                Vítejte, jmenuji se Tomáš Nováček. Věnuji se pomoci lidem překonávat životní výzvy a dosahovat osobního růstu. Společně s klienty se vydávám na cestu k hlubšímu porozumění sobě sama, svým vztahům a slepým uličkám, ve kterých se nacházejí. Snažím se, aby se na tomto putování cítili bezpečně a našli v sobě schopnost zahlédnout světlo nadějě prosvítající i potemnělým lesem.
+              </p>
+              <div className="hero-buttons">
+                <a href="/calendar" className="btn btn-primary">
+                  Objednat konzultaci
+                </a>
+                <a href="/services" className="btn btn-secondary">
+                  Moje služby
+                </a>
+              </div>
+            </div>
+            
+            <div className="hero-image-container">
+              <Image
+                src="/optimized-images/tom1-sm.webp"
+                alt="Tom Nováček"
+                fill
+                priority
+                sizes="(max-width: 768px) 100vw, 50vw"
+                style={{
+                  objectFit: 'contain',
+                  mixBlendMode: 'normal',
+                  backgroundColor: 'transparent',
+                  filter: 'brightness(1.1)',
+                }}
+                placeholder="blur"
+                blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
+              />
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* About Section */}
-      <Box py={20} bg={cardBg} position="relative" zIndex={2}>
+      <Box py={20} bg="white" position="relative" zIndex={2}>
         <Container maxW={'7xl'} centerContent>
           <Stack gap={4} maxW={'6xl'} textAlign={'center'} mb={10}>
-            <Heading as="h2" color={headingColor}>
+            <Heading as="h2" color="green.500">
               <Text as={'span'} position={'relative'}>
                 O mně
               </Text>
             </Heading>
-            <Text color={textColor} fontSize={'xl'}>
+            <Text color="gray.700" fontSize={'xl'}>
               Jsem psycholog a terapeut s multioborovým vzděláním a zkušenostmi v doprovázení lidí překonávajících své životní výzvy. Znalosti a perspektivy z různých profesních oblastí mi pomáhají pochopit klientovu situaci a následně společně rozšiřovat obzory o perspektivy, které mohou přinášet větší svobodu při hledání cesty vpřed.
             </Text>
           </Stack>
@@ -182,7 +137,7 @@ export default async function Home() {
               icon={FaUser}
               buttonText="Více o mně"
               buttonHref="/about"
-              textColor={textColor}
+              textColor="gray.700"
             />
             <AboutCard
               title="Můj přístup"
@@ -192,22 +147,22 @@ export default async function Home() {
               icon={FaHandHoldingHeart}
               buttonText="Moje služby"
               buttonHref="/services"
-              textColor={textColor}
+              textColor="gray.700"
             />
           </SimpleGrid>
         </Container>
       </Box>
 
       {/* Services Section */}
-      <Box py={20} bg={bgColor}>
+      <Box py={20} bg="gray.100">
         <Container maxW={'7xl'} centerContent>
           <Stack gap={4} maxW={'6xl'} textAlign={'center'} mb={10}>
-            <Heading as="h2" color={headingColor}>
+            <Heading as="h2" color="green.500">
               <Text as={'span'} position={'relative'} zIndex={1}>
                 S čím vám mohu pomoci
               </Text>
             </Heading>
-            <Text color={textColor} fontSize={'xl'}>
+            <Text color="gray.700" fontSize={'xl'}>
               Lidé za mnou přicházejí s nejrůznějšími tématy, ale nejčastěji se bavíme o vztazích (k sobě i k druhým), úzkosti, pokleslé náladě a&nbsp;o&nbsp;tom, jak najít klid ve shonu každodenního života.
             </Text>
           </Stack>
@@ -252,7 +207,7 @@ export default async function Home() {
             ].map((service, index) => (
               <Box
                 key={index}
-                bg={cardBg}
+                bg="white"
                 boxShadow={'2xl'}
                 rounded={'xl'}
                 overflow={'hidden'}
@@ -273,18 +228,18 @@ export default async function Home() {
                     />
                     <Heading
                       as="h3"
-                      color={headingColor}
+                      color="green.500"
                       fontSize={'2xl'}
                       fontFamily={'body'}
                     >
                       {service.title}
                     </Heading>
-                    <Text color={textColor} mb={4}>
+                    <Text color="gray.700" mb={4}>
                       {service.description}
                     </Text>
                     <VStack gap={2} align="start">
                       {service.features.map((feature, idx) => (
-                        <Box key={idx} color={textColor} display="flex" alignItems="center" gap={2}>
+                        <Box key={idx} color="gray.700" display="flex" alignItems="center" gap={2}>
                           <Icon as={CheckCircleIcon} color="green.400" />
                           {feature}
                         </Box>
@@ -313,11 +268,11 @@ export default async function Home() {
       </Box>
 
       {/* Latest Posts Section */}
-      <Box py={20} bg={cardBg}>
+      <Box py={20} bg="white">
         <Container maxW="container.xl">
           <VStack gap={12} align="stretch">
             <Box textAlign="center">
-              <Heading as="h2" color={headingColor}>
+              <Heading as="h2" color="green.500">
                 Z mého bloku
               </Heading>
               <Text fontSize="xl" color="gray.600">
@@ -350,7 +305,7 @@ export default async function Home() {
       </Box>
 
       {/* Call to Action Section */}
-      <Box py={20} bg={bgColor}>
+      <Box py={20} bg="gray.100">
         <Container maxW={'7xl'}>
           <Stack
             gap={8}
@@ -359,10 +314,10 @@ export default async function Home() {
             maxW={'3xl'}
             mx="auto"
           >
-            <Heading as="h2" color={headingColor}>
+            <Heading as="h2" color="green.500">
                 Vydejme se spolu na cestu
             </Heading>
-            <Text color={textColor} fontSize={'xl'} maxW={'2xl'}>
+            <Text color="gray.700" fontSize={'xl'} maxW={'2xl'}>
               První krok je často ten nejtěžší. Domluvte si úvodní konzultaci a společně prozkoumáme, jak vám mohu pomoci.
             </Text>
             <Stack
