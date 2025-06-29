@@ -1,8 +1,4 @@
 import { getLatestPosts } from '@/utils/blogUtils'
-import BlogCard from '@/components/BlogCard'
-import AboutCard from '@/components/AboutCard'
-import ServicesSection from '@/components/ServicesSection'
-import CTASection from '@/components/CTASection'
 
 // Metadata for better SEO and performance
 export const metadata = {
@@ -85,10 +81,15 @@ export default async function Home() {
             </p>
           </div>
           <div className="about-grid">
-            <AboutCard
-              title="Moje praxe"
-              description={
-                <>
+            <div className="about-card">
+              <div className="about-card-image">
+                <img src="/images/room.jpeg" alt="Terapeutická místnost" />
+                <div className="about-card-overlay">
+                  <h3>Moje praxe</h3>
+                </div>
+              </div>
+              <div className="about-card-content">
+                <p>
                   Posledních sedm let se intenzivně věnuji psychologickému poradenství a čtyři roky praktikuji terapii v soukromé praxi v centru Brna. Vystudoval jsem jednooborovou psychologii a absolvoval dvouletý výcvik v koučování, následně šestiletý výcvik v{' '}
                   <a href="https://www.psychoterapie-integrace.cz" target="_blank" rel="noopener noreferrer" className="external-link">
                     integrativní psychoterapii
@@ -98,27 +99,80 @@ export default async function Home() {
                     České asociace pro psychoterapii
                   </a>
                   {' '}- komunity, která klade důraz na etické standardy a vysokou kvalifikaci v oboru psychoterapie. Jinými slovy, snažím pracovat poctivě a stále se učit.
-                </>
-              }
-              image="room.jpeg"
-              imageAlt="Terapeutická místnost"
-              buttonText="Více o mně"
-              buttonHref="/about"
-            />
-            <AboutCard
-              title="Můj přístup"
-              description="Věřím, že všichni máme vnitřní zdroje k zvládání životních výzev, které se před námi objevují. Mohou se však objevit situace, ve kterých se můžeme cítit uvězněni nebo bezmocní. V takových chvílích  podporuji klienty v pochopení jejich problémů a hledání efektivních způsobů, jak je překonat. Společně prozkoumáváme jejich osobní cestu k sebepoznání a odhalujeme vnitřní síly, které jim mohou pomoci žít plnější a spokojenější život. Nemám všechny odpovědi, pomůžu vám najít ty vaše."
-              image="mountinHikeGroup.jpg"
-              imageAlt="Skupina lidí na horách"
-              buttonText="Moje služby"
-              buttonHref="/services"
-            />
+                </p>
+                <a href="/about" className="btn btn-outline">Více o mně</a>
+              </div>
+            </div>
+            <div className="about-card">
+              <div className="about-card-image">
+                <img src="/images/mountinHikeGroup.jpg" alt="Skupina lidí na horách" />
+                <div className="about-card-overlay">
+                  <h3>Můj přístup</h3>
+                </div>
+              </div>
+              <div className="about-card-content">
+                <p>
+                  Věřím, že všichni máme vnitřní zdroje k zvládání životních výzev, které se před námi objevují. Mohou se však objevit situace, ve kterých se můžeme cítit uvězněni nebo bezmocní. V takových chvílích  podporuji klienty v pochopení jejich problémů a hledání efektivních způsobů, jak je překonat. Společně prozkoumáváme jejich osobní cestu k sebepoznání a odhalujeme vnitřní síly, které jim mohou pomoci žít plnější a spokojenější život. Nemám všechny odpovědi, pomůžu vám najít ty vaše.
+                </p>
+                <a href="/services" className="btn btn-outline">Moje služby</a>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Services Section */}
-      <ServicesSection />
+      <section className="services-section">
+        <div className="container">
+          <div className="section-header">
+            <h2 className="section-title">S čím vám mohu pomoci</h2>
+            <p className="section-description">
+              Lidé za mnou přicházejí s nejrůznějšími tématy, ale nejčastěji se bavíme o vztazích (k sobě i k druhým), úzkosti, pokleslé náladě a&nbsp;o&nbsp;tom, jak najít klid ve shonu každodenního života.
+            </p>
+          </div>
+          <div className="services-grid">
+            <div className="service-card">
+              <div className="service-icon">👤</div>
+              <h3>Osobní potíže</h3>
+              <p>Individuální terapie</p>
+              <ul>
+                <li>Úzkost a deprese</li>
+                <li>Výkyvy nálady</li>
+                <li>Nároky na sebe</li>
+                <li>Sebevědomí</li>
+                <li>Vztah k sobě</li>
+              </ul>
+            </div>
+            <div className="service-card">
+              <div className="service-icon">👥</div>
+              <h3>Vztahy a vztahové problémy</h3>
+              <p>Porozumění a řešení vztahových potíží.</p>
+              <ul>
+                <li>Potřeby ve vztazích</li>
+                <li>Komunikační problémy</li>
+                <li>Upřednostňování druhých</li>
+                <li>Mezigenerační vztahy</li>
+                <li>Intimita a vztahové potíže</li>
+              </ul>
+            </div>
+            <div className="service-card">
+              <div className="service-icon">💓</div>
+              <h3>Zvládání stresu</h3>
+              <p>Strategie zvládání stresu.</p>
+              <ul>
+                <li>Zdravotní potíže</li>
+                <li>Životní změny</li>
+                <li>Traumatické zkušenosti</li>
+                <li>Strategie zvládání</li>
+                <li>Balancování práce a osobního života</li>
+              </ul>
+            </div>
+          </div>
+          <div className="section-footer">
+            <a href="/services" className="btn btn-outline">Více o službách a podmínkách</a>
+          </div>
+        </div>
+      </section>
 
       {/* Latest Posts Section */}
       <section className="posts-section">
@@ -132,20 +186,42 @@ export default async function Home() {
 
           <div className="posts-grid">
             {newestPosts.map(post => (
-              <BlogCard key={post.slug} post={post} />
+              <div key={post.slug} className="post-card">
+                <div className="post-image">
+                  <img src={post.image || '/images/default-post.jpg'} alt={post.title} />
+                </div>
+                <div className="post-content">
+                  <h3>{post.title}</h3>
+                  <p>{post.excerpt}</p>
+                  <a href={`/blog/${post.slug}`} className="read-more">Číst více</a>
+                </div>
+              </div>
             ))}
           </div>
 
           <div className="section-footer">
-            <a href="/blog" className="btn btn-outline">
-              Více článků
-            </a>
+            <a href="/blog" className="btn btn-outline">Více článků</a>
           </div>
         </div>
       </section>
 
       {/* Call to Action Section */}
-      <CTASection />
+      <section className="cta-section">
+        <div className="container">
+          <div className="cta-content">
+            <h2>Vydejme se spolu na cestu</h2>
+            <p>První krok je často ten nejtěžší. Domluvte si úvodní konzultaci a společně prozkoumáme, jak vám mohu pomoci.</p>
+            <div className="cta-buttons">
+              <a href="/calendar" className="btn btn-primary">
+                📅 Objednat konzultaci
+              </a>
+              <a href="/services" className="btn btn-secondary">
+                Moje služby →
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
     </>
   )
 }
