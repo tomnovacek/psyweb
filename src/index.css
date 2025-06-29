@@ -262,6 +262,9 @@ img[fetchpriority="high"] {
   will-change: transform;
   backface-visibility: hidden;
   transform: translateZ(0);
+  /* Critical: Ensure immediate display */
+  display: block;
+  max-width: none;
 }
 
 /* Prevent layout shifts for hero images */
@@ -280,4 +283,21 @@ img[fetchpriority="high"] {
   height: auto;
   display: block;
   contain: layout style paint;
+}
+
+/* Critical: Prevent font loading delays */
+@font-face {
+  font-family: 'system-ui';
+  font-display: swap;
+}
+
+/* Critical: Optimize container for immediate rendering */
+.chakra-container {
+  contain: layout style;
+}
+
+/* Critical: Ensure hero section renders immediately */
+.hero-section {
+  contain: layout style paint;
+  will-change: transform;
 }

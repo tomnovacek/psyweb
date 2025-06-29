@@ -82,7 +82,7 @@ export default function Home() {
         <link 
           rel="preload" 
           as="image" 
-          href="/optimized-images/forrest-lg.webp" 
+          href="/optimized-images/forrest-md.webp" 
           fetchpriority="high"
         />
         <link 

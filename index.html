@@ -22,7 +22,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
     <!-- Critical image preloading for LCP - only homepage images -->
-    <link rel="preload" href="/optimized-images/forrest-lg.webp" as="image" type="image/webp" fetchpriority="high" />
+    <link rel="preload" href="/optimized-images/forrest-md.webp" as="image" type="image/webp" fetchpriority="high" />
     <link rel="preload" href="/optimized-images/tom1-md.webp" as="image" type="image/webp" fetchpriority="high" />
     
     <!-- DNS prefetch for external resources -->
@@ -108,6 +108,8 @@
         width: 100%;
         height: 75vh;
         overflow: hidden;
+        contain: layout style paint;
+        will-change: transform;
       }
       
       .hero-background {
@@ -129,6 +131,27 @@
         display: flex;
         align-items: center;
         justify-content: center;
+      }
+      
+      /* Critical: Optimize hero images for immediate display */
+      .hero-image {
+        contain: layout style paint;
+        will-change: transform;
+        backface-visibility: hidden;
+        transform: translateZ(0);
+        display: block;
+        max-width: none;
+      }
+      
+      /* Critical: Ensure hero background images render immediately */
+      .hero-background img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        contain: layout style paint;
       }
       
       /* Smooth transitions to reduce perceived layout shifts */

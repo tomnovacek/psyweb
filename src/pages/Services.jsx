@@ -81,7 +81,7 @@ export default function Services() {
         <link 
           rel="preload" 
           as="image" 
-          href="/optimized-images/room-lg.webp" 
+          href="/optimized-images/room-md.webp" 
           fetchpriority="high"
         />
         <link 

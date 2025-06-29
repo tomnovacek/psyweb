@@ -90,7 +90,7 @@ export default function About() {
         <link 
           rel="preload" 
           as="image" 
-          href="/optimized-images/mountainHike-lg.webp" 
+          href="/optimized-images/mountainHike-md.webp" 
           fetchpriority="high"
         />
         <link 
