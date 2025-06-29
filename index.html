@@ -22,27 +22,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
     <!-- Critical image preloading for LCP - only homepage images -->
-    <link rel="preload" href="/optimized-images/forrest-sm.webp" as="image" type="image/webp" fetchpriority="high" />
-    <link rel="preload" href="/optimized-images/tom1-sm.webp" as="image" type="image/webp" fetchpriority="high" />
+    <link rel="preload" href="/optimized-images/forrest-sm.webp?v=2" as="image" type="image/webp" fetchpriority="high" />
+    <link rel="preload" href="/optimized-images/tom1-sm.webp?v=2" as="image" type="image/webp" fetchpriority="high" />
     
     <!-- Critical: Static hero image for immediate LCP -->
     <style>
-      .critical-hero-image {
+      /* Critical: Hero image that renders immediately */
+      .critical-hero-bg {
         position: fixed;
         top: 0;
         left: 0;
         width: 100%;
         height: 75vh;
         z-index: -1;
-        background-image: url('/optimized-images/forrest-sm.webp');
+        background: linear-gradient(135deg, #2d3748 0%, #4a5568 100%);
+        background-image: url('/optimized-images/forrest-sm.webp?v=2');
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
         contain: layout style paint;
+        will-change: transform;
       }
       
       /* Hide when React loads */
-      .react-loaded .critical-hero-image {
+      .react-loaded .critical-hero-bg {
         display: none;
       }
       
@@ -64,6 +67,16 @@
         transform: translateZ(0);
         display: block !important;
         max-width: none !important;
+      }
+      
+      /* Critical: Prevent any blocking */
+      body {
+        font-display: swap;
+      }
+      
+      /* Critical: Ensure images load immediately */
+      img {
+        font-display: swap;
       }
     </style>
     
@@ -176,29 +189,34 @@
   </head>
   <body>
     <!-- Critical: Static hero image for immediate LCP -->
-    <div class="critical-hero-image"></div>
+    <div class="critical-hero-bg"></div>
     
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
     
-    <!-- Hide static hero image when React loads -->
+    <!-- Critical: Force hero image to load immediately -->
     <script>
+      // Critical: Load hero image immediately, before anything else
+      (function() {
+        // Create and load image immediately
+        var criticalImg = new Image();
+        criticalImg.src = '/optimized-images/forrest-sm.webp?v=2';
+        criticalImg.fetchPriority = 'high';
+        
+        // Also preload the portrait
+        var portraitImg = new Image();
+        portraitImg.src = '/optimized-images/tom1-sm.webp?v=2';
+        portraitImg.fetchPriority = 'high';
+        
+        console.log('Critical images loading immediately');
+      })();
+      
       // Hide static hero image when React loads
       window.addEventListener('load', function() {
         setTimeout(function() {
           document.body.classList.add('react-loaded');
         }, 100);
       });
-      
-      // Critical: Force hero image to load immediately
-      (function() {
-        var img = new Image();
-        img.src = '/optimized-images/forrest-sm.webp';
-        img.onload = function() {
-          // Image loaded successfully
-          console.log('Critical hero image loaded');
-        };
-      })();
     </script>
   </body>
 </html>

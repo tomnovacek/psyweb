@@ -108,8 +108,9 @@ export default function Home() {
         >
           {/* Static hero image for optimal LCP */}
           <img
-            src="/optimized-images/forrest-sm.webp?v=2"
-            srcSet="/optimized-images/forrest-xs.webp?v=2 150w, /optimized-images/forrest-sm.webp?v=2 300w, /optimized-images/forrest-md.webp?v=2 400w, /optimized-images/forrest-lg.webp?v=2 800w, /optimized-images/forrest-xl.webp?v=2 1200w, /optimized-images/forrest-2xl.webp?v=2 1600w"
+            src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAwIiBoZWlnaHQ9IjYwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjMmQzNzQ4Ii8+PC9zdmc+"
+            data-src="/optimized-images/forrest-sm.webp?v=2"
+            data-srcset="/optimized-images/forrest-xs.webp?v=2 150w, /optimized-images/forrest-sm.webp?v=2 300w, /optimized-images/forrest-md.webp?v=2 400w, /optimized-images/forrest-lg.webp?v=2 800w, /optimized-images/forrest-xl.webp?v=2 1200w, /optimized-images/forrest-2xl.webp?v=2 1600w"
             sizes="100vw"
             alt="Lesní cesta"
             loading="eager"
@@ -121,6 +122,7 @@ export default function Home() {
               width: '100%',
               objectFit: 'cover'
             }}
+            onLoad="this.src=this.dataset.src;this.srcset=this.dataset.srcset"
           />
           <Box
             position="absolute"
