@@ -16,6 +16,7 @@ import {
   Icon,
 
   VStack,
+  Link,
 
 } from '@chakra-ui/react'
 import { Link as RouterLink } from 'react-router-dom'
@@ -187,7 +188,19 @@ export default function Home() {
           <SimpleGrid columns={{ base: 1, md: 2 }} spacing={16} w="full">
             <AboutCard
               title="Moje praxe"
-              description="Posledních sedm let se intenzivně věnuji psychologickému poradenství a čtyři roky praktikuji terapii v soukromé praxi v centru Brna.  Vystudoval jsem jednooborovou psychologii a absolvoval  dvouletý výcvik v koučování, následně šestiletý výcvik v integrativní psychoterapii. Jsem řádným členem České asociace pro psychoterapii - komunity, která klade důraz na etické standardy a vysokou kvalifikaci v oboru psychoterapie. Jinými slovy, snažím pracovat poctivě a stále se učit."
+              description={
+                <>
+                  Posledních sedm let se intenzivně věnuji psychologickému poradenství a čtyři roky praktikuji terapii v soukromé praxi v centru Brna. Vystudoval jsem jednooborovou psychologii a absolvoval dvouletý výcvik v koučování, následně šestiletý výcvik v{' '}
+                  <Link href="https://www.psychoterapie-integrace.cz" isExternal color="grey.400">
+                    integrativní psychoterapii
+                  </Link>
+                  . Jsem řádným členem{' '}
+                  <Link href="https://www.czap.cz/" isExternal color="grey.400">
+                    České asociace pro psychoterapii
+                  </Link>
+                  {' '}- komunity, která klade důraz na etické standardy a vysokou kvalifikaci v oboru psychoterapie. Jinými slovy, snažím pracovat poctivě a stále se učit.
+                </>
+              }
               image="room.jpeg"
               imageAlt="Terapeutická místnost"
               icon={FaUser}
