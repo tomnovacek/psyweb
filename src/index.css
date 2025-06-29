@@ -255,3 +255,29 @@ img[fetchpriority="high"] {
 .hero-section img {
   contain: layout style paint;
 }
+
+/* Optimize HeroImage component for LCP */
+.hero-image {
+  contain: layout style paint;
+  will-change: transform;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}
+
+/* Prevent layout shifts for hero images */
+.hero-background img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Optimize portrait image loading */
+.hero-portrait img {
+  width: 100%;
+  height: auto;
+  display: block;
+  contain: layout style paint;
+}

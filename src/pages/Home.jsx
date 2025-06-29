@@ -26,6 +26,7 @@ import { useEffect, useState } from 'react'
 import { getLatestPosts } from '../utils/blogUtils'
 import OptimizedImage from '../components/OptimizedImage'
 import CriticalImage from '../components/CriticalImage'
+import HeroImage from '../components/HeroImage'
 import AnalyticsButton from '../components/AnalyticsButton'
 
 import SEO from '../components/SEO'
@@ -76,7 +77,21 @@ export default function Home() {
         keywords="psychoterapie, psychologické poradenství, Brno, individuální terapie, osobní rozvoj, deprese, úzkost, vztahy, stres"
         url="https://tomnovacek.com"
         image="tom1.png"
-      />
+      >
+        {/* Preload critical images for LCP optimization */}
+        <link 
+          rel="preload" 
+          as="image" 
+          href="/optimized-images/forrest-lg.webp" 
+          fetchpriority="high"
+        />
+        <link 
+          rel="preload" 
+          as="image" 
+          href="/optimized-images/tom1-md.webp" 
+          fetchpriority="high"
+        />
+      </SEO>
       <StructuredData type="MedicalBusiness" />
       <StructuredData type="Person" />
 
@@ -92,13 +107,11 @@ export default function Home() {
           zIndex={0}
           className="hero-background"
         >
-          <CriticalImage
+          <HeroImage
             src="forrest.webp"
             alt="Lesní cesta"
-            size="lg"
-            objectFit="cover"
-            width="100%"
-            height="100%"
+            priority={true}
+            sizes="100vw"
             fallbackSrc="/src/assets/img/forrest.webp"
             style={{
               height: '100%',
@@ -152,18 +165,17 @@ export default function Home() {
                 width="100%"
                 mt="auto"
               >
-                <CriticalImage
+                <HeroImage
                   src="tom1.png"
                   alt="Tom Nováček"
-                  size="md"
-                  objectFit="cover"
-                  width="100%"
-                  height="auto"
+                  priority={true}
+                  sizes="(max-width: 768px) 100vw, 50vw"
                   fallbackSrc="/src/assets/img/tom1.png"
                   style={{
                     mixBlendMode: 'normal',
                     backgroundColor: 'transparent',
-                    filter: 'brightness(1.1)'
+                    filter: 'brightness(1.1)',
+                    height: 'auto'
                   }}
                 />
               </Box>

@@ -48,6 +48,7 @@ import {
 } from 'react-icons/fa'
 import { Link as RouterLink } from 'react-router-dom'
 import OptimizedImage from '../components/OptimizedImage'
+import HeroImage from '../components/HeroImage'
 import SEO from '../components/SEO'
 import StructuredData from '../components/StructuredData'
 import HeroTextBox from '../components/HeroTextBox'
@@ -75,7 +76,21 @@ export default function Services() {
           'room.jpeg',  // Hero background
           'tom1.png'  // Hero portrait
         ]}
-      />
+      >
+        {/* Preload critical images for LCP optimization */}
+        <link 
+          rel="preload" 
+          as="image" 
+          href="/optimized-images/room-lg.webp" 
+          fetchpriority="high"
+        />
+        <link 
+          rel="preload" 
+          as="image" 
+          href="/optimized-images/tom1-md.webp" 
+          fetchpriority="high"
+        />
+      </SEO>
       <StructuredData type="MedicalBusiness" />
 
       {/* Hero Section */}
@@ -89,16 +104,12 @@ export default function Services() {
           height="100%"
           zIndex={0}
         >
-          <OptimizedImage
-            src="/src/assets/img/room.jpeg"
+          <HeroImage
+            src="room.jpeg"
             alt="Terapeutická místnost"
-            objectFit="cover"
-            width="1920"
-            height="1080"
             priority={true}
-            fetchpriority="high"
-            loading="eager"
-            decoding="sync"
+            sizes="100vw"
+            fallbackSrc="/src/assets/img/room.jpeg"
             style={{
               height: '100%',
               width: '100%',
@@ -148,17 +159,17 @@ export default function Services() {
                 width="100%"
                 mt="auto"
               >
-                <OptimizedImage
+                <HeroImage
                   src="tom1.png"
                   alt="Tom Nováček"
-                  objectFit="cover"
-                  width="100%"
-                  height="auto"
-                  priority="true"
+                  priority={true}
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  fallbackSrc="/src/assets/img/tom1.png"
                   style={{
                     mixBlendMode: 'normal',
                     backgroundColor: 'transparent',
-                    filter: 'brightness(1.1)'
+                    filter: 'brightness(1.1)',
+                    height: 'auto'
                   }}
                 />
               </Box>

@@ -59,6 +59,7 @@ import {
 } from 'react-icons/fa'
 import { Link as RouterLink } from 'react-router-dom'
 import OptimizedImage from '../components/OptimizedImage'
+import HeroImage from '../components/HeroImage'
 import SEO from '../components/SEO'
 import StructuredData from '../components/StructuredData'
 import HeroTextBox from '../components/HeroTextBox'
@@ -84,7 +85,21 @@ export default function About() {
           'mountainHike.jpg',  // Hero background
           'tom1.png'  // Portrait
         ]}
-      />
+      >
+        {/* Preload critical images for LCP optimization */}
+        <link 
+          rel="preload" 
+          as="image" 
+          href="/optimized-images/mountainHike-lg.webp" 
+          fetchpriority="high"
+        />
+        <link 
+          rel="preload" 
+          as="image" 
+          href="/optimized-images/tom1-md.webp" 
+          fetchpriority="high"
+        />
+      </SEO>
       <StructuredData type="Person" />
 
       {/* Hero Section */}
@@ -98,16 +113,12 @@ export default function About() {
           height="100%"
           zIndex={0}
         >
-          <OptimizedImage
+          <HeroImage
             src="mountainHike.jpg"
             alt="hiking in the mountains"
-            objectFit="cover"
-            width="1920"
-            height="1080"
             priority={true}
-            fetchpriority="high"
-            loading="eager"
-            decoding="sync"
+            sizes="100vw"
+            fallbackSrc="/src/assets/img/mountainHike.jpg"
             style={{
               height: '100%',
               width: '100%',
@@ -151,17 +162,17 @@ export default function About() {
                 width="100%"
                 mt="auto"
               >
-                <OptimizedImage
+                <HeroImage
                   src="tom1.png"
                   alt="Tom Nováček"
-                  objectFit="cover"
-                  width="100%"
-                  height="auto"
-                  priority="true"
+                  priority={true}
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  fallbackSrc="/src/assets/img/tom1.png"
                   style={{
                     mixBlendMode: 'normal',
                     backgroundColor: 'transparent',
-                    filter: 'brightness(1.1)'
+                    filter: 'brightness(1.1)',
+                    height: 'auto'
                   }}
                 />
               </Box>
