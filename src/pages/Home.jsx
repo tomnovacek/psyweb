@@ -110,7 +110,7 @@ export default function Home() {
           <img
             src="/optimized-images/forrest-sm.webp?v=3"
             srcSet="/optimized-images/forrest-xs.webp?v=3 150w, /optimized-images/forrest-sm.webp?v=3 300w, /optimized-images/forrest-md.webp?v=3 400w, /optimized-images/forrest-lg.webp?v=3 800w, /optimized-images/forrest-xl.webp?v=3 1200w, /optimized-images/forrest-2xl.webp?v=3 1600w"
-            sizes="100vw"
+            sizes="(max-width: 600px) 100vw, (max-width: 1200px) 50vw, 800px"
             alt="Lesní cesta"
             loading="eager"
             fetchpriority="high"
@@ -119,7 +119,11 @@ export default function Home() {
             style={{
               height: '100%',
               width: '100%',
-              objectFit: 'cover'
+              objectFit: 'cover',
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              zIndex: 0
             }}
           />
           <Box
