@@ -195,6 +195,16 @@ export default function Navbar() {
     setIsMounted(true)
   }, [])
 
+  // Debug logging
+  useEffect(() => {
+    console.log('Navbar isOpen state:', isOpen)
+  }, [isOpen])
+
+  const handleToggle = () => {
+    console.log('Hamburger clicked, current state:', isOpen)
+    onToggle()
+  }
+
   return (
     <Box
       position="sticky"
@@ -208,6 +218,7 @@ export default function Navbar() {
       height={NAV_HEIGHT}
       minH={NAV_HEIGHT}
       style={{
+        ...fontStyles,
         contain: 'layout size',
         willChange: 'transform',
       }}
@@ -237,7 +248,7 @@ export default function Navbar() {
             }}
           >
             <IconButton
-              onClick={onToggle}
+              onClick={handleToggle}
               icon={
                 isOpen ? <CloseIcon w={3} h={3} /> : <HamburgerIcon w={5} h={5} />
               }
@@ -280,12 +291,7 @@ export default function Navbar() {
                 alt="Tom Nováček"
                 width={LOGO_SIZE}
                 height={LOGO_SIZE}
-                style={{ 
-                  objectFit: 'contain', 
-                  display: 'block',
-                  width: LOGO_SIZE,
-                  height: LOGO_SIZE,
-                }}
+                style={{ objectFit: 'contain', display: 'block' }}
                 loading="eager"
               />
             </Box>
@@ -376,6 +382,15 @@ export default function Navbar() {
           <Box
             display={{ base: 'block', md: 'none' }}
             w="100%"
+            position="absolute"
+            top="100%"
+            left={0}
+            right={0}
+            zIndex={999}
+            bg={useColorModeValue('white', 'gray.800')}
+            borderTop="1px solid"
+            borderColor={useColorModeValue('gray.200', 'gray.700')}
+            boxShadow="lg"
             style={{ contain: 'layout size', willChange: 'transform' }}
           >
             <MobileNav onClose={onToggle} />
